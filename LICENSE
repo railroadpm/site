@@ -1,0 +1,47 @@
+Where not otherwise indicated on the site data visible on the running website produced
+by building and deploying the files in this repository (repo), site data is:
+
+  Copyright (c) 2018 Association of American Railroads (AAR) <media@aar.org>
+
+A running copy of the website is generally available for review here:
+
+  http://www.railroadpm.org
+
+"Site data" is defined as the names and contents of the files in this repo which have
+the following file extensions:
+
+  .toml,
+  .yaml, and
+  .json
+
+For all third party open source software projects referenced/used by this repo,
+please see the project's original repository for the complete License statement
+applicable to the project's source code.
+
+Specifically, Netlify software is:
+
+  Copyright (c) 2016 Netlify <hello@netlify.com>
+
+For all other files in this repository (files that are not part of the "site data" or
+part of a "third party open source software project") the following License applies.
+
+MIT License
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

@@ -1,0 +1,346 @@
+# Period.toml: Lookup data for date dimensions
+# TODO: Auto-generate [Quarter], [Month], and [[Week]]s as part of the build process
+[Quarter]
+Current = '2Q18'
+Previous = '1Q18'
+
+[Month]
+Current = 'May 2018'
+Previous = 'Apr 2018'
+
+[[Week]]
+Key = '20180427'
+Day = '04/27/18'
+Month = 'Apr 2018'
+Qtr = '2Q18'
+
+[[Week]]
+Key = '20180420'
+Day = '04/20/18'
+Month = 'Apr 2018'
+Qtr = '2Q18'
+
+[[Week]]
+Key = '20180413'
+Day = '04/13/18'
+Month = 'Apr 2018'
+Qtr = '2Q18'
+
+[[Week]]
+Key = '20180406'
+Day = '04/06/18'
+Month = 'Apr 2018'
+Qtr = '2Q18'
+
+[[Week]]
+Key = '20180330'
+Day = '03/30/18'
+Month = 'Mar 2018'
+Qtr = '1Q18'
+
+[[Week]]
+Key = '20180323'
+Day = '03/23/18'
+Month = 'Mar 2018'
+Qtr = '1Q18'
+
+[[Week]]
+Key = '20180316'
+Day = '03/16/18'
+Month = 'Mar 2018'
+Qtr = '1Q18'
+
+[[Week]]
+Key = '20180309'
+Day = '03/09/18'
+Month = 'Mar 2018'
+Qtr = '1Q18'
+
+[[Week]]
+Key = '20180302'
+Day = '03/02/18'
+Month = 'Mar 2018'
+Qtr = '1Q18'
+
+[[Week]]
+Key = '20180223'
+Day = '02/23/18'
+Month = 'Feb 2018'
+Qtr = '1Q18'
+
+[[Week]]
+Key = '20180216'
+Day = '02/16/18'
+Month = 'Feb 2018'
+Qtr = '1Q18'
+
+[[Week]]
+Key = '20180209'
+Day = '02/09/18'
+Month = 'Feb 2018'
+Qtr = '1Q18'
+
+[[Week]]
+Key = '20180202'
+Day = '02/02/18'
+Month = 'Feb 2018'
+Qtr = '1Q18'
+
+[[Week]]
+Key = '20180126'
+Day = '01/26/18'
+Month = 'Jan 2018'
+Qtr = '1Q18'
+
+[[Week]]
+Key = '20180119'
+Day = '01/19/18'
+Month = 'Jan 2018'
+Qtr = '1Q18'
+
+[[Week]]
+Key = '20180112'
+Day = '01/12/18'
+Month = 'Jan 2018'
+Qtr = '1Q18'
+
+[[Week]]
+Key = '20180105'
+Day = '01/05/18'
+Month = 'Jan 2018'
+Qtr = '1Q18'
+
+[[Week]]
+Key = '20171229'
+Day = '12/29/17'
+Month = 'Dec 2017'
+Qtr = '4Q17'
+
+[[Week]]
+Key = '20171222'
+Day = '12/22/17'
+Month = 'Dec 2017'
+Qtr = '4Q17'
+
+[[Week]]
+Key = '20171215'
+Day = '12/15/17'
+Month = 'Dec 2017'
+Qtr = '4Q17'
+
+[[Week]]
+Key = '20171208'
+Day = '12/08/17'
+Month = 'Dec 2017'
+Qtr = '4Q17'
+
+[[Week]]
+Key = '20171201'
+Day = '12/01/17'
+Month = 'Dec 2017'
+Qtr = '4Q17'
+
+[[Week]]
+Key = '20171124'
+Day = '11/24/17'
+Month = 'Nov 2017'
+Qtr = '4Q17'
+
+[[Week]]
+Key = '20171117'
+Day = '11/17/17'
+Month = 'Nov 2017'
+Qtr = '4Q17'
+
+[[Week]]
+Key = '20171110'
+Day = '11/10/17'
+Month = 'Nov 2017'
+Qtr = '4Q17'
+
+[[Week]]
+Key = '20171103'
+Day = '11/03/17'
+Month = 'Nov 2017'
+Qtr = '4Q17'
+
+[[Week]]
+Key = '20171027'
+Day = '10/27/17'
+Month = 'Oct 2017'
+Qtr = '4Q17'
+
+[[Week]]
+Key = '20171020'
+Day = '10/20/17'
+Month = 'Oct 2017'
+Qtr = '4Q17'
+
+[[Week]]
+Key = '20171013'
+Day = '10/13/17'
+Month = 'Oct 2017'
+Qtr = '4Q17'
+
+[[Week]]
+Key = '20171006'
+Day = '10/06/17'
+Month = 'Oct 2017'
+Qtr = '4Q17'
+
+[[Week]]
+Key = '20170929'
+Day = '09/29/17'
+Month = 'Sep 2017'
+Qtr = '3Q17'
+
+[[Week]]
+Key = '20170922'
+Day = '09/22/17'
+Month = 'Sep 2017'
+Qtr = '3Q17'
+
+[[Week]]
+Key = '20170915'
+Day = '09/15/17'
+Month = 'Sep 2017'
+Qtr = '3Q17'
+
+[[Week]]
+Key = '20170908'
+Day = '09/08/17'
+Month = 'Sep 2017'
+Qtr = '3Q17'
+
+[[Week]]
+Key = '20170901'
+Day = '09/01/17'
+Month = 'Sep 2017'
+Qtr = '3Q17'
+
+[[Week]]
+Key = '20170825'
+Day = '08/25/17'
+Month = 'Aug 2017'
+Qtr = '3Q17'
+
+[[Week]]
+Key = '20170818'
+Day = '08/18/17'
+Month = 'Aug 2017'
+Qtr = '3Q17'
+
+[[Week]]
+Key = '20170811'
+Day = '08/11/17'
+Month = 'Aug 2017'
+Qtr = '3Q17'
+
+[[Week]]
+Key = '20170804'
+Day = '08/04/17'
+Month = 'Aug 2017'
+Qtr = '3Q17'
+
+[[Week]]
+Key = '20170728'
+Day = '07/28/17'
+Month = 'Jul 2017'
+Qtr = '3Q17'
+
+[[Week]]
+Key = '20170721'
+Day = '07/21/17'
+Month = 'Jul 2017'
+Qtr = '3Q17'
+
+[[Week]]
+Key = '20170714'
+Day = '07/14/17'
+Month = 'Jul 2017'
+Qtr = '3Q17'
+
+[[Week]]
+Key = '20170707'
+Day = '07/07/17'
+Month = 'Jul 2017'
+Qtr = '3Q17'
+
+[[Week]]
+Key = '20170630'
+Day = '06/30/17'
+Month = 'Jun 2017'
+Qtr = '2Q17'
+
+[[Week]]
+Key = '20170623'
+Day = '06/23/17'
+Month = 'Jun 2017'
+Qtr = '2Q17'
+
+[[Week]]
+Key = '20170616'
+Day = '06/16/17'
+Month = 'Jun 2017'
+Qtr = '2Q17'
+
+[[Week]]
+Key = '20170609'
+Day = '06/09/17'
+Month = 'Jun 2017'
+Qtr = '2Q17'
+
+[[Week]]
+Key = '20170602'
+Day = '06/02/17'
+Month = 'Jun 2017'
+Qtr = '2Q17'
+
+[[Week]]
+Key = '20170526'
+Day = '05/26/17'
+Month = 'May 2017'
+Qtr = '2Q17'
+
+[[Week]]
+Key = '20170519'
+Day = '05/19/17'
+Month = 'May 2017'
+Qtr = '2Q17'
+
+[[Week]]
+Key = '20170512'
+Day = '05/12/17'
+Month = 'May 2017'
+Qtr = '2Q17'
+
+[[Week]]
+Key = '20170505'
+Day = '05/05/17'
+Month = 'May 2017'
+Qtr = '2Q17'
+
+[[Week]]
+Key = '20170428'
+Day = '04/28/17'
+Month = 'Apr 2017'
+Qtr = '2Q17'
+
+[[Week]]
+Key = '20170421'
+Day = '04/21/17'
+Month = 'Apr 2017'
+Qtr = '2Q17'
+
+[[Week]]
+Key = '20170414'
+Day = '04/14/17'
+Month = 'Apr 2017'
+Qtr = '2Q17'
+
+[[Week]]
+Key = '20170407'
+Day = '04/07/17'
+Month = 'Apr 2017'
+Qtr = '2Q17'
+Hidden = true

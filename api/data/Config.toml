@@ -1,0 +1,12 @@
+# Config.toml: Data publishing configuration data
+[WeeklyReport.Ends]
+On = "Friday"
+At = "11:59pm"
+
+[WeeklyReport.Published]
+On = "Wednesday"
+At = "02:00pm"
+
+[WeeklyReport.Displayed.CountOfWeeks]
+Current = 4
+Historical = 53

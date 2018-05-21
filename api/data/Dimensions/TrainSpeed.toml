@@ -1,0 +1,55 @@
+# TrainSpeed.toml: Lookup data for categorical dimensions
+#   For Types, ShortName is used when displaying Measures, LongName when displaying definitions
+Key = 'TrainSpeed'
+MeasureHeading = 'Train Speed (Miles per Hour)'
+DefinitionHeading = 'Train Speed'
+DefinitionVerbiage = '''
+  Train Speed measures the line-haul movement between terminals. The average speed is calculated by dividing train-miles by total hours operated,
+  excluding yard and local trains, passenger trains, maintenance of way trains, and terminal time.
+  System-wide average train speeds are given for the following train types:
+'''
+
+[Train]
+Key = 'ByTrainType'
+
+  [[Train.Type]]
+  Key = 'Intermodal'
+  Ord = 1
+  ShortName = 'Intermodal'
+  LongName = 'Intermodal'
+  Description = ''
+
+  [[Train.Type]]
+  Key = 'Manifest'
+  Ord = 2
+  ShortName = 'Manifest'
+  LongName = 'Manifest'
+  Description = ''
+
+  [[Train.Type]]
+  Key = 'Multilevel'
+  Ord = 3
+  ShortName = 'Multilevel'
+  LongName = 'Multilevel'
+  Description = ''
+
+  [[Train.Type]]
+  Key = 'CoalUnit'
+  Ord = 4
+  ShortName = 'Coal Unit'
+  LongName = 'Coal Unit'
+  Description = ''
+
+  [[Train.Type]]
+  Key = 'GrainUnit'
+  Ord = 5
+  ShortName = 'Grain Unit'
+  LongName = 'Grain Unit'
+  Description = ''
+
+  [[Train.Type]]
+  Key = 'AllTrains'
+  Ord = 6
+  ShortName = 'All Trains'
+  LongName = 'All trains'
+  Description = ''

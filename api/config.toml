@@ -1,0 +1,18 @@
+baseURL = "/"
+languageCode = "en-us"
+title = "Railroad Performance Measures REST API"
+disableKinds = ["RSS", "sitemap"]
+
+[outputFormats.JSON]
+baseName = "get"
+isPlainText = true
+isHTML = false
+noUgly = false
+
+  [outputFormats.JSON.mediaType]
+  delimiter = "."
+  type = "application/json"
+  string = "application/json+json"
+  mainType = "application"
+  subType = "json"
+  suffix = "json"

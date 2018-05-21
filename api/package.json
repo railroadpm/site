@@ -1,0 +1,15 @@
+{
+  "name": "aar-rpm-api",
+  "version": "1.0.0",
+  "description": "RPM REST API",
+  "main": "index.js",
+  "scripts": {
+    "dev": "hugo serve --disableFastRender",
+    "build": "hugo -d ./dist",
+    "build-full": "hugo -d ./dist --cleanDestinationDir",
+    "build-preview": "hugo -d ./dist --buildDrafts --buildFuture"
+  },
+  "keywords": [],
+  "author": "Copyright (C) 2018, Association of American Railroads",
+  "license": "UNLICENSED"
+}

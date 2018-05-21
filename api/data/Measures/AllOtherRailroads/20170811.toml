@@ -1,0 +1,13 @@
+Railroad = 'AllOtherRailroads'
+Week = '20170811'
+CarsOnLine_ByCarOwner_System = 106476
+CarsOnLine_ByCarOwner_ForeignRR = 117936
+CarsOnLine_ByCarOwner_Private = 484069
+CarsOnLine_ByCarType_Box = 54844
+CarsOnLine_ByCarType_CoveredHopper = 235475
+CarsOnLine_ByCarType_Gondola = 45604
+CarsOnLine_ByCarType_Intermodal = 16129
+CarsOnLine_ByCarType_Multilevel = 24564
+CarsOnLine_ByCarType_OpenHopper = 97167
+CarsOnLine_ByCarType_Tank = 207419
+CarsOnLine_ByCarType_Other = 27279

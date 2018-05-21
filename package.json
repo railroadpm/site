@@ -1,0 +1,23 @@
+{
+  "name": "aar-rpm",
+  "version": "2.0.0",
+  "description": "Railroad Performance Measures",
+  "main": "index.js",
+  "scripts": {
+    "api-dev": "hugo serve -s ./api --disableFastRender",
+    "api-build": "hugo -s ./api -d ./dist",
+    "api-build-full": "hugo -s ./api -d ./dist --cleanDestinationDir",
+    "api-build-preview": "hugo -s ./api -d ./dist --buildDrafts --buildFuture"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/railroadpm/site.git"
+  },
+  "keywords": [],
+  "author": "Copyright (C) 2018, Association of American Railroads",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/railroadpm/site/issues"
+  },
+  "homepage": "https://github.com/railroadpm/site#readme"
+}

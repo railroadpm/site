@@ -1,0 +1,9 @@
+# Rewrite API paths from cleaner folder names to underlying "get.json" files
+# ("get.json" configured in root "config.toml" setting "baseName")
+# TODO: Consider using Hugo's .Site.Pages and templates to render this automatically!
+
+/reports/BNSF/all               /reports/BNSF/all/get.json              200
+/reports/BNSF/all/              /reports/BNSF/all/get.json              200
+
+/reports/BNSF/current           /reports/BNSF/current/get.json          200
+/reports/BNSF/current/          /reports/BNSF/current/get.json          200

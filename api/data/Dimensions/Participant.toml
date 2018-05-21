@@ -1,0 +1,85 @@
+# Participant.toml: Lookup data for participating party (person or org) dimensions
+#   NOTE: In various places we may abbreviate 'participant' as 'prpt'
+Key = 'Participant'
+Verbiage = '''
+  All five railroads use the same definitions to calculate their performance data, ensuring a high degree of consistency of the measurements.
+  However, these measures are most useful for examining trends and relative changes, and least useful as absolutes.
+  <br><br>
+  The level of one railroad's performance relative to another's may differ sharply because each railroad is unique.
+  Differences between railroads include terrain, physical routes and network design, traffic mix and volume, the extent of passenger operations,
+  and operational practices. External factors such as weather and port operations can also cause variations between railroads and over time.
+  In addition, individual differences in the collection and reporting of operational data may affect the absolute level of the measures on each road to some degree.
+'''
+
+[[Railroad]]
+Key = 'BNSF'
+Ord = 1
+ShortName = 'BNSF Railway Company'
+LongName = 'BNSF Railway Company'
+Logo = '/img/bnsf_railway.jpg'
+Copyright = '''
+  ©1999-2010 BNSF Railway Co., all rights reserved. May not be reproduced or
+  republished without permission. Train Speed and Terminal Dwell statistics are
+  produced and maintained by BNSF Railway; Cars on Line data are produced by
+  Railinc and maintained by the AAR.
+'''
+
+[[Railroad]]
+Key = 'CN'
+Ord = 2
+ShortName = 'CN'
+LongName = 'Canadian National Railway Co.'
+Logo = '/img/cn_logo.gif'
+Copyright = '''
+  ©1999-2010 Canadian National Railway Co., all rights reserved. May not be
+  reproduced or republished without permission. Train Speed and Terminal Dwell
+  statistics are produced and maintained by Canadian National Railway; Cars on
+  Line data are produced by Railinc and maintained by the AAR.
+'''
+
+[[Railroad]]
+Key = 'KCS'
+Ord = 3
+ShortName = 'The Kansas City Southern Railway and Kansas City Southern de Mexico, S.A. de C.V. Consolidated'
+LongName = 'The Kansas City Southern Railway and Kansas City Southern de Mexico, S.A. de C.V. Consolidated'
+Logo = '/img/KCSM_small.jpg'
+Copyright = '''
+  ©1999-2017 The Kansas City Southern Railway Company, all rights reserved. May not be
+  reproduced or republished without permission. Train Speed and Terminal Dwell statistics are produced and maintained by KCS;
+  Cars on Line data are produced by Railinc and maintained by the AAR.
+'''
+
+[[Railroad]]
+Key = 'NS'
+Ord = 4
+ShortName = 'Norfolk Southern'
+LongName = 'Norfolk Southern Corporation'
+Logo = '/img/norfolksouthernlogo.jpg'
+Copyright = '''
+  ©1999-2017 Norfolk Southern Corporation, all rights reserved. May not be
+  reproduced or republished without permission. Train Speed and Terminal Dwell statistics are produced and maintained by NS;
+  Cars on Line data are produced by Railinc and maintained by the AAR.
+'''
+
+[[Railroad]]
+Key = 'UP'
+Ord = 5
+ShortName = 'Union Pacific Railroad'
+LongName = 'Union Pacific Railroad'
+Logo = '/img/up_shield.gif'
+Copyright = '''
+  ©1999-2010 Union Pacific Railroad, all rights reserved. May not be
+  reproduced or republished without permission. Train Speed and Terminal Dwell statistics are produced and maintained by UP;
+  Cars on Line data are produced by Railinc and maintained by the AAR.
+'''
+
+[[Railroad]]
+Key = 'AllOtherRailroads'
+Ord = 6
+ShortName = 'All Other Railroads'
+LongName = 'All Other Railroads'
+Logo = ''
+Copyright = '''
+  ©2009-2010 Association of American Railroads, all rights reserved. May not be
+  reproduced or republished without permission. Cars on Line data are produced by Railinc and maintained by the AAR.
+'''

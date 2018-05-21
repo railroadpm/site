@@ -1,0 +1,24 @@
+<!--
+  Render JSON data for individual railroad performance reports, optionally limited to N number of weeks
+  (since the most recent week on file)
+
+  Parameters
+    railroad            Railroad (Participant) for which to render reports, in the form of a Key string
+                        (see Participant.toml)
+    avg (optional)      Set to true to include historical averages in rendered reports
+    weeks (optional)    Number of weeks to render. If unspecified, all weeks (not marked hidden) are rendered
+-->
+{{- $reports := where .Site.Data.Measures.BNSF "Week" "20180427" -}}
+{{- $render := "reports_render" -}}
+{{- $.Scratch.Set $render $reports -}}
+
+{{/*
+{{- with .Get "avg" -}}
+  {{- $.Scratch.Set $render (where $reports TODO) -}}
+{{- end -}}
+*/}}
+
+  {
+    "headers": "",
+    "reports": {{- $.Scratch.Get $render | jsonify }}
+  }

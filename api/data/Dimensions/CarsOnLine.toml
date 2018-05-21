@@ -1,0 +1,101 @@
+# CarsOnLine.toml: Lookup data for categorical dimensions
+#   For Types, ShortName is used when displaying Measures, LongName when displaying definitions
+Key = 'CarsOnLine'
+MeasureHeading = 'Cars on Line'
+DefinitionHeading = 'Cars On Line'
+DefinitionVerbiage = '''
+  Cars On Line is the average of the daily on-line inventory of freight cars. Articulated cars are counted as a single unit.
+  Cars on private tracks (e.g., at a customer's facility) are counted on the last railroad on which they were located.
+  Maintenance of way cars are excluded.
+  <br>
+  Cars on Line figures are reported by car type and by car ownership:
+'''
+
+[Owner]
+Key = 'ByCarOwner'
+MeasureHeading = 'By Car Owner'
+TypeDefinitionHeading = 'Owner Type'
+TypeDescriptionHeading = 'Description'
+
+  [[Owner.Type]]
+  Key = 'System'
+  Ord = 1
+  ShortName = 'System'
+  LongName = 'System Car'
+  Description = 'Owned by the railroad on which it is located'
+
+  [[Owner.Type]]
+  Key = 'ForeignRR'
+  Ord = 2
+  ShortName = 'Foreign RR'
+  LongName = 'Foreign RR'
+  Description = 'Owned by a railroad other than the one on which it is located'
+
+  [[Owner.Type]]
+  Key = 'Private'
+  Ord = 3
+  ShortName = 'Private'
+  LongName = 'Private'
+  Description = 'Owned by a non-railroad (i.e., has a car initial that ends in "X") and not leased to a railroad'
+
+[Car]
+Key = 'ByCarType'
+MeasureHeading = 'By Car Type'
+TypeDefinitionHeading = 'Car Type'
+TypeDescriptionHeading = 'AAR Mechanical Designation'
+
+  [[Car.Type]]
+  Key = 'Box'
+  Ord = 1
+  ShortName = 'Box'
+  LongName = 'Box'
+  Description = 'A, B or R'
+  
+  [[Car.Type]]
+  Key = 'CoveredHopper'
+  Ord = 2
+  ShortName = 'Covered Hopper'
+  LongName = 'Covered Hopper'
+  Description = 'C'
+
+  [[Car.Type]]
+  Key = 'Gondola'
+  Ord = 3
+  ShortName = 'Gondola'
+  LongName = 'Gondola'
+  Description = 'E or G'
+
+  [[Car.Type]]
+  Key = 'Intermodal'
+  Ord = 4
+  ShortName = 'Intermodal'
+  LongName = 'Intermodal'
+  Description = 'P, Q or S'
+
+  [[Car.Type]]
+  Key = 'Multilevel'
+  Ord = 5
+  ShortName = 'Multilevel'
+  LongName = 'Multilevel'
+  Description = 'V'
+
+  [[Car.Type]]
+  Key = 'OpenHopper'
+  Ord = 6
+  ShortName = 'Open Hopper'
+  LongName = 'Open Hopper'
+  Description = 'H, J or K'
+
+  [[Car.Type]]
+  Key = 'Tank'
+  Ord = 7
+  ShortName = 'Tank'
+  LongName = 'Tank'
+  Description = 'T'
+
+  [[Car.Type]]
+  Key = 'Other'
+  Ord = 8
+  ShortName = 'Other'
+  LongName = 'Other'
+  Description = 'L or F'

@@ -1,0 +1,600 @@
+# TerminalDwell.toml: Lookup data for location dimensions
+Key = 'TerminalDwell'
+MeasureHeading = 'Terminal Dwell (Hours)'
+DefinitionHeading = 'Terminal Dwell (Hours)'
+DefinitionVerbiage = '''
+  Terminal Dwell is the average time a car resides at the specified terminal location expressed in hours.
+  The measurement begins with a customer release, received interchange, or train arrival event
+  and ends with a customer placement (actual or constructive), delivered or offered in interchange, or train departure event.
+  Cars that move through a terminal on a run-through train are excluded, as are stored, bad ordered, and maintenance of way cars.
+'''
+
+[BNSF]
+Key = 'BNSF'
+
+  [[BNSF.Terminal]]
+  Key = 'Barstow'
+  Ord = 1
+  CityOrYard = 'Barstow'
+  Town = ''
+  State = 'CA'
+  Country = 'USA'
+  Lat = '34.894456'
+  Lon = '-117.075818'
+
+  [[BNSF.Terminal]]
+  Key = 'Denver'
+  Ord = 2
+  CityOrYard = 'Denver'
+  Town = ''
+  State = 'CO'
+  Country = 'USA'
+  Lat = '39.767759'
+  Lon = '-104.991767'
+
+  [[BNSF.Terminal]]
+  Key = 'FortWorth'
+  Ord = 3
+  CityOrYard = 'Fort Worth'
+  Town = ''
+  State = 'TX'
+  Country = 'USA'
+  Lat = '32.834856'
+  Lon = '-97.324474'
+
+  [[BNSF.Terminal]]
+  Key = 'Galesburg'
+  Ord = 4
+  CityOrYard = 'Galesburg'
+  Town = ''
+  State = 'IL'
+  Country = 'USA'
+  Lat = '40.922166'
+  Lon = '-90.382040'
+
+  [[BNSF.Terminal]]
+  Key = 'Houston'
+  Ord = 5
+  CityOrYard = 'Houston'
+  Town = ''
+  State = 'TX'
+  Country = 'USA'
+  Lat = '29.711927'
+  Lon = '-95.327433'
+
+  [[BNSF.Terminal]]
+  Key = 'KansasCity'
+  Ord = 6
+  CityOrYard = 'Kansas City'
+  Town = ''
+  State = 'KS'
+  Country = 'USA'
+  Lat = '39.091730'
+  Lon = '-94.672753'
+
+  [[BNSF.Terminal]]
+  Key = 'Lincoln'
+  Ord = 7
+  CityOrYard = 'Lincoln'
+  Town = ''
+  State = 'NE'
+  Country = 'USA'
+  Lat = '40.809310'
+  Lon = '-96.742999'
+
+  [[BNSF.Terminal]]
+  Key = 'Memphis'
+  Ord = 8
+  CityOrYard = 'Memphis'
+  Town = ''
+  State = 'TN'
+  Country = 'USA'
+  Lat = '35.028218'
+  Lon = '-89.894482'
+
+  [[BNSF.Terminal]]
+  Key = 'Northtown'
+  Ord = 9
+  CityOrYard = 'Northtown'
+  Town = ''
+  State = 'MN'
+  Country = 'USA'
+  Lat = '45.033784'
+  Lon = '-93.269758'
+
+  [[BNSF.Terminal]]
+  Key = 'Pasco'
+  Ord = 10
+  CityOrYard = 'Pasco'
+  Town = ''
+  State = 'WA'
+  Country = 'USA'
+  Lat = '46.269527'
+  Lon = '-119.097269'
+
+  [[BNSF.Terminal]]
+  Key = 'Tulsa'
+  Ord = 11
+  CityOrYard = 'Tulsa'
+  Town = ''
+  State = 'OK'
+  Country = 'USA'
+  Lat = '36.117126'
+  Lon = '-96.010758'
+
+  [[BNSF.Terminal]]
+  Key = 'EntireRailroad'
+  Ord = 12
+  CityOrYard = 'Entire Railroad'
+
+[CN]
+Key = 'CN'
+
+  [[CN.Terminal]]
+  Key = 'HarrisonYard'
+  Ord = 1
+  CityOrYard = 'Harrison Yard'
+  Town = 'Memphis'
+  State = 'TN'
+  Country = 'USA'
+  Lat = '35.072545'
+  Lon = '-90.073524'
+
+  [[CN.Terminal]]
+  Key = 'FDLYard'
+  Ord = 2
+  CityOrYard = 'Fond du Lac Yard'
+  Town = ''
+  State = 'WI'
+  Country = 'USA'
+  Lat = '43.8097309'
+  Lon = '-88.4796321'
+
+  [[CN.Terminal]]
+  Key = 'JacksonYard'
+  Ord = 3
+  CityOrYard = 'Jackson Yard'
+  Town = ''
+  State = 'MS'
+  Country = 'USA'
+  Lat = '32.326106'
+  Lon = '-90.186952'
+
+  [[CN.Terminal]]
+  Key = 'MacMillanYard'
+  Ord = 4
+  CityOrYard = 'MacMillan Yard'
+  Town = 'Toronto'
+  State = 'ON'
+  Country = 'CAN'
+  Lat = '43.815634'
+  Lon = '-79.512218'
+
+  [[CN.Terminal]]
+  Key = 'MarkhamYard'
+  Ord = 5
+  CityOrYard = 'Markham Yard'
+  Town = ''
+  State = 'IL'
+  Country = 'USA'
+  Lat = '41.577116'
+  Lon = '-87.657864'
+
+  [[CN.Terminal]]
+  Key = 'SymingtonYard'
+  Ord = 6
+  CityOrYard = 'Symington Yard'
+  Town = 'Winnipeg'
+  State = 'MB'
+  Country = 'CAN'
+  Lat = '49.863945'
+  Lon = '-97.048111'
+
+  [[CN.Terminal]]
+  Key = 'TascherauYard'
+  Ord = 7
+  CityOrYard = 'Tascherau Yard'
+  Town = 'Montreal'
+  State = 'QC'
+  Country = 'CAN'
+  Lat = '45.488220'
+  Lon = '-73.685375'
+
+  [[CN.Terminal]]
+  Key = 'ThorntonYard'
+  Ord = 8
+  CityOrYard = 'Thornton Yard'
+  Town = 'Vancouver'
+  State = 'BC'
+  Country = 'CAN'
+  Lat = '49.215066'
+  Lon = '-122.836931'
+
+  [[CN.Terminal]]
+  Key = 'WalkerYard'
+  Ord = 9
+  CityOrYard = 'Walker Yard'
+  Town = 'Edmonton'
+  State = 'AB'
+  Country = 'CAN'
+  Lat = '53.584566'
+  Lon = '-113.524403'
+
+  [[CN.Terminal]]
+  Key = 'EntireRailroad'
+  Ord = 10
+  CityOrYard = 'Entire Railroad'
+
+[KCS]
+Key = 'KCS'
+
+  [[KCS.Terminal]]
+  Key = 'Jackson'
+  Ord = 1
+  CityOrYard = 'Jackson'
+  Town = ''
+  State = 'MS'
+  Country = 'USA'
+  Lat = '32.326570'
+  Lon = '-90.183929'
+
+  [[KCS.Terminal]]
+  Key = 'KansasCity'
+  Ord = 2
+  CityOrYard = 'Kansas City'
+  Town = ''
+  State = 'MO'
+  Country = 'USA'
+  Lat = '39.133175'
+  Lon = '-94.522883'
+
+  [[KCS.Terminal]]
+  Key = 'Laredo'
+  Ord = 3
+  CityOrYard = 'Laredo'
+  Town = ''
+  State = 'TX'
+  Country = 'USA'
+  Lat = '27.505335'
+  Lon = '-99.422997'
+
+  [[KCS.Terminal]]
+  Key = 'Shreveport'
+  Ord = 4
+  CityOrYard = 'Shreveport'
+  Town = ''
+  State = 'LA'
+  Country = 'USA'
+  Lat = '32.540708'
+  Lon = '-93.835685'
+
+  [[KCS.Terminal]]
+  Key = 'Monterrey'
+  Ord = 5
+  CityOrYard = 'Monterrey'
+  Town = ''
+  State = 'NL'
+  Country = 'MEX'
+  Lat = '25.721269'
+  Lon = '-100.319104'
+
+  [[KCS.Terminal]]
+  Key = 'NuevoLaredo'
+  Ord = 6
+  CityOrYard = 'Nuevo Laredo'
+  Town = ''
+  State = 'TM'
+  Country = 'MEX'
+  Lat = '27.476650'
+  Lon = '-99.524315'
+
+  [[KCS.Terminal]]
+  Key = 'SanLuisPotosi'
+  Ord = 7
+  CityOrYard = 'San Luis Potosi'
+  Town = ''
+  State = 'SL'
+  Country = 'MEX'
+  Lat = '22.152409'
+  Lon = '-100.968910'
+
+  [[KCS.Terminal]]
+  Key = 'Sanchez'
+  Ord = 8
+  CityOrYard = 'Sanchez'
+  Town = ''
+  State = 'TM'
+  Country = 'MEX'
+  Lat = '27.475976'
+  Lon = '-99.651777'
+
+  [[KCS.Terminal]]
+  Key = 'EntireRailroad'
+  Ord = 9
+  CityOrYard = 'Entire Railroad'
+
+[NS]
+Key = 'NS'
+
+  [[NS.Terminal]]
+  Key = 'Allentown'
+  Ord = 1
+  CityOrYard = 'Allentown'
+  Town = ''
+  State = 'PA'
+  Country = 'USA'
+  Lat = '40.607841'
+  Lon = '-75.433618'
+
+  [[NS.Terminal]]
+  Key = 'Bellevue'
+  Ord = 2
+  CityOrYard = 'Bellevue'
+  Town = ''
+  State = 'OH'
+  Country = 'USA'
+  Lat = '41.292468'
+  Lon = '-82.792698'
+
+  [[NS.Terminal]]
+  Key = 'Birmingham'
+  Ord = 3
+  CityOrYard = 'Birmingham'
+  Town = ''
+  State = 'AL'
+  Country = 'USA'
+  Lat = '33.545637'
+  Lon = '-86.700466'
+
+  [[NS.Terminal]]
+  Key = 'Chattanooga'
+  Ord = 4
+  CityOrYard = 'Chattanooga'
+  Town = ''
+  State = 'TN'
+  Country = 'USA'
+  Lat = '35.065018'
+  Lon = '-85.268725'
+
+  [[NS.Terminal]]
+  Key = 'Columbus'
+  Ord = 5
+  CityOrYard = 'Columbus'
+  Town = ''
+  State = 'OH'
+  Country = 'USA'
+  Lat = '39.792258'
+  Lon = '-82.954004'
+
+  [[NS.Terminal]]
+  Key = 'Conway'
+  Ord = 6
+  CityOrYard = 'Conway'
+  Town = ''
+  State = 'PA'
+  Country = 'USA'
+  Lat = '40.673771'
+  Lon = '-80.247949'
+
+  [[NS.Terminal]]
+  Key = 'Decatur'
+  Ord = 7
+  CityOrYard = 'Decatur'
+  Town = ''
+  State = 'IL'
+  Country = 'USA'
+  Lat = '39.853123'
+  Lon = '-88.932167'
+
+  [[NS.Terminal]]
+  Key = 'Elkhart'
+  Ord = 8
+  CityOrYard = 'Elkhart'
+  Town = ''
+  State = 'IN'
+  Country = 'USA'
+  Lat = '41.665068'
+  Lon = '-86.017498'
+
+  [[NS.Terminal]]
+  Key = 'Atlanta'
+  Ord = 9
+  CityOrYard = 'Atlanta'
+  Town = ''
+  State = 'GA'
+  Country = 'USA'
+  Lat = '33.795253'
+  Lon = '-84.441165'
+
+  [[NS.Terminal]]
+  Key = 'Linwood'
+  Ord = 10
+  CityOrYard = 'Linwood'
+  Town = ''
+  State = 'NC'
+  Country = 'USA'
+  Lat = '35.743790'
+  Lon = '-80.328608'
+
+  [[NS.Terminal]]
+  Key = 'Macon'
+  Ord = 11
+  CityOrYard = 'Macon'
+  Town = ''
+  State = 'GA'
+  Country = 'USA'
+  Lat = '32.821943'
+  Lon = '-83.622214'
+
+  [[NS.Terminal]]
+  Key = 'NewOrleans'
+  Ord = 12
+  CityOrYard = 'New Orleans'
+  Town = ''
+  State = 'LA'
+  Country = 'USA'
+  Lat = '29.980367'
+  Lon = '-90.045147'
+
+  [[NS.Terminal]]
+  Key = 'Roanoke'
+  Ord = 13
+  CityOrYard = 'Roanoke'
+  Town = ''
+  State = 'VA'
+  Country = 'USA'
+  Lat = '37.274167'
+  Lon = '-79.935812'
+
+  [[NS.Terminal]]
+  Key = 'Sheffield'
+  Ord = 14
+  CityOrYard = 'Sheffield'
+  Town = ''
+  State = 'AL'
+  Country = 'USA'
+  Lat = '34.716274'
+  Lon = '-87.632361'
+
+  [[NS.Terminal]]
+  Key = 'EntireRailroad'
+  Ord = 15
+  CityOrYard = 'Entire Railroad'
+
+[UP]
+Key = 'UP'
+
+  [[UP.Terminal]]
+  Key = 'Chicago'
+  Ord = 1
+  CityOrYard = 'Chicago'
+  Town = 'Proviso'
+  State = 'IL'
+  Country = 'USA'
+  Lat = '41.846750'
+  Lon = '-87.637353'
+
+  [[UP.Terminal]]
+  Key = 'FortWorth'
+  Ord = 2
+  CityOrYard = 'Fort Worth'
+  Town = ''
+  State = 'TX'
+  Country = 'USA'
+  Lat = '32.727628'
+  Lon = '-97.368299'
+
+  [[UP.Terminal]]
+  Key = 'Hinkle'
+  Ord = 3
+  CityOrYard = 'Hinkle'
+  Town = ''
+  State = 'OR'
+  Country = 'USA'
+  Lat = '45.795970'
+  Lon = '-119.260819'
+
+  [[UP.Terminal]]
+  Key = 'HoustonEnglewood'
+  Ord = 4
+  CityOrYard = 'Houston'
+  Town = 'Englewood'
+  State = 'TX'
+  Country = 'USA'
+  Lat = '29.792850'
+  Lon = '-95.298791'
+
+  [[UP.Terminal]]
+  Key = 'HoustonSettegast'
+  Ord = 5
+  CityOrYard = 'Houston'
+  Town = 'Settegast'
+  State = 'TX'
+  Country = 'USA'
+  Lat = '29.833610'
+  Lon = '-95.288284'
+
+  [[UP.Terminal]]
+  Key = 'KansasCity'
+  Ord = 6
+  CityOrYard = 'Kansas City'
+  Town = ''
+  State = 'MO'
+  Country = 'USA'
+  Lat = '39.126659'
+  Lon = '-94.523130'
+
+  [[UP.Terminal]]
+  Key = 'Livonia'
+  Ord = 7
+  CityOrYard = 'Livonia'
+  Town = ''
+  State = 'LA'
+  Country = 'USA'
+  Lat = '30.548721'
+  Lon = '-91.572726'
+
+  [[UP.Terminal]]
+  Key = 'NorthLittleRock'
+  Ord = 8
+  CityOrYard = 'North Little Rock'
+  Town = ''
+  State = 'AR'
+  Country = 'USA'
+  Lat = '34.772023'
+  Lon = '-92.230362'
+
+  [[UP.Terminal]]
+  Key = 'NorthPlatteEast'
+  Ord = 9
+  CityOrYard = 'North Platte East'
+  Town = ''
+  State = 'NE'
+  Country = 'USA'
+  Lat = '41.143444'
+  Lon = '-100.788970'
+
+  [[UP.Terminal]]
+  Key = 'NorthPlatteWest'
+  Ord = 10
+  CityOrYard = 'North Platte West'
+  Town = ''
+  State = 'NE'
+  Country = 'USA'
+  Lat = '41.154205'
+  Lon = '-100.871538'
+
+  [[UP.Terminal]]
+  Key = 'PineBluff'
+  Ord = 11
+  CityOrYard = 'Pine Bluff'
+  Town = ''
+  State = 'AR'
+  Country = 'USA'
+  Lat = '34.229682'
+  Lon = '-91.958126'
+
+  [[UP.Terminal]]
+  Key = 'Roseville'
+  Ord = 12
+  CityOrYard = 'Roseville'
+  Town = ''
+  State = 'CA'
+  Country = 'USA'
+  Lat = '38.733400'
+  Lon = '-121.303077'
+
+  [[UP.Terminal]]
+  Key = 'WestColton'
+  Ord = 13
+  CityOrYard = 'West Colton'
+  Town = ''
+  State = 'CA'
+  Country = 'USA'
+  Lat = '34.066002'
+  Lon = '-117.373107'
+
+  [[UP.Terminal]]
+  Key = 'EntireRailroad'
+  Ord = 14
+  CityOrYard = 'Entire Railroad'

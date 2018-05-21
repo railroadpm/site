@@ -1,0 +1,18 @@
+# NOTE:
+#   Ordinarily you might want to configure your Netlify "Build command" and
+#   "Publish directory" in this file. But this project contains multiple sites, which
+#   means that a single "netlify.toml" file won't work to accommodate the build commands
+#   and publish directories for them all.
+#
+#   Instead, use the Netlify website to enter those details for your sites individually.
+#   For more info on this approach, see:
+#
+#     https://github.com/netlify/netlify-cms/issues/1325
+#
+#   You *can* however place common Build environment variables in this file. And you
+#   can still use "_redirects" files in each individual site to configure redirects and
+#   proxying as needed.
+
+[build.environment]
+NODE_VERSION = '8.9.1'
+HUGO_VERSION = '0.40.3'

@@ -1,17 +1,17 @@
 <template>
   <v-layout>
     <v-flex>
-      <simple-tabular-data entity-base-url="/reports/bnsf" entity-result-cols-key="columns" entity-result-rows-key="rows" />
+      <tabular-report entity-base-url="/reports/bnsf" entity-result-cols-key="columns" entity-result-rows-key="rows" />
     </v-flex>
   </v-layout>
 </template>
 
 <script>
-import SimpleTabularData from '~/components/SimpleTabularData.vue';
+import TabularReport from '~/components/TabularReport.vue';
 
 export default {
   components: {
-    SimpleTabularData
+    TabularReport
   },
 
   data: () => ({}),

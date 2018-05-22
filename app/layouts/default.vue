@@ -63,6 +63,7 @@ html {
   overflow-y: auto !important;
 }
 
+/* Left drawer active item  */
 .list__tile--active .list__tile__content,
 .list__tile--active .list__tile__action {
   color: #ffcc66 !important;

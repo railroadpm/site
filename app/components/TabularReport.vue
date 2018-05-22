@@ -1,16 +1,17 @@
 <template>
   <v-data-table :must-sort="true" :headers="headers" :items="rows" hide-actions>
-    <template slot="items" slot-scope="props">
-      <td>{{ props.item.RowLabel }}</td>
-      <td>{{ props.item["20180406"] }}</td>
-      <td>{{ props.item["20180413"] }}</td>
-      <td>{{ props.item["20180420"] }}</td>
-      <td>{{ props.item["20180427"] }}</td>
+    <template slot="items" slot-scope="row">
+      <td>{{ row.item["RowLabel"] }}</td>
+      <td v-for="(col, i) in Object.keys(row.item).sort().slice(0, -1)" :key="i">
+        {{ row.item[col] | formatNumber }}
+      </td>
     </template>
   </v-data-table>
 </template>
 
 <script>
+import numeral from 'numeral';
+
 export default {
   props: {
     entityBaseUrl: {
@@ -48,12 +49,12 @@ export default {
   }),
 
   created() {
-    console.log('Created <SimpleTabularData> component');
+    console.log('Created <TabularReport> component');
+    this.getRows();
   },
 
   mounted() {
-    console.log('Mounted <SimpleTabularData> component');
-    this.getRows();
+    console.log('Mounted <TabularReport> component');
   },
 
   computed: {
@@ -71,21 +72,24 @@ export default {
         const response = await this.$axios.$get(this.dataUrl);
         console.log(`Got rows from ${this.dataUrl}`);
 
-        let cols = response.data[this.entityResultColsKey];
-        let rows = response.data[this.entityResultRowsKey];
-        let headers = [];
-
-        cols.forEach(elt => {
-          headers.push({ text: elt.text, value: elt.key, align: 'left' });
+        let responseCols = response.data[this.entityResultColsKey];
+        this.headers = [];
+        responseCols.forEach(elt => {
+          this.headers.push({ text: elt.text, value: elt.key, align: 'left' });
         });
 
-        this.headers = headers;
-        this.rows = rows;
+        this.rows = response.data[this.entityResultRowsKey];
       } catch (e) {
         console.log('Error getting rows:', e);
       }
 
       this.loading = false;
+    }
+  },
+
+  filters: {
+    formatNumber(value) {
+      return numeral(value).format('0,0[.]0');
     }
   }
 };

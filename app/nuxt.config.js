@@ -74,6 +74,7 @@ module.exports = {
    ** Build configuration
    */
   build: {
+    vendor: ['numeral'],
     /*
      ** You can extend webpack config here
      */

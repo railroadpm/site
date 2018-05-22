@@ -67,7 +67,17 @@
   {
     "columns": [
       {{ (dict "key" "RowLabel" "text" "") | jsonify -}}{{- ", " -}}
-      {{- delimit (apply (apply $weeks_current "partial" "map-xform/week-to-label" ".") "chomp" ".") ", " }}
+      {{- delimit (apply (apply $weeks_current "partial" "week-to-label" ".") "chomp" ".") ", " }}
     ],
+
+    {{/*
     "rows": {{- $.Scratch.Get $rows_array_key | jsonify }}
+    */}}
+
+    "rows": [
+
+      {{- partial "rpt-rows-cars-by-owner-headings" (dict "data" $.Site.Data "scratch" $.Scratch "weeks" $weeks_current) -}}
+
+    ]
+
   }

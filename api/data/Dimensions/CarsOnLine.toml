@@ -13,7 +13,7 @@ DefinitionVerbiage = '''
 
 [Owner]
 Key = 'ByCarOwner'
-MeasureHeading = 'By Car Owner'
+MeasureHeading = '&nbsp;&nbsp;By Car Owner'
 TypeDefinitionHeading = 'Owner Type'
 TypeDescriptionHeading = 'Description'
 

@@ -1,7 +1,7 @@
 <template>
   <v-layout>
     <v-flex>
-      <simple-tabular-data entity-base-url="/reports/BNSF/current" entity-result-data-key="reports" />
+      <simple-tabular-data entity-base-url="/reports/bnsf" entity-result-cols-key="columns" entity-result-rows-key="rows" />
     </v-flex>
   </v-layout>
 </template>

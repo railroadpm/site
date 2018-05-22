@@ -99,4 +99,15 @@ export default {
 .rpt-data-label > div > p {
   margin-bottom: 0;
 }
+
+/* Table header */
+table.datatable.table thead tr {
+  height: 45px;
+}
+
+/* Table rows */
+table.datatable.table tbody td,
+table.datatable.table tbody th {
+  height: 35px;
+}
 </style>

@@ -18,6 +18,7 @@
     "ajv": "^6.5.0",
     "numeral": "^2.0.6",
     "nuxt": "^1.4.0",
+    "vue-markdown": "^2.2.4",
     "vuetify": "^1.0.18"
   },
   "devDependencies": {

@@ -1,18 +1,23 @@
 <template>
   <v-data-table :must-sort="true" :headers="headers" :items="rows" hide-actions>
     <template slot="items" slot-scope="row">
-      <td>{{ row.item["RowLabel"] }}</td>
-      <td v-for="(col, i) in Object.keys(row.item).sort().slice(0, -1)" :key="i">
-        {{ row.item[col] | formatNumber }}
+      <td class="rpt-data-label">
+        <vue-markdown>{{ row.item["RowLabel"] }}</vue-markdown>
       </td>
+      <td v-for="(col, i) in Object.keys(row.item).sort().slice(0, -1)" :key="i">{{ row.item[col] | formatNumber }}</td>
     </template>
   </v-data-table>
 </template>
 
 <script>
 import numeral from 'numeral';
+import VueMarkdown from 'vue-markdown';
 
 export default {
+  components: {
+    'vue-markdown': VueMarkdown
+  },
+
   props: {
     entityBaseUrl: {
       type: String,
@@ -39,12 +44,6 @@ export default {
     },
     mustSort: true,
     headers: [],
-    //   { text: '', value: 'RowLabel', sortable: false, align: 'left' },
-    //   { text: '04/06/18', value: '20180406', align: 'left' },
-    //   { text: '04/13/18', value: '20180413', align: 'left' },
-    //   { text: '04/20/18', value: '20180420', align: 'left' },
-    //   { text: '04/27/18', value: '20180427', align: 'left' }
-    // ],
     rows: []
   }),
 
@@ -89,11 +88,15 @@ export default {
 
   filters: {
     formatNumber(value) {
-      return numeral(value).format('0,0[.]0');
+      return value ? numeral(value).format('0,0[.]0') : '';
     }
   }
 };
 </script>
 
-<style scoped>
+<style>
+/* Data labels can have markdown, which is wrapped in <p> and must be tweaked */
+.rpt-data-label > div > p {
+  margin-bottom: 0;
+}
 </style>

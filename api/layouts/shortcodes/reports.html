@@ -33,6 +33,14 @@
 {{- $rows_array_key := "report_rows" -}}
 
 {{- $.Scratch.Delete $row_map_key -}}
+{{- $.Scratch.SetInMap $row_map_key "RowLabel" "&nbsp;&nbsp;**Revisions**" -}}
+{{- $.Scratch.SetInMap $row_map_key "20180406" "" -}}
+{{- $.Scratch.SetInMap $row_map_key "20180413" "" -}}
+{{- $.Scratch.SetInMap $row_map_key "20180420" "" -}}
+{{- $.Scratch.SetInMap $row_map_key "20180427" "" -}}
+{{- $.Scratch.Add $rows_array_key (slice ($.Scratch.Get $row_map_key)) -}}
+
+{{- $.Scratch.Delete $row_map_key -}}
 {{- $.Scratch.SetInMap $row_map_key "RowLabel" "System" -}}
 {{- $.Scratch.SetInMap $row_map_key "20180406" "64515" -}}
 {{- $.Scratch.SetInMap $row_map_key "20180413" "63612" -}}

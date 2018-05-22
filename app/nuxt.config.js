@@ -74,7 +74,7 @@ module.exports = {
    ** Build configuration
    */
   build: {
-    vendor: ['numeral'],
+    vendor: ['numeral', 'vue-markdown'],
     /*
      ** You can extend webpack config here
      */

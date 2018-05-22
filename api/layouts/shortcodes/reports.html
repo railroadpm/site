@@ -25,12 +25,33 @@
 
 
 {{- $reports := index $data.Measures.BNSF "20180427" -}}
-{{- $render := "reports_render" -}}
-{{- $.Scratch.Set $render $reports -}}
+{{- $render_key := "reports_render" -}}
+{{- $.Scratch.Set $render_key $reports -}}
+
+
+{{- $row_map_key := "report_row" -}}
+{{- $rows_array_key := "report_rows" -}}
+
+{{- $.Scratch.Delete $row_map_key -}}
+{{- $.Scratch.SetInMap $row_map_key "RowLabel" "System" -}}
+{{- $.Scratch.SetInMap $row_map_key "20180406" "64515" -}}
+{{- $.Scratch.SetInMap $row_map_key "20180413" "63612" -}}
+{{- $.Scratch.SetInMap $row_map_key "20180420" "63500" -}}
+{{- $.Scratch.SetInMap $row_map_key "20180427" "62565" -}}
+{{- $.Scratch.Add $rows_array_key (slice ($.Scratch.Get $row_map_key)) -}}
+
+{{- $.Scratch.Delete $row_map_key -}}
+{{- $.Scratch.SetInMap $row_map_key "RowLabel" "Foreign RR" -}}
+{{- $.Scratch.SetInMap $row_map_key "20180406" "23800" -}}
+{{- $.Scratch.SetInMap $row_map_key "20180413" "23858" -}}
+{{- $.Scratch.SetInMap $row_map_key "20180420" "23822" -}}
+{{- $.Scratch.SetInMap $row_map_key "20180427" "23211" -}}
+{{- $.Scratch.Add $rows_array_key (slice ($.Scratch.Get $row_map_key)) -}}
+
 
 {{/*
 {{- with .Get "avg" -}}
-  {{- $.Scratch.Set $render (where $reports TODO) -}}
+  {{- $.Scratch.Set $render_key (where $reports TODO) -}}
 {{- end -}}
 */}}
 
@@ -40,5 +61,5 @@
       {{ (dict "key" "RowLabel" "text" "") | jsonify -}}{{- ", " -}}
       {{- delimit (apply (apply $weeks_current "partial" "map-xform/week-to-label" ".") "chomp" ".") ", " }}
     ],
-    "rows": {{- $.Scratch.Get $render | jsonify }}
+    "rows": {{- $.Scratch.Get $rows_array_key | jsonify }}
   }

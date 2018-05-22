@@ -8,7 +8,23 @@
     avg (optional)      Set to true to include historical averages in rendered reports
     weeks (optional)    Number of weeks to render. If unspecified, all weeks (not marked hidden) are rendered
 -->
-{{- $reports := where .Site.Data.Measures.BNSF "Week" "20180427" -}}
+{{- $data := $.Site.Data -}}
+{{- $prptKey := .Get "railroad" -}}
+
+{{- $weekly_rpt_config := $data.Config.WeeklyReport -}}
+{{- $weeks_count_current := $weekly_rpt_config.Displayed.CountOfWeeks.Current -}}
+{{- $weeks_count_historical := $weekly_rpt_config.Displayed.CountOfWeeks.Historical -}}
+
+{{- $params := (dict "Prpt" $prptKey "WeeksCountCurrent" $weeks_count_current "WeeksCountHistorical" $weeks_count_historical) -}}
+{{- $prpt := index (where $data.Dimensions.Participant.Railroad "Key" $prptKey) 0 -}}
+
+{{- $weeks_all := $data.Dimensions.Period.Week -}}
+{{- $weeks_visible := sort (where $weeks_all "Hidden" "ne" true) "Key" "asc" -}}
+{{- $weeks_historical := last $weeks_count_historical $weeks_visible -}}
+{{- $weeks_current := last $weeks_count_current $weeks_visible -}}
+
+
+{{- $reports := index $data.Measures.BNSF "20180427" -}}
 {{- $render := "reports_render" -}}
 {{- $.Scratch.Set $render $reports -}}
 
@@ -18,7 +34,11 @@
 {{- end -}}
 */}}
 
+
   {
-    "headers": "",
-    "reports": {{- $.Scratch.Get $render | jsonify }}
+    "columns": [
+      {{ (dict "key" "RowLabel" "text" "") | jsonify -}}{{- ", " -}}
+      {{- delimit (apply (apply $weeks_current "partial" "map-xform/week-to-label" ".") "chomp" ".") ", " }}
+    ],
+    "rows": {{- $.Scratch.Get $render | jsonify }}
   }

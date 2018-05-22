@@ -1,0 +1,8 @@
+<!--
+  Given a Week (/data/Dimensions/Period.toml) render it as a JSON
+  "data point label" of the form: { "key": "20180427", "text": "04/27/18" }
+
+  Parameters
+    .             Individual Week Map
+-->
+{{- (dict "key" .Key "text" .Day) | jsonify -}}

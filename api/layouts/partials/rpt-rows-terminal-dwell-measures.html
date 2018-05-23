@@ -1,0 +1,47 @@
+<!--
+  For the dimension TerminalDwell, by participant terminal, render the measure data rows for the
+  performance report as JSON
+
+  Parameters
+    $.prpt            Participant Key
+    $.data            Site Data  
+    $.scratch         Scratchpad ref
+    $.weeks           The Weeks for which to render the rows
+-->
+{{- $terminal_dwell := $.data.Dimensions.TerminalDwell -}}
+{{- $terminal_dwell_by_prpt := index $terminal_dwell $.prpt -}}
+{{- $terminal_dwell_by_prpt_subheadings := sort $terminal_dwell_by_prpt.Terminal "Ord" "asc" -}}
+{{- $subheading_indent := "&nbsp;&nbsp;" -}}
+{{- $row_map_key := "report_row" -}}
+{{- $terminal_key := "terminal_subheading" -}}
+{{- $measure_key_prefix := "TerminalDwell_" -}}
+{{- $prpt_rpts := index $.data.Measures $.prpt -}}
+
+<!-- For each row... -->
+{{- range $subheading_index, $subheading := $terminal_dwell_by_prpt_subheadings -}}
+  <!-- Initialize a Map to hold the row values -->
+  {{- $.scratch.Delete $row_map_key -}}
+
+  <!-- Construct the terminal subheading... it varies depending on existence of a State, etc. -->
+  {{- if isset $subheading "State" -}}
+    {{- $.scratch.Set $terminal_key (printf "%s%s, %s" $subheading_indent $subheading.CityOrYard $subheading.State) -}}
+  {{- else -}}
+    {{- $.scratch.Set $terminal_key (printf "%s%s" $subheading_indent $subheading.CityOrYard) -}}
+  {{- end -}}
+
+  <!-- Add the terminal subheading to the Map first -->
+  {{- $.scratch.SetInMap $row_map_key "RowLabel" ($.scratch.Get $terminal_key) -}}
+
+  <!-- Construct the full measure data key -->
+  {{- $subheading_key := $subheading.Key -}}
+  {{- $measure_key := printf "%s%s" $measure_key_prefix $subheading_key -}}
+
+  <!-- Iterate over weeks, adding weekly measure data value to the Map -->
+  <!-- And then render the Map as JSON -->
+  {{- range $.weeks -}}
+    {{- $prpt_rpt := index $prpt_rpts .Key -}}
+    {{- $measure_val := index $prpt_rpt $measure_key -}}
+    {{- $.scratch.SetInMap $row_map_key .Key $measure_val -}}
+  {{- end -}}
+  {{- "\t," -}}{{- $.scratch.Get $row_map_key | jsonify -}}
+{{- end -}}

@@ -1,0 +1,37 @@
+<!--
+  For the dimension CarsOnLine, ByCarType render the measure data rows for the
+  performance report as JSON
+
+  Parameters
+    $.prpt            Participant Key
+    $.data            Site Data  
+    $.scratch         Scratchpad ref
+    $.weeks           The Weeks for which to render the rows
+-->
+{{- $cars := $.data.Dimensions.CarsOnLine -}}
+{{- $cars_by_type := $cars.Car -}}
+{{- $cars_by_type_subheadings := sort $cars_by_type.Type "Ord" "asc" -}}
+{{- $subheading_indent := "&nbsp;&nbsp;&nbsp;&nbsp;" -}}
+{{- $row_map_key := "report_row" -}}
+{{- $measure_key_prefix := "CarsOnLine_ByCarType_" -}}
+{{- $prpt_rpts := index $.data.Measures $.prpt -}}
+
+<!-- For each row... -->
+{{- range $subheading_index, $subheading := $cars_by_type_subheadings -}}
+  <!-- Initialize a Map to hold the row values and add the RowLabel (measure sub-heading) to the Map first -->
+  {{- $.scratch.Delete $row_map_key -}}
+  {{- $.scratch.SetInMap $row_map_key "RowLabel" (printf "%s%s" $subheading_indent $subheading.ShortName) -}}
+
+  <!-- Construct the full measure data key -->
+  {{- $subheading_key := $subheading.Key -}}
+  {{- $measure_key := printf "%s%s" $measure_key_prefix $subheading_key -}}
+
+  <!-- Iterate over weeks, adding weekly measure data value to the Map -->
+  <!-- And then render the Map as JSON -->
+  {{- range $.weeks -}}
+    {{- $prpt_rpt := index $prpt_rpts .Key -}}
+    {{- $measure_val := index $prpt_rpt $measure_key -}}
+    {{- $.scratch.SetInMap $row_map_key .Key $measure_val -}}
+  {{- end -}}
+  {{- "\t," -}}{{- $.scratch.Get $row_map_key | jsonify -}}
+{{- end -}}

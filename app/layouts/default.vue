@@ -1,6 +1,6 @@
 <template>
   <v-app light>
-    <v-navigation-drawer fixed app :mini-variant="miniVariant" :clipped="clippedLeftDrawer" v-model="drawer" mobile-break-point="740" width="200" class="blue lighten-2">
+    <v-navigation-drawer fixed app dark :mini-variant="miniVariant" :clipped="clippedLeftDrawer" v-model="drawer" mobile-break-point="740" width="200" class="blue darken-1">
       <v-list>
         <v-list-tile router :to="item.to" :key="i" v-for="(item, i) in items" exact>
           <v-list-tile-action>
@@ -12,7 +12,7 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar fixed app :clipped-left="clippedLeftDrawer" class="blue lighten-1">
+    <v-toolbar fixed app dark :clipped-left="clippedLeftDrawer" class="blue darken-3">
       <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
       <v-btn icon @click.stop="miniVariant = !miniVariant">
         <v-icon v-html="miniVariant ? 'chevron_right' : 'chevron_left'"></v-icon>
@@ -26,7 +26,7 @@
     </v-content>
     <v-footer :fixed="fixedFooter" app class="pa-3 grey lighten-2">
       <v-spacer></v-spacer>
-      <div>&copy; 2018</div>
+      <div>Railroad Performance Measures are published every Wednesday at 2:00 p.m. Eastern Time.</div>
     </v-footer>
   </v-app>
 </template>
@@ -48,6 +48,11 @@ export default {
           icon: 'assignment',
           title: 'Reports',
           to: '/reports'
+        },
+        {
+          icon: 'info',
+          title: 'Definitions',
+          to: '/definitions'
         }
       ],
       miniVariant: false,
@@ -61,5 +66,11 @@ export default {
 /* Avoid vertical scrollbar when possible */
 html {
   overflow-y: auto !important;
+}
+
+/* Left drawer active item  */
+.list__tile--active .list__tile__content,
+.list__tile--active .list__tile__action {
+  color: #ffcc66 !important;
 }
 </style>

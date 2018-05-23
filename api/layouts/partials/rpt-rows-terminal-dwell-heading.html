@@ -1,0 +1,21 @@
+<!--
+  For the dimension TerminalDwell render "heading" row for the
+  performance report as JSON
+
+  Parameters
+    $.prpt            Participant Key
+    $.data            Site Data  
+    $.scratch         Scratchpad ref
+    $.weeks           The Weeks for which to render the rows
+-->
+{{- $terminal_dwell := $.data.Dimensions.TerminalDwell -}}
+{{- $row_map_key := "report_row" -}}
+
+{{/* Heading */}}
+{{- $.scratch.Delete $row_map_key -}}
+{{- $.scratch.SetInMap $row_map_key "RowLabel" $terminal_dwell.MeasureHeading -}}
+{{- range $.weeks -}}
+  {{- $.scratch.SetInMap $row_map_key .Key "" -}}
+{{- end -}}
+
+{{- "\n\t," -}}{{- $.scratch.Get $row_map_key | jsonify -}}

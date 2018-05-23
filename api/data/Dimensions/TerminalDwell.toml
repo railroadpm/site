@@ -1,6 +1,6 @@
 # TerminalDwell.toml: Lookup data for location dimensions
 Key = 'TerminalDwell'
-MeasureHeading = 'Terminal Dwell (Hours)'
+MeasureHeading = '**Terminal Dwell (Hours)**'
 DefinitionHeading = 'Terminal Dwell (Hours)'
 DefinitionVerbiage = '''
   Terminal Dwell is the average time a car resides at the specified terminal location expressed in hours.

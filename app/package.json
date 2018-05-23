@@ -16,15 +16,18 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.3.1",
     "ajv": "^6.5.0",
+    "numeral": "^2.0.6",
     "nuxt": "^1.4.0",
+    "vue-markdown": "^2.2.4",
     "vuetify": "^1.0.18"
   },
   "devDependencies": {
-    "cross-env": "^5.0.1",
     "babel-eslint": "^8.2.3",
+    "cross-env": "^5.0.1",
     "eslint": "^4.19.1",
     "eslint-loader": "^2.0.0",
     "eslint-plugin-vue": "^4.5.0",
+    "js-beautify": "^1.7.5",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1"
   }

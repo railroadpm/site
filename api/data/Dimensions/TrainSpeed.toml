@@ -1,7 +1,7 @@
 # TrainSpeed.toml: Lookup data for categorical dimensions
 #   For Types, ShortName is used when displaying Measures, LongName when displaying definitions
 Key = 'TrainSpeed'
-MeasureHeading = 'Train Speed (Miles per Hour)'
+MeasureHeading = '**Train Speed (Miles per Hour)**'
 DefinitionHeading = 'Train Speed'
 DefinitionVerbiage = '''
   Train Speed measures the line-haul movement between terminals. The average speed is calculated by dividing train-miles by total hours operated,

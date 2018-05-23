@@ -26,7 +26,7 @@
     </v-content>
     <v-footer :fixed="fixedFooter" app class="pa-3 grey lighten-2">
       <v-spacer></v-spacer>
-      <div>&copy; 2018</div>
+      <div>Railroad Performance Measures are published every Wednesday at 2:00 p.m. Eastern Time.</div>
     </v-footer>
   </v-app>
 </template>
@@ -48,6 +48,11 @@ export default {
           icon: 'assignment',
           title: 'Reports',
           to: '/reports'
+        },
+        {
+          icon: 'info',
+          title: 'Definitions',
+          to: '/definitions'
         }
       ],
       miniVariant: false,

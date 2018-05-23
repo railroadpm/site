@@ -105,6 +105,12 @@ table.datatable.table thead tr {
   height: 45px;
 }
 
+/* Table header column */
+table.datatable.table thead tr th {
+  font-weight: bold;
+  font-size: 14px;
+}
+
 /* Table rows */
 table.datatable.table tbody td,
 table.datatable.table tbody th {

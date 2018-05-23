@@ -22,11 +22,12 @@
     "vuetify": "^1.0.18"
   },
   "devDependencies": {
-    "cross-env": "^5.0.1",
     "babel-eslint": "^8.2.3",
+    "cross-env": "^5.0.1",
     "eslint": "^4.19.1",
     "eslint-loader": "^2.0.0",
     "eslint-plugin-vue": "^4.5.0",
+    "js-beautify": "^1.7.5",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1"
   }

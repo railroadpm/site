@@ -3,6 +3,7 @@
   performance report as JSON
 
   Parameters
+    $.prpt            Participant Key
     $.data            Site Data  
     $.scratch         Scratchpad ref
     $.weeks           The Weeks for which to render the rows
@@ -16,13 +17,15 @@
 {{- $.scratch.SetInMap $row_map_key "RowLabel" $cars.MeasureHeading -}}
 {{- range $.weeks -}}
   {{- $.scratch.SetInMap $row_map_key .Key "" -}}
-{{- end }}
-      {{ $.scratch.Get $row_map_key | jsonify -}}
+{{- end -}}
+
+{{- "\n\t " -}}{{- $.scratch.Get $row_map_key | jsonify -}}
 
 {{/* Sub heading */}}
 {{- $.scratch.Delete $row_map_key -}}
 {{- $.scratch.SetInMap $row_map_key "RowLabel" $cars_by_owner.MeasureHeading -}}
 {{- range $.weeks -}}
   {{- $.scratch.SetInMap $row_map_key .Key "" -}}
-{{- end }}
-      {{ "," -}}{{- $.scratch.Get $row_map_key | jsonify -}}
+{{- end -}}
+
+{{- "\n\t," -}}{{- $.scratch.Get $row_map_key | jsonify -}}

@@ -83,7 +83,13 @@
       {{- partial "rpt-rows-cars-by-owner-measures" $rpt_rows_params -}}
 
       {{- partial "rpt-rows-cars-by-type-heading" $rpt_rows_params -}}
-      {{- partial "rpt-rows-cars-by-type-measures" $rpt_rows_params }}
+      {{- partial "rpt-rows-cars-by-type-measures" $rpt_rows_params -}}
+
+      {{- partial "rpt-rows-train-speed-heading" $rpt_rows_params -}}
+      {{- partial "rpt-rows-train-speed-measures" $rpt_rows_params -}}
+
+      {{- partial "rpt-rows-terminal-dwell-heading" $rpt_rows_params -}}
+      {{- partial "rpt-rows-terminal-dwell-measures" $rpt_rows_params }}      
     ]
 
   }

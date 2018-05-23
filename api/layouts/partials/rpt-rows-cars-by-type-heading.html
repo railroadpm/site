@@ -1,5 +1,5 @@
 <!--
-  For the dimension CarsOnLine, ByCarOwner render "heading" rows for the
+  For the dimension CarsOnLine, ByCarType render "heading" row for the
   performance report as JSON
 
   Parameters
@@ -9,22 +9,13 @@
     $.weeks           The Weeks for which to render the rows
 -->
 {{- $cars := $.data.Dimensions.CarsOnLine -}}
-{{- $cars_by_owner := $cars.Owner -}}
+{{- $cars_by_type := $cars.Car -}}
 {{- $subheading_indent := "&nbsp;&nbsp;" -}}
 {{- $row_map_key := "report_row" -}}
 
-{{/* Main heading */}}
+{{/* Heading */}}
 {{- $.scratch.Delete $row_map_key -}}
-{{- $.scratch.SetInMap $row_map_key "RowLabel" $cars.MeasureHeading -}}
-{{- range $.weeks -}}
-  {{- $.scratch.SetInMap $row_map_key .Key "" -}}
-{{- end -}}
-
-{{- "\n\t " -}}{{- $.scratch.Get $row_map_key | jsonify -}}
-
-{{/* Sub heading */}}
-{{- $.scratch.Delete $row_map_key -}}
-{{- $.scratch.SetInMap $row_map_key "RowLabel" (printf "%s%s" $subheading_indent $cars_by_owner.MeasureHeading) -}}
+{{- $.scratch.SetInMap $row_map_key "RowLabel" (printf "%s%s" $subheading_indent $cars_by_type.MeasureHeading) -}}
 {{- range $.weeks -}}
   {{- $.scratch.SetInMap $row_map_key .Key "" -}}
 {{- end -}}

@@ -80,7 +80,10 @@
       {{- $rpt_rows_params := dict "prpt" $prpt_key "data" $.Site.Data "scratch" $.Scratch "weeks" $weeks_current -}}
 
       {{- partial "rpt-rows-cars-by-owner-headings" $rpt_rows_params -}}
-      {{- partial "rpt-rows-cars-by-owner-measures" $rpt_rows_params }}
+      {{- partial "rpt-rows-cars-by-owner-measures" $rpt_rows_params -}}
+
+      {{- partial "rpt-rows-cars-by-type-heading" $rpt_rows_params -}}
+      {{- partial "rpt-rows-cars-by-type-measures" $rpt_rows_params }}
     ]
 
   }

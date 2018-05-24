@@ -13,14 +13,10 @@
 </template>
 
 <script>
+import app from '@/app.config';
 import numeral from 'numeral';
-import VueMarkdown from 'vue-markdown';
 
 export default {
-  components: {
-    'vue-markdown': VueMarkdown
-  },
-
   props: {
     entityBaseUrl: {
       type: String,
@@ -37,10 +33,6 @@ export default {
   },
 
   data: () => ({
-    // API_HOST: 'https://api.rrpm.run',
-    API_HOST: 'http://localhost:1313',
-    API_GET_SUFFIX: '/get.json',
-
     loading: true,
     pagination: {
       sortBy: 'RowLabelOrd'
@@ -61,7 +53,7 @@ export default {
 
   computed: {
     dataUrl() {
-      return `${this.API_HOST}${this.entityBaseUrl}/all${this.API_GET_SUFFIX}`;
+      return `${app.API_HOST}${this.entityBaseUrl}/all${app.API_GET_SUFFIX}`;
     }
   },
 
@@ -82,6 +74,8 @@ export default {
 
         this.rows = response.data[this.entityResultRowsKey];
       } catch (e) {
+        this.headers = [];
+        this.rows = [];
         console.log('Error getting rows:', e);
       }
 

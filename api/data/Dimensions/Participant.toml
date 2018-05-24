@@ -16,7 +16,7 @@ Key = 'BNSF'
 Ord = 1
 ShortName = 'BNSF Railway Company'
 LongName = 'BNSF Railway Company'
-Logo = '/img/bnsf_railway.jpg'
+Logo = '/asset/bnsf_railway.jpg'
 Copyright = '''
   ©1999-2010 BNSF Railway Co., all rights reserved. May not be reproduced or
   republished without permission. Train Speed and Terminal Dwell statistics are
@@ -29,7 +29,7 @@ Key = 'CN'
 Ord = 2
 ShortName = 'CN'
 LongName = 'Canadian National Railway Co.'
-Logo = '/img/cn_logo.gif'
+Logo = '/asset/cn_logo.gif'
 Copyright = '''
   ©1999-2010 Canadian National Railway Co., all rights reserved. May not be
   reproduced or republished without permission. Train Speed and Terminal Dwell
@@ -42,7 +42,7 @@ Key = 'KCS'
 Ord = 3
 ShortName = 'The Kansas City Southern Railway and Kansas City Southern de Mexico, S.A. de C.V. Consolidated'
 LongName = 'The Kansas City Southern Railway and Kansas City Southern de Mexico, S.A. de C.V. Consolidated'
-Logo = '/img/KCSM_small.jpg'
+Logo = '/asset/KCSM_small.jpg'
 Copyright = '''
   ©1999-2017 The Kansas City Southern Railway Company, all rights reserved. May not be
   reproduced or republished without permission. Train Speed and Terminal Dwell statistics are produced and maintained by KCS;
@@ -54,7 +54,7 @@ Key = 'NS'
 Ord = 4
 ShortName = 'Norfolk Southern'
 LongName = 'Norfolk Southern Corporation'
-Logo = '/img/norfolksouthernlogo.jpg'
+Logo = '/asset/norfolksouthernlogo.jpg'
 Copyright = '''
   ©1999-2017 Norfolk Southern Corporation, all rights reserved. May not be
   reproduced or republished without permission. Train Speed and Terminal Dwell statistics are produced and maintained by NS;
@@ -66,7 +66,7 @@ Key = 'UP'
 Ord = 5
 ShortName = 'Union Pacific Railroad'
 LongName = 'Union Pacific Railroad'
-Logo = '/img/up_shield.gif'
+Logo = '/asset/up_shield.gif'
 Copyright = '''
   ©1999-2010 Union Pacific Railroad, all rights reserved. May not be
   reproduced or republished without permission. Train Speed and Terminal Dwell statistics are produced and maintained by UP;

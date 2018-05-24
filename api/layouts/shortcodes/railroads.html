@@ -1,0 +1,9 @@
+<!--
+  Render JSON containing basic profile data for all participants (railroads)
+-->
+{{- $data := $.Site.Data -}}
+{{- $prpt_data := $data.Dimensions.Participant -}}
+  {
+    "common": {{- (dict "verbiage" $prpt_data.Verbiage) | jsonify -}},
+    "railroads": {{- $prpt_data.Railroad | jsonify -}}
+  }

@@ -13,6 +13,7 @@
 
 {{/* Heading */}}
 {{- $.scratch.Delete $row_map_key -}}
+{{- $.scratch.SetInMap $row_map_key "isHeadingRow" true -}}
 {{- $.scratch.SetInMap $row_map_key "RowLabel" $terminal_dwell.MeasureHeading -}}
 {{- range $.weeks -}}
   {{- $.scratch.SetInMap $row_map_key .Key "" -}}

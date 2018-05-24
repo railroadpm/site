@@ -2,9 +2,12 @@
   <v-data-table :must-sort="true" :headers="headers" :items="rows" hide-actions>
     <template slot="items" slot-scope="row">
       <td class="rpt-data-label">
-        <vue-markdown>{{ row.item["RowLabel"] }}</vue-markdown>
+        <span :class="{ 'rpt-data-heading-row': row.item.isHeadingRow }">
+          <vue-markdown>{{ row.item["RowLabel"] }}</vue-markdown>
+        </span>
       </td>
-      <td v-for="(col, i) in Object.keys(row.item).sort().slice(0, -1)" :key="i">{{ row.item[col] | formatNumber }}</td>
+      <!-- Render a cell for each week + measure (week is all numeric: YYYYMMDD) in ascending order by week -->
+      <td v-for="(col, i) in Object.keys(row.item).sort().filter(k => !isNaN(k))" :key="i">{{ row.item[col] | formatNumber }}</td>
     </template>
   </v-data-table>
 </template>
@@ -96,8 +99,13 @@ export default {
 
 <style>
 /* Data labels can have markdown, which is wrapped in <p> and must be tweaked */
-.rpt-data-label > div > p {
+.rpt-data-label div p {
   margin-bottom: 0;
+}
+
+/* Data "heading rows" may have their data label styled differently */
+.rpt-data-heading-row {
+  font-weight: bold;
 }
 
 /* Table header */

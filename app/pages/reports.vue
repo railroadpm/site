@@ -2,9 +2,16 @@
   <v-layout>
     <v-flex>
       <img class="prpt-logo" :src="railroadLogoURL" alt="">
+
+      <br><br>
+      <v-card width="800px" :flat="true">
+        <v-card-title class="headline">{{ railroadShortName }} - Weekly Performance Report</v-card-title>
+        <v-card-text>
+          <vue-markdown class="prpt-verbiage" :source="railroadVerbiage" :breaks="false" />
+        </v-card-text>
+      </v-card>
       <br>
-      <br>
-      <vue-markdown :source="railroadVerbiage" :html="true" :breaks="false" />
+
       <tabular-report entity-base-url="/reports/bnsf" entity-result-cols-key="columns" entity-result-rows-key="rows" />
     </v-flex>
   </v-layout>
@@ -20,7 +27,7 @@ export default {
   },
 
   data: () => ({
-    selectedRailroad: 'BNSF',
+    selectedRailroad: null,
     railroadVerbiage: '',
     railroads: []
   }),
@@ -39,8 +46,10 @@ export default {
       return `${app.API_HOST}/railroads/all${app.API_GET_SUFFIX}`;
     },
     railroadLogoURL() {
-      if (!this.railroads || this.railroads.length === 0) return '';
-      return `${app.API_HOST}${this.railroads.find(r => r.Key === this.selectedRailroad).Logo}`;
+      return this.selectedRailroad ? `${app.API_HOST}${this.selectedRailroad.Logo}` : '';
+    },
+    railroadShortName() {
+      return this.selectedRailroad ? this.selectedRailroad.ShortName : '';
     }
   },
 
@@ -52,11 +61,12 @@ export default {
         console.log(`Got railroads from ${this.rrDataUrl}`);
 
         this.railroadVerbiage = response.data.common.verbiage;
-        console.log(`Verbiage=${this.railroadVerbiage}`);
         this.railroads = response.data.railroads;
+        this.selectedRailroad = this.railroads.find(r => r.Key === 'BNSF');
       } catch (e) {
         this.railroadVerbiage = '';
         this.railroads = [];
+        this.selectedRailroad = null;
         console.log('Error getting railroads:', e);
       }
     }
@@ -68,5 +78,9 @@ export default {
 /* Blend the participant (prpt) logo white background into the underlying page */
 .prpt-logo {
   mix-blend-mode: multiply;
+}
+
+.prpt-verbiage {
+  font-size: 12px;
 }
 </style>

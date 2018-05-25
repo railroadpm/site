@@ -142,4 +142,9 @@ div.list__group__header__prepend-icon i {
 .navigation-drawer--mini-variant div.list__group__items--no-action .list__tile__action {
   margin-left: -20px;
 }
+
+/* Fix for strange text clipping in IE 11 */
+.toolbar__title {
+  min-width: 200px;
+}
 </style>

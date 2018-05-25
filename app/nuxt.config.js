@@ -75,7 +75,7 @@ module.exports = {
    ** Build configuration
    */
   build: {
-    vendor: ['numeral', 'vue-markdown'],
+    vendor: ['babel-polyfill', 'numeral', 'vue-markdown'],
     /*
      ** You can extend webpack config here
      */

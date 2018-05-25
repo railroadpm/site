@@ -1,12 +1,13 @@
 <template>
   <v-data-table :must-sort="true" :headers="headers" :items="rows" hide-actions>
     <template slot="items" slot-scope="row">
+      <!-- First render the row label cell -->
       <td class="rpt-data-label">
         <span :class="{ 'rpt-data-heading-row': row.item.isHeadingRow }">
           <vue-markdown>{{ row.item["RowLabel"] }}</vue-markdown>
         </span>
       </td>
-      <!-- Render a cell for each week + measure (week is all numeric: YYYYMMDD) in ascending order by week -->
+      <!-- Then render a cell for each week + measure (week is all numeric: YYYYMMDD) in ascending order by week -->
       <td v-for="(col, i) in Object.keys(row.item).sort().filter(k => !isNaN(k))" :key="i">{{ row.item[col] | formatNumber }}</td>
     </template>
   </v-data-table>

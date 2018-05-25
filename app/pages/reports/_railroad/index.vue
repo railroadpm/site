@@ -2,17 +2,10 @@
   <v-layout>
     <v-flex>
       <img class="prpt-logo" :src="railroadLogoURL" alt="">
-
-      <br><br>
-      <v-card width="800px" :flat="true">
-        <v-card-title class="headline">{{ railroadShortName }} - Weekly Performance Report</v-card-title>
-        <v-card-text>
-          <vue-markdown class="prpt-verbiage" :source="railroadVerbiage" :breaks="false" />
-        </v-card-text>
-      </v-card>
       <br>
-
-      <tabular-report entity-base-url="/reports/bnsf" entity-result-cols-key="columns" entity-result-rows-key="rows" />
+      <h2>{{ railroadShortName }} - Weekly Performance Report</h2>
+      <vue-markdown class="prpt-verbiage" :source="railroadVerbiage" :breaks="false" />
+      <tabular-report :entity-base-url="`/reports/${this.$route.params.railroad.toLowerCase()}`" />
     </v-flex>
   </v-layout>
 </template>
@@ -62,7 +55,7 @@ export default {
 
         this.railroadVerbiage = response.data.common.verbiage;
         this.railroads = response.data.railroads;
-        this.selectedRailroad = this.railroads.find(r => r.Key === 'BNSF');
+        this.selectedRailroad = this.railroads.find(r => r.Key === this.$route.params.railroad);
       } catch (e) {
         this.railroadVerbiage = '';
         this.railroads = [];

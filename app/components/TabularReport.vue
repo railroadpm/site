@@ -21,14 +21,6 @@ export default {
     entityBaseUrl: {
       type: String,
       required: true
-    },
-    entityResultColsKey: {
-      type: String,
-      required: true
-    },
-    entityResultRowsKey: {
-      type: String,
-      required: true
     }
   },
 
@@ -66,13 +58,13 @@ export default {
         const response = await this.$axios.$get(this.dataUrl);
         console.log(`Got rows from ${this.dataUrl}`);
 
-        let responseCols = response.data[this.entityResultColsKey];
+        let responseCols = response.data.columns;
         this.headers = [];
         responseCols.forEach(elt => {
           this.headers.push({ text: elt.text, value: elt.key, align: 'left' });
         });
 
-        this.rows = response.data[this.entityResultRowsKey];
+        this.rows = response.data.rows;
       } catch (e) {
         this.headers = [];
         this.rows = [];

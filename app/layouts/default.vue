@@ -1,17 +1,38 @@
 <template>
   <v-app light>
-    <v-navigation-drawer fixed app dark :mini-variant="miniVariant" :clipped="clippedLeftDrawer" v-model="drawer" mobile-break-point="740" width="200" class="blue darken-1">
+    <v-navigation-drawer fixed app dark :mini-variant="miniVariant" :clipped="clippedLeftDrawer" v-model="drawer" mobile-break-point="740" width="230" class="blue darken-1">
       <v-list>
-        <v-list-tile router :to="item.to" :key="i" v-for="(item, i) in items" exact>
-          <v-list-tile-action>
-            <v-icon v-html="item.icon"></v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title v-text="item.title"></v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
+        <!-- Items *without* sub items use v-list-tile -->
+        <template v-for="item in drawerItems">
+          <template v-if="!item.subItems">
+            <v-list-tile router :to="item.to" :key="item.title" exact>
+              <v-list-tile-action>
+                <v-icon v-html="item.icon"></v-icon>
+              </v-list-tile-action>
+              <v-list-tile-content>
+                <v-list-tile-title v-text="item.title"></v-list-tile-title>
+              </v-list-tile-content>
+            </v-list-tile>
+          </template>
+          <!-- Items *with* sub items use v-list-group -->
+          <template v-else>
+            <v-list-group :prepend-icon="item.icon" :key="item.title" value="true" no-action>
+              <v-list-tile slot="activator">
+                <v-list-tile-content>
+                  <v-list-tile-title>Reports</v-list-tile-title>
+                </v-list-tile-content>
+              </v-list-tile>
+              <v-list-tile router :to="subItem.to" :key="subItem.title" v-for="subItem in item.subItems" exact>
+                <v-list-tile-content>
+                  <v-list-tile-title>&nbsp;&nbsp;{{ subItem.title }}</v-list-tile-title>
+                </v-list-tile-content>
+              </v-list-tile>
+            </v-list-group>
+          </template>
+        </template>
       </v-list>
     </v-navigation-drawer>
+
     <v-toolbar fixed app dark :clipped-left="clippedLeftDrawer" class="blue darken-3">
       <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
       <v-btn icon @click.stop="miniVariant = !miniVariant">
@@ -19,11 +40,13 @@
       </v-btn>
       <v-toolbar-title v-text="title"></v-toolbar-title>
     </v-toolbar>
+
     <v-content>
       <v-container>
         <nuxt />
       </v-container>
     </v-content>
+
     <v-footer :fixed="fixedFooter" app class="pa-3 grey lighten-2">
       <v-spacer></v-spacer>
       <div>Railroad Performance Measures are published every Wednesday at 2:00 p.m. Eastern Time.</div>
@@ -38,7 +61,7 @@ export default {
       clippedLeftDrawer: true,
       drawer: true,
       fixedFooter: true,
-      items: [
+      drawerItems: [
         {
           icon: 'home',
           title: 'Welcome',
@@ -47,7 +70,32 @@ export default {
         {
           icon: 'assignment',
           title: 'Reports',
-          to: '/reports'
+          subItems: [
+            {
+              title: 'BNSF',
+              to: '/reports/BNSF'
+            },
+            {
+              title: 'CN',
+              to: '/reports/CN'
+            },
+            {
+              title: 'KCS',
+              to: '/reports/KCS'
+            },
+            {
+              title: 'NS',
+              to: '/reports/NS'
+            },
+            {
+              title: 'UP',
+              to: '/reports/UP'
+            },
+            {
+              title: 'All Other Railroads',
+              to: '/reports/AllOtherRailroads'
+            }
+          ]
         },
         {
           icon: 'info',
@@ -72,5 +120,10 @@ html {
 .list__tile--active .list__tile__content,
 .list__tile--active .list__tile__action {
   color: #ffcc66 !important;
+}
+
+/* Nav drawer group item icon (e.g., "Reports") fix */
+div.list__group__header__prepend-icon i {
+  color: white !important;
 }
 </style>

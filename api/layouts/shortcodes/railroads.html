@@ -6,4 +6,5 @@
   {
     "common": {{- (dict "verbiage" $prpt_data.Verbiage) | jsonify -}},
     "railroads": {{- $prpt_data.Railroad | jsonify -}}
+    {{- "\n  " -}}
   }

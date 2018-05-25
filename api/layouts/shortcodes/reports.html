@@ -88,8 +88,11 @@
       {{- partial "rpt-rows-train-speed-heading" $rpt_rows_params -}}
       {{- partial "rpt-rows-train-speed-measures" $rpt_rows_params -}}
 
-      {{- partial "rpt-rows-terminal-dwell-heading" $rpt_rows_params -}}
-      {{- partial "rpt-rows-terminal-dwell-measures" $rpt_rows_params }}      
-    ]
+      {{- if ne $prpt_key "AOR" -}}
+        {{- partial "rpt-rows-terminal-dwell-heading" $rpt_rows_params -}}
+        {{- partial "rpt-rows-terminal-dwell-measures" $rpt_rows_params -}}
+      {{- end -}}
 
+      {{- "\n    " -}}
+    ]
   }

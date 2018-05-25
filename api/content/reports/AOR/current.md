@@ -2,5 +2,5 @@
 outputs = ['JSON']
 +++
 {{< json-data >}}
-  {{< reports railroad="BNSF" type="Current" >}}
+  {{< reports railroad="AOR" type="Current" >}}
 {{< /json-data >}}

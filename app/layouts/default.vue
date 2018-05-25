@@ -104,7 +104,7 @@ export default {
             {
               icon: 'train',
               title: 'All Other Railroads',
-              to: '/reports/AllOtherRailroads'
+              to: '/reports/AOR'
             }
           ]
         },

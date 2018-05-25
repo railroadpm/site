@@ -74,7 +74,7 @@ Copyright = '''
 '''
 
 [[Railroad]]
-Key = 'AllOtherRailroads'
+Key = 'AOR'
 Ord = 6
 ShortName = 'All Other Railroads'
 LongName = 'All Other Railroads'

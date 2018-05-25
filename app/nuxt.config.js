@@ -78,7 +78,7 @@ module.exports = {
       '/reports/KCS',
       '/reports/NS',
       '/reports/UP',
-      '/reports/AllOtherRailroads'
+      '/reports/AOR'
     ]
   },
 

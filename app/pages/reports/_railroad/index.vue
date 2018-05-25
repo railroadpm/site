@@ -68,7 +68,7 @@ export default {
 
         this.railroadVerbiage = response.data.common.verbiage;
         this.railroads = response.data.railroads;
-        this.selectedRailroad = this.railroads.find(r => r.Key === this.$route.params.railroad);
+        this.selectedRailroad = this.railroads.find(r => r.Key === this.$route.params.railroad.toUpperCase());
       } catch (e) {
         this.railroadVerbiage = '';
         this.railroads = [];

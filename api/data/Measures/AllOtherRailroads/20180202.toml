@@ -1,4 +1,4 @@
-Railroad = 'AllOtherRailroads'
+Railroad = 'AOR'
 Week = '20180202'
 CarsOnLine_ByCarOwner_System = 101663
 CarsOnLine_ByCarOwner_ForeignRR = 110779

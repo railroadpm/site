@@ -1,11 +1,15 @@
 <template>
   <v-layout>
     <v-flex>
-      <img class="prpt-logo" :src="railroadLogoURL" alt="">
-      <br>
-      <h2>{{ railroadShortName }} - Weekly Performance Report</h2>
-      <vue-markdown class="prpt-verbiage" :source="railroadVerbiage" :breaks="false" />
-      <tabular-report :entity-base-url="`/reports/${this.$route.params.railroad.toLowerCase()}`" />
+      <div v-show="selectedRailroad">
+        <img class="prpt-logo" :src="railroadLogoURL" alt="">
+        <br>
+
+        <h2>{{ railroadShortName }} - Weekly Performance Report</h2>
+        <vue-markdown class="prpt-verbiage" :source="railroadVerbiage" :breaks="false" />
+
+        <tabular-report :entity-base-url="`/reports/${this.$route.params.railroad.toLowerCase()}`" />
+      </div>
     </v-flex>
   </v-layout>
 </template>

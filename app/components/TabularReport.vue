@@ -78,7 +78,7 @@ export default {
 
   filters: {
     formatNumber(value) {
-      return value ? numeral(value).format('0,0[.]0') : '';
+      return value === null ? '-' : value === '' ? '' : numeral(value).format('0,0[.]0');
     }
   }
 };

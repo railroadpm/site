@@ -8,7 +8,16 @@
         <h2>{{ railroadShortName }} - Weekly Performance Report</h2>
         <vue-markdown class="prpt-verbiage" :source="railroadVerbiage" :breaks="false" />
 
-        <tabular-report :entity-base-url="`/reports/${this.$route.params.railroad.toLowerCase()}`" />
+        <v-tabs dark color="blue lighten-2" slider-color="blue darken-4" grow>
+          <v-tab>Current Trends</v-tab>
+          <v-tab>53 Week History</v-tab>
+          <v-tab-item>
+            <tabular-report :entity-base-url="`/reports/${this.$route.params.railroad.toLowerCase()}`" />
+          </v-tab-item>
+          <v-tab-item>
+            <tabular-report :entity-base-url="`/reports/${this.$route.params.railroad.toLowerCase()}`" />
+          </v-tab-item>
+        </v-tabs>
       </div>
     </v-flex>
   </v-layout>

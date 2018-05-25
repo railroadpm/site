@@ -1,5 +1,4 @@
 const pkg = require('./package')
-
 const nodeExternals = require('webpack-node-externals')
 
 module.exports = {
@@ -69,6 +68,18 @@ module.exports = {
    */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
+  },
+
+  // Call out dynamic routes for rendering during "nuxt generate"
+  generate: {
+    routes: [
+      '/reports/BNSF',
+      '/reports/CN',
+      '/reports/KCS',
+      '/reports/NS',
+      '/reports/UP',
+      '/reports/AllOtherRailroads'
+    ]
   },
 
   /*

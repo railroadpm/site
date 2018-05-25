@@ -1,43 +1,31 @@
 <template>
   <v-data-table :must-sort="true" :headers="headers" :items="rows" hide-actions>
     <template slot="items" slot-scope="row">
+      <!-- First render the row label cell -->
       <td class="rpt-data-label">
-        <vue-markdown>{{ row.item["RowLabel"] }}</vue-markdown>
+        <span :class="{ 'rpt-data-heading-row': row.item.isHeadingRow }">
+          <vue-markdown>{{ row.item["RowLabel"] }}</vue-markdown>
+        </span>
       </td>
-      <td v-for="(col, i) in Object.keys(row.item).sort().slice(0, -1)" :key="i">{{ row.item[col] | formatNumber }}</td>
+      <!-- Then render a cell for each week + measure (week is all numeric: YYYYMMDD) in ascending order by week -->
+      <td v-for="(col, i) in Object.keys(row.item).sort().filter(k => !isNaN(k))" :key="i">{{ row.item[col] | formatNumber }}</td>
     </template>
   </v-data-table>
 </template>
 
 <script>
+import app from '@/app.config';
 import numeral from 'numeral';
-import VueMarkdown from 'vue-markdown';
 
 export default {
-  components: {
-    'vue-markdown': VueMarkdown
-  },
-
   props: {
     entityBaseUrl: {
-      type: String,
-      required: true
-    },
-    entityResultColsKey: {
-      type: String,
-      required: true
-    },
-    entityResultRowsKey: {
       type: String,
       required: true
     }
   },
 
   data: () => ({
-    API_HOST: 'https://api.rrpm.run',
-    // API_HOST: 'http://localhost:1313',
-    API_GET_SUFFIX: '/get.json',
-
     loading: true,
     pagination: {
       sortBy: 'RowLabelOrd'
@@ -58,7 +46,7 @@ export default {
 
   computed: {
     dataUrl() {
-      return `${this.API_HOST}${this.entityBaseUrl}/all${this.API_GET_SUFFIX}`;
+      return `${app.API_HOST}${this.entityBaseUrl}/all${app.API_GET_SUFFIX}`;
     }
   },
 
@@ -71,14 +59,16 @@ export default {
         const response = await this.$axios.$get(this.dataUrl);
         console.log(`Got rows from ${this.dataUrl}`);
 
-        let responseCols = response.data[this.entityResultColsKey];
+        let responseCols = response.data.columns;
         this.headers = [];
         responseCols.forEach(elt => {
           this.headers.push({ text: elt.text, value: elt.key, align: 'left' });
         });
 
-        this.rows = response.data[this.entityResultRowsKey];
+        this.rows = response.data.rows;
       } catch (e) {
+        this.headers = [];
+        this.rows = [];
         console.log('Error getting rows:', e);
       }
 
@@ -96,8 +86,13 @@ export default {
 
 <style>
 /* Data labels can have markdown, which is wrapped in <p> and must be tweaked */
-.rpt-data-label > div > p {
+.rpt-data-label div p {
   margin-bottom: 0;
+}
+
+/* Data "heading rows" may have their data label styled differently */
+.rpt-data-heading-row {
+  font-weight: bold;
 }
 
 /* Table header */

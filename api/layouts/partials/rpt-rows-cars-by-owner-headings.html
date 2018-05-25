@@ -15,6 +15,7 @@
 
 {{/* Main heading */}}
 {{- $.scratch.Delete $row_map_key -}}
+{{- $.scratch.SetInMap $row_map_key "isHeadingRow" true -}}
 {{- $.scratch.SetInMap $row_map_key "RowLabel" $cars.MeasureHeading -}}
 {{- range $.weeks -}}
   {{- $.scratch.SetInMap $row_map_key .Key "" -}}
@@ -24,6 +25,7 @@
 
 {{/* Sub heading */}}
 {{- $.scratch.Delete $row_map_key -}}
+{{- $.scratch.SetInMap $row_map_key "isHeadingRow" true -}}
 {{- $.scratch.SetInMap $row_map_key "RowLabel" (printf "%s%s" $subheading_indent $cars_by_owner.MeasureHeading) -}}
 {{- range $.weeks -}}
   {{- $.scratch.SetInMap $row_map_key .Key "" -}}

@@ -70,32 +70,26 @@ export default {
           title: 'Reports',
           subItems: [
             {
-              icon: 'train',
               title: 'BNSF',
               to: '/reports/BNSF'
             },
             {
-              icon: 'train',
               title: 'CN',
               to: '/reports/CN'
             },
             {
-              icon: 'train',
               title: 'KCS',
               to: '/reports/KCS'
             },
             {
-              icon: 'train',
               title: 'NS',
               to: '/reports/NS'
             },
             {
-              icon: 'train',
               title: 'UP',
               to: '/reports/UP'
             },
             {
-              icon: 'train',
               title: 'All Other Railroads',
               to: '/reports/AOR'
             }

@@ -56,7 +56,7 @@ export default {
   data() {
     return {
       title: 'RAILROADPM.ORG',
-      drawer: true,
+      drawer: null, // null = Vuetify automatically "do the right thing" based on mobile, etc.
       fixedFooter: true,
       drawerItems: [
         {

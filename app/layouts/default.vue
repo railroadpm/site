@@ -1,6 +1,6 @@
 <template>
   <v-app light>
-    <v-navigation-drawer fixed app dark :clipped="clippedLeftDrawer" v-model="drawer" mobile-break-point="740" width="230" class="blue darken-1">
+    <v-navigation-drawer fixed app dark clipped v-model="drawer" mobile-break-point="740" width="230" class="blue darken-1">
       <v-list>
         <!-- Items *without* sub items use v-list-tile -->
         <template v-for="item in drawerItems">
@@ -33,7 +33,7 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-toolbar fixed app dark :clipped-left="clippedLeftDrawer" class="blue darken-3">
+    <v-toolbar fixed app dark clipped-left class="blue darken-3">
       <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title v-text="title"></v-toolbar-title>
     </v-toolbar>
@@ -56,7 +56,6 @@ export default {
   data() {
     return {
       title: 'RAILROADPM.ORG',
-      clippedLeftDrawer: true,
       drawer: true,
       fixedFooter: true,
       drawerItems: [

@@ -12,10 +12,10 @@
           <v-tab>Current Trends</v-tab>
           <v-tab>53 Week History</v-tab>
           <v-tab-item>
-            <tabular-report :entity-base-url="`/reports/${this.$route.params.railroad.toLowerCase()}`" />
+            <tabular-report :railroad="this.$route.params.railroad" report-type="Current" />
           </v-tab-item>
           <v-tab-item>
-            <tabular-report :entity-base-url="`/reports/${this.$route.params.railroad.toLowerCase()}`" />
+            <tabular-report :railroad="this.$route.params.railroad" report-type="Historical" />
           </v-tab-item>
         </v-tabs>
       </div>

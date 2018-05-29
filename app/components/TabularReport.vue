@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-show="reportType === 'Historical'" class="text-xs-center rpt-pagination-ctl">
-      <v-pagination :circle="true" :length="numPages" :total-visible="numPages" v-model="page" color="blue darken-4"></v-pagination>
+      <v-pagination :circle="true" :length="numPages" :total-visible="numPages" v-model="historicalPage" color="blue darken-4"></v-pagination>
     </div>
     <v-data-table :headers="headers" :items="rows" hide-actions>
       <template slot="items" slot-scope="row">
@@ -28,6 +28,7 @@ export default {
       type: String,
       required: true
     },
+
     reportType: {
       type: String,
       required: true
@@ -35,19 +36,19 @@ export default {
   },
 
   data: () => ({
-    page: 1, // These three page-related items are for "Historical" reports only
-    pageSize: 6,
-    numHistoricalPages: 9, // We'll group the 53 weeks into 8 "pages" of 6, with a 9th page having the 5 left over
-
     loading: true,
     rawColumns: [],
     headers: [],
     rows: [],
-    measureKeys: [] // Array of keys for lookup of measure data in rows, by week
+    measureKeys: [], // Array of keys for lookup of measure data in rows, by week
+
+    historicalPage: 1,
+    historicalPageSize: 6,
+    historicalPageCount: 9 // We'll group the 53 weeks into 8 "pages" of 6, with a 9th page having the 5 remaining weeks
   }),
 
   watch: {
-    page: function(newPage, oldPage) {
+    historicalPage: function(newPage, oldPage) {
       if (newPage != oldPage) {
         this.getHeadersAndMeasureKeysFromRawData(newPage);
       }
@@ -67,9 +68,9 @@ export default {
     dataUrl() {
       return `${app.API_HOST}/reports/${this.railroad.toLowerCase()}/${this.reportType === 'Current' ? 'current' : 'all'}/${app.API_GET_SUFFIX}`;
     },
+
     numPages() {
-      if (this.reportType === 'Current') return 1;
-      return this.numHistoricalPages;
+      return this.reportType === 'Current' ? 1 : this.historicalPageCount;
     }
   },
 
@@ -86,7 +87,7 @@ export default {
         this.headers = [];
         this.rows = [];
         this.measureKeys = [];
-        this.getHeadersAndMeasureKeysFromRawData(this.page);
+        this.getHeadersAndMeasureKeysFromRawData(this.historicalPage);
         this.rows = response.data.rows;
       } catch (e) {
         this.headers = [];
@@ -96,17 +97,20 @@ export default {
 
       this.loading = false;
     },
+
     getHeadersAndMeasureKeysFromRawData(pageNum) {
       let renderedCols = [];
 
       if (this.reportType === 'Current') {
         renderedCols = this.rawColumns;
       } else {
-        // Note in this case we need to manually add the "RowLabel" col first...
-        renderedCols = this.rawColumns.slice((pageNum - 1) * this.pageSize + 1, (pageNum - 1) * this.pageSize + (this.pageSize + 1));
+        // Note that in this case we need to manually add the "RowLabel" col first...
         this.headers = [];
-        this.headers.push({ text: '', value: 'RowLabel', align: 'left', sortable: false });
         this.measureKeys = [];
+        this.headers.push({ text: '', value: 'RowLabel', align: 'left', sortable: false });
+
+        // ...and then take the appropriate slice of the raw columns array
+        renderedCols = this.rawColumns.slice((pageNum - 1) * this.historicalPageSize + 1, (pageNum - 1) * this.historicalPageSize + this.historicalPageSize + 1);
       }
 
       if (this.reportType === 'Historical' || this.headers.length === 0) {
@@ -154,6 +158,7 @@ table.datatable.table tbody th {
   height: 23px;
 }
 
+/* Report pagination control - 53 Week History */
 .rpt-pagination-ctl {
   padding: 15px 0 10px 0;
   width: 100%;

@@ -41,6 +41,7 @@ export default {
   created() {
     console.log('Created reports page');
     this.getRailroads();
+    this.$store.dispatch('getRailroadProfileData');
   },
 
   mounted() {
@@ -49,7 +50,7 @@ export default {
 
   computed: {
     rrDataUrl() {
-      return `${app.API_HOST}/railroads/all${app.API_GET_SUFFIX}`;
+      return this.$store.getters.railroadProfileDataUrl;
     },
     railroadLogoURL() {
       return this.selectedRailroad ? `${app.API_HOST}${this.selectedRailroad.Logo}` : '';

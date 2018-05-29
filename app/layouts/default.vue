@@ -114,7 +114,7 @@ html {
 /* Left drawer active item  */
 .list__tile--active .list__tile__content,
 .list__tile--active .list__tile__action {
-  color: #ffcc66 !important;
+  color: #ffcc80 !important; /* orange lighten-3 */
 }
 
 /* Nav drawer group item icon (e.g., "Reports") fix */

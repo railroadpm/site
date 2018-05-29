@@ -331,16 +331,18 @@ Key = '20170421'
 Day = '04/21/17'
 Month = 'Apr 2017'
 Qtr = '2Q17'
+DoNotPublish = true
 
 [[Week]]
 Key = '20170414'
 Day = '04/14/17'
 Month = 'Apr 2017'
 Qtr = '2Q17'
+DoNotPublish = true
 
 [[Week]]
 Key = '20170407'
 Day = '04/07/17'
 Month = 'Apr 2017'
 Qtr = '2Q17'
-Hidden = true
+DoNotPublish = true

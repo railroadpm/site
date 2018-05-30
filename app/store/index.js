@@ -3,7 +3,8 @@ import app from '@/app.config';
 export const state = () => ({
   railroadProfileData: {
     common: {
-      verbiage: ''
+      Verbiage: '',
+      UnderstandingMeasures: ''
     },
     railroads: []
   }
@@ -28,7 +29,7 @@ export const getters = {
 
   railroadProfileByKey: (state) => (key) => {
     console.log('STORE: In Getter "railroadProfileByKey"');
-    return state.railroadProfileData.railroads.find(r => r.Key === key);
+    return state.railroadProfileData.railroads.find(r => r.Key === key) || {};
   }
 }
 
@@ -36,7 +37,8 @@ export const mutations = {
   storeRailroadProfileData(state, payload) {
     console.log('STORE: In Mutation "storeRailroadProfileData"');
 
-    state.railroadProfileData.common.verbiage = payload.common.verbiage;
+    state.railroadProfileData.common.Verbiage = payload.common.Verbiage;
+    state.railroadProfileData.common.UnderstandingMeasures = payload.common.UnderstandingMeasures;
     state.railroadProfileData.railroads = payload.railroads;
   }
 }

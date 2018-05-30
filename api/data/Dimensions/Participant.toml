@@ -10,6 +10,9 @@ Verbiage = '''
   and operational practices. External factors such as weather and port operations can also cause variations between railroads and over time.
   In addition, individual differences in the collection and reporting of operational data may affect the absolute level of the measures on each road to some degree.
 '''
+UnderstandingMeasures = '''
+  When reviewing the above data, please refer to the specific definitions by this carrier to understand the measurements being provided.
+'''
 
 [[Railroad]]
 Key = 'BNSF'

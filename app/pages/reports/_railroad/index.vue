@@ -20,7 +20,8 @@
         </v-tabs>
 
         <br>
-        <vue-markdown class="prpt-copyright" :source="railroadProfile.Copyright" :breaks="false" />
+        <vue-markdown class="prpt-understand-measures" :source="railroadUnderstandingMeasures" :breaks="false" />
+        <vue-markdown class="prpt-copyright" :source="railroadCopyright" :breaks="false" />
       </div>
     </v-flex>
   </v-layout>
@@ -48,21 +49,23 @@ export default {
     selectedRailroadKey() {
       return this.$route.params.railroad.toUpperCase();
     },
-
+    railroadVerbiage() {
+      return this.$store.state.railroadProfileData.common.Verbiage;
+    },
+    railroadUnderstandingMeasures() {
+      return this.$store.state.railroadProfileData.common.UnderstandingMeasures;
+    },
     railroadProfile() {
       return this.$store.getters.railroadProfileByKey(this.selectedRailroadKey);
     },
-
-    railroadVerbiage() {
-      return this.$store.state.railroadProfileData.common.verbiage;
-    },
-
     railroadLogoURL() {
       return this.$store.getters.railroadLogoUrlByKey(this.selectedRailroadKey);
     },
-
     railroadShortName() {
-      return this.railroadProfile ? this.railroadProfile.ShortName : '';
+      return this.railroadProfile.ShortName || '';
+    },
+    railroadCopyright() {
+      return this.railroadProfile.Copyright || '';
     }
   },
 
@@ -82,7 +85,12 @@ export default {
   font-size: 12px;
 }
 
-.prpt-copyright {
+.prpt-copyright,
+.prpt-understand-measures {
   font-size: 11px;
+}
+
+.prpt-understand-measures {
+  color: red;
 }
 </style>

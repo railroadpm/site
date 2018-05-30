@@ -3,7 +3,7 @@
     <div v-show="reportType === 'Historical'" class="text-xs-center rpt-pagination-ctl">
       <v-pagination :circle="true" :length="numPages" :total-visible="numPages" v-model="historicalPage" color="blue darken-4"></v-pagination>
     </div>
-    <v-data-table :headers="headers" :items="rows" hide-actions>
+    <v-data-table :loading="loading" :headers="headers" :items="rows" hide-actions>
       <template slot="items" slot-scope="row">
         <!-- First render the row label cell -->
         <td class="rpt-data-label">
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import app from '@/app.config';
+import { mapActions } from 'vuex';
 import numeral from 'numeral';
 
 export default {
@@ -37,7 +37,7 @@ export default {
 
   data: () => ({
     loading: true,
-    rawColumns: [],
+    columns: [],
     headers: [],
     rows: [],
     measureKeys: [], // Array of keys for lookup of measure data in rows, by week
@@ -65,10 +65,6 @@ export default {
   },
 
   computed: {
-    dataUrl() {
-      return `${app.API_HOST}/reports/${this.railroad.toLowerCase()}/${this.reportType === 'Current' ? 'current' : 'all'}${app.API_GET_SUFFIX}`;
-    },
-
     numPages() {
       return this.reportType === 'Current' ? 1 : this.historicalPageCount;
     }
@@ -76,33 +72,31 @@ export default {
 
   methods: {
     async getTabularData() {
-      this.loading = true;
-
       try {
-        console.log('COMPONENT: Getting tabular data...');
-        const response = await this.$axios.$get(this.dataUrl);
-        console.log(`COMPONENT: Got rows and columns from ${this.dataUrl}`);
+        console.log(`COMPONENT: Getting ${this.reportType} tabular data for ${this.railroad}...`);
+        await this.loadRailroadReportDataByKey(this.railroad);
+        console.log(`COMPONENT: Got rows and columns`);
 
-        this.rawColumns = response.data.columns;
+        this.columns = this.$store.state.railroadReportData[this.railroad][this.reportType].columns;
         this.headers = [];
         this.rows = [];
         this.measureKeys = [];
         this.getHeadersAndMeasureKeysFromRawData(this.historicalPage);
-        this.rows = response.data.rows;
+        this.rows = this.$store.state.railroadReportData[this.railroad][this.reportType].rows;
+
+        this.loading = false;
       } catch (e) {
         this.headers = [];
         this.rows = [];
         console.log('COMPONENT: Error getting rows and columns:', e);
       }
-
-      this.loading = false;
     },
 
     getHeadersAndMeasureKeysFromRawData(pageNum) {
       let renderedCols = [];
 
       if (this.reportType === 'Current') {
-        renderedCols = this.rawColumns;
+        renderedCols = this.columns;
       } else {
         // Note that in this case we need to manually add the "RowLabel" col first...
         this.headers = [];
@@ -110,7 +104,7 @@ export default {
         this.headers.push({ text: '', value: 'RowLabel', align: 'left', sortable: false });
 
         // ...and then take the appropriate slice of the raw columns array
-        renderedCols = this.rawColumns.slice((pageNum - 1) * this.historicalPageSize + 1, (pageNum - 1) * this.historicalPageSize + this.historicalPageSize + 1);
+        renderedCols = this.columns.slice((pageNum - 1) * this.historicalPageSize + 1, (pageNum - 1) * this.historicalPageSize + this.historicalPageSize + 1);
       }
 
       if (this.reportType === 'Historical' || this.headers.length === 0) {
@@ -119,7 +113,9 @@ export default {
           if (!isNaN(elt.key)) this.measureKeys.push(elt.key);
         });
       }
-    }
+    },
+
+    ...mapActions(['loadRailroadReportDataByKey'])
   },
 
   filters: {

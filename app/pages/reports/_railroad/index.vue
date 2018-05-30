@@ -8,7 +8,7 @@
         <h2>{{ railroadShortName }} - Weekly Performance Report</h2>
         <vue-markdown class="prpt-verbiage" :source="railroadVerbiage" :breaks="false" />
 
-        <v-tabs dark color="blue lighten-2" slider-color="blue darken-4" grow>
+        <v-tabs v-model="activeTab" dark color="blue lighten-2" slider-color="blue darken-4" grow>
           <v-tab>Current Trends</v-tab>
           <v-tab>53 Week History</v-tab>
           <v-tab-item>
@@ -19,9 +19,13 @@
           </v-tab-item>
         </v-tabs>
 
-        <br>
-        <vue-markdown class="prpt-understand-measures" :source="railroadUnderstandingMeasures" :breaks="false" />
-        <vue-markdown class="prpt-copyright" :source="railroadCopyright" :breaks="false" />
+        <hr>
+        <v-footer height="auto" class="white pt-3 px-3">
+          <v-layout row wrap>
+            <vue-markdown v-if="selectedRailroadKey != 'AOR'" class="prpt-understand-measures" :source="railroadUnderstandingMeasures" :breaks="false" />
+            <vue-markdown class="prpt-copyright" :source="railroadCopyright" :breaks="false" />
+          </v-layout>
+        </v-footer>
       </div>
     </v-flex>
   </v-layout>
@@ -35,6 +39,10 @@ export default {
   components: {
     TabularReport
   },
+
+  data: () => ({
+    activeTab: '0'
+  }),
 
   created() {
     console.log(`PAGE: Created reports page for ${this.selectedRailroadKey}`);

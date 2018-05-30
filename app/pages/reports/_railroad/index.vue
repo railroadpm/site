@@ -1,7 +1,7 @@
 <template>
   <v-layout>
     <v-flex>
-      <div v-show="selectedRailroad">
+      <div v-show="railroadProfile">
         <img class="prpt-logo" :src="railroadLogoURL" alt="">
         <br>
 
@@ -12,10 +12,10 @@
           <v-tab>Current Trends</v-tab>
           <v-tab>53 Week History</v-tab>
           <v-tab-item>
-            <tabular-report :railroad="this.$route.params.railroad" report-type="Current" />
+            <tabular-report :railroad="selectedRailroadKey" report-type="Current" />
           </v-tab-item>
           <v-tab-item>
-            <tabular-report :railroad="this.$route.params.railroad" report-type="Historical" />
+            <tabular-report :railroad="selectedRailroadKey" report-type="Historical" />
           </v-tab-item>
         </v-tabs>
       </div>
@@ -24,7 +24,6 @@
 </template>
 
 <script>
-import app from '@/app.config';
 import TabularReport from '~/components/TabularReport.vue';
 
 export default {
@@ -32,50 +31,34 @@ export default {
     TabularReport
   },
 
-  data: () => ({
-    selectedRailroad: null,
-    railroadVerbiage: '',
-    railroads: []
-  }),
-
   created() {
-    console.log('Created reports page');
-    this.getRailroads();
+    console.log(`PAGE: Created reports page for ${this.selectedRailroadKey}`);
     this.$store.dispatch('getRailroadProfileData');
   },
 
   mounted() {
-    console.log('Mounted reports page');
+    console.log(`PAGE: Mounted reports page for ${this.selectedRailroadKey}`);
   },
 
   computed: {
-    rrDataUrl() {
-      return this.$store.getters.railroadProfileDataUrl;
+    selectedRailroadKey() {
+      return this.$route.params.railroad.toUpperCase();
     },
+
+    railroadProfile() {
+      return this.$store.getters.railroadProfileByKey(this.selectedRailroadKey);
+    },
+
+    railroadVerbiage() {
+      return this.$store.state.railroadProfileData.common.verbiage;
+    },
+
     railroadLogoURL() {
-      return this.selectedRailroad ? `${app.API_HOST}${this.selectedRailroad.Logo}` : '';
+      return this.$store.getters.railroadLogoUrlByKey(this.selectedRailroadKey);
     },
+
     railroadShortName() {
-      return this.selectedRailroad ? this.selectedRailroad.ShortName : '';
-    }
-  },
-
-  methods: {
-    async getRailroads() {
-      try {
-        console.log('Getting railroads...');
-        const response = await this.$axios.$get(this.rrDataUrl);
-        console.log(`Got railroads from ${this.rrDataUrl}`);
-
-        this.railroadVerbiage = response.data.common.verbiage;
-        this.railroads = response.data.railroads;
-        this.selectedRailroad = this.railroads.find(r => r.Key === this.$route.params.railroad.toUpperCase());
-      } catch (e) {
-        this.railroadVerbiage = '';
-        this.railroads = [];
-        this.selectedRailroad = null;
-        console.log('Error getting railroads:', e);
-      }
+      return this.railroadProfile ? this.railroadProfile.ShortName : '';
     }
   }
 };

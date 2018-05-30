@@ -56,12 +56,12 @@ export default {
   },
 
   created() {
-    console.log('Created <TabularReport> component');
+    console.log(`COMPONENT: Created <TabularReport> component for ${this.railroad}`);
     this.getTabularData();
   },
 
   mounted() {
-    console.log('Mounted <TabularReport> component');
+    console.log(`COMPONENT: Mounted <TabularReport> component for ${this.railroad}`);
   },
 
   computed: {
@@ -79,9 +79,9 @@ export default {
       this.loading = true;
 
       try {
-        console.log('Getting tabular data...');
+        console.log('COMPONENT: Getting tabular data...');
         const response = await this.$axios.$get(this.dataUrl);
-        console.log(`Got rows and columns from ${this.dataUrl}`);
+        console.log(`COMPONENT: Got rows and columns from ${this.dataUrl}`);
 
         this.rawColumns = response.data.columns;
         this.headers = [];
@@ -92,7 +92,7 @@ export default {
       } catch (e) {
         this.headers = [];
         this.rows = [];
-        console.log('Error getting rows and columns:', e);
+        console.log('COMPONENT: Error getting rows and columns:', e);
       }
 
       this.loading = false;

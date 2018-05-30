@@ -56,12 +56,12 @@ export default {
   },
 
   created() {
-    console.log(`COMPONENT: Created <TabularReport> component for ${this.railroad}`);
+    console.log(`COMPONENT: Created <TabularReport> component for ${this.railroad}, report type "${this.reportType}"`);
     this.getTabularData();
   },
 
   mounted() {
-    console.log(`COMPONENT: Mounted <TabularReport> component for ${this.railroad}`);
+    console.log(`COMPONENT: Mounted <TabularReport> component for ${this.railroad}, report type "${this.reportType}"`);
   },
 
   computed: {

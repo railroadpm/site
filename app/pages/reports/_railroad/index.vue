@@ -18,12 +18,16 @@
             <tabular-report :railroad="selectedRailroadKey" report-type="Historical" />
           </v-tab-item>
         </v-tabs>
+
+        <br>
+        <vue-markdown class="prpt-copyright" :source="railroadProfile.Copyright" :breaks="false" />
       </div>
     </v-flex>
   </v-layout>
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 import TabularReport from '~/components/TabularReport.vue';
 
 export default {
@@ -33,7 +37,7 @@ export default {
 
   created() {
     console.log(`PAGE: Created reports page for ${this.selectedRailroadKey}`);
-    this.$store.dispatch('loadRailroadProfileData');
+    this.loadRailroadProfileData();
   },
 
   mounted() {
@@ -60,6 +64,10 @@ export default {
     railroadShortName() {
       return this.railroadProfile ? this.railroadProfile.ShortName : '';
     }
+  },
+
+  methods: {
+    ...mapActions(['loadRailroadProfileData'])
   }
 };
 </script>
@@ -72,5 +80,9 @@ export default {
 
 .prpt-verbiage {
   font-size: 12px;
+}
+
+.prpt-copyright {
+  font-size: 11px;
 }
 </style>

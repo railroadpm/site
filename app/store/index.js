@@ -21,6 +21,11 @@ export const getters = {
     return profile ? `${app.API_HOST}${profile.Logo}` : '';
   },
 
+  railroadProfilesCount: (state) => {
+    console.log('STORE: In Getter "railroadProfilesCount"');
+    return state.railroadProfileData.railroads.length;
+  },
+
   railroadProfileByKey: (state) => (key) => {
     console.log('STORE: In Getter "railroadProfileByKey"');
     return state.railroadProfileData.railroads.find(r => r.Key === key);
@@ -28,8 +33,8 @@ export const getters = {
 }
 
 export const mutations = {
-  setRailroadProfileData(state, payload) {
-    console.log('STORE: In Mutation "setRailroadProfileData"');
+  storeRailroadProfileData(state, payload) {
+    console.log('STORE: In Mutation "storeRailroadProfileData"');
 
     state.railroadProfileData.common.verbiage = payload.common.verbiage;
     state.railroadProfileData.railroads = payload.railroads;
@@ -37,25 +42,24 @@ export const mutations = {
 }
 
 export const actions = {
-  async getRailroadProfileData({
+  async loadRailroadProfileData({
     getters,
     commit,
     state
   }) {
-    console.log(`STORE: In Action "getRailroadProfileData"...`);
+    console.log(`STORE: In Action "loadRailroadProfileData"...`);
 
     // Nothing to do if we already have the profile data
-    if (state.railroadProfileData.railroads.length > 0) {
-      console.log(`STORE: ...nothing to do in "getRailroadProfileData"`);
+    if (getters.railroadProfilesCount > 0) {
+      console.log(`STORE: ...nothing to do in "loadRailroadProfileData"`);
       return;
     }
 
     try {
-      console.log('STORE: Getting railroad profile data...');
       const response = await this.$axios.$get(getters.railroadProfileDataUrl);
-      console.log(`STORE: Got railroad profile data from ${getters.railroadProfileDataUrl}`);
+      commit('storeRailroadProfileData', response.data);
 
-      commit('setRailroadProfileData', response.data);
+      console.log(`STORE: Got and stored railroad profile data from ${getters.railroadProfileDataUrl}`);
     } catch (e) {
       console.log('STORE: Error getting railroad profile data:', e);
     }

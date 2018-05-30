@@ -66,7 +66,7 @@ export default {
 
   computed: {
     dataUrl() {
-      return `${app.API_HOST}/reports/${this.railroad.toLowerCase()}/${this.reportType === 'Current' ? 'current' : 'all'}/${app.API_GET_SUFFIX}`;
+      return `${app.API_HOST}/reports/${this.railroad.toLowerCase()}/${this.reportType === 'Current' ? 'current' : 'all'}${app.API_GET_SUFFIX}`;
     },
 
     numPages() {

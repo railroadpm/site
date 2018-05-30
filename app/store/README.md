@@ -1,6 +1,6 @@
 # STORE
 
-This directory contains the **Vuex Store** files as wrapped by the Nuxt.js framework.
+This directory contains the **Vuex Store** file(s) as wrapped by the Nuxt.js framework.
 
 Nuxt.js allows us to structure our Vuex Store in `index.js` with separate exported objects named according to each **Core Concept** in Vuex:
 

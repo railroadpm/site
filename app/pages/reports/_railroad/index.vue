@@ -33,7 +33,7 @@ export default {
 
   created() {
     console.log(`PAGE: Created reports page for ${this.selectedRailroadKey}`);
-    this.$store.dispatch('getRailroadProfileData');
+    this.$store.dispatch('loadRailroadProfileData');
   },
 
   mounted() {

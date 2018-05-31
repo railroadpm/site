@@ -1,6 +1,8 @@
 <template>
   <v-layout>
     <v-flex>
+      <v-progress-circular v-if="!dataLoaded" :size="50" :width="7" indeterminate color="blue lighten-4" class="rpt-progress" />
+
       <div v-show="dataLoaded">
         <img class="prpt-logo" :src="railroadLogoURL" alt="">
         <br>
@@ -113,5 +115,11 @@ export default {
 
 .prpt-understand-measures {
   color: red;
+}
+
+.rpt-progress {
+  position: relative;
+  left: calc(50% - 25px);
+  top: 35vh;
 }
 </style>

@@ -1,5 +1,6 @@
 const pkg = require('./package')
 const nodeExternals = require('webpack-node-externals')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
   mode: 'spa',
@@ -110,6 +111,16 @@ module.exports = {
             whitelist: [/^vuetify/]
           })
         ]
+      }
+      // Uglify and strip console.log in production
+      if (!ctx.isDev) {
+        config.plugins.push(new UglifyJsPlugin({
+          uglifyOptions: {
+            compress: {
+              drop_console: true
+            }
+          }
+        }))
       }
     }
   }

@@ -3,16 +3,18 @@
     <div v-show="reportType === 'Historical'" class="text-xs-center rpt-pagination-ctl">
       <v-pagination :circle="true" :length="numPages" :total-visible="numPages" v-model="historicalPage" color="blue darken-4"></v-pagination>
     </div>
-    <v-data-table :headers="headers" :items="rows" hide-actions>
+    <v-data-table :headers="headers" :items="rows" item-key="key" hide-actions>
       <template slot="items" slot-scope="row">
-        <!-- First render the row label cell -->
-        <td class="rpt-data-label">
-          <span :class="{ 'rpt-data-heading-row': row.item.isHeadingRow }">
-            <vue-markdown>{{ row.item["RowLabel"] }}</vue-markdown>
-          </span>
-        </td>
-        <!-- Then render a cell for each week + measure (week is all numeric: YYYYMMDD) in ascending order by week -->
-        <td v-for="(col, i) in measureKeys" :key="i">{{ row.item[col] | formatNumber }}</td>
+        <tr :active="row.selected" @click="row.selected = !row.selected">
+          <!-- First render the row label cell -->
+          <td class="rpt-data-label">
+            <span :class="{ 'rpt-data-heading-row': row.item.isHeadingRow }">
+              <vue-markdown>{{ row.item["RowLabel"] }}</vue-markdown>
+            </span>
+          </td>
+          <!-- Then render a cell for each week + measure (week is all numeric: YYYYMMDD) in ascending order by week -->
+          <td v-for="(col, i) in measureKeys" :key="i">{{ row.item[col] | formatNumber }}</td>
+        </tr>
       </template>
     </v-data-table>
   </div>
@@ -40,6 +42,7 @@ export default {
     columns: [],
     headers: [],
     measureKeys: [], // Array of keys for lookup of measure data in rows, by week
+    selected: [],
 
     historicalPage: 1,
     historicalPageSize: 6,

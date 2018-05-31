@@ -30,6 +30,7 @@
     "eslint-plugin-vue": "^4.5.0",
     "js-beautify": "^1.7.5",
     "stylus": "^0.54.5",
-    "stylus-loader": "^3.0.1"
+    "stylus-loader": "^3.0.1",
+    "uglifyjs-webpack-plugin": "^1.2.5"
   }
 }

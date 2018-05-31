@@ -1,14 +1,14 @@
 <template>
   <v-layout>
     <v-flex>
-      <div v-show="railroadProfile">
+      <div v-show="dataLoaded">
         <img class="prpt-logo" :src="railroadLogoURL" alt="">
         <br>
 
         <h2>{{ railroadShortName }} - Weekly Performance Report</h2>
         <vue-markdown class="prpt-verbiage" :source="railroadVerbiage" :breaks="false" />
 
-        <v-tabs v-model="activeTab" dark color="blue lighten-2" slider-color="blue darken-4" grow>
+        <v-tabs v-model="selectedTab" dark color="blue lighten-2" slider-color="blue darken-4" grow>
           <v-tab>Current Trends</v-tab>
           <v-tab>53 Week History</v-tab>
           <v-tab-item>
@@ -41,7 +41,7 @@ export default {
   },
 
   data: () => ({
-    activeTab: '0'
+    selectedTab: '0'
   }),
 
   created() {
@@ -54,6 +54,19 @@ export default {
   },
 
   computed: {
+    selectedReportType() {
+      switch (this.selectedTab) {
+        case '0':
+          return 'Current';
+        case '1':
+          return 'Historical';
+        default:
+          return '';
+      }
+    },
+    dataLoaded() {
+      return this.$store.state.railroadReportData[this.selectedRailroadKey][this.selectedReportType].rows.length > 0;
+    },
     selectedRailroadKey() {
       return this.$route.params.railroad.toUpperCase();
     },

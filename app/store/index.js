@@ -70,27 +70,27 @@ export const state = () => ({
       }
     }
   }
-})
+});
 
 export const getters = {
   // region Profile Data Getters
   railroadProfileDataUrl: () => `${app.API_HOST}/railroads/all${app.API_GET_SUFFIX}`,
 
-  railroadLogoUrlByKey: (state, getters) => (key) => {
+  railroadLogoUrlByKey: (state, getters) => key => {
     console.log('STORE: In Getter "railroadLogoUrlByKey"');
     let profile = getters.railroadProfileByKey(key);
     return profile ? `${app.API_HOST}${profile.Logo}` : '';
   },
 
-  railroadProfilesCount: (state) => state.railroadProfileData.railroads.length,
-  railroadProfileByKey: (state) => (key) => state.railroadProfileData.railroads.find(r => r.Key === key) || {},
+  railroadProfilesCount: state => state.railroadProfileData.railroads.length,
+  railroadProfileByKey: state => key => state.railroadProfileData.railroads.find(r => r.Key === key) || {},
   // endregion
 
   // region Report Data Getters
   railroadReportDataUrlByKeyAndType: () => (key, type) => `${app.API_HOST}/reports/${key.toLowerCase()}/${type === 'Current' ? 'current' : 'all'}${app.API_GET_SUFFIX}`,
-  railroadReportRowCountByKeyAndType: (state) => (key, type) => state.railroadReportData[key][type].rows.length
+  railroadReportRowCountByKeyAndType: state => (key, type) => state.railroadReportData[key][type].rows.length
   // endregion
-}
+};
 
 export const mutations = {
   storeRailroadProfileData(state, payload) {
@@ -104,20 +104,13 @@ export const mutations = {
   storeRailroadReportData(state, payload) {
     console.log(`STORE: In Mutation "storeRailroadReportData" for ${payload.key}`);
 
-    state.railroadReportData[payload.key].Current.rows = payload.currentData.rows;
-    state.railroadReportData[payload.key].Current.columns = payload.currentData.columns;
-
-    state.railroadReportData[payload.key].Historical.rows = payload.historicalData.rows;
-    state.railroadReportData[payload.key].Historical.columns = payload.historicalData.columns;
+    state.railroadReportData[payload.key][payload.type].rows = payload.data.rows;
+    state.railroadReportData[payload.key][payload.type].columns = payload.data.columns;
   }
-}
+};
 
 export const actions = {
-  async loadRailroadProfileData({
-    getters,
-    commit,
-    state
-  }) {
+  async loadRailroadProfileData({ getters, commit, state }) {
     console.log(`STORE: In Action "loadRailroadProfileData"...`);
 
     // Nothing to do if we already have the profile data
@@ -136,31 +129,26 @@ export const actions = {
     }
   },
 
-  async loadRailroadReportDataByKey({
-    getters,
-    commit,
-    state
-  }, key) {
-    console.log(`STORE: In Action "loadRailroadReportDataByKey" for ${key}...`);
+  async loadRailroadReportDataByKeyAndType({ getters, commit, state }, { key, type }) {
+    console.log(`STORE: In Action "loadRailroadReportDataByKeyAndType" for ${key}, type ${type}...`);
 
-    // Nothing to do if we already have the report data for the specified railroad
-    if (getters.railroadReportRowCountByKeyAndType(key, 'Historical') > 0) {
-      console.log(`STORE: ...nothing to do in "loadRailroadReportDataByKey" for ${key}`);
+    // Nothing to do if we already have the report data for the specified railroad and type
+    if (getters.railroadReportRowCountByKeyAndType(key, type) > 0) {
+      console.log(`STORE: ...nothing to do in "loadRailroadReportDataByKeyAndType" for ${key}, type ${type}`);
       return;
     }
 
     try {
-      const current = await this.$axios.$get(getters.railroadReportDataUrlByKeyAndType(key, 'Current'));
-      const historical = await this.$axios.$get(getters.railroadReportDataUrlByKeyAndType(key, 'Historical'));
+      const response = await this.$axios.$get(getters.railroadReportDataUrlByKeyAndType(key, type));
       commit('storeRailroadReportData', {
         key,
-        currentData: current.data,
-        historicalData: historical.data
+        type,
+        data: response.data
       });
 
-      console.log(`STORE: Got and stored railroad report data for ${key}`);
+      console.log(`STORE: Got and stored railroad report data for ${key}, type ${type}`);
     } catch (e) {
       console.log('STORE: Error getting railroad profile data:', e);
     }
   }
-}
+};

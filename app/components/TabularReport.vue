@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div v-show="dataLoaded">
     <div v-show="reportType === 'Historical'" class="text-xs-center rpt-pagination-ctl">
       <v-pagination :circle="true" :length="numPages" :total-visible="numPages" v-model="historicalPage" color="blue darken-4"></v-pagination>
     </div>
-    <v-data-table :loading="loading" :headers="headers" :items="rows" hide-actions>
+    <v-data-table :headers="headers" :items="rows" hide-actions>
       <template slot="items" slot-scope="row">
         <!-- First render the row label cell -->
         <td class="rpt-data-label">
@@ -36,10 +36,9 @@ export default {
   },
 
   data: () => ({
-    loading: true,
+    rows: [],
     columns: [],
     headers: [],
-    rows: [],
     measureKeys: [], // Array of keys for lookup of measure data in rows, by week
 
     historicalPage: 1,
@@ -67,6 +66,9 @@ export default {
   computed: {
     numPages() {
       return this.reportType === 'Current' ? 1 : this.historicalPageCount;
+    },
+    dataLoaded() {
+      return this.$store.state.railroadReportData[this.railroad][this.reportType].rows.length > 0;
     }
   },
 
@@ -74,7 +76,7 @@ export default {
     async getTabularData() {
       try {
         console.log(`COMPONENT: Getting ${this.reportType} tabular data for ${this.railroad}...`);
-        await this.loadRailroadReportDataByKey(this.railroad);
+        await this.loadRailroadReportDataByKeyAndType({ key: this.railroad, type: this.reportType });
         console.log(`COMPONENT: Got rows and columns`);
 
         this.columns = this.$store.state.railroadReportData[this.railroad][this.reportType].columns;
@@ -83,8 +85,6 @@ export default {
         this.measureKeys = [];
         this.getHeadersAndMeasureKeysFromRawData(this.historicalPage);
         this.rows = this.$store.state.railroadReportData[this.railroad][this.reportType].rows;
-
-        this.loading = false;
       } catch (e) {
         this.headers = [];
         this.rows = [];
@@ -115,7 +115,7 @@ export default {
       }
     },
 
-    ...mapActions(['loadRailroadReportDataByKey'])
+    ...mapActions(['loadRailroadReportDataByKeyAndType'])
   },
 
   filters: {

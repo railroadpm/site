@@ -79,7 +79,7 @@ export const getters = {
   railroadLogoUrlByKey: (state, getters) => key => {
     console.log('STORE: In Getter "railroadLogoUrlByKey"');
     let profile = getters.railroadProfileByKey(key);
-    return profile ? `${app.API_HOST}${profile.Logo}` : '';
+    return profile && profile.Logo ? `${app.API_HOST}${profile.Logo}` : '';
   },
 
   railroadProfilesCount: state => state.railroadProfileData.railroads.length,
@@ -110,7 +110,11 @@ export const mutations = {
 };
 
 export const actions = {
-  async loadRailroadProfileData({ getters, commit, state }) {
+  async loadRailroadProfileData({
+    getters,
+    commit,
+    state
+  }) {
     console.log(`STORE: In Action "loadRailroadProfileData"...`);
 
     // Nothing to do if we already have the profile data
@@ -129,7 +133,14 @@ export const actions = {
     }
   },
 
-  async loadRailroadReportDataByKeyAndType({ getters, commit, state }, { key, type }) {
+  async loadRailroadReportDataByKeyAndType({
+    getters,
+    commit,
+    state
+  }, {
+    key,
+    type
+  }) {
     console.log(`STORE: In Action "loadRailroadReportDataByKeyAndType" for ${key}, type ${type}...`);
 
     // Nothing to do if we already have the report data for the specified railroad and type

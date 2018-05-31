@@ -19,7 +19,7 @@
             <v-list-group :prepend-icon="item.icon" :key="item.title" value="true" no-action>
               <v-list-tile slot="activator">
                 <v-list-tile-content>
-                  <v-list-tile-title>Reports</v-list-tile-title>
+                  <v-list-tile-title>{{ item.title }}</v-list-tile-title>
                 </v-list-tile-content>
               </v-list-tile>
               <v-list-tile router :to="subItem.to" :key="subItem.title" v-for="subItem in item.subItems" exact>
@@ -44,9 +44,9 @@
       </v-container>
     </v-content>
 
-    <v-footer :fixed="fixedFooter" app class="pa-3 grey lighten-2">
+    <v-footer :fixed="fixedFooter" app inset class="pa-3 grey lighten-2">
       <v-spacer></v-spacer>
-      <div>Railroad Performance Measures are published every Wednesday at 2:00 p.m. Eastern Time.</div>
+      <div class="app-footer-text">Railroad Performance Measures are published every Wednesday at 2:00 p.m. Eastern Time.</div>
     </v-footer>
   </v-app>
 </template>
@@ -98,6 +98,24 @@ export default {
           icon: 'info',
           title: 'Definitions',
           to: '/definitions'
+        },
+        {
+          icon: 'insert_chart',
+          title: 'Graphs',
+          subItems: [
+            {
+              title: 'Cars on Line',
+              to: '/graphs/CarsOnLine'
+            },
+            {
+              title: 'Terminal Dwell',
+              to: '/graphs/TerminalDwell'
+            },
+            {
+              title: 'Train Speed',
+              to: '/graphs/TrainSpeed'
+            }
+          ]
         }
       ]
     };
@@ -125,5 +143,9 @@ div.list__group__header__prepend-icon i {
 /* Fix for strange text clipping in IE 11 */
 .toolbar__title {
   min-width: 200px;
+}
+
+.app-footer-text {
+  font-size: 12px;
 }
 </style>

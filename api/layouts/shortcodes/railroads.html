@@ -3,8 +3,12 @@
 -->
 {{- $data := $.Site.Data -}}
 {{- $prpt_data := $data.Dimensions.Participant -}}
+<!-- Build Map for "common" -->
+{{- $common_map_key := "common_map" -}}
+{{- .Scratch.SetInMap $common_map_key "Verbiage" $prpt_data.Verbiage -}}
+{{- .Scratch.SetInMap $common_map_key "UnderstandingMeasures" $prpt_data.UnderstandingMeasures -}}
   {
-    "common": {{- (dict "verbiage" $prpt_data.Verbiage) | jsonify -}},
+    "common": {{- .Scratch.Get $common_map_key | jsonify -}},
     "railroads": {{- $prpt_data.Railroad | jsonify -}}
     {{- "\n  " -}}
   }

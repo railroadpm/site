@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div v-show="dataLoaded">
     <div v-show="reportType === 'Historical'" class="text-xs-center rpt-pagination-ctl">
-      <v-pagination :circle="true" :length="numPages" :total-visible="numPages" v-model="page" color="blue darken-4"></v-pagination>
+      <v-pagination :circle="true" :length="numPages" :total-visible="numPages" v-model="historicalPage" color="blue darken-4"></v-pagination>
     </div>
     <v-data-table :headers="headers" :items="rows" hide-actions>
       <template slot="items" slot-scope="row">
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import app from '@/app.config';
+import { mapActions } from 'vuex';
 import numeral from 'numeral';
 
 export default {
@@ -28,6 +28,7 @@ export default {
       type: String,
       required: true
     },
+
     reportType: {
       type: String,
       required: true
@@ -35,19 +36,18 @@ export default {
   },
 
   data: () => ({
-    page: 1, // These three page-related items are for "Historical" reports only
-    pageSize: 6,
-    numHistoricalPages: 9, // We'll group the 53 weeks into 8 "pages" of 6, with a 9th page having the 5 left over
-
-    loading: true,
-    rawColumns: [],
-    headers: [],
     rows: [],
-    measureKeys: [] // Array of keys for lookup of measure data in rows, by week
+    columns: [],
+    headers: [],
+    measureKeys: [], // Array of keys for lookup of measure data in rows, by week
+
+    historicalPage: 1,
+    historicalPageSize: 6,
+    historicalPageCount: 9 // We'll group the 53 weeks into 8 "pages" of 6, with a 9th page having the 5 remaining weeks
   }),
 
   watch: {
-    page: function(newPage, oldPage) {
+    historicalPage: function(newPage, oldPage) {
       if (newPage != oldPage) {
         this.getHeadersAndMeasureKeysFromRawData(newPage);
       }
@@ -55,58 +55,56 @@ export default {
   },
 
   created() {
-    console.log('Created <TabularReport> component');
+    console.log(`COMPONENT: Created <TabularReport> component for ${this.railroad}, report type "${this.reportType}"`);
     this.getTabularData();
   },
 
   mounted() {
-    console.log('Mounted <TabularReport> component');
+    console.log(`COMPONENT: Mounted <TabularReport> component for ${this.railroad}, report type "${this.reportType}"`);
   },
 
   computed: {
-    dataUrl() {
-      return `${app.API_HOST}/reports/${this.railroad.toLowerCase()}/${this.reportType === 'Current' ? 'current' : 'all'}/${app.API_GET_SUFFIX}`;
-    },
     numPages() {
-      if (this.reportType === 'Current') return 1;
-      return this.numHistoricalPages;
+      return this.reportType === 'Current' ? 1 : this.historicalPageCount;
+    },
+    dataLoaded() {
+      return this.$store.state.railroadReportData[this.railroad][this.reportType].rows.length > 0;
     }
   },
 
   methods: {
     async getTabularData() {
-      this.loading = true;
-
       try {
-        console.log('Getting tabular data...');
-        const response = await this.$axios.$get(this.dataUrl);
-        console.log(`Got rows and columns from ${this.dataUrl}`);
+        console.log(`COMPONENT: Getting ${this.reportType} tabular data for ${this.railroad}...`);
+        await this.loadRailroadReportDataByKeyAndType({ key: this.railroad, type: this.reportType });
+        console.log(`COMPONENT: Got rows and columns`);
 
-        this.rawColumns = response.data.columns;
+        this.columns = this.$store.state.railroadReportData[this.railroad][this.reportType].columns;
         this.headers = [];
         this.rows = [];
         this.measureKeys = [];
-        this.getHeadersAndMeasureKeysFromRawData(this.page);
-        this.rows = response.data.rows;
+        this.getHeadersAndMeasureKeysFromRawData(this.historicalPage);
+        this.rows = this.$store.state.railroadReportData[this.railroad][this.reportType].rows;
       } catch (e) {
         this.headers = [];
         this.rows = [];
-        console.log('Error getting rows and columns:', e);
+        console.log('COMPONENT: Error getting rows and columns:', e);
       }
-
-      this.loading = false;
     },
+
     getHeadersAndMeasureKeysFromRawData(pageNum) {
       let renderedCols = [];
 
       if (this.reportType === 'Current') {
-        renderedCols = this.rawColumns;
+        renderedCols = this.columns;
       } else {
-        // Note in this case we need to manually add the "RowLabel" col first...
-        renderedCols = this.rawColumns.slice((pageNum - 1) * this.pageSize + 1, (pageNum - 1) * this.pageSize + (this.pageSize + 1));
+        // Note that in this case we need to manually add the "RowLabel" col first...
         this.headers = [];
-        this.headers.push({ text: '', value: 'RowLabel', align: 'left', sortable: false });
         this.measureKeys = [];
+        this.headers.push({ text: '', value: 'RowLabel', align: 'left', sortable: false });
+
+        // ...and then take the appropriate slice of the raw columns array
+        renderedCols = this.columns.slice((pageNum - 1) * this.historicalPageSize + 1, (pageNum - 1) * this.historicalPageSize + this.historicalPageSize + 1);
       }
 
       if (this.reportType === 'Historical' || this.headers.length === 0) {
@@ -115,7 +113,9 @@ export default {
           if (!isNaN(elt.key)) this.measureKeys.push(elt.key);
         });
       }
-    }
+    },
+
+    ...mapActions(['loadRailroadReportDataByKeyAndType'])
   },
 
   filters: {
@@ -154,6 +154,7 @@ table.datatable.table tbody th {
   height: 23px;
 }
 
+/* Report pagination control - 53 Week History */
 .rpt-pagination-ctl {
   padding: 15px 0 10px 0;
   width: 100%;

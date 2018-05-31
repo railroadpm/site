@@ -86,7 +86,11 @@ module.exports = {
    ** Build configuration
    */
   build: {
-    vendor: ['babel-polyfill', 'numeral', 'vue-markdown'],
+    vendor: [
+      'babel-polyfill', // Required for IE11 support
+      'numeral',
+      'vue-markdown'
+    ],
     /*
      ** You can extend webpack config here
      */

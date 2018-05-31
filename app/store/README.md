@@ -1,10 +1,12 @@
 # STORE
 
-**This directory is not required, you can delete it if you don't want to use it.**
+This directory contains the **Vuex Store** file(s) as wrapped by the Nuxt.js framework.
 
-This directory contains your Vuex Store files.
-Vuex Store option is implemented in the Nuxt.js framework.
+Nuxt.js allows us to structure our Vuex Store in `index.js` with separate exported objects named according to each **Core Concept** in Vuex:
 
-Creating a file in this directory activate the option in the framework automatically.
+* [State](https://vuex.vuejs.org/guide/state.html): `export const state` in `index.js`
+* [Getters](https://vuex.vuejs.org/guide/getters.html): `export const getters` in `index.js`
+* [Mutations](https://vuex.vuejs.org/guide/mutations.html): `export const mutations` in `index.js`
+* [Actions](https://vuex.vuejs.org/guide/actions.html): `export const actions` in `index.js`
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/guide/vuex-store).
+Nuxt.js details are available in the [store documentation](https://nuxtjs.org/guide/vuex-store). And the Vuex Core Concepts [documentation](https://vuex.vuejs.org/guide/) is also highly-recommended reading.

@@ -3,17 +3,58 @@
     <div v-show="reportType === 'Historical'" class="text-xs-center rpt-pagination-ctl">
       <v-pagination :circle="true" :length="numPages" :total-visible="numPages" v-model="historicalPage" color="blue darken-4"></v-pagination>
     </div>
-    <v-data-table :headers="headers" :items="rows" item-key="key" hide-actions>
+
+    <v-data-table v-model="selected" :headers="headers" :items="rows" item-key="key" hide-actions>
+      <template slot="headerCell" slot-scope="col">
+        <v-menu v-if="col.header.value === 'RowLabel'" :close-on-content-click="false" :nudge-width="200" v-model="quickGraphMenu" offset-x>
+          <v-btn class="rpt-quick-graph-btn" small outline slot="activator" color="orange lighten-1" dark>Quick Graph</v-btn>
+          <v-card>
+            <v-list>
+              <v-list-tile>
+                <v-list-tile-content>
+                  <span class="text-sm-left">
+                    Click on the rows in the report to select them for inclusion in a graph.<br>And then click a button below.
+                  </span>
+                </v-list-tile-content>
+              </v-list-tile>
+              <v-divider></v-divider>
+              <v-list-tile>
+                <v-list-tile-content>
+                  <v-btn block small outline color="blue lighten-2" flat @click="quickGraphMenu = false">Show Cars On Line Graph</v-btn>
+                </v-list-tile-content>
+              </v-list-tile>
+              <v-list-tile>
+                <v-list-tile-content>
+                  <v-btn block small outline color="blue lighten-2" flat @click="quickGraphMenu = false">Show Train Speed Graph</v-btn>
+                </v-list-tile-content>
+              </v-list-tile>
+              <v-list-tile>
+                <v-list-tile-content>
+                  <v-btn block small outline color="blue lighten-2" flat @click="quickGraphMenu = false">Show Terminal Dwell Graph</v-btn>
+                </v-list-tile-content>
+              </v-list-tile>
+            </v-list>
+          </v-card>
+        </v-menu>
+        <span>
+          {{ col.header.text }}
+        </span>
+      </template>
+
       <template slot="items" slot-scope="row">
-        <tr :active="row.selected" @click="row.selected = !row.selected">
+        <tr :active="row.selected" @click="row.selected = row.item.isHeadingRow ? false : !row.selected">
           <!-- First render the row label cell -->
           <td class="rpt-data-label">
             <span :class="{ 'rpt-data-heading-row': row.item.isHeadingRow }">
-              <vue-markdown>{{ row.item["RowLabel"] }}</vue-markdown>
+              <v-icon class="rpt-selected-row-icon" v-show="row.selected" color="orange lighten-1">insert_chart_outlined</v-icon>
+              <vue-markdown class="rpt-data-label-md" :source="row.item['RowLabel']" />
             </span>
           </td>
+
           <!-- Then render a cell for each week + measure (week is all numeric: YYYYMMDD) in ascending order by week -->
-          <td v-for="(col, i) in measureKeys" :key="i">{{ row.item[col] | formatNumber }}</td>
+          <td v-for="(col, i) in measureKeys" :key="i">
+            {{ row.item[col] | formatNumber }}
+          </td>
         </tr>
       </template>
     </v-data-table>
@@ -38,6 +79,8 @@ export default {
   },
 
   data: () => ({
+    quickGraphMenu: false,
+
     rows: [],
     columns: [],
     headers: [],
@@ -131,8 +174,8 @@ export default {
 
 <style>
 /* Data labels can have markdown, which is wrapped in <p> and must be tweaked */
-.rpt-data-label div p {
-  margin-bottom: 0;
+.rpt-data-label .rpt-data-label-md p {
+  margin-bottom: -1px;
 }
 
 /* Data "heading rows" may have their data label styled differently */
@@ -162,5 +205,16 @@ table.datatable.table tbody th {
   padding: 15px 0 10px 0;
   width: 100%;
   background-color: white;
+}
+
+.rpt-selected-row-icon {
+  height: 19px;
+  float: left;
+  margin-left: -20px;
+  margin-right: -5px;
+}
+
+.rpt-quick-graph-btn {
+  margin-left: -10px;
 }
 </style>

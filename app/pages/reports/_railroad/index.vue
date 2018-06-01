@@ -6,29 +6,33 @@
       <div v-show="dataLoaded">
         <img class="prpt-logo" :src="railroadLogoURL" alt="">
         <br>
-
-        <h2>{{ railroadShortName }} - Weekly Performance Report</h2>
-        <vue-markdown class="prpt-verbiage" :source="railroadVerbiage" :breaks="false" />
-
-        <v-tabs v-model="selectedTab" dark color="blue lighten-2" slider-color="blue darken-4" grow>
-          <v-tab>Current Trends</v-tab>
-          <v-tab>53 Week History</v-tab>
-          <v-tab-item>
-            <tabular-report :railroad="selectedRailroadKey" report-type="Current" />
-          </v-tab-item>
-          <v-tab-item>
-            <tabular-report :railroad="selectedRailroadKey" report-type="Historical" />
-          </v-tab-item>
-        </v-tabs>
-
-        <hr>
-        <v-footer height="auto" class="white pt-3 px-3">
-          <v-layout row wrap>
-            <vue-markdown v-if="selectedRailroadKey != 'AOR'" class="prpt-understand-measures" :source="railroadUnderstandingMeasures" :breaks="false" />
-            <vue-markdown class="prpt-copyright" :source="railroadCopyright" :breaks="false" />
-          </v-layout>
-        </v-footer>
       </div>
+
+      <transition name="fade" appear>
+        <div v-show="dataLoaded">
+          <h2>{{ railroadShortName }} - Weekly Performance Report</h2>
+          <vue-markdown class="prpt-verbiage" :source="railroadVerbiage" :breaks="false" />
+
+          <v-tabs v-model="selectedTab" dark color="blue lighten-2" slider-color="blue darken-4" grow>
+            <v-tab>Current Trends</v-tab>
+            <v-tab>53 Week History</v-tab>
+            <v-tab-item>
+              <tabular-report :railroad="selectedRailroadKey" report-type="Current" />
+            </v-tab-item>
+            <v-tab-item>
+              <tabular-report :railroad="selectedRailroadKey" report-type="Historical" />
+            </v-tab-item>
+          </v-tabs>
+
+          <hr>
+          <v-footer height="auto" class="white pt-3 px-3">
+            <v-layout row wrap>
+              <vue-markdown v-if="selectedRailroadKey != 'AOR'" class="prpt-understand-measures" :source="railroadUnderstandingMeasures" :breaks="false" />
+              <vue-markdown class="prpt-copyright" :source="railroadCopyright" :breaks="false" />
+            </v-layout>
+          </v-footer>
+        </div>
+      </transition>
     </v-flex>
   </v-layout>
 </template>
@@ -121,5 +125,15 @@ export default {
   position: relative;
   left: calc(50% - 25px);
   top: 35vh;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

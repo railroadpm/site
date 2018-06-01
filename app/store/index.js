@@ -115,11 +115,11 @@ export const actions = {
     commit,
     state
   }) {
-    console.log(`STORE: In Action "loadRailroadProfileData"...`);
+    console.log('STORE: In Action "loadRailroadProfileData"...');
 
     // Nothing to do if we already have the profile data
     if (getters.railroadProfilesCount > 0) {
-      console.log(`STORE: ...nothing to do in "loadRailroadProfileData"`);
+      console.log('STORE: ...nothing to do in "loadRailroadProfileData"');
       return;
     }
 

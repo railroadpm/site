@@ -66,14 +66,14 @@ TypeDescriptionHeading = 'AAR Mechanical Designation'
   Description = 'E or G'
 
   [[Car.Type]]
-  Key = 'Intermodal'
+  Key = 'IntermodalCar'
   Ord = 4
   ShortName = 'Intermodal'
   LongName = 'Intermodal'
   Description = 'P, Q or S'
 
   [[Car.Type]]
-  Key = 'Multilevel'
+  Key = 'MultilevelCar'
   Ord = 5
   ShortName = 'Multilevel'
   LongName = 'Multilevel'

@@ -13,7 +13,7 @@ DefinitionVerbiage = '''
 Key = 'ByTrainType'
 
   [[Train.Type]]
-  Key = 'Intermodal'
+  Key = 'IntermodalTrain'
   Ord = 1
   ShortName = 'Intermodal'
   LongName = 'Intermodal'
@@ -27,7 +27,7 @@ Key = 'ByTrainType'
   Description = ''
 
   [[Train.Type]]
-  Key = 'Multilevel'
+  Key = 'MultilevelTrain'
   Ord = 3
   ShortName = 'Multilevel'
   LongName = 'Multilevel'

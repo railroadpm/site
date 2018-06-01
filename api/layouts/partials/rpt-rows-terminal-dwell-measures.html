@@ -29,8 +29,9 @@
     {{- $.scratch.Set $terminal_key (printf "%s%s" $subheading_indent $subheading.CityOrYard) -}}
   {{- end -}}
 
-  <!-- Add the terminal subheading to the Map first -->
+  <!-- Add the terminal subheading and key to the Map first -->
   {{- $.scratch.SetInMap $row_map_key "RowLabel" ($.scratch.Get $terminal_key) -}}
+  {{- $.scratch.SetInMap $row_map_key "key" $subheading.Key -}}
 
   <!-- Construct the full measure data key -->
   {{- $subheading_key := $subheading.Key -}}

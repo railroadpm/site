@@ -6,42 +6,12 @@
 
     <v-data-table v-model="selected" :headers="headers" :items="rows" item-key="key" hide-actions>
       <template slot="headerCell" slot-scope="col">
-        <v-menu v-if="col.header.value === 'RowLabel'" :close-on-content-click="false" :nudge-width="200" v-model="quickGraphMenu" offset-x>
-          <v-btn class="rpt-quick-graph-btn" small outline slot="activator" color="orange lighten-1" dark>Quick Graph</v-btn>
-          <v-card>
-            <v-list>
-              <v-list-tile>
-                <v-list-tile-content>
-                  <span class="text-sm-left">
-                    Click on the rows in the report to select them for inclusion in a graph.<br>And then click a button below.
-                  </span>
-                </v-list-tile-content>
-              </v-list-tile>
-              <v-divider></v-divider>
-              <v-list-tile>
-                <v-list-tile-content>
-                  <v-btn block small outline color="blue lighten-2" flat @click="quickGraphMenu = false">Show Cars On Line Graph</v-btn>
-                </v-list-tile-content>
-              </v-list-tile>
-              <v-list-tile>
-                <v-list-tile-content>
-                  <v-btn block small outline color="blue lighten-2" flat @click="quickGraphMenu = false">Show Train Speed Graph</v-btn>
-                </v-list-tile-content>
-              </v-list-tile>
-              <v-list-tile>
-                <v-list-tile-content>
-                  <v-btn block small outline color="blue lighten-2" flat @click="quickGraphMenu = false">Show Terminal Dwell Graph</v-btn>
-                </v-list-tile-content>
-              </v-list-tile>
-            </v-list>
-          </v-card>
-        </v-menu>
-        <span>
-          {{ col.header.text }}
-        </span>
+        <quick-graph-menu v-if="col.header.value === 'RowLabel'" class="rpt-quick-graph-menu"></quick-graph-menu>
+        <span>{{ col.header.text }}</span>
       </template>
 
       <template slot="items" slot-scope="row">
+        <!-- Allow clicking anywhere on a (non-Heading) row to select it for inclusion in a "Quick Graph" -->
         <tr :active="row.selected" @click="row.selected = row.item.isHeadingRow ? false : !row.selected">
           <!-- First render the row label cell -->
           <td class="rpt-data-label">
@@ -64,6 +34,7 @@
 <script>
 import { mapActions } from 'vuex';
 import numeral from 'numeral';
+import QuickGraphMenu from '~/components/QuickGraphMenu.vue';
 
 export default {
   props: {
@@ -78,9 +49,11 @@ export default {
     }
   },
 
-  data: () => ({
-    quickGraphMenu: false,
+  components: {
+    QuickGraphMenu
+  },
 
+  data: () => ({
     rows: [],
     columns: [],
     headers: [],
@@ -175,7 +148,7 @@ export default {
 <style>
 /* Data labels can have markdown, which is wrapped in <p> and must be tweaked */
 .rpt-data-label .rpt-data-label-md p {
-  margin-bottom: -1px;
+  margin-bottom: 0;
 }
 
 /* Data "heading rows" may have their data label styled differently */
@@ -214,7 +187,7 @@ table.datatable.table tbody th {
   margin-right: -5px;
 }
 
-.rpt-quick-graph-btn {
+.rpt-quick-graph-menu {
   margin-left: -10px;
 }
 </style>

@@ -27,6 +27,7 @@
     "cross-env": "^5.0.1",
     "eslint": "^4.19.1",
     "eslint-loader": "^2.0.0",
+    "eslint-plugin-html": "^4.0.3",
     "eslint-plugin-vue": "^4.5.0",
     "js-beautify": "^1.7.5",
     "stylus": "^0.54.5",

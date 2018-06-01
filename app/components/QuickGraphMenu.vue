@@ -13,7 +13,7 @@
         <v-divider></v-divider>
         <v-list-tile v-for="btn in graphBtns" :key="btn.label">
           <v-list-tile-content>
-            <v-btn block small outline :color="btn.color" flat @click="closeMenu">
+            <v-btn block small outline :color="btn.color" flat @click="closeMenu" :disabled="btn.disabled">
               <v-icon>bar_chart</v-icon>
               {{ btn.label }}
             </v-btn>
@@ -26,14 +26,36 @@
 
 <script>
 export default {
+  props: {
+    carsCount: {
+      type: Number,
+      required: true
+    },
+
+    trainCount: {
+      type: Number,
+      required: true
+    },
+
+    terminalCount: {
+      type: Number,
+      required: true
+    }
+  },
+
   data: () => ({
-    showMenu: false,
-    graphBtns: [
-      { color: 'blue lighten-2', label: 'Graph - Cars On Line' },
-      { color: 'green lighten-2', label: 'Graph - Train Speed' },
-      { color: 'red lighten-2', label: 'Graph - Terminal Dwell' }
-    ]
+    showMenu: false
   }),
+
+  computed: {
+    graphBtns() {
+      return [
+        { color: 'blue lighten-2', label: `Graph - Cars On Line (${this.carsCount} Measure(s) Selected)`, disabled: this.carsCount < 1 },
+        { color: 'green lighten-2', label: `Graph - Train Speed (${this.trainCount} Measure(s) Selected)`, disabled: this.trainCount < 1 },
+        { color: 'red lighten-2', label: `Graph - Terminal Dwell (${this.terminalCount} Measure(s) Selected)`, disabled: this.terminalCount < 1 }
+      ];
+    }
+  },
 
   methods: {
     closeMenu() {

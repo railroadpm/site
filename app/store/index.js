@@ -69,6 +69,19 @@ export const state = () => ({
         columns: []
       }
     }
+  },
+  dimension: {
+    keys: {
+      carsOnLine: [],
+      trainSpeed: [],
+      terminalDwell: {
+        BNSF: [],
+        CN: [],
+        KCS: [],
+        NS: [],
+        UP: []
+      }
+    }
   }
 });
 
@@ -106,8 +119,35 @@ export const mutations = {
 
     state.railroadReportData[payload.key][payload.type].rows = payload.data.rows;
     state.railroadReportData[payload.key][payload.type].columns = payload.data.columns;
+
+    storeDimensionKeysFromReportRows(state, payload);
   }
 };
+
+// region Mutation Helpers
+/**
+ * Distill categorical dimension keys from report data
+ * @param {object} state
+ * @param {object} payload
+ */
+function storeDimensionKeysFromReportRows(state, payload) {
+  console.log('STORE: In Mutation Helper "storeDimensionKeysFromReportRows"');
+
+  // Nothing for us to do in certain cases (already have the distilled data, etc.)
+  if (payload.type != 'Current') return;
+  if (dimension.keys.terminalDwell[payload.key].length > 0) return;
+
+  let dimensionSegmentKeys = ['carsOnLine', 'trainSpeed', 'terminalDwell'];
+  let segmentIndex = -1;
+  payload.data.rows.forEach((row, i) => {
+    if (row.isHeadingRow) segmentIndex++;
+    else {
+      if (dimensionSegmentKeys[segmentIndex] === 'terminalDwell') dimension.keys[dimensionSegmentKeys[segmentIndex]][payload.key].push(row.key);
+      else dimension.keys[dimensionSegmentKeys[segmentIndex]].push(row.key);
+    }
+  });
+}
+// endregion
 
 export const actions = {
   async loadRailroadProfileData({

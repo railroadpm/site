@@ -137,24 +137,23 @@ function storeDimensionKeysFromReportRows(state, payload) {
   if (payload.type != 'Current') return;
   if (dimension.keys.terminalDwell[payload.key].length > 0) return;
 
-  let dimensionSegmentKeys = ['carsOnLine', 'trainSpeed', 'terminalDwell'];
+  // The rows fall into 3 main "segments" for which we want the dimension keys
+  let segmentKeys = ['carsOnLine', 'trainSpeed', 'terminalDwell'];
   let segmentIndex = -1;
-  payload.data.rows.forEach((row, i) => {
-    if (row.isHeadingRow) segmentIndex++;
-    else {
-      if (dimensionSegmentKeys[segmentIndex] === 'terminalDwell') dimension.keys[dimensionSegmentKeys[segmentIndex]][payload.key].push(row.key);
-      else dimension.keys[dimensionSegmentKeys[segmentIndex]].push(row.key);
+  let prevRowWasHeading = false;
+  payload.data.rows.forEach(row => {
+    if (prevRowWasHeading && !row.isHeadingRow) segmentIndex++;
+    if (!row.isHeadingRow) {
+      if (segmentKeys[segmentIndex] === 'terminalDwell') state.dimension.keys[segmentKeys[segmentIndex]][payload.key].push(row.key);
+      else state.dimension.keys[segmentKeys[segmentIndex]].push(row.key);
     }
+    prevRowWasHeading = row.isHeadingRow;
   });
 }
 // endregion
 
 export const actions = {
-  async loadRailroadProfileData({
-    getters,
-    commit,
-    state
-  }) {
+  async loadRailroadProfileData({ getters, commit, state }) {
     console.log('STORE: In Action "loadRailroadProfileData"...');
 
     // Nothing to do if we already have the profile data
@@ -173,14 +172,7 @@ export const actions = {
     }
   },
 
-  async loadRailroadReportDataByKeyAndType({
-    getters,
-    commit,
-    state
-  }, {
-    key,
-    type
-  }) {
+  async loadRailroadReportDataByKeyAndType({ getters, commit, state }, { key, type }) {
     console.log(`STORE: In Action "loadRailroadReportDataByKeyAndType" for ${key}, type ${type}...`);
 
     // Nothing to do if we already have the report data for the specified railroad and type
@@ -191,11 +183,7 @@ export const actions = {
 
     try {
       const response = await this.$axios.$get(getters.railroadReportDataUrlByKeyAndType(key, type));
-      commit('storeRailroadReportData', {
-        key,
-        type,
-        data: response.data
-      });
+      commit('storeRailroadReportData', { key, type, data: response.data });
 
       console.log(`STORE: Got and stored railroad report data for ${key}, type ${type}`);
     } catch (e) {

@@ -6,7 +6,7 @@
 
     <v-data-table v-model="selected" :headers="headers" :items="rows" item-key="key" hide-actions>
       <template slot="headerCell" slot-scope="col">
-        <quick-graph-menu v-if="col.header.value === 'RowLabel'" class="rpt-quick-graph-menu" :cars-count="selected.length" :train-count="0" :terminal-count="0"></quick-graph-menu>
+        <quick-graph-menu v-if="col.header.value === 'RowLabel'" class="rpt-quick-graph-menu" :cars-count="selected.length" :train-count="0" :terminal-count="0" />
         <span>{{ col.header.text }}</span>
       </template>
 
@@ -96,7 +96,7 @@ export default {
       try {
         console.log(`COMPONENT: Getting ${this.reportType} tabular data for ${this.railroad}...`);
         await this.loadRailroadReportDataByKeyAndType({ key: this.railroad, type: this.reportType });
-        console.log(`COMPONENT: Got tabular data`);
+        console.log('COMPONENT: Got tabular data');
 
         this.columns = this.$store.state.railroadReportData[this.railroad][this.reportType].columns;
         this.headers = [];

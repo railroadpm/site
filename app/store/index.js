@@ -135,20 +135,25 @@ function storeDimensionKeysFromReportRows(state, payload) {
 
   // Nothing for us to do in certain cases (already have the distilled data, etc.)
   if (payload.type != 'Current') return;
-  if (dimension.keys.terminalDwell[payload.key].length > 0) return;
+  if (state.dimension.keys.terminalDwell[payload.key].length > 0) return;
 
   // The rows fall into 3 main "segments" for which we want the dimension keys
   let segmentKeys = ['carsOnLine', 'trainSpeed', 'terminalDwell'];
   let segmentIndex = -1;
   let prevRowWasHeading = false;
-  payload.data.rows.forEach(row => {
-    if (prevRowWasHeading && !row.isHeadingRow) segmentIndex++;
-    if (!row.isHeadingRow) {
-      if (segmentKeys[segmentIndex] === 'terminalDwell') state.dimension.keys[segmentKeys[segmentIndex]][payload.key].push(row.key);
-      else state.dimension.keys[segmentKeys[segmentIndex]].push(row.key);
-    }
-    prevRowWasHeading = row.isHeadingRow;
-  });
+  try {
+    payload.data.rows.forEach(row => {
+      if (prevRowWasHeading && !row.isHeadingRow) segmentIndex++;
+      if (!row.isHeadingRow) {
+        if (segmentKeys[segmentIndex] === 'terminalDwell') state.dimension.keys[segmentKeys[segmentIndex]][payload.key].push(row.key);
+        else state.dimension.keys[segmentKeys[segmentIndex]].push(row.key);
+      }
+      prevRowWasHeading = row.isHeadingRow;
+    });
+    console.log(`STORE: Stored dimension keys for ${payload.key}`);
+  } catch (e) {
+    console.log(`STORE: Error storing dimension keys for ${payload.key}.`, e);
+  }
 }
 // endregion
 

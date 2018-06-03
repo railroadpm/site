@@ -137,18 +137,20 @@ function storeDimensionKeysFromReportRows(state, payload) {
   if (payload.type != 'Current') return;
   if (state.dimension.keys.terminalDwell[payload.key].length > 0) return;
 
-  // The rows fall into 3 main "segments" for which we want the dimension keys
-  let segmentKeys = ['carsOnLine', 'trainSpeed', 'terminalDwell'];
+  // The rows fall into 3 main "segments" for which we want the dimension keys,
+  // but "carsOnLine" has two sub-segments, so really 4 in all
+  let segmentKeys = ['carsOnLine', 'carsOnLine', 'trainSpeed', 'terminalDwell'];
   let segmentIndex = -1;
   let prevRowWasHeading = false;
   try {
     payload.data.rows.forEach(row => {
-      if (prevRowWasHeading && !row.isHeadingRow) segmentIndex++;
-      if (!row.isHeadingRow) {
+      let isHeadingRow = !!row.isHeadingRow;
+      if (prevRowWasHeading && !isHeadingRow) segmentIndex++;
+      if (!isHeadingRow) {
         if (segmentKeys[segmentIndex] === 'terminalDwell') state.dimension.keys[segmentKeys[segmentIndex]][payload.key].push(row.key);
         else state.dimension.keys[segmentKeys[segmentIndex]].push(row.key);
       }
-      prevRowWasHeading = row.isHeadingRow;
+      prevRowWasHeading = isHeadingRow;
     });
     console.log(`STORE: Stored dimension keys for ${payload.key}`);
   } catch (e) {

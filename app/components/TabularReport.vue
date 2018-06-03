@@ -6,7 +6,8 @@
 
     <v-data-table v-model="selected" :headers="headers" :items="rows" item-key="key" hide-actions>
       <template slot="headerCell" slot-scope="col">
-        <quick-graph-menu v-if="col.header.value === 'RowLabel'" class="rpt-quick-graph-menu" :cars-count="selected.length" :train-count="0" :terminal-count="0" />
+        <!-- We render the "Quick Graph" component in the "RowLabel" header cell -->
+        <quick-graph-menu v-if="col.header.value === 'RowLabel'" class="rpt-quick-graph-menu" :selected-measures="selected" />
         <span>{{ col.header.text }}</span>
       </template>
 

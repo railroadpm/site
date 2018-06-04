@@ -18,6 +18,7 @@
     "@nuxtjs/axios": "^5.3.1",
     "ajv": "^6.5.0",
     "babel-polyfill": "^6.26.0",
+    "lodash": "^4.17.10",
     "numeral": "^2.0.6",
     "nuxt": "^1.4.0",
     "vue-markdown": "^2.2.4",

@@ -72,9 +72,9 @@ export const state = () => ({
   },
   dimension: {
     keys: {
-      carsOnLine: [],
-      trainSpeed: [],
-      terminalDwell: {
+      CarsOnLine: [],
+      TrainSpeed: [],
+      TerminalDwell: {
         BNSF: [],
         CN: [],
         KCS: [],
@@ -135,11 +135,11 @@ function storeDimensionKeysFromReportRows(state, payload) {
 
   // Nothing for us to do in certain cases (already have the distilled data, etc.)
   if (payload.type != 'Current') return;
-  if (state.dimension.keys.terminalDwell[payload.key].length > 0) return;
+  if (state.dimension.keys.TerminalDwell[payload.key].length > 0) return;
 
   // The rows fall into 3 main "segments" for which we want the dimension keys,
-  // but "carsOnLine" has two sub-segments, so really 4 in all
-  let segmentKeys = ['carsOnLine', 'carsOnLine', 'trainSpeed', 'terminalDwell'];
+  // but "CarsOnLine" has two sub-segments, so really 4 in all
+  let segmentKeys = ['CarsOnLine', 'CarsOnLine', 'TrainSpeed', 'TerminalDwell'];
   let segmentIndex = -1;
   let prevRowWasHeading = false;
   try {
@@ -147,7 +147,7 @@ function storeDimensionKeysFromReportRows(state, payload) {
       let isHeadingRow = !!row.isHeadingRow;
       if (prevRowWasHeading && !isHeadingRow) segmentIndex++;
       if (!isHeadingRow) {
-        if (segmentKeys[segmentIndex] === 'terminalDwell') state.dimension.keys[segmentKeys[segmentIndex]][payload.key].push(row.key);
+        if (segmentKeys[segmentIndex] === 'TerminalDwell') state.dimension.keys.TerminalDwell[payload.key].push(row.key);
         else state.dimension.keys[segmentKeys[segmentIndex]].push(row.key);
       }
       prevRowWasHeading = isHeadingRow;

@@ -7,13 +7,14 @@
     <v-data-table v-model="selected" :headers="headers" :items="rows" item-key="key" hide-actions>
       <template slot="headerCell" slot-scope="col">
         <!-- We render the "Quick Graph" component in the "RowLabel" header cell -->
-        <quick-graph-menu v-if="col.header.value === 'RowLabel'" class="rpt-quick-graph-menu" :selected-measures="selected" />
+        <quick-graph-menu v-if="col.header.value === 'RowLabel'" class="rpt-quick-graph-menu" :railroad="railroad" :selected-measures="selected"
+          @remove-all="selected = []" />
         <span>{{ col.header.text }}</span>
       </template>
 
       <template slot="items" slot-scope="row">
         <!-- Allow clicking anywhere on a (non-Heading) row to select it for inclusion in a "Quick Graph" -->
-        <tr :active="row.selected" @click="row.selected = row.item.isHeadingRow ? false : !row.selected">
+        <tr :active="row.selected" @click="rowClick(row)">
           <!-- First render the row label cell -->
           <td class="rpt-data-label">
             <span :class="{ 'rpt-data-heading-row': row.item.isHeadingRow }">
@@ -35,6 +36,7 @@
 <script>
 import { mapActions } from 'vuex';
 import numeral from 'numeral';
+import _ from 'lodash';
 import QuickGraphMenu from '~/components/QuickGraphMenu.vue';
 
 export default {
@@ -43,7 +45,6 @@ export default {
       type: String,
       required: true
     },
-
     reportType: {
       type: String,
       required: true
@@ -132,6 +133,39 @@ export default {
           this.headers.push({ text: elt.text, value: elt.key, align: 'left', sortable: false });
           if (!isNaN(elt.key)) this.measureKeys.push(elt.key);
         });
+      }
+    },
+
+    rowClick(row) {
+      let isHeadingRow = !!row.item.isHeadingRow;
+      let rowKey = row.item.key;
+
+      // Non-heading (measure) rows simply have their selection state toggled
+      if (!isHeadingRow) {
+        row.selected = !row.selected;
+        return;
+      }
+
+      // Heading rows other than the 3 main segments can't be selected
+      // and require no further action
+      let segmentKeys = ['CarsOnLine', 'TrainSpeed', 'TerminalDwell'];
+      if (!segmentKeys.includes(rowKey)) {
+        row.selected = false;
+        return;
+      }
+
+      // The 3 main Headings can't be "selected" either, but clicking on them
+      // is a way to toggle the selection state of *all* of their measures
+      let prevSelected = _.clone(this.selected); // We need to compare the previous selection below
+      let dimensionKeys = this.$store.state.dimension.keys;
+      let keysInSegment = rowKey === 'TerminalDwell' ? dimensionKeys.TerminalDwell[this.railroad] : dimensionKeys[rowKey];
+      let rowsInSegment = _.intersectionWith(this.rows, keysInSegment, (arrVal, othVal) => arrVal.key === othVal);
+      this.selected = _.unionBy(this.selected, rowsInSegment, 'key'); // Toggle on selection of all measures
+
+      // The new and prev selections are equal?
+      if (_.isEqual(this.selected, prevSelected)) {
+        // Toggle off selection of all measures
+        this.selected = _.differenceBy(this.selected, rowsInSegment, 'key');
       }
     },
 

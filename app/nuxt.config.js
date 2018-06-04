@@ -80,7 +80,8 @@ module.exports = {
     vendor: [
       'babel-polyfill', // Required for IE11 support
       'numeral',
-      'vue-markdown'
+      'vue-markdown',
+      'lodash'
     ],
     /*
      ** You can extend webpack config here

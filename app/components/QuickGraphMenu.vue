@@ -19,7 +19,7 @@
         <v-divider></v-divider>
         <v-list-tile>
           <v-list-tile-content>
-            <v-btn block small outline flat @click="">Remove All Selections</v-btn>
+            <v-btn block small outline flat @click="$emit('remove-all')" :disabled="selectedMeasures.length < 1">Remove All Selections</v-btn>
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
@@ -30,6 +30,10 @@
 <script>
 export default {
   props: {
+    railroad: {
+      type: String,
+      required: true
+    },
     selectedMeasures: {
       type: Array,
       required: true
@@ -45,32 +49,32 @@ export default {
       return [
         {
           color: 'blue lighten-2',
-          dimensionKey: 'carsOnLine',
+          dimensionKey: 'CarsOnLine',
           label: `Graph - Cars On Line (${this.carsCount} Measure(s) Selected)`,
           disabled: this.carsCount < 1
         },
         {
           color: 'green lighten-2',
-          dimensionKey: 'trainSpeed',
+          dimensionKey: 'TrainSpeed',
           label: `Graph - Train Speed (${this.trainCount} Measure(s) Selected)`,
           disabled: this.trainCount < 1
         },
         {
           color: 'red lighten-2',
-          dimensionKey: 'terminalDwell',
+          dimensionKey: 'TerminalDwell',
           label: `Graph - Terminal Dwell (${this.terminalCount} Measure(s) Selected)`,
           disabled: this.terminalCount < 1
         }
       ];
     },
     carsCount() {
-      return this.selectedMeasures.filter(measure => this.$store.state.dimension.keys.carsOnLine.includes(measure.key)).length;
+      return this.selectedMeasures.filter(measure => this.$store.state.dimension.keys.CarsOnLine.includes(measure.key)).length;
     },
     trainCount() {
-      return 0;
+      return this.selectedMeasures.filter(measure => this.$store.state.dimension.keys.TrainSpeed.includes(measure.key)).length;
     },
     terminalCount() {
-      return 0;
+      return this.selectedMeasures.filter(measure => this.$store.state.dimension.keys.TerminalDwell[this.railroad].includes(measure.key)).length;
     }
   },
 

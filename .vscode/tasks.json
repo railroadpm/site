@@ -5,10 +5,7 @@
   "tasks": [
     {
       "label": "all:dev",
-      "dependsOn": [
-        "api:dev",
-        "app:dev"
-      ],
+      "dependsOn": ["api:dev", "app:dev"],
       "problemMatcher": []
     },
     {
@@ -19,9 +16,7 @@
         "cwd": "api/",
         "shell": {
           "executable": "cmd.exe",
-          "args": [
-            "/K"
-          ]
+          "args": ["/K"]
         }
       },
       "isBackground": true,
@@ -39,9 +34,25 @@
         "cwd": "app/",
         "shell": {
           "executable": "cmd.exe",
-          "args": [
-            "/K"
-          ]
+          "args": ["/K"]
+        }
+      },
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "app:dev-debug",
+      "type": "shell",
+      "command": "npm run dev-debug",
+      "options": {
+        "cwd": "app/",
+        "shell": {
+          "executable": "cmd.exe",
+          "args": ["/K"]
         }
       },
       "isBackground": true,

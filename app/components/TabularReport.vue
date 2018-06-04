@@ -6,13 +6,15 @@
 
     <v-data-table v-model="selected" :headers="headers" :items="rows" item-key="key" hide-actions>
       <template slot="headerCell" slot-scope="col">
-        <quick-graph-menu v-if="col.header.value === 'RowLabel'" class="rpt-quick-graph-menu"></quick-graph-menu>
+        <!-- We render the "Quick Graph" component in the "RowLabel" header cell -->
+        <quick-graph-menu v-if="col.header.value === 'RowLabel'" class="rpt-quick-graph-menu" :railroad="railroad" :selected-measures="selected"
+          @remove-all="selected = []" @show-graph="showQuickGraph" />
         <span>{{ col.header.text }}</span>
       </template>
 
       <template slot="items" slot-scope="row">
         <!-- Allow clicking anywhere on a (non-Heading) row to select it for inclusion in a "Quick Graph" -->
-        <tr :active="row.selected" @click="row.selected = row.item.isHeadingRow ? false : !row.selected">
+        <tr :active="row.selected" @click="rowClick(row)">
           <!-- First render the row label cell -->
           <td class="rpt-data-label">
             <span :class="{ 'rpt-data-heading-row': row.item.isHeadingRow }">
@@ -28,13 +30,18 @@
         </tr>
       </template>
     </v-data-table>
+
+    <quick-graph-popup :show="quickGraphShowPopup" :railroad="railroad" :dimension-key="quickGraphDimensionKey" @close="quickGraphShowPopup = false"
+    />
   </div>
 </template>
 
 <script>
 import { mapActions } from 'vuex';
 import numeral from 'numeral';
+import _ from 'lodash';
 import QuickGraphMenu from '~/components/QuickGraphMenu.vue';
+import QuickGraphPopup from '~/components/QuickGraphPopup.vue';
 
 export default {
   props: {
@@ -42,7 +49,6 @@ export default {
       type: String,
       required: true
     },
-
     reportType: {
       type: String,
       required: true
@@ -50,7 +56,8 @@ export default {
   },
 
   components: {
-    QuickGraphMenu
+    QuickGraphMenu,
+    QuickGraphPopup
   },
 
   data: () => ({
@@ -62,7 +69,10 @@ export default {
 
     historicalPage: 1,
     historicalPageSize: 6,
-    historicalPageCount: 9 // We'll group the 53 weeks into 8 "pages" of 6, with a 9th page having the 5 remaining weeks
+    historicalPageCount: 9, // We'll group the 53 weeks into 8 "pages" of 6, with a 9th page having the 5 remaining weeks
+
+    quickGraphShowPopup: false,
+    quickGraphDimensionKey: ''
   }),
 
   watch: {
@@ -96,7 +106,7 @@ export default {
       try {
         console.log(`COMPONENT: Getting ${this.reportType} tabular data for ${this.railroad}...`);
         await this.loadRailroadReportDataByKeyAndType({ key: this.railroad, type: this.reportType });
-        console.log(`COMPONENT: Got rows and columns`);
+        console.log('COMPONENT: Got tabular data');
 
         this.columns = this.$store.state.railroadReportData[this.railroad][this.reportType].columns;
         this.headers = [];
@@ -132,6 +142,44 @@ export default {
           if (!isNaN(elt.key)) this.measureKeys.push(elt.key);
         });
       }
+    },
+
+    rowClick(row) {
+      let isHeadingRow = !!row.item.isHeadingRow;
+      let rowKey = row.item.key;
+
+      // Non-heading (measure) rows simply have their selection state toggled
+      if (!isHeadingRow) {
+        row.selected = !row.selected;
+        return;
+      }
+
+      // Heading rows other than the 3 main segments can't be selected
+      // and require no further action
+      let segmentKeys = ['CarsOnLine', 'TrainSpeed', 'TerminalDwell'];
+      if (!segmentKeys.includes(rowKey)) {
+        row.selected = false;
+        return;
+      }
+
+      // The 3 main Headings can't be "selected" either, but clicking on them
+      // is a way to toggle the selection state of *all* of their measures
+      let prevSelected = _.clone(this.selected); // We need to compare the previous selection below
+      let dimensionKeys = this.$store.state.dimension.keys;
+      let keysInSegment = rowKey === 'TerminalDwell' ? dimensionKeys.TerminalDwell[this.railroad] : dimensionKeys[rowKey];
+      let rowsInSegment = _.intersectionWith(this.rows, keysInSegment, (arrVal, othVal) => arrVal.key === othVal);
+      this.selected = _.unionBy(this.selected, rowsInSegment, 'key'); // Toggle on selection of all measures
+
+      // The new and prev selections are equal?
+      if (_.isEqual(this.selected, prevSelected)) {
+        // Toggle off selection of all measures
+        this.selected = _.differenceBy(this.selected, rowsInSegment, 'key');
+      }
+    },
+
+    showQuickGraph(dimensionKey) {
+      this.quickGraphDimensionKey = dimensionKey;
+      this.quickGraphShowPopup = true;
     },
 
     ...mapActions(['loadRailroadReportDataByKeyAndType'])

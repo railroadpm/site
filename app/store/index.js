@@ -69,6 +69,19 @@ export const state = () => ({
         columns: []
       }
     }
+  },
+  dimension: {
+    keys: {
+      CarsOnLine: [],
+      TrainSpeed: [],
+      TerminalDwell: {
+        BNSF: [],
+        CN: [],
+        KCS: [],
+        NS: [],
+        UP: []
+      }
+    }
   }
 });
 
@@ -106,15 +119,48 @@ export const mutations = {
 
     state.railroadReportData[payload.key][payload.type].rows = payload.data.rows;
     state.railroadReportData[payload.key][payload.type].columns = payload.data.columns;
+
+    storeDimensionKeysFromReportRows(state, payload);
   }
 };
 
+// region Mutation Helpers
+/**
+ * Distill categorical dimension keys from report data
+ * @param {object} state
+ * @param {object} payload
+ */
+function storeDimensionKeysFromReportRows(state, payload) {
+  console.log('STORE: In Mutation Helper "storeDimensionKeysFromReportRows"');
+
+  // Nothing for us to do in certain cases (already have the distilled data, etc.)
+  if (payload.type != 'Current') return;
+  if (state.dimension.keys.TerminalDwell[payload.key].length > 0) return;
+
+  // The rows fall into 3 main "segments" for which we want the dimension keys,
+  // but "CarsOnLine" has two sub-segments, so really 4 in all
+  let segmentKeys = ['CarsOnLine', 'CarsOnLine', 'TrainSpeed', 'TerminalDwell'];
+  let segmentIndex = -1;
+  let prevRowWasHeading = false;
+  try {
+    payload.data.rows.forEach(row => {
+      let isHeadingRow = !!row.isHeadingRow;
+      if (prevRowWasHeading && !isHeadingRow) segmentIndex++;
+      if (!isHeadingRow) {
+        if (segmentKeys[segmentIndex] === 'TerminalDwell') state.dimension.keys.TerminalDwell[payload.key].push(row.key);
+        else state.dimension.keys[segmentKeys[segmentIndex]].push(row.key);
+      }
+      prevRowWasHeading = isHeadingRow;
+    });
+    console.log(`STORE: Stored dimension keys for ${payload.key}`);
+  } catch (e) {
+    console.log(`STORE: Error storing dimension keys for ${payload.key}.`, e);
+  }
+}
+// endregion
+
 export const actions = {
-  async loadRailroadProfileData({
-    getters,
-    commit,
-    state
-  }) {
+  async loadRailroadProfileData({ getters, commit, state }) {
     console.log('STORE: In Action "loadRailroadProfileData"...');
 
     // Nothing to do if we already have the profile data
@@ -133,14 +179,7 @@ export const actions = {
     }
   },
 
-  async loadRailroadReportDataByKeyAndType({
-    getters,
-    commit,
-    state
-  }, {
-    key,
-    type
-  }) {
+  async loadRailroadReportDataByKeyAndType({ getters, commit, state }, { key, type }) {
     console.log(`STORE: In Action "loadRailroadReportDataByKeyAndType" for ${key}, type ${type}...`);
 
     // Nothing to do if we already have the report data for the specified railroad and type
@@ -151,11 +190,7 @@ export const actions = {
 
     try {
       const response = await this.$axios.$get(getters.railroadReportDataUrlByKeyAndType(key, type));
-      commit('storeRailroadReportData', {
-        key,
-        type,
-        data: response.data
-      });
+      commit('storeRailroadReportData', { key, type, data: response.data });
 
       console.log(`STORE: Got and stored railroad report data for ${key}, type ${type}`);
     } catch (e) {

@@ -1,6 +1,6 @@
-const pkg = require('./package')
-const nodeExternals = require('webpack-node-externals')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const pkg = require('./package');
+const nodeExternals = require('webpack-node-externals');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   mode: 'spa',
@@ -10,7 +10,8 @@ module.exports = {
    */
   head: {
     title: 'RPM', // pkg.description,
-    meta: [{
+    meta: [
+      {
         charset: 'utf-8'
       },
       {
@@ -23,7 +24,8 @@ module.exports = {
         content: pkg.description
       }
     ],
-    link: [{
+    link: [
+      {
         rel: 'icon',
         type: 'image/jpg',
         href: '/favicon-rpm-32x32.jpg'
@@ -45,17 +47,12 @@ module.exports = {
   /*
    ** Global CSS
    */
-  css: [
-    'vuetify/src/stylus/main.styl'
-  ],
+  css: ['vuetify/src/stylus/main.styl'],
 
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [
-    '@/plugins/vuetify',
-    '@/plugins/vue-markdown'
-  ],
+  plugins: ['@/plugins/vuetify', '@/plugins/vue-markdown', { src: '@plugins/vue-chartjs.js', ssr: false }],
 
   /*
    ** Nuxt.js modules
@@ -73,14 +70,7 @@ module.exports = {
 
   // Call out dynamic routes for rendering during "nuxt generate"
   generate: {
-    routes: [
-      '/reports/BNSF',
-      '/reports/CN',
-      '/reports/KCS',
-      '/reports/NS',
-      '/reports/UP',
-      '/reports/AOR'
-    ]
+    routes: ['/reports/BNSF', '/reports/CN', '/reports/KCS', '/reports/NS', '/reports/UP', '/reports/AOR']
   },
 
   /*
@@ -90,38 +80,42 @@ module.exports = {
     vendor: [
       'babel-polyfill', // Required for IE11 support
       'numeral',
-      'vue-markdown'
+      'vue-markdown',
+      'lodash'
     ],
     /*
      ** You can extend webpack config here
      */
     extend(config, ctx) {
-      // Run ESLint on save
       if (ctx.isDev && ctx.isClient) {
-        config.module.rules.push({
-          enforce: 'pre',
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: /(node_modules)/
-        })
+        config.devtool = '#source-map';
+        // Run ESLint on save
+        //   config.module.rules.push({
+        //     enforce: 'pre',
+        //     test: /\.(js|vue)$/,
+        //     loader: 'eslint-loader',
+        //     exclude: /(node_modules)/
+        //   });
       }
       if (ctx.isServer) {
         config.externals = [
           nodeExternals({
             whitelist: [/^vuetify/]
           })
-        ]
+        ];
       }
       // Uglify and strip console.log in production
       if (!ctx.isDev) {
-        config.plugins.push(new UglifyJsPlugin({
-          uglifyOptions: {
-            compress: {
-              drop_console: true
+        config.plugins.push(
+          new UglifyJsPlugin({
+            uglifyOptions: {
+              compress: {
+                drop_console: true
+              }
             }
-          }
-        }))
+          })
+        );
       }
     }
   }
-}
+};

@@ -32,7 +32,7 @@
     </v-data-table>
 
     <quick-graph-popup v-if="quickGraphShowPopup" :show="quickGraphShowPopup" :railroad="railroad" :dimension-key="quickGraphDimensionKey"
-      @close="quickGraphShowPopup = false" />
+      :rows="selected" @close="quickGraphShowPopup = false" />
   </div>
 </template>
 

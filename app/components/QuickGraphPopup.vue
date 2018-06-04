@@ -2,11 +2,11 @@
   <v-dialog v-model="show" fullscreen hide-overlay transition="dialog-bottom-transition">
     <v-card>
       <v-toolbar dark color="blue lighten-2">
+        <v-toolbar-title>Quick Graph</v-toolbar-title>
+        <v-spacer></v-spacer>
         <v-btn icon dark @click.native="$emit('close')">
           <v-icon>close</v-icon>
         </v-btn>
-        <v-toolbar-title>Quick Graph</v-toolbar-title>
-        <v-spacer></v-spacer>
       </v-toolbar>
       <div class="graph-popup-body">
         <h2>Coming Soon... Quick Graph</h2>
@@ -19,6 +19,8 @@
 </template>
 
 <script>
+import _ from 'lodash';
+
 export default {
   props: {
     show: {
@@ -32,20 +34,14 @@ export default {
     dimensionKey: {
       type: String,
       required: true
+    },
+    rows: {
+      type: Array,
+      required: true
     }
   },
 
   data: () => ({
-    lineData: {
-      labels: ['20180406', '20180413', '20180420', '20180427'],
-      datasets: [
-        {
-          label: 'System',
-          fill: false,
-          data: [64515, 63612, 63500, 62565]
-        }
-      ]
-    },
     graphOptions: {}
   }),
 
@@ -56,6 +52,33 @@ export default {
         this.$emit('close');
       }
     });
+  },
+
+  computed: {
+    labels() {
+      return _.filter(Object.keys(this.rows[0]), val => !isNaN(val));
+    },
+    datasetData() {
+      return Object.values(_.pickBy(this.rows[1], (val, key) => !isNaN(key)));
+    },
+    datasets() {
+      // TODO: Build array of objects with label and data
+      // for each original row given to us in props, and then get
+      // rid of "datasetData"
+      return [
+        {
+          label: 'Foreign RR',
+          fill: false,
+          data: this.datasetData
+        }
+      ];
+    },
+    lineData() {
+      return {
+        labels: this.labels,
+        datasets: this.datasets
+      };
+    }
   }
 };
 </script>
@@ -64,6 +87,7 @@ export default {
 .graph-popup-body {
   margin: 10px;
 }
+
 .quick-line-graph {
   margin: 30px 5px 0 50px;
   height: 80vh !important;

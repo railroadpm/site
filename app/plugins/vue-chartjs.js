@@ -5,6 +5,18 @@ Vue.component('line-graph', {
   extends: Line,
   props: ['data', 'options'],
   mounted() {
-    this.renderChart(this.data, this.options);
+    let baseChartOptions = {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: {
+        duration: 1200
+      },
+      responsiveAnimationDuration: 400
+    };
+
+    this.renderChart(this.data, {
+      ...baseChartOptions,
+      ...this.options
+    });
   }
 });

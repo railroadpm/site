@@ -31,8 +31,8 @@
       </template>
     </v-data-table>
 
-    <quick-graph-popup :show="quickGraphShowPopup" :railroad="railroad" :dimension-key="quickGraphDimensionKey" @close="quickGraphShowPopup = false"
-    />
+    <quick-graph-popup v-if="quickGraphShowPopup" :show="quickGraphShowPopup" :railroad="railroad" :dimension-key="quickGraphDimensionKey"
+      @close="quickGraphShowPopup = false" />
   </div>
 </template>
 

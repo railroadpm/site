@@ -1,7 +1,7 @@
 <template>
   <v-dialog v-model="show" fullscreen hide-overlay transition="dialog-bottom-transition">
     <v-card>
-      <v-toolbar dark color="blue darken-3">
+      <v-toolbar dark color="blue lighten-2">
         <v-btn icon dark @click.native="$emit('close')">
           <v-icon>close</v-icon>
         </v-btn>
@@ -12,7 +12,7 @@
         <h2>Coming Soon... Quick Graph</h2>
         {{ railroad }}&nbsp;{{ dimensionKey }}
 
-        <line-graph css-classes="quick-line-graph" :data="lineData" :options="graphOptions" />
+        <line-graph v-if="show" css-classes="quick-line-graph" :data="lineData" :options="graphOptions" />
       </div>
     </v-card>
   </v-dialog>
@@ -41,15 +41,22 @@ export default {
       datasets: [
         {
           label: 'System',
+          fill: false,
           data: [64515, 63612, 63500, 62565]
         }
       ]
     },
-    graphOptions: {
-      responsive: true,
-      maintainAspectRatio: false
-    }
-  })
+    graphOptions: {}
+  }),
+
+  mounted() {
+    // ESC to tell outer page/component to close the popup
+    document.body.addEventListener('keyup', e => {
+      if (e.keyCode === 27) {
+        this.$emit('close');
+      }
+    });
+  }
 };
 </script>
 

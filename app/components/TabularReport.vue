@@ -8,7 +8,7 @@
       <template slot="headerCell" slot-scope="col">
         <!-- We render the "Quick Graph" component in the "RowLabel" header cell -->
         <quick-graph-menu v-if="col.header.value === 'RowLabel'" class="rpt-quick-graph-menu" :railroad="railroad" :selected-measures="selected"
-          @remove-all="selected = []" />
+          @remove-all="selected = []" @graph-dimension="quickGraph" />
         <span>{{ col.header.text }}</span>
       </template>
 
@@ -167,6 +167,10 @@ export default {
         // Toggle off selection of all measures
         this.selected = _.differenceBy(this.selected, rowsInSegment, 'key');
       }
+    },
+
+    quickGraph(dimensionKey) {
+      alert(`Graph btn clicked for dimension ${dimensionKey}`);
     },
 
     ...mapActions(['loadRailroadReportDataByKeyAndType'])

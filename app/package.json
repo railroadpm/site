@@ -18,9 +18,11 @@
     "@nuxtjs/axios": "^5.3.1",
     "ajv": "^6.5.0",
     "babel-polyfill": "^6.26.0",
+    "chart.js": "^2.7.2",
     "lodash": "^4.17.10",
     "numeral": "^2.0.6",
     "nuxt": "^1.4.0",
+    "vue-chartjs": "^3.3.1",
     "vue-markdown": "^2.2.4",
     "vuetify": "^1.0.18"
   },

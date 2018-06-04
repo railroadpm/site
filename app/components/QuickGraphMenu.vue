@@ -10,7 +10,7 @@
         <v-divider></v-divider>
         <v-list-tile v-for="btn in graphBtns" :key="btn.label">
           <v-list-tile-content>
-            <v-btn block small outline :color="btn.color" flat @click="closeMenu($event, btn.dimensionKey)" :disabled="btn.disabled">
+            <v-btn block small outline :color="btn.color" flat @click="graphBtnClick($event, btn.dimensionKey)" :disabled="btn.disabled">
               <v-icon>bar_chart</v-icon>
               {{ btn.label }}
             </v-btn>
@@ -79,13 +79,9 @@ export default {
   },
 
   methods: {
-    closeMenu(event, dimensionKey) {
+    graphBtnClick(event, dimensionKey) {
       this.showMenu = false;
-      this.$nextTick(() => this.showMsg(`Graphs Coming Soon! dimension=${dimensionKey}`));
-    },
-
-    showMsg(msg) {
-      alert(msg);
+      this.$emit('graph-dimension', dimensionKey);
     }
   }
 };

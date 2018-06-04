@@ -81,7 +81,7 @@ export default {
   methods: {
     graphBtnClick(event, dimensionKey) {
       this.showMenu = false;
-      this.$emit('graph-dimension', dimensionKey);
+      this.$emit('show-graph', dimensionKey);
     }
   }
 };

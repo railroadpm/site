@@ -8,7 +8,7 @@
       <template slot="headerCell" slot-scope="col">
         <!-- We render the "Quick Graph" component in the "RowLabel" header cell -->
         <quick-graph-menu v-if="col.header.value === 'RowLabel'" class="rpt-quick-graph-menu" :railroad="railroad" :selected-measures="selected"
-          @remove-all="selected = []" @graph-dimension="quickGraph" />
+          @remove-all="selected = []" @show-graph="showQuickGraph" />
         <span>{{ col.header.text }}</span>
       </template>
 
@@ -30,6 +30,9 @@
         </tr>
       </template>
     </v-data-table>
+
+    <quick-graph-popup :show="quickGraphShowPopup" :railroad="railroad" :dimension-key="quickGraphDimensionKey" @close="quickGraphShowPopup = false"
+    />
   </div>
 </template>
 
@@ -38,6 +41,7 @@ import { mapActions } from 'vuex';
 import numeral from 'numeral';
 import _ from 'lodash';
 import QuickGraphMenu from '~/components/QuickGraphMenu.vue';
+import QuickGraphPopup from '~/components/QuickGraphPopup.vue';
 
 export default {
   props: {
@@ -52,7 +56,8 @@ export default {
   },
 
   components: {
-    QuickGraphMenu
+    QuickGraphMenu,
+    QuickGraphPopup
   },
 
   data: () => ({
@@ -64,7 +69,10 @@ export default {
 
     historicalPage: 1,
     historicalPageSize: 6,
-    historicalPageCount: 9 // We'll group the 53 weeks into 8 "pages" of 6, with a 9th page having the 5 remaining weeks
+    historicalPageCount: 9, // We'll group the 53 weeks into 8 "pages" of 6, with a 9th page having the 5 remaining weeks
+
+    quickGraphShowPopup: false,
+    quickGraphDimensionKey: ''
   }),
 
   watch: {
@@ -169,8 +177,9 @@ export default {
       }
     },
 
-    quickGraph(dimensionKey) {
-      alert(`Graph btn clicked for dimension ${dimensionKey}`);
+    showQuickGraph(dimensionKey) {
+      this.quickGraphDimensionKey = dimensionKey;
+      this.quickGraphShowPopup = true;
     },
 
     ...mapActions(['loadRailroadReportDataByKeyAndType'])

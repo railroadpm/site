@@ -7,8 +7,11 @@
       <v-container grid-list-sm class="pa-4">
         <v-layout row wrap>
           <v-flex xs12>
+
             <h2>Coming Soon... Quick Graph</h2>
             {{ railroad }}&nbsp;{{ dimensionKey }}
+
+            <line-graph :height="400" :width="700" :data="lineData" :options="graphOptions" />
           </v-flex>
         </v-layout>
       </v-container>
@@ -37,7 +40,13 @@ export default {
     }
   },
 
-  data: () => ({})
+  data: () => ({
+    lineData: [],
+    graphOptions: {
+      responsive: true
+      // maintainAspectRatio: false
+    }
+  })
 };
 </script>
 

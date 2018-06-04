@@ -1,24 +1,19 @@
 <template>
-  <v-dialog v-model="show" width="800px" transition="v-dialog-transition">
+  <v-dialog v-model="show" fullscreen hide-overlay transition="dialog-bottom-transition">
     <v-card>
-      <v-card-title class="grey lighten-4 py-4 title">
-        Quick Graph
-      </v-card-title>
-      <v-container grid-list-sm class="pa-4">
-        <v-layout row wrap>
-          <v-flex xs12>
-
-            <h2>Coming Soon... Quick Graph</h2>
-            {{ railroad }}&nbsp;{{ dimensionKey }}
-
-            <line-graph :height="400" :width="700" :data="lineData" :options="graphOptions" />
-          </v-flex>
-        </v-layout>
-      </v-container>
-      <v-card-actions>
+      <v-toolbar dark color="blue darken-3">
+        <v-btn icon dark @click.native="$emit('close')">
+          <v-icon>close</v-icon>
+        </v-btn>
+        <v-toolbar-title>Quick Graph</v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-btn flat color="primary" @click="$emit('close')">Close</v-btn>
-      </v-card-actions>
+      </v-toolbar>
+      <div class="graph-popup-body">
+        <h2>Coming Soon... Quick Graph</h2>
+        {{ railroad }}&nbsp;{{ dimensionKey }}
+
+        <line-graph css-classes="quick-line-graph" :data="lineData" :options="graphOptions" />
+      </div>
     </v-card>
   </v-dialog>
 </template>
@@ -41,14 +36,30 @@ export default {
   },
 
   data: () => ({
-    lineData: [],
+    lineData: {
+      labels: ['20180406', '20180413', '20180420', '20180427'],
+      datasets: [
+        {
+          label: 'System',
+          data: [64515, 63612, 63500, 62565]
+        }
+      ]
+    },
     graphOptions: {
-      responsive: true
-      // maintainAspectRatio: false
+      responsive: true,
+      maintainAspectRatio: false
     }
   })
 };
 </script>
 
-<style scoped>
+<style>
+.graph-popup-body {
+  margin: 10px;
+}
+.quick-line-graph {
+  margin: 30px 5px 0 50px;
+  height: 80vh !important;
+  width: 95% !important;
+}
 </style>

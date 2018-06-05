@@ -1,5 +1,5 @@
 <template>
-  <div v-show="dataLoaded">
+  <div v-show="dataIsLoaded">
     <div v-show="reportType === 'Historical'" class="text-xs-center rpt-pagination-ctl">
       <v-pagination :circle="true" :length="numPages" :total-visible="numPages" v-model="historicalPage" color="blue darken-4"></v-pagination>
     </div>
@@ -31,8 +31,8 @@
       </template>
     </v-data-table>
 
-    <quick-graph-popup :show="quickGraphShowPopup" :railroad="railroad" :dimension-key="quickGraphDimensionKey" @close="quickGraphShowPopup = false"
-    />
+    <quick-graph-popup v-if="quickGraphShowPopup" :show="quickGraphShowPopup" :railroad="railroad" :dimension-key="quickGraphDimensionKey"
+      :rows="selectedRowsInSegment(quickGraphDimensionKey)" @close="quickGraphShowPopup = false" />
   </div>
 </template>
 
@@ -96,7 +96,7 @@ export default {
     numPages() {
       return this.reportType === 'Current' ? 1 : this.historicalPageCount;
     },
-    dataLoaded() {
+    dataIsLoaded() {
       return this.$store.state.railroadReportData[this.railroad][this.reportType].rows.length > 0;
     }
   },
@@ -165,8 +165,7 @@ export default {
       // The 3 main Headings can't be "selected" either, but clicking on them
       // is a way to toggle the selection state of *all* of their measures
       let prevSelected = _.clone(this.selected); // We need to compare the previous selection below
-      let dimensionKeys = this.$store.state.dimension.keys;
-      let keysInSegment = rowKey === 'TerminalDwell' ? dimensionKeys.TerminalDwell[this.railroad] : dimensionKeys[rowKey];
+      let keysInSegment = this.keysInSegment(rowKey);
       let rowsInSegment = _.intersectionWith(this.rows, keysInSegment, (arrVal, othVal) => arrVal.key === othVal);
       this.selected = _.unionBy(this.selected, rowsInSegment, 'key'); // Toggle on selection of all measures
 
@@ -177,9 +176,19 @@ export default {
       }
     },
 
+    keysInSegment(dimensionKey) {
+      let dimensionKeys = this.$store.state.dimension.keys;
+      return dimensionKey === 'TerminalDwell' ? dimensionKeys.TerminalDwell[this.railroad] : dimensionKeys[dimensionKey];
+    },
+
     showQuickGraph(dimensionKey) {
       this.quickGraphDimensionKey = dimensionKey;
       this.quickGraphShowPopup = true;
+    },
+
+    selectedRowsInSegment(dimensionKey) {
+      let keysInSegment = this.keysInSegment(dimensionKey);
+      return _.intersectionWith(this.selected, keysInSegment, (arrVal, othVal) => arrVal.key === othVal);
     },
 
     ...mapActions(['loadRailroadReportDataByKeyAndType'])

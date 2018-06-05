@@ -139,9 +139,9 @@ export default {
 </script>
 
 <style>
-.dialog--fullscreen {
+/* .dialog--fullscreen {
   overflow-y: hidden !important;
-}
+} */
 
 .graph-popup-body {
   margin: 10px;

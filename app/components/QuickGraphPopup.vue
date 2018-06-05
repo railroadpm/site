@@ -2,18 +2,20 @@
   <v-dialog v-model="show" fullscreen hide-overlay transition="dialog-bottom-transition">
     <v-card>
       <v-toolbar dark color="blue lighten-2">
+        <v-tooltip bottom>
+          <v-btn slot="activator" icon dark color="orange lighten-1" @click.native="$emit('close')">
+            <v-icon>close</v-icon>
+          </v-btn>
+          <span>Close and Return to Report</span>
+        </v-tooltip>
         <v-toolbar-title>Quick Graph</v-toolbar-title>
-        <v-spacer></v-spacer>
-        <v-btn icon dark @click.native="$emit('close')">
-          <v-icon>close</v-icon>
-        </v-btn>
       </v-toolbar>
       <div class="graph-popup-body">
         <div class="graph-popup-headings">
           <h2>{{ mainHeading }}</h2>
           <h3 v-html="subHeading"></h3>
         </div>
-        <line-graph v-if="show" css-classes="quick-line-graph" :data="lineData" :options="graphOptions" />
+        <line-graph v-if="show" css-classes="quick-line-graph" :data="lineGraphData" :options="lineGraphOptions" />
       </div>
     </v-card>
   </v-dialog>
@@ -43,9 +45,7 @@ export default {
     }
   },
 
-  data: () => ({
-    graphOptions: {}
-  }),
+  data: () => ({}),
 
   mounted() {
     // ESC to tell outer page/component to close the popup
@@ -75,12 +75,12 @@ export default {
           return '';
       }
     },
-    labels() {
-      // All of the rows have the same "labels", so just grab from rows[0]
+    xAxisLabels() {
+      // All of the rows have the same "xAxisLabels", so just grab from rows[0]
       return _(this.rows[0])
         .keys()
         .filter(val => !isNaN(val)) // Take only the numeric keys
-        .map(val => DateTime.fromISO(val).toLocaleString())
+        .map(val => DateTime.fromISO(val).toLocaleString()) // YYYYMMDD -> M/D/YYYY
         .value();
     },
     datasets() {
@@ -89,15 +89,42 @@ export default {
           label: val.RowLabel.replace(/&nbsp;/g, ''),
           fill: false,
           data: this.rowData(index),
-          borderColor: this.colorFromIndex(index),
+          borderColor: this.$helpers.colorFromIndex(index),
           pointRadius: 7,
           pointStyle: Math.abs(index % 2) ? 'triangle' : 'rect'
         }))
         .value();
     },
-    lineData() {
+    lineGraphOptions() {
+      // Capture ("close over") things we'll need in callbacks below
+      let helpers = this.$helpers;
+      let datasetLabels = _(this.rows)
+        .map(val => val.RowLabel.replace(/&nbsp;/g, ''))
+        .value();
+
       return {
-        labels: this.labels,
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                // Format the numbers with thousands separators
+                callback: (value, index, values) => helpers.formatNumber(value)
+              }
+            }
+          ]
+        },
+        tooltips: {
+          enabled: true,
+          mode: 'single',
+          callbacks: {
+            label: (tooltipItems, data) => `${datasetLabels[tooltipItems.datasetIndex]}: ${helpers.formatNumber(tooltipItems.yLabel)}`
+          }
+        }
+      };
+    },
+    lineGraphData() {
+      return {
+        labels: this.xAxisLabels,
         datasets: this.datasets
       };
     }
@@ -109,30 +136,6 @@ export default {
         .pickBy((val, key) => !isNaN(key))
         .values()
         .value();
-    },
-    colorFromIndex(index) {
-      // See: https://vuetifyjs.com/en/style/colors
-      // "darken-4" for:
-      //    Blue, Teal, Lime, Orange, Blue-Grey, Red, Deep-Purple, Light-Blue, Green, Yellow,
-      //    Pink, Brown, Grey, Deep-Orange, Light-Green
-      let colors = [
-        '#0D47A1',
-        '#004D40',
-        '#827717',
-        '#E65100',
-        '#263238',
-        '#B71C1C',
-        '#311B92',
-        '#01579B',
-        '#1B5E20',
-        '#F57F17',
-        '#880E4F',
-        '#3E2723',
-        '#212121',
-        '#BF360C',
-        '#33691E'
-      ];
-      return colors[index >= colors.length ? '#212121' : index];
     }
   }
 };

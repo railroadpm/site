@@ -52,7 +52,7 @@ module.exports = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['@/plugins/vuetify', '@/plugins/vue-markdown', { src: '@plugins/vue-chartjs.js', ssr: false }],
+  plugins: ['@/plugins/vuetify', '@/plugins/vue-markdown', { src: '@plugins/vue-chartjs', ssr: false }, { src: '@/plugins/helpers', ssr: false }],
 
   /*
    ** Nuxt.js modules

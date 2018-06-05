@@ -25,7 +25,7 @@
 
           <!-- Then render a cell for each week + measure (week is all numeric: YYYYMMDD) in ascending order by week -->
           <td v-for="(col, i) in measureKeys" :key="i">
-            {{ row.item[col] | formatNumber }}
+            {{ $helpers.formatNumber(row.item[col]) }}
           </td>
         </tr>
       </template>
@@ -38,7 +38,6 @@
 
 <script>
 import { mapActions } from 'vuex';
-import numeral from 'numeral';
 import _ from 'lodash';
 import QuickGraphMenu from '~/components/QuickGraphMenu.vue';
 import QuickGraphPopup from '~/components/QuickGraphPopup.vue';
@@ -194,12 +193,6 @@ export default {
     },
 
     ...mapActions(['loadRailroadReportDataByKeyAndType'])
-  },
-
-  filters: {
-    formatNumber(value) {
-      return value === null ? '-' : value === '' ? '' : numeral(value).format('0,0[.]0');
-    }
   }
 };
 </script>

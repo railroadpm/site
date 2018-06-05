@@ -1,5 +1,5 @@
 <template>
-  <div v-show="dataIsLoaded">
+  <div v-show="dataLoaded">
     <div v-show="reportType === 'Historical'" class="text-xs-center rpt-pagination-ctl">
       <v-pagination :circle="true" :length="numPages" :total-visible="numPages" v-model="historicalPage" color="blue darken-4"></v-pagination>
     </div>
@@ -96,7 +96,9 @@ export default {
     numPages() {
       return this.reportType === 'Current' ? 1 : this.historicalPageCount;
     },
-    dataIsLoaded() {
+
+    // True when the railroad report data has been loaded via API, false otherwise
+    dataLoaded() {
       return this.$store.state.railroadReportData[this.railroad][this.reportType].rows.length > 0;
     }
   },

@@ -1,11 +1,18 @@
 <template>
   <v-menu :close-on-click="false" :close-on-content-click="false" v-model="showMenu" top right offset-y offset-x>
     <v-btn small outline slot="activator" color="orange lighten-1" dark @click="showMenu = !showMenu">Quick Graph</v-btn>
-    <v-card width="425">
-      <v-card-text>
-        <p>Click on the rows in the report to select them for inclusion in a graph, and then click a "Graph" button below.</p>
-        You can also start over by clicking "Remove All Selections".
-      </v-card-text>
+    <v-card width="450">
+      <v-container class="graph-menu-help">
+        <v-layout>
+          <v-flex xs1>
+            <v-icon color="orange lighten-1">help_outline</v-icon>
+          </v-flex>
+          <v-flex xs11>
+            Click on data rows in the report to select them for inclusion in a graph, and then click a "Graph" button below. Click a main heading
+            to toggle all data rows thereunder. Start over by clicking "Remove All Selections".
+          </v-flex>
+        </v-layout>
+      </v-container>
       <v-list dense subheader>
         <v-divider></v-divider>
         <v-list-tile v-for="btn in graphBtns" :key="btn.label">
@@ -46,7 +53,7 @@ export default {
 
   computed: {
     graphBtns() {
-      return [
+      let btns = [
         {
           color: 'blue lighten-2',
           dimensionKey: 'CarsOnLine',
@@ -58,14 +65,19 @@ export default {
           dimensionKey: 'TrainSpeed',
           label: `Graph - Train Speed (${this.trainCount} Measure(s) Selected)`,
           disabled: this.trainCount < 1
-        },
-        {
+        }
+      ];
+
+      if (this.railroad != 'AOR') {
+        btns.push({
           color: 'red lighten-2',
           dimensionKey: 'TerminalDwell',
           label: `Graph - Terminal Dwell (${this.terminalCount} Measure(s) Selected)`,
           disabled: this.terminalCount < 1
-        }
-      ];
+        });
+      }
+
+      return btns;
     },
     carsCount() {
       return this.selectedMeasures.filter(measure => this.$store.state.dimension.keys.CarsOnLine.includes(measure.key)).length;
@@ -74,7 +86,9 @@ export default {
       return this.selectedMeasures.filter(measure => this.$store.state.dimension.keys.TrainSpeed.includes(measure.key)).length;
     },
     terminalCount() {
-      return this.selectedMeasures.filter(measure => this.$store.state.dimension.keys.TerminalDwell[this.railroad].includes(measure.key)).length;
+      if (this.railroad != 'AOR')
+        return this.selectedMeasures.filter(measure => this.$store.state.dimension.keys.TerminalDwell[this.railroad].includes(measure.key)).length;
+      else return 0;
     }
   },
 
@@ -88,4 +102,7 @@ export default {
 </script>
 
 <style scoped>
+.graph-menu-help {
+  margin: -3px 0 -5px 0;
+}
 </style>

@@ -112,7 +112,9 @@ export default {
     },
     colorFromIndex(index) {
       // See: https://vuetifyjs.com/en/style/colors
-      // "darken-4" for: Blue, Teal, Lime, Orange, Blue-Grey, Red, Deep-Purple, Light-Blue, Green, Yellow, Pink, Brown, Grey, Deep-Orange, Light-Green
+      // "darken-4" for:
+      //    Blue, Teal, Lime, Orange, Blue-Grey, Red, Deep-Purple, Light-Blue, Green, Yellow,
+      //    Pink, Brown, Grey, Deep-Orange, Light-Green
       let colors = [
         '#0D47A1',
         '#004D40',
@@ -130,7 +132,7 @@ export default {
         '#BF360C',
         '#33691E'
       ];
-      return colors[index];
+      return colors[index >= colors.length ? '#212121' : index];
     }
   }
 };

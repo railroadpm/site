@@ -126,6 +126,16 @@ export const mutations = {
 
 // region Mutation Helpers
 /**
+ * Return true if the dimension keys have been loaded for the given railroad, false otherwise
+ * @param {object} state
+ * @param {string} railroadKey
+ */
+function dimensionKeysLoaded(state, railroadKey) {
+  if (railroadKey != 'AOR') return state.dimension.keys.TerminalDwell[railroadKey].length > 0;
+  else return state.dimension.keys.TrainSpeed.length > 0;
+}
+
+/**
  * Distill categorical dimension keys from report data
  * @param {object} state
  * @param {object} payload
@@ -135,7 +145,7 @@ function storeDimensionKeysFromReportRows(state, payload) {
 
   // Nothing for us to do in certain cases (already have the distilled data, etc.)
   if (payload.type != 'Current') return;
-  if (state.dimension.keys.TerminalDwell[payload.key].length > 0) return;
+  if (dimensionKeysLoaded(state, payload.key)) return;
 
   // The rows fall into 3 main "segments" for which we want the dimension keys,
   // but "CarsOnLine" has two sub-segments, so really 4 in all

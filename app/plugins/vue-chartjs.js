@@ -9,7 +9,7 @@ Vue.component('line-graph', {
       responsive: true,
       maintainAspectRatio: false,
       animation: {
-        duration: 1200
+        duration: 800
       },
       responsiveAnimationDuration: 400
     };

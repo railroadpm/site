@@ -9,9 +9,10 @@
         </v-btn>
       </v-toolbar>
       <div class="graph-popup-body">
-        <h2>Coming Soon... Quick Graph</h2>
-        {{ railroad }}&nbsp;{{ dimensionKey }}
-
+        <div class="graph-popup-headings">
+          <h2>{{ mainHeading }}</h2>
+          <h3 v-html="subHeading"></h3>
+        </div>
         <line-graph v-if="show" css-classes="quick-line-graph" :data="lineData" :options="graphOptions" />
       </div>
     </v-card>
@@ -20,6 +21,7 @@
 
 <script>
 import _ from 'lodash';
+import { DateTime } from 'luxon';
 
 export default {
   props: {
@@ -55,23 +57,43 @@ export default {
   },
 
   computed: {
-    labels() {
-      return _.filter(Object.keys(this.rows[0]), val => !isNaN(val));
+    railroadProfile() {
+      return this.$store.getters.railroadProfileByKey(this.railroad);
     },
-    datasetData() {
-      return Object.values(_.pickBy(this.rows[1], (val, key) => !isNaN(key)));
+    mainHeading() {
+      return this.railroadProfile.ShortName;
+    },
+    subHeading() {
+      switch (this.dimensionKey) {
+        case 'CarsOnLine':
+          return '<span class="blue--text text--darken-1">Cars On Line<span>';
+        case 'TrainSpeed':
+          return '<span class="green--text text--darken-1">Train Speed (Miles per Hour)<span>';
+        case 'TerminalDwell':
+          return '<span class="red--text text--darken-1">Terminal Dwell (Hours)<span>';
+        default:
+          return '';
+      }
+    },
+    labels() {
+      // All of the rows have the same "labels", so just grab from rows[0]
+      return _(this.rows[0])
+        .keys()
+        .filter(val => !isNaN(val)) // Take only the numeric keys
+        .map(val => DateTime.fromISO(val).toLocaleString())
+        .value();
     },
     datasets() {
-      // TODO: Build array of objects with label and data
-      // for each original row given to us in props, and then get
-      // rid of "datasetData"
-      return [
-        {
-          label: 'Foreign RR',
+      return _(this.rows)
+        .map((val, index) => ({
+          label: val.RowLabel.replace(/&nbsp;/g, ''),
           fill: false,
-          data: this.datasetData
-        }
-      ];
+          data: this.rowData(index),
+          borderColor: this.colorFromIndex(index),
+          pointRadius: 7,
+          pointStyle: Math.abs(index % 2) ? 'triangle' : 'rect'
+        }))
+        .value();
     },
     lineData() {
       return {
@@ -79,13 +101,52 @@ export default {
         datasets: this.datasets
       };
     }
+  },
+
+  methods: {
+    rowData(index) {
+      return _(this.rows[index])
+        .pickBy((val, key) => !isNaN(key))
+        .values()
+        .value();
+    },
+    colorFromIndex(index) {
+      // See: https://vuetifyjs.com/en/style/colors
+      // "darken-4" for: Blue, Teal, Lime, Orange, Blue-Grey, Red, Deep-Purple, Light-Blue, Green, Yellow, Pink, Brown, Grey, Deep-Orange, Light-Green
+      let colors = [
+        '#0D47A1',
+        '#004D40',
+        '#827717',
+        '#E65100',
+        '#263238',
+        '#B71C1C',
+        '#311B92',
+        '#01579B',
+        '#1B5E20',
+        '#F57F17',
+        '#880E4F',
+        '#3E2723',
+        '#212121',
+        '#BF360C',
+        '#33691E'
+      ];
+      return colors[index];
+    }
   }
 };
 </script>
 
 <style>
+.dialog--fullscreen {
+  overflow-y: hidden !important;
+}
+
 .graph-popup-body {
   margin: 10px;
+}
+
+.graph-popup-headings {
+  margin: 15px 0 -5px 20px;
 }
 
 .quick-line-graph {

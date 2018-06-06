@@ -91,7 +91,7 @@ export default {
           data: this.rowData(index),
           borderColor: this.$helpers.colorFromIndex(index),
           pointRadius: 7,
-          pointStyle: Math.abs(index % 2) ? 'triangle' : 'rect'
+          pointStyle: this.$helpers.pointStyleFromIndex(index)
         }))
         .value();
     },

@@ -10,6 +10,11 @@ const helpers = {
     return value === null ? '' : value === '' ? '' : numeral(value).format('0,0[.]0');
   },
 
+  /**
+   * Given any non-negative integer index arg, return a color from a lookup table containing
+   * an assortment of colors. The color is returned as an RGB hex value string
+   * @param {number} index
+   */
   colorFromIndex(index) {
     // See: https://vuetifyjs.com/en/style/colors
     // "darken-4" for:
@@ -32,7 +37,18 @@ const helpers = {
       '#BF360C',
       '#33691E'
     ];
-    return colors[index >= colors.length ? '#212121' : index];
+    return colors[index % 15];
+  },
+
+  /**
+   * Given any non-negative integer index arg, return a Chart.js point style string
+   * from a lookup table containing an assortment of them
+   * @param {number} index
+   */
+  pointStyleFromIndex(index) {
+    // See: https://www.chartjs.org/docs/latest/configuration/elements.html#point-styles
+    let pointStyles = ['rect', 'circle', 'rectRounded', 'triangle', 'rectRot', 'star'];
+    return pointStyles[index % 15];
   }
 };
 

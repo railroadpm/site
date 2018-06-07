@@ -5,12 +5,15 @@
 
       <transition name="fade" appear>
         <div v-show="dataLoaded">
-          <h2>{{ dimensionHeading }}</h2>
-          <h4>Select the railroads to be included in the graph and click "Show Graph"</h4>
+          <h2 v-html="heading" />
+          <br>
+          <h4 class="grey--text text--darken-1">
+            Click (tap) to select the railroad(s) to be included in the graph, and then click "Show Graph". Click the heading to toggle all railroads
+          </h4>
           <br>
           <railroads-table :dimension-key="dimensionKey" />
           <br>
-          <v-btn>Show Graph</v-btn>
+          <v-btn class="rr-show-graph-btn" outline color="orange lighten-1" dark @click="showMsg('Railroad Graphs Coming Soon!')">Show Graph</v-btn>
         </div>
       </transition>
     </v-flex>
@@ -20,6 +23,7 @@
 <script>
 import { mapActions } from 'vuex';
 import RailroadsTable from '~/components/RailroadsTable.vue';
+import _ from 'lodash';
 
 export default {
   components: {
@@ -45,14 +49,20 @@ export default {
       return this.$store.state.railroadProfileData.railroads.length > 0;
     },
     dimensionData() {
-      return this.$helpers.categoricalDimensionSegments.filter(segment => segment.key === this.dimensionKey);
+      return _(this.$helpers.categoricalDimensionSegments)
+        .filter(segment => segment.key === this.dimensionKey)
+        .first();
     },
-    dimensionHeading() {
-      return this.dimensionData.label;
+    heading() {
+      return `Graph - ${this.dimensionData.label}`;
     }
   },
 
   methods: {
+    showMsg(msg) {
+      alert(msg);
+    },
+
     ...mapActions(['loadRailroadProfileData'])
   }
 };
@@ -63,5 +73,9 @@ export default {
   position: relative;
   left: calc(50% - 25px);
   top: 35vh;
+}
+
+.rr-show-graph-btn {
+  margin-left: 0;
 }
 </style>

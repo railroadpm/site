@@ -65,6 +65,7 @@ export default {
           key: rr.Key,
           isHeadingRow: false
         }))
+        .filter(val => !(this.dimensionKey != 'CarsOnLine' && val.key === 'AOR')) // "All Other Railroads" only for "Cars On Line" dimension
         .unshift({
           RowLabel: 'Railroads',
           key: 'Participant',
@@ -125,9 +126,14 @@ export default {
 }
 
 /* Table header */
-/* table.datatable.table .rr-label:nth-child(1) {
-  background-color: #bdbdbd;
-} */
+.rr-table table.datatable.table tr:nth-child(1) {
+  background-color: #f5f5f5;
+}
+
+/* Table header - hover */
+.rr-table table.datatable.table tr:nth-child(1):hover {
+  background-color: #eeeeee;
+}
 
 /* Table rows */
 .rr-table table.datatable.table tbody td,

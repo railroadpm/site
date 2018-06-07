@@ -8,8 +8,8 @@
             <v-icon color="orange lighten-1">help_outline</v-icon>
           </v-flex>
           <v-flex xs11>
-            Click on data rows in the report to select them for inclusion in a graph, and then click a "Graph" button below. Click a main heading
-            to toggle all data rows thereunder. Start over by clicking "Remove All Selections".
+            Click (tap) on data rows in the report to select them for inclusion in a graph, and then click a "Graph" button below. Click a main
+            heading to toggle all data rows thereunder. Start over by clicking "Remove All Selections".
           </v-flex>
         </v-layout>
       </v-container>

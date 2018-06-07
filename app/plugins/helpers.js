@@ -40,7 +40,7 @@ const helpers = {
       '#BF360C',
       '#33691E'
     ];
-    return colors[index % 15];
+    return colors[index % colors.length];
   },
 
   /**
@@ -51,7 +51,7 @@ const helpers = {
   pointStyleFromIndex(index) {
     // See: https://www.chartjs.org/docs/latest/configuration/elements.html#point-styles
     let pointStyles = ['rect', 'circle', 'rectRounded', 'triangle', 'rectRot', 'star'];
-    return pointStyles[index % 15];
+    return pointStyles[index % pointStyles.length];
   },
 
   /** Array of metadata describing the 3 main "segments" of categorical dimensions in the RPM system */

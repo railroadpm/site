@@ -59,20 +59,23 @@ const helpers = {
     {
       key: 'CarsOnLine',
       label: 'Cars On Line',
-      color: 'blue lighten-2',
-      shortName: 'cars'
+      labelWithUnits: 'Cars On Line',
+      materialColor: 'blue lighten-2',
+      textColor: 'blue--text'
     },
     {
       key: 'TrainSpeed',
       label: 'Train Speed',
-      color: 'green lighten-2',
-      shortName: 'train'
+      labelWithUnits: 'Train Speed (Miles per Hour)',
+      materialColor: 'green lighten-2',
+      textColor: 'green--text'
     },
     {
       key: 'TerminalDwell',
       label: 'Terminal Dwell',
-      color: 'red lighten-2',
-      shortName: 'terminal'
+      labelWithUnits: 'Terminal Dwell (Hours)',
+      materialColor: 'red lighten-2',
+      textColor: 'red--text'
     }
   ]
 };

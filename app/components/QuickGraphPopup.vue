@@ -64,16 +64,10 @@ export default {
       return this.railroadProfile.ShortName;
     },
     subHeading() {
-      switch (this.dimensionKey) {
-        case 'CarsOnLine':
-          return '<span class="blue--text text--darken-1">Cars On Line<span>';
-        case 'TrainSpeed':
-          return '<span class="green--text text--darken-1">Train Speed (Miles per Hour)<span>';
-        case 'TerminalDwell':
-          return '<span class="red--text text--darken-1">Terminal Dwell (Hours)<span>';
-        default:
-          return '';
-      }
+      return _(this.$helpers.categoricalDimensionSegments)
+        .filter(val => val.key === this.dimensionKey)
+        .map(val => `<span class="${val.textColor} text--darken-1">${val.labelWithUnits}<span>`)
+        .first();
     },
     xAxisLabels() {
       // All of the rows have the same "xAxisLabels", so just grab from rows[0]

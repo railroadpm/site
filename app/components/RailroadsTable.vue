@@ -1,6 +1,6 @@
 <template>
-  <div v-show="dataLoaded">
-    <v-data-table v-model="selected" :items="rows" item-key="key" hide-actions hide-headers>
+  <div v-if="dataLoaded">
+    <v-data-table class="rr-table" v-model="selected" :items="rows" item-key="key" hide-actions hide-headers>
       <template slot="items" slot-scope="row">
         <!-- Allow clicking anywhere on a (non-Heading) row to select it for inclusion in a "Railroads Graph" -->
         <tr :active="row.selected" @click="rowClick(row)">
@@ -38,15 +38,12 @@ export default {
   // },
 
   data: () => ({
-    rows: [],
     selected: [],
-
     railroadsGraphShowPopup: false
   }),
 
   created() {
     console.log(`COMPONENT: Created <RailroadsTable> component for "${this.dimensionKey}"`);
-    this.getRows();
   },
 
   mounted() {
@@ -60,12 +57,9 @@ export default {
     // True when the railroad profile data has been loaded via API, false otherwise
     dataLoaded() {
       return this.railroadProfiles.length > 0;
-    }
-  },
-
-  methods: {
-    getRows() {
-      this.rows = _(this.railroadProfiles)
+    },
+    rows() {
+      return _(this.railroadProfiles)
         .map(rr => ({
           RowLabel: `&nbsp;&nbsp;${rr.Key != 'AOR' ? rr.Key : rr.ShortName}`,
           key: rr.Key,
@@ -77,8 +71,10 @@ export default {
           isHeadingRow: true
         })
         .value();
-    },
+    }
+  },
 
+  methods: {
     rowClick(row) {
       let isHeadingRow = !!row.item.isHeadingRow;
       let rowKey = row.item.key;
@@ -123,7 +119,7 @@ export default {
 }
 
 /* Table overall */
-table.datatable.table {
+.rr-table table.datatable.table {
   width: 300px;
   border: 1px solid #bdbdbd; /* grey lighten-1 */
 }
@@ -134,12 +130,12 @@ table.datatable.table {
 } */
 
 /* Table rows */
-table.datatable.table tbody td,
-table.datatable.table tbody th {
+.rr-table table.datatable.table tbody td,
+.rr-table table.datatable.table tbody th {
   height: 23px;
 }
 
-.rr-selected-row-icon {
+.rr-table .rr-selected-row-icon {
   height: 19px;
   float: left;
   margin-left: -20px;

@@ -1,7 +1,7 @@
 <template>
   <v-menu :close-on-click="false" :close-on-content-click="false" v-model="showMenu" top right offset-y offset-x>
     <v-btn small outline slot="activator" color="orange lighten-1" dark @click="showMenu = !showMenu">Quick Graph</v-btn>
-    <v-card width="450">
+    <v-card v-if="showMenu" width="450">
       <v-container class="graph-menu-help">
         <v-layout>
           <v-flex xs1>
@@ -17,7 +17,7 @@
         <v-divider></v-divider>
         <v-list-tile v-for="btn in graphBtns" :key="btn.label">
           <v-list-tile-content>
-            <v-btn block small outline :color="btn.color" flat @click="graphBtnClick($event, btn.dimensionKey)" :disabled="btn.disabled">
+            <v-btn block small outline :color="btn.color" flat @click="graphBtnClick($event, btn.key)" :disabled="btn.disabled">
               <v-icon>bar_chart</v-icon>
               {{ btn.label }}
             </v-btn>
@@ -54,29 +54,17 @@ export default {
   }),
 
   computed: {
+    /** Use the helper array containing details of the 3 main segments to generate the Graph Btn data needed to render the menu */
     graphBtns() {
-      // Use the helper array containing details of the 3 main segments to generate the
-      // Graph Btn data needed to render the menu. "All Other Railroads" doesn't include
-      // a btn for Terminal Dwell
       return _(this.$helpers.categoricalDimensionSegments)
-        .map(val => ({
-          color: val.color,
-          dimensionKey: val.key,
-          label: `Graph - ${val.label} (${this[`${val.shortName}Count`]} Measure(s) Selected)`,
-          disabled: this[`${val.shortName}Count`] < 1
+        .map((val, index) => ({
+          color: val.materialColor,
+          key: val.key,
+          label: `Graph - ${val.label} (${this.selectedMeasuresCountBySegment(val.key)} Measure(s) Selected)`,
+          disabled: this.selectedMeasuresCountBySegment(val.key) < 1
         }))
-        .remove(val => this.railroad === 'AOR' && val.key === 'TerminalDwell')
+        .filter(val => !(this.railroad === 'AOR' && val.key === 'TerminalDwell'))
         .value();
-    },
-    carsCount() {
-      return this.selectedMeasures.filter(measure => this.$store.state.dimension.keys.CarsOnLine.includes(measure.key)).length;
-    },
-    trainCount() {
-      return this.selectedMeasures.filter(measure => this.$store.state.dimension.keys.TrainSpeed.includes(measure.key)).length;
-    },
-    terminalCount() {
-      if (this.railroad === 'AOR') return 0;
-      return this.selectedMeasures.filter(measure => this.$store.state.dimension.keys.TerminalDwell[this.railroad].includes(measure.key)).length;
     }
   },
 
@@ -84,6 +72,15 @@ export default {
     graphBtnClick(event, dimensionKey) {
       this.showMenu = false;
       this.$emit('show-graph', dimensionKey);
+    },
+
+    selectedMeasuresCountBySegment(segmentKey) {
+      if (segmentKey === 'TerminalDwell') {
+        if (this.railroad === 'AOR') return 0;
+        return this.selectedMeasures.filter(measure => this.$store.state.dimension.keys.TerminalDwell[this.railroad].includes(measure.key)).length;
+      } else {
+        return this.selectedMeasures.filter(measure => this.$store.state.dimension.keys[segmentKey].includes(measure.key)).length;
+      }
     }
   }
 };

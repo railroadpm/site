@@ -1,15 +1,15 @@
 <template>
   <v-menu :close-on-click="false" :close-on-content-click="false" v-model="showMenu" top right offset-y offset-x>
     <v-btn small outline slot="activator" color="orange lighten-1" dark @click="showMenu = !showMenu">Quick Graph</v-btn>
-    <v-card width="450">
+    <v-card v-if="showMenu" width="450">
       <v-container class="graph-menu-help">
         <v-layout>
           <v-flex xs1>
             <v-icon color="orange lighten-1">help_outline</v-icon>
           </v-flex>
           <v-flex xs11>
-            Click on data rows in the report to select them for inclusion in a graph, and then click a "Graph" button below. Click a main heading
-            to toggle all data rows thereunder. Start over by clicking "Remove All Selections".
+            Click (tap) on data rows in the report to select them for inclusion in a graph, and then click a "Graph" button below. Click a main
+            heading to toggle all data rows thereunder. Start over by clicking "Remove All Selections".
           </v-flex>
         </v-layout>
       </v-container>
@@ -17,7 +17,7 @@
         <v-divider></v-divider>
         <v-list-tile v-for="btn in graphBtns" :key="btn.label">
           <v-list-tile-content>
-            <v-btn block small outline :color="btn.color" flat @click="graphBtnClick($event, btn.dimensionKey)" :disabled="btn.disabled">
+            <v-btn block small outline :color="btn.color" flat @click="graphBtnClick($event, btn.key)" :disabled="btn.disabled">
               <v-icon>bar_chart</v-icon>
               {{ btn.label }}
             </v-btn>
@@ -35,6 +35,8 @@
 </template>
 
 <script>
+import _ from 'lodash';
+
 export default {
   props: {
     railroad: {
@@ -52,43 +54,17 @@ export default {
   }),
 
   computed: {
+    /** Use the helper array containing details of the 3 main segments to generate the Graph Btn data needed to render the menu */
     graphBtns() {
-      let btns = [
-        {
-          color: 'blue lighten-2',
-          dimensionKey: 'CarsOnLine',
-          label: `Graph - Cars On Line (${this.carsCount} Measure(s) Selected)`,
-          disabled: this.carsCount < 1
-        },
-        {
-          color: 'green lighten-2',
-          dimensionKey: 'TrainSpeed',
-          label: `Graph - Train Speed (${this.trainCount} Measure(s) Selected)`,
-          disabled: this.trainCount < 1
-        }
-      ];
-
-      if (this.railroad != 'AOR') {
-        btns.push({
-          color: 'red lighten-2',
-          dimensionKey: 'TerminalDwell',
-          label: `Graph - Terminal Dwell (${this.terminalCount} Measure(s) Selected)`,
-          disabled: this.terminalCount < 1
-        });
-      }
-
-      return btns;
-    },
-    carsCount() {
-      return this.selectedMeasures.filter(measure => this.$store.state.dimension.keys.CarsOnLine.includes(measure.key)).length;
-    },
-    trainCount() {
-      return this.selectedMeasures.filter(measure => this.$store.state.dimension.keys.TrainSpeed.includes(measure.key)).length;
-    },
-    terminalCount() {
-      if (this.railroad != 'AOR')
-        return this.selectedMeasures.filter(measure => this.$store.state.dimension.keys.TerminalDwell[this.railroad].includes(measure.key)).length;
-      else return 0;
+      return _(this.$helpers.categoricalDimensionSegments)
+        .map((val, index) => ({
+          color: val.materialColor,
+          key: val.key,
+          label: `Graph - ${val.label} (${this.selectedMeasuresCountBySegment(val.key)} Measure(s) Selected)`,
+          disabled: this.selectedMeasuresCountBySegment(val.key) < 1
+        }))
+        .filter(val => !(this.railroad === 'AOR' && val.key === 'TerminalDwell'))
+        .value();
     }
   },
 
@@ -96,6 +72,15 @@ export default {
     graphBtnClick(event, dimensionKey) {
       this.showMenu = false;
       this.$emit('show-graph', dimensionKey);
+    },
+
+    selectedMeasuresCountBySegment(segmentKey) {
+      if (segmentKey === 'TerminalDwell') {
+        if (this.railroad === 'AOR') return 0;
+        return this.selectedMeasures.filter(measure => this.$store.state.dimension.keys.TerminalDwell[this.railroad].includes(measure.key)).length;
+      } else {
+        return this.selectedMeasures.filter(measure => this.$store.state.dimension.keys[segmentKey].includes(measure.key)).length;
+      }
     }
   }
 };

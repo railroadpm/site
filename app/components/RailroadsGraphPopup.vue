@@ -8,7 +8,7 @@
           </v-btn>
           <span>Close and Return to Report</span>
         </v-tooltip>
-        <v-toolbar-title>Quick Graph</v-toolbar-title>
+        <v-toolbar-title>Railroads Graph</v-toolbar-title>
       </v-toolbar>
       <div class="graph-popup-body">
         <div class="graph-popup-headings">
@@ -64,10 +64,16 @@ export default {
       return this.railroadProfile.ShortName;
     },
     subHeading() {
-      return _(this.$helpers.categoricalDimensionSegments)
-        .filter(val => val.key === this.dimensionKey)
-        .map(val => `<span class="${val.textColor} text--darken-1">${val.labelWithUnits}<span>`)
-        .first();
+      switch (this.dimensionKey) {
+        case 'CarsOnLine':
+          return '<span class="blue--text text--darken-1">Cars On Line<span>';
+        case 'TrainSpeed':
+          return '<span class="green--text text--darken-1">Train Speed (Miles per Hour)<span>';
+        case 'TerminalDwell':
+          return '<span class="red--text text--darken-1">Terminal Dwell (Hours)<span>';
+        default:
+          return '';
+      }
     },
     xAxisLabels() {
       // All of the rows have the same "xAxisLabels", so just grab from rows[0]

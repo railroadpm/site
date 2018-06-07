@@ -1,7 +1,7 @@
 <template>
   <v-layout>
     <v-flex>
-      <v-progress-circular v-if="!dataLoaded" :size="50" :width="7" indeterminate color="blue lighten-4" class="rpt-progress" />
+      <v-progress-circular v-if="!dataLoaded" :size="50" :width="7" indeterminate color="blue lighten-4" class="page-progress" />
 
       <div v-show="dataLoaded">
         <img class="prpt-logo" :src="railroadLogoURL" alt="">
@@ -27,7 +27,8 @@
           <hr>
           <v-footer height="auto" class="white pt-3 px-3">
             <v-layout row wrap>
-              <vue-markdown v-if="selectedRailroadKey != 'AOR'" class="prpt-understand-measures" :source="railroadUnderstandingMeasures" :breaks="false" />
+              <vue-markdown v-if="selectedRailroadKey != 'AOR'" class="prpt-understand-measures" :source="railroadUnderstandingMeasures" :breaks="false"
+              />
               <vue-markdown class="prpt-copyright" :source="railroadCopyright" :breaks="false" />
             </v-layout>
           </v-footer>
@@ -121,7 +122,7 @@ export default {
   color: red;
 }
 
-.rpt-progress {
+.page-progress {
   position: relative;
   left: calc(50% - 25px);
   top: 35vh;

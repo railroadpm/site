@@ -4,7 +4,7 @@
       <v-pagination :circle="true" :length="numPages" :total-visible="numPages" v-model="historicalPage" color="blue darken-4"></v-pagination>
     </div>
 
-    <v-data-table v-model="selected" :headers="headers" :items="rows" item-key="key" hide-actions>
+    <v-data-table class="rpt-table" v-model="selected" :headers="headers" :items="rows" item-key="key" hide-actions>
       <template slot="headerCell" slot-scope="col">
         <!-- We render the "Quick Graph" component in the "RowLabel" header cell -->
         <quick-graph-menu v-if="col.header.value === 'RowLabel'" class="rpt-quick-graph-menu" :railroad="railroad" :selected-measures="selected"
@@ -22,10 +22,9 @@
               <vue-markdown class="rpt-data-label-md" :source="row.item['RowLabel']" />
             </span>
           </td>
-
           <!-- Then render a cell for each week + measure (week is all numeric: YYYYMMDD) in ascending order by week -->
           <td v-for="(col, i) in measureKeys" :key="i">
-            {{ row.item[col] | formatNumber }}
+            {{ $helpers.formatNumber(row.item[col]) }}
           </td>
         </tr>
       </template>
@@ -38,7 +37,6 @@
 
 <script>
 import { mapActions } from 'vuex';
-import numeral from 'numeral';
 import _ from 'lodash';
 import QuickGraphMenu from '~/components/QuickGraphMenu.vue';
 import QuickGraphPopup from '~/components/QuickGraphPopup.vue';
@@ -169,11 +167,11 @@ export default {
       let prevSelected = _.clone(this.selected); // We need to compare the previous selection below
       let keysInSegment = this.keysInSegment(rowKey);
       let rowsInSegment = _.intersectionWith(this.rows, keysInSegment, (arrVal, othVal) => arrVal.key === othVal);
-      this.selected = _.unionBy(this.selected, rowsInSegment, 'key'); // Toggle on selection of all measures
+      this.selected = _.unionBy(this.selected, rowsInSegment, 'key'); // Toggle *on* selection of all measures
 
       // The new and prev selections are equal?
       if (_.isEqual(this.selected, prevSelected)) {
-        // Toggle off selection of all measures
+        // Toggle *off* selection of all measures
         this.selected = _.differenceBy(this.selected, rowsInSegment, 'key');
       }
     },
@@ -194,12 +192,6 @@ export default {
     },
 
     ...mapActions(['loadRailroadReportDataByKeyAndType'])
-  },
-
-  filters: {
-    formatNumber(value) {
-      return value === null ? '-' : value === '' ? '' : numeral(value).format('0,0[.]0');
-    }
   }
 };
 </script>
@@ -216,19 +208,19 @@ export default {
 }
 
 /* Table header */
-table.datatable.table thead tr {
+.rpt-table table.datatable.table thead tr {
   height: 38px;
 }
 
 /* Table header column */
-table.datatable.table thead tr th {
+.rpt-table table.datatable.table thead tr th {
   font-weight: bold;
   font-size: 14px;
 }
 
 /* Table rows */
-table.datatable.table tbody td,
-table.datatable.table tbody th {
+.rpt-table table.datatable.table tbody td,
+.rpt-table table.datatable.table tbody th {
   height: 23px;
 }
 

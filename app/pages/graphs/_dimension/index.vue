@@ -8,7 +8,7 @@
           <h2 v-html="heading" />
           <br>
           <h4 class="grey--text text--darken-1">
-            Click (tap) to select the railroad(s) to be included in the graph, and then click "Show Graph". Click the heading to toggle all railroads
+            Click (tap) to select the railroad(s) to be included in the graph, and then click "Show Graph". Click the heading to toggle all railroads.
           </h4>
           <br>
           <railroads-table :dimension-key="dimensionKey" />

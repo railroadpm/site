@@ -22,7 +22,6 @@
               <vue-markdown class="rpt-data-label-md" :source="row.item['RowLabel']" />
             </span>
           </td>
-
           <!-- Then render a cell for each week + measure (week is all numeric: YYYYMMDD) in ascending order by week -->
           <td v-for="(col, i) in measureKeys" :key="i">
             {{ $helpers.formatNumber(row.item[col]) }}
@@ -168,11 +167,11 @@ export default {
       let prevSelected = _.clone(this.selected); // We need to compare the previous selection below
       let keysInSegment = this.keysInSegment(rowKey);
       let rowsInSegment = _.intersectionWith(this.rows, keysInSegment, (arrVal, othVal) => arrVal.key === othVal);
-      this.selected = _.unionBy(this.selected, rowsInSegment, 'key'); // Toggle on selection of all measures
+      this.selected = _.unionBy(this.selected, rowsInSegment, 'key'); // Toggle *on* selection of all measures
 
       // The new and prev selections are equal?
       if (_.isEqual(this.selected, prevSelected)) {
-        // Toggle off selection of all measures
+        // Toggle *off* selection of all measures
         this.selected = _.differenceBy(this.selected, rowsInSegment, 'key');
       }
     },

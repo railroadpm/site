@@ -1,6 +1,9 @@
 import Vue from 'vue';
 import numeral from 'numeral';
 
+/**
+ * General helper methods and data for the Railroad Performance Measures (RPM) site
+ */
 const helpers = {
   /**
    * Assuming "value" is not null or an empty string, return it formatted with thousands separators
@@ -49,7 +52,29 @@ const helpers = {
     // See: https://www.chartjs.org/docs/latest/configuration/elements.html#point-styles
     let pointStyles = ['rect', 'circle', 'rectRounded', 'triangle', 'rectRot', 'star'];
     return pointStyles[index % 15];
-  }
+  },
+
+  /** Array of metadata describing the 3 main "segments" of categorical dimensions in the RPM system */
+  categoricalDimensionSegments: [
+    {
+      key: 'CarsOnLine',
+      label: 'Cars On Line',
+      color: 'blue lighten-2',
+      shortName: 'cars'
+    },
+    {
+      key: 'TrainSpeed',
+      label: 'Train Speed',
+      color: 'green lighten-2',
+      shortName: 'train'
+    },
+    {
+      key: 'TerminalDwell',
+      label: 'Terminal Dwell',
+      color: 'red lighten-2',
+      shortName: 'terminal'
+    }
+  ]
 };
 
 // Install helpers as a Vue plugin

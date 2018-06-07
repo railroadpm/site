@@ -35,6 +35,8 @@
 </template>
 
 <script>
+import _ from 'lodash';
+
 export default {
   props: {
     railroad: {
@@ -53,31 +55,18 @@ export default {
 
   computed: {
     graphBtns() {
-      let btns = [
-        {
-          color: 'blue lighten-2',
-          dimensionKey: 'CarsOnLine',
-          label: `Graph - Cars On Line (${this.carsCount} Measure(s) Selected)`,
-          disabled: this.carsCount < 1
-        },
-        {
-          color: 'green lighten-2',
-          dimensionKey: 'TrainSpeed',
-          label: `Graph - Train Speed (${this.trainCount} Measure(s) Selected)`,
-          disabled: this.trainCount < 1
-        }
-      ];
-
-      if (this.railroad != 'AOR') {
-        btns.push({
-          color: 'red lighten-2',
-          dimensionKey: 'TerminalDwell',
-          label: `Graph - Terminal Dwell (${this.terminalCount} Measure(s) Selected)`,
-          disabled: this.terminalCount < 1
-        });
-      }
-
-      return btns;
+      // Use the helper array containing details of the 3 main segments to generate the
+      // Graph Btn data needed to render the menu. "All Other Railroads" doesn't include
+      // a btn for Terminal Dwell
+      return _(this.$helpers.categoricalDimensionSegments)
+        .map(val => ({
+          color: val.color,
+          dimensionKey: val.key,
+          label: `Graph - ${val.label} (${this[`${val.shortName}Count`]} Measure(s) Selected)`,
+          disabled: this[`${val.shortName}Count`] < 1
+        }))
+        .remove(val => this.railroad === 'AOR' && val.key === 'TerminalDwell')
+        .value();
     },
     carsCount() {
       return this.selectedMeasures.filter(measure => this.$store.state.dimension.keys.CarsOnLine.includes(measure.key)).length;
@@ -86,9 +75,8 @@ export default {
       return this.selectedMeasures.filter(measure => this.$store.state.dimension.keys.TrainSpeed.includes(measure.key)).length;
     },
     terminalCount() {
-      if (this.railroad != 'AOR')
-        return this.selectedMeasures.filter(measure => this.$store.state.dimension.keys.TerminalDwell[this.railroad].includes(measure.key)).length;
-      else return 0;
+      if (this.railroad === 'AOR') return 0;
+      return this.selectedMeasures.filter(measure => this.$store.state.dimension.keys.TerminalDwell[this.railroad].includes(measure.key)).length;
     }
   },
 

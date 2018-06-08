@@ -1,0 +1,13 @@
+<!--
+  For the given week, calculated (percent) measure, and individual measure value, note the value for use
+  as a numerator in the eventual percent calculation
+
+  Parameters
+    $.week_key      Week key (e.g., 20180608)
+    $.m_key_pre     Calculated Measure key prefix (e.g., "CarsOnLine_ByCarOwner_")
+    $.m_val         Measure value
+    $.scratch       Scratchpad ref
+-->
+{{- $m_key_suffix := "_Numerator" -}}
+{{- $dim_week_numerator_key := printf "%s%s%s" $.m_key_pre $.week_key $m_key_suffix -}}
+{{- $.scratch.Set $dim_week_numerator_key $.m_val -}}

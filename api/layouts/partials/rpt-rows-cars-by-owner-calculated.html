@@ -9,6 +9,7 @@
 {{- $subheading_indent := "&nbsp;&nbsp;&nbsp;&nbsp;" -}}
 {{- $row_map_key := "report_row" -}}
 {{- $measure_key_prefix := "CarsOnLine_ByCarOwner_" -}}
+{{- $measure_val_key := "measure_val" -}}
 
 <!-- First we build an array ("slice") of the calculated subheadings so we can iterate thru them below -->
 {{- $subheadings_array_key := "calculated_subheadings_array" -}}
@@ -24,7 +25,7 @@
 {{- $.scratch.SetInMap $subheading_key "isAvg" true -}}
 {{- $.scratch.SetInMap $subheading_key "RowLabel" "Pct. Private" -}}
 {{- $.scratch.SetInMap $subheading_key "key" "ByCarOwnerPctPrivate" -}}
-{{- $.scratch.SetInMap $subheading_key "keySuffix" "_Percent" -}}
+{{- $.scratch.SetInMap $subheading_key "keySuffix" "_Numerator" -}}
 {{- $.scratch.Add $subheadings_array_key (slice ($.scratch.Get $subheading_key)) -}}
 
 <!-- For each calculated row... -->
@@ -40,8 +41,17 @@
   <!-- Iterate over weeks, adding weekly calculated measure data value to the Map -->
   {{- range $.weeks -}}
     {{- $measure_key := printf "%s%s%s" $measure_key_prefix .Key $subheading.keySuffix -}}
-    {{- $measure_val := $.scratch.Get $measure_key -}}
-    {{- $.scratch.SetInMap $row_map_key .Key $measure_val -}}
+
+    {{- if eq $subheading.keySuffix "_Numerator" -}}
+      {{- $numerator := $.scratch.Get $measure_key -}}
+      {{- $total_measure_key := printf "%s%s%s" $measure_key_prefix .Key "_Total" -}}
+      {{- $total := $.scratch.Get $total_measure_key -}}
+      {{- $.scratch.Set $measure_val_key ((mul (div (float $numerator) (float $total)) (float 100)) | lang.NumFmt 1) -}}
+    {{- else -}}
+      {{- $.scratch.Set $measure_val_key ($.scratch.Get $measure_key) -}}
+    {{- end -}}
+
+    {{- $.scratch.SetInMap $row_map_key .Key ($.scratch.Get $measure_val_key) -}}
   {{- end -}}
   <!-- Finally, render the Map of measure data as JSON -->
   {{- "\n\t," -}}{{- $.scratch.Get $row_map_key | jsonify -}}

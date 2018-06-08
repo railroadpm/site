@@ -7,6 +7,7 @@ import numeral from 'numeral';
 const helpers = {
   /**
    * Assuming "value" is not null or an empty string, return it formatted with thousands separators
+   * and, if applicable, a single digit after the decimal point
    * @param {number} value
    */
   formatNumber(value) {
@@ -80,7 +81,7 @@ const helpers = {
   ]
 };
 
-// Install helpers as a Vue plugin
+// Install "helpers" as a Vue plugin
 const helpersPlugin = {
   install() {
     Vue.helpers = helpers;

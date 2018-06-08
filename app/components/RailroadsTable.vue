@@ -15,6 +15,9 @@
       </template>
     </v-data-table>
 
+    <br>
+    <railroads-graph-actions :selected-railroads="selected" @show-graph="showMsg('Railroad Graphs Coming Soon!')" />
+
     <!-- <railroads-graph-popup v-if="railroadsGraphShowPopup" :show="railroadsGraphShowPopup" :rows="selectedRailroads(railroadsGraphDimensionKey)"
       @close="railroadsGraphShowPopup = false" /> -->
   </div>
@@ -23,6 +26,7 @@
 <script>
 import { mapActions } from 'vuex';
 import _ from 'lodash';
+import RailroadsGraphActions from '~/components/RailroadsGraphActions.vue';
 // import RailroadsGraphPopup from '~/components/RailroadsGraphPopup.vue';
 
 export default {
@@ -33,9 +37,10 @@ export default {
     }
   },
 
-  // components: {
-  //   RailroadsGraphPopup
-  // },
+  components: {
+    RailroadsGraphActions
+    // RailroadsGraphPopup
+  },
 
   data: () => ({
     selected: [],
@@ -83,24 +88,33 @@ export default {
       // Non-heading rows simply have their selection state toggled
       if (!isHeadingRow) {
         row.selected = !row.selected;
-        return;
+      } else {
+        // The heading row can't be "selected", but clicking on it is a way to toggle
+        // the selection state of *all* railroads
+        let prevSelected = _.clone(this.selected); // We need to compare the previous selection below
+        this.selected = this.rows.filter(rr => !rr.isHeadingRow); // Toggle *on* selection of all railroads
+
+        // The new and prev selections are equal?
+        if (_.isEqual(this.selected, prevSelected)) {
+          // Toggle *off* selection of all railroads
+          this.selected = [];
+        }
       }
 
-      // The heading row can't be "selected", but clicking on it is a way to toggle
-      // the selection state of *all* railroads
-      let prevSelected = _.clone(this.selected); // We need to compare the previous selection below
-      this.selected = this.rows.filter(rr => !rr.isHeadingRow); // Toggle *on* selection of all railroads
-
-      // The new and prev selections are equal?
-      if (_.isEqual(this.selected, prevSelected)) {
-        // Toggle off selection of all railroads
-        this.selected = [];
-      }
+      // Finally, take this opportunity to proactively fire off an *async* data load action for each
+      // selected railroad, as we'll need that data (if not cached already) to produce the graph
+      this.selected.forEach(rr => {
+        this.loadRailroadReportDataByKeyAndType({ key: rr.key, type: 'Historical' });
+      });
     },
 
     showRailroadsGraph(dimensionKey) {
       this.railroadsGraphDimensionKey = dimensionKey;
       this.railroadsGraphShowPopup = true;
+    },
+
+    showMsg(msg) {
+      alert(msg);
     },
 
     ...mapActions(['loadRailroadReportDataByKeyAndType'])

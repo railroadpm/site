@@ -2,10 +2,9 @@
   Render JSON data for individual railroad performance report of the specified type
 
   Parameters
-    railroad            Railroad (Participant) for which to render reports, in the form of a Key string
-                        (see Participant.toml)
-    type                Type of reports to include: "Current" | "Historical"
-    avg (optional)      Set to true to include historical averages in rendered reports
+    railroad      Railroad (Participant) for which to render reports, in the form of a Key string
+                  (see Participant.toml)
+    type          Type of reports to include: "Current" | "Historical"
 -->
 {{- $data := $.Site.Data -}}
 {{- $prpt_key := .Get "railroad" -}}
@@ -24,59 +23,13 @@
 {{- $weeks_current := last $weeks_count_current $weeks_publishable -}}
 {{- $weeks_report := cond (eq $rpt_type "Historical") $weeks_historical $weeks_current -}}
 
-{{- $reports := index $data.Measures.BNSF "20180427" -}}
-{{- $render_key := "reports_render" -}}
-{{- $.Scratch.Set $render_key $reports -}}
-
-
-{{- $row_map_key := "report_row" -}}
-{{- $rows_array_key := "report_rows" -}}
-
-{{- $.Scratch.Delete $row_map_key -}}
-{{- $.Scratch.SetInMap $row_map_key "RowLabel" "&nbsp;&nbsp;**Revisions**" -}}
-{{- $.Scratch.SetInMap $row_map_key "20180406" "" -}}
-{{- $.Scratch.SetInMap $row_map_key "20180413" "" -}}
-{{- $.Scratch.SetInMap $row_map_key "20180420" "" -}}
-{{- $.Scratch.SetInMap $row_map_key "20180427" "" -}}
-{{- $.Scratch.Add $rows_array_key (slice ($.Scratch.Get $row_map_key)) -}}
-
-{{- $.Scratch.Delete $row_map_key -}}
-{{- $.Scratch.SetInMap $row_map_key "RowLabel" "System" -}}
-{{- $.Scratch.SetInMap $row_map_key "20180406" "64515" -}}
-{{- $.Scratch.SetInMap $row_map_key "20180413" "63612" -}}
-{{- $.Scratch.SetInMap $row_map_key "20180420" "63500" -}}
-{{- $.Scratch.SetInMap $row_map_key "20180427" "62565" -}}
-{{- $.Scratch.Add $rows_array_key (slice ($.Scratch.Get $row_map_key)) -}}
-
-{{- $.Scratch.Delete $row_map_key -}}
-{{- $.Scratch.SetInMap $row_map_key "RowLabel" "Foreign RR" -}}
-{{- $.Scratch.SetInMap $row_map_key "20180406" "23800" -}}
-{{- $.Scratch.SetInMap $row_map_key "20180413" "23858" -}}
-{{- $.Scratch.SetInMap $row_map_key "20180420" "23822" -}}
-{{- $.Scratch.SetInMap $row_map_key "20180427" "23211" -}}
-{{- $.Scratch.Add $rows_array_key (slice ($.Scratch.Get $row_map_key)) -}}
-
-
-{{/*
-{{- with .Get "avg" -}}
-  {{- $.Scratch.Set $render_key (where $reports TODO) -}}
-{{- end -}}
-*/}}
-
-
   {
     "columns": [
       {{- "\n\t " -}}{{- (dict "key" "RowLabel" "text" "") | jsonify -}}
       {{- "\n\t," -}}{{- delimit (apply (apply $weeks_report "partial" "week-to-label" ".") "chomp" ".") "\n\t," -}}
       {{- "\n    " -}}
     ],
-
-    {{/*
-    "rows": {{- $.Scratch.Get $rows_array_key | jsonify -}}
-    */}}
-
     "rows": [
-
       {{- $rpt_rows_params := dict "prpt" $prpt_key "data" $.Site.Data "scratch" $.Scratch "weeks" $weeks_report -}}
 
       {{- partial "rpt-rows-cars-by-owner-headings" $rpt_rows_params -}}

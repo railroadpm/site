@@ -28,11 +28,15 @@
   {{- $measure_key := printf "%s%s" $measure_key_prefix $subheading_key -}}
 
   <!-- Iterate over weeks, adding weekly measure data value to the Map -->
-  <!-- And then render the Map as JSON -->
   {{- range $.weeks -}}
     {{- $prpt_rpt := index $prpt_rpts .Key -}}
     {{- $measure_val := index $prpt_rpt $measure_key -}}
     {{- $.scratch.SetInMap $row_map_key .Key $measure_val -}}
+    <!-- Keep a running total of all measures for the week -->
+    {{- partial "rpt-track-total" (dict "week_key" .Key "m_key_pre" $measure_key_prefix "m_index" $subheading_index "m_val" $measure_val "scratch" $.scratch) -}}
   {{- end -}}
-  {{- "\t," -}}{{- $.scratch.Get $row_map_key | jsonify -}}
+  <!-- Finally, render the Map of measure data as JSON -->
+  {{- "\n\t," -}}{{- $.scratch.Get $row_map_key | jsonify -}}
 {{- end -}}
+<!-- And render the Map of weekly totals as JSON -->
+<!-- TODO -->

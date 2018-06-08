@@ -38,5 +38,6 @@
   <!-- Finally, render the Map of measure data as JSON -->
   {{- "\n\t," -}}{{- $.scratch.Get $row_map_key | jsonify -}}
 {{- end -}}
-<!-- And render the Map of weekly totals as JSON -->
-<!-- TODO -->
+
+<!-- And render the calculated measures as well -->
+{{- partial "rpt-rows-cars-by-owner-calculated" (dict "scratch" $.scratch "weeks" $.weeks) -}}

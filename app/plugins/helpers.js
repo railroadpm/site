@@ -78,7 +78,11 @@ const helpers = {
       materialColor: 'red lighten-2',
       textColor: 'red--text'
     }
-  ]
+  ],
+
+  regex: {
+    htmlTagsAndSpaces: /&nbsp;|<\/?[\w\s="/.':;#-\/\?]+>/gi
+  }
 };
 
 // Install "helpers" as a Vue plugin

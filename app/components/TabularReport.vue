@@ -14,17 +14,18 @@
 
       <template slot="items" slot-scope="row">
         <!-- Allow clicking anywhere on a (non-Heading) row to select it for inclusion in a "Quick Graph" -->
-        <tr :active="row.selected" @click="rowClick(row)">
+        <tr :class="{ 'rpt-data-heading-row': row.item.isHeadingRow, 'rpt-data-calculated-row': row.item.isCalculated, 'rpt-data-pct-row': row.item.isPct }"
+          :active="row.selected" @click="rowClick(row)">
           <!-- First render the row label cell -->
           <td class="rpt-data-label">
-            <span :class="{ 'rpt-data-heading-row': row.item.isHeadingRow }">
+            <span :class="{ 'rpt-data-heading-row-label': row.item.isHeadingRow, 'rpt-data-calculated-row-label': row.item.isCalculated }">
               <v-icon class="rpt-selected-row-icon" v-show="row.selected" color="orange lighten-1">insert_chart_outlined</v-icon>
               <vue-markdown class="rpt-data-label-md" :source="row.item['RowLabel']" />
             </span>
           </td>
           <!-- Then render a cell for each week + measure (week is all numeric: YYYYMMDD) in ascending order by week -->
           <td v-for="(col, i) in measureKeys" :key="i">
-            {{ $helpers.formatNumber(row.item[col]) }}
+            <span>{{ $helpers.formatNumber(row.item[col]) }}</span>
           </td>
         </tr>
       </template>
@@ -146,11 +147,18 @@ export default {
 
     rowClick(row) {
       let isHeadingRow = !!row.item.isHeadingRow;
+      let isPct = !!row.item.isPct;
       let rowKey = row.item.key;
 
-      // Non-heading (measure) rows simply have their selection state toggled
-      if (!isHeadingRow) {
+      // Non-heading (measure) rows (except for percentages) simply have their selection state toggled
+      if (!isHeadingRow && !isPct) {
         row.selected = !row.selected;
+        return;
+      }
+
+      // Percentages can't be selected/graphed and require no further action
+      if (isPct) {
+        row.selected = false;
         return;
       }
 
@@ -163,7 +171,7 @@ export default {
       }
 
       // The 3 main Headings can't be "selected" either, but clicking on them
-      // is a way to toggle the selection state of *all* of their measures
+      // is a way to toggle the selection state of *all* of their measures (except percentages)
       let prevSelected = _.clone(this.selected); // We need to compare the previous selection below
       let keysInSegment = this.keysInSegment(rowKey);
       let rowsInSegment = _.intersectionWith(this.rows, keysInSegment, (arrVal, othVal) => arrVal.key === othVal);
@@ -202,9 +210,19 @@ export default {
   margin-bottom: 0;
 }
 
-/* Data "heading rows" may have their data label styled differently */
-.rpt-data-heading-row {
+/* Calculated rows and data "heading row labels" may have their data label styled differently */
+.rpt-data-calculated-row td span,
+.rpt-data-heading-row-label {
   font-weight: bold;
+}
+
+.rpt-data-pct-row td span {
+  font-style: italic;
+}
+
+/* In the report table, things can be selectively hidden */
+.rpt-table .rpt-hidden {
+  display: none;
 }
 
 /* Table header */

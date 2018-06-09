@@ -26,6 +26,14 @@ module.exports = {
     ],
     link: [
       {
+        rel: 'preconnect',
+        href: 'https://api.rrpm.run'
+      },
+      {
+        rel: 'preconnect',
+        href: 'https://fonts.gstatic.com'
+      },
+      {
         rel: 'icon',
         type: 'image/jpg',
         href: '/favicon-rpm-32x32.jpg'

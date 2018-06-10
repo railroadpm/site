@@ -6,6 +6,7 @@
     $.prpt            Participant Key
     $.data            Site Data  
     $.scratch         Scratchpad ref
+    $.avg_cols        The averages columns to render in the rows, or nil if not applicable
     $.weeks           The Weeks for which to render the rows
 -->
 {{- $train_speed := $.data.Dimensions.TrainSpeed -}}
@@ -14,8 +15,11 @@
 {{/* Heading */}}
 {{- $.scratch.Delete $row_map_key -}}
 {{- $.scratch.SetInMap $row_map_key "isHeadingRow" true -}}
-{{- $.scratch.SetInMap $row_map_key "RowLabel" $train_speed.MeasureHeading -}}
+{{- $.scratch.SetInMap $row_map_key "rowLabel" $train_speed.MeasureHeading -}}
 {{- $.scratch.SetInMap $row_map_key "key" $train_speed.Key -}}
+{{- range $.avg_cols -}}
+  {{- $.scratch.SetInMap $row_map_key .Key "" -}}
+{{- end -}}
 {{- range $.weeks -}}
   {{- $.scratch.SetInMap $row_map_key .Key "" -}}
 {{- end -}}

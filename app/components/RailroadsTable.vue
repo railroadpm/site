@@ -8,7 +8,7 @@
           <td class="rr-label">
             <span :class="{ 'rr-heading-row': row.item.isHeadingRow }">
               <v-icon class="rr-selected-row-icon" v-show="row.selected" color="orange lighten-1">insert_chart_outlined</v-icon>
-              <vue-markdown class="rr-label-md" :source="row.item['RowLabel']" />
+              <vue-markdown class="rr-label-md" :source="row.item.rowLabel" />
             </span>
           </td>
         </tr>
@@ -66,13 +66,13 @@ export default {
     rows() {
       return _(this.railroadProfiles)
         .map(rr => ({
-          RowLabel: `&nbsp;&nbsp;${rr.Key != 'AOR' ? rr.Key : rr.ShortName}`,
+          rowLabel: `&nbsp;&nbsp;${rr.Key != 'AOR' ? rr.Key : rr.ShortName}`,
           key: rr.Key,
           isHeadingRow: false
         }))
         .filter(val => !(this.dimensionKey != 'CarsOnLine' && val.key === 'AOR')) // "All Other Railroads" only for "Cars On Line" dimension
         .unshift({
-          RowLabel: 'Railroads',
+          rowLabel: 'Railroads',
           key: 'Participant',
           isHeadingRow: true
         })

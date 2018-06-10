@@ -17,20 +17,33 @@
 {{- $params := (dict "Prpt" $prpt_key "WeeksCountCurrent" $weeks_count_current "WeeksCountHistorical" $weeks_count_historical) -}}
 {{- $prpt := index (where $data.Dimensions.Participant.Railroad "Key" $prpt_key) 0 -}}
 
-{{- $weeks_all := $data.Dimensions.Period.Week -}}
+{{- $period := $data.Dimensions.Period -}}
+{{- $weeks_all := $period.Week -}}
 {{- $weeks_publishable := sort (where $weeks_all "DoNotPublish" "ne" true) "Key" "asc" -}}
 {{- $weeks_historical := last $weeks_count_historical $weeks_publishable -}}
 {{- $weeks_current := last $weeks_count_current $weeks_publishable -}}
 {{- $weeks_report := cond (eq $rpt_type "Historical") $weeks_historical $weeks_current -}}
+<!-- Average columns are only rendered for the "Current" report -->
+{{- $avg_cols := cond (eq $rpt_type "Current") (slice (dict "Key" $period.Quarter.Previous) (dict "Key" $period.Month.Previous)) nil -}}
 
   {
+    {{- with $avg_cols -}}
+      {{- "\n    " -}}
+      "avgColumns": [
+        {{- "\n\t " -}}{{- delimit (apply (apply $avg_cols "partial" "avg-col-to-label" ".") "chomp" ".") "\n\t," -}}
+        {{- "\n    " -}}
+        ],
+    {{- end -}}
+    {{- "\n    " -}}
+
     "columns": [
-      {{- "\n\t " -}}{{- (dict "key" "RowLabel" "text" "") | jsonify -}}
+      {{- "\n\t " -}}{{- (dict "key" "rowLabel" "text" "") | jsonify -}}
+      {{- with $avg_cols -}}{{- "\n\t," -}}{{- delimit (apply (apply $avg_cols "partial" "avg-col-to-label" ".") "chomp" ".") "\n\t," -}}{{- end -}}
       {{- "\n\t," -}}{{- delimit (apply (apply $weeks_report "partial" "week-to-label" ".") "chomp" ".") "\n\t," -}}
       {{- "\n    " -}}
     ],
     "rows": [
-      {{- $rpt_rows_params := dict "prpt" $prpt_key "data" $.Site.Data "scratch" $.Scratch "weeks" $weeks_report -}}
+      {{- $rpt_rows_params := dict "prpt" $prpt_key "data" $.Site.Data "scratch" $.Scratch "avg_cols" $avg_cols "weeks" $weeks_report -}}
 
       {{- partial "rpt-rows-cars-by-owner-headings" $rpt_rows_params -}}
       {{- partial "rpt-rows-cars-by-owner-measures" $rpt_rows_params -}}

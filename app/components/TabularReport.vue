@@ -6,8 +6,8 @@
 
     <v-data-table class="rpt-table" v-model="selected" :headers="headers" :items="rows" item-key="key" hide-actions>
       <template slot="headerCell" slot-scope="col">
-        <!-- We render the "Quick Graph" component in the "RowLabel" header cell -->
-        <quick-graph-menu v-if="col.header.value === 'RowLabel'" class="rpt-quick-graph-menu" :railroad="railroad" :selected-measures="selected"
+        <!-- We render the "Quick Graph" component in the "rowLabel" header cell -->
+        <quick-graph-menu v-if="col.header.value === 'rowLabel'" class="rpt-quick-graph-menu" :railroad="railroad" :selected-measures="selected"
           @remove-all="selected = []" @show-graph="showQuickGraph" />
         <span>{{ col.header.text }}</span>
       </template>
@@ -19,7 +19,7 @@
           <td class="rpt-data-label">
             <span :class="{ 'rpt-data-heading-row-label': row.item.isHeadingRow, 'rpt-data-calculated-row-label': row.item.isCalculated }">
               <v-icon class="rpt-selected-row-icon" v-show="row.selected" color="orange lighten-1">insert_chart_outlined</v-icon>
-              <vue-markdown class="rpt-data-label-md" :source="row.item['RowLabel']" />
+              <vue-markdown class="rpt-data-label-md" :source="row.item.rowLabel" />
             </span>
           </td>
           <!-- Then render a cell for each week + measure (week is all numeric: YYYYMMDD) in ascending order by week -->
@@ -127,10 +127,10 @@ export default {
       if (this.reportType === 'Current') {
         renderedCols = this.columns;
       } else {
-        // Note that in this case we need to manually add the "RowLabel" col first...
+        // Note that in this case we need to manually add the "rowLabel" col first...
         this.headers = [];
         this.measureKeys = [];
-        this.headers.push({ text: '', value: 'RowLabel', align: 'left', sortable: false });
+        this.headers.push({ text: '', value: 'rowLabel', align: 'left', sortable: false });
 
         // ...and then take the appropriate slice of the raw columns array
         renderedCols = this.columns.slice((pageNum - 1) * this.historicalPageSize + 1, (pageNum - 1) * this.historicalPageSize + this.historicalPageSize + 1);

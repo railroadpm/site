@@ -6,6 +6,7 @@
     $.prpt            Participant Key
     $.data            Site Data  
     $.scratch         Scratchpad ref
+    $.avg_cols        The averages columns to render in the rows, or nil if not applicable
     $.weeks           The Weeks for which to render the rows
 -->
 {{- $terminal_dwell := $.data.Dimensions.TerminalDwell -}}
@@ -30,9 +31,14 @@
   {{- end -}}
 
   <!-- Add the terminal subheading and key to the Map first -->
-  {{- $.scratch.SetInMap $row_map_key "RowLabel" ($.scratch.Get $terminal_key) -}}
+  {{- $.scratch.SetInMap $row_map_key "rowLabel" ($.scratch.Get $terminal_key) -}}
   {{- $.scratch.SetInMap $row_map_key "key" $subheading.Key -}}
   {{- with $subheading.isReportedAggregate -}}{{- $.scratch.SetInMap $row_map_key "isReportedAggregate" . -}}{{- end -}}
+
+  <!-- Iterate over averages (if not nil), adding calculated measure data to the Map -->
+  {{- range $.avg_cols -}}
+    {{- $.scratch.SetInMap $row_map_key .Key "" -}}
+  {{- end -}}
 
   <!-- Construct the full measure data key -->
   {{- $subheading_key := $subheading.Key -}}

@@ -14,8 +14,7 @@
 
       <template slot="items" slot-scope="row">
         <!-- Allow clicking anywhere on a (non-Heading) row to select it for inclusion in a "Quick Graph" -->
-        <tr :class="{ 'rpt-data-heading-row': row.item.isHeadingRow, 'rpt-data-calculated-row': row.item.isCalculated, 'rpt-data-pct-row': row.item.isPct }"
-          :active="row.selected" @click="rowClick(row)">
+        <tr :class="rowCssClasses(row)" :active="row.selected" @click="rowClick(row)">
           <!-- First render the row label cell -->
           <td class="rpt-data-label">
             <span :class="{ 'rpt-data-heading-row-label': row.item.isHeadingRow, 'rpt-data-calculated-row-label': row.item.isCalculated }">
@@ -145,6 +144,16 @@ export default {
       }
     },
 
+    rowCssClasses(row) {
+      return {
+        'rpt-data-heading-row': row.item.isHeadingRow,
+        'rpt-data-subheading-row': row.item.isSubheading,
+        'rpt-data-calculated-row': row.item.isCalculated,
+        'rpt-data-sum-row': row.item.isSum,
+        'rpt-data-pct-row': row.item.isPct
+      };
+    },
+
     rowClick(row) {
       let isHeadingRow = !!row.item.isHeadingRow;
       let isPct = !!row.item.isPct;
@@ -210,14 +219,22 @@ export default {
   margin-bottom: 0;
 }
 
-/* Calculated rows and data "heading row labels" may have their data label styled differently */
+/* Calculated rows, all sums, and data "heading row labels" may have their data label styled differently */
 .rpt-data-calculated-row td span,
+.rpt-data-sum-row td span,
 .rpt-data-heading-row-label {
   font-weight: bold;
 }
 
+/* Rows that can't be selected have no hover highlight color */
+.rpt-data-pct-row:hover,
+.rpt-data-subheading-row:hover {
+  background-color: white !important;
+}
+
+/* Calculated *percentage* rows and data may be styled differently too */
 .rpt-data-pct-row td span {
-  font-style: italic;
+  color: black;
 }
 
 /* In the report table, things can be selectively hidden */

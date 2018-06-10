@@ -156,7 +156,7 @@ function storeDimensionKeysFromReportRows(state, payload) {
     payload.data.rows.forEach(row => {
       let isHeadingRow = !!row.isHeadingRow;
       let isPct = !!row.isPct;
-      if (prevRowWasHeading && !isHeadingRow) segmentIndex++;
+      if (prevRowWasHeading && !isHeadingRow) segmentIndex++; // After header(s), we know we're in a new segment
       if (!isHeadingRow && !isPct) {
         if (segmentKeys[segmentIndex] === 'TerminalDwell') state.dimension.keys.TerminalDwell[payload.key].push(row.key);
         else state.dimension.keys[segmentKeys[segmentIndex]].push(row.key);

@@ -126,7 +126,7 @@ Key = 'BNSF'
   Key = 'EntireRailroad'
   Ord = 12
   CityOrYard = 'Entire Railroad'
-  isSum = true
+  isReportedAggregate = true
 
 [CN]
 Key = 'CN'
@@ -225,7 +225,7 @@ Key = 'CN'
   Key = 'EntireRailroad'
   Ord = 10
   CityOrYard = 'Entire Railroad'
-  isSum = true
+  isReportedAggregate = true
 
 [KCS]
 Key = 'KCS'
@@ -314,7 +314,7 @@ Key = 'KCS'
   Key = 'EntireRailroad'
   Ord = 9
   CityOrYard = 'Entire Railroad'
-  isSum = true
+  isReportedAggregate = true
 
 [NS]
 Key = 'NS'
@@ -463,7 +463,7 @@ Key = 'NS'
   Key = 'EntireRailroad'
   Ord = 15
   CityOrYard = 'Entire Railroad'
-  isSum = true
+  isReportedAggregate = true
 
 [UP]
 Key = 'UP'
@@ -602,4 +602,4 @@ Key = 'UP'
   Key = 'EntireRailroad'
   Ord = 14
   CityOrYard = 'Entire Railroad'
-  isSum = true
+  isReportedAggregate = true

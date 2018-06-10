@@ -150,7 +150,8 @@ export default {
         'rpt-data-subheading-row': row.item.isSubheading,
         'rpt-data-calculated-row': row.item.isCalculated,
         'rpt-data-sum-row': row.item.isSum,
-        'rpt-data-pct-row': row.item.isPct
+        'rpt-data-pct-row': row.item.isPct,
+        'rpt-data-agg-row': row.item.isReportedAggregate
       };
     },
 
@@ -219,9 +220,10 @@ export default {
   margin-bottom: 0;
 }
 
-/* Calculated rows, all sums, and data "heading row labels" may have their data label styled differently */
+/* Calculated rows, all sums, all reported aggregates, and data "heading row labels" may have their data label styled differently */
 .rpt-data-calculated-row td span,
 .rpt-data-sum-row td span,
+.rpt-data-agg-row td span,
 .rpt-data-heading-row-label {
   font-weight: bold;
 }

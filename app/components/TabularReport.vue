@@ -22,8 +22,14 @@
               <vue-markdown class="rpt-data-label-md" :source="row.item.rowLabel" />
             </span>
           </td>
-          <!-- Then render a cell for each week + measure (week is all numeric: YYYYMMDD) in ascending order by week -->
-          <td v-for="(col, i) in measureKeys" :key="i">
+
+          <!-- Then render a cell for each average column -->
+          <td v-if="reportType === 'Current'" v-for="(col, i) in avgKeys" :key="`avg${i}`">
+            <span>{{ $helpers.formatNumber(row.item[col]) }}</span>
+          </td>
+
+          <!-- Finally render a cell for each week + measure (week is all numeric: YYYYMMDD) in ascending order by week -->
+          <td v-for="(col, i) in measureKeys" :key="`week${i}`">
             <span>{{ $helpers.formatNumber(row.item[col]) }}</span>
           </td>
         </tr>
@@ -62,6 +68,7 @@ export default {
     rows: [],
     columns: [],
     headers: [],
+    avgKeys: ['1Q18', 'Apr 2018'], // Array of keys for lookup of averages column data in rows
     measureKeys: [], // Array of keys for lookup of measure data in rows, by week
     selected: [],
 

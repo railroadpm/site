@@ -52,4 +52,4 @@
 {{- end -}}
 
 <!-- And render the calculated measures as well -->
-{{- partial "rpt-rows-cars-by-owner-calculated" (dict "scratch" $.scratch "weeks" $.weeks) -}}
+{{- partial "rpt-rows-cars-by-owner-calculated" (dict "scratch" $.scratch "avg_cols" $.avg_cols "m_maps" $cars_by_owner_subheadings "weeks" $.weeks) -}}

@@ -1,0 +1,61 @@
+<!--
+  For the given average key and Maps of measures, calculate the aggregate indicated and store it in
+  the provided Scratch area under the appropriate key
+
+  Parameters
+    $.ap_key        Average period key (e.g., "1Q18" or "Apr 2018")
+    $.m_prefix      Measure prefix for overall segment (e.g., "CarsOnLine_ByCarOwner_")
+    $.m_suffix      Measure key suffix (e.g., "_Total", "_Numerator" (percent))
+    $.m_maps        Array of measure maps with keys (e.g., {Key:"System"...}, {Key:"Foreign RR"...}, etc.)
+    $.m_dp          Measure decimal places (0, 1, etc.) used for formatting final average
+    $.scratch       Scratchpad ref
+
+  Details
+    adding individual measures stored as avgs...
+
+      CarsOnLine_ByCarOwner_System_1Q18_Avg
+      ...
+      CarsOnLine_ByCarOwner_Private_1Q18_Avg
+
+      CarsOnLine_ByCarOwner_System_May 2018_Avg
+      ...
+      CarsOnLine_ByCarOwner_Private_May 2018_Avg
+
+    without individual measure, but with calculated row "subheading.keySuffix"
+
+      CarsOnLine_ByCarOwner_1Q18_Avg_Total
+
+      CarsOnLine_ByCarOwner_May 2018_Avg_Total
+
+      CarsOnLine_ByCarOwner_1Q18_Avg_Numerator
+
+      CarsOnLine_ByCarOwner_May 2018_Avg_Numerator
+-->
+{{- $total_key := printf "%s%s%s%s" $.m_prefix $.ap_key "_Avg" "_Total" -}}
+
+{{- if eq $.m_suffix "_Total" -}}
+  <!-- Initialize total -->
+  {{- $.scratch.Set $total_key 0 -}}
+
+  <!-- Iterate over measures, accumulating total -->
+  {{- range $subheading_index, $subheading := $.m_maps -}}
+    <!-- Construct the full, pre-calculated measure avg data key -->
+    {{- $measure_key := printf "%s%s%s%s%s" $.m_prefix $subheading.Key "_" $.ap_key "_Avg" -}}
+
+    {{- with ($.scratch.Get $measure_key) -}}
+      <!-- Pre-calculated avg values that we're trying to add need num formatting removed -->
+      {{- $.scratch.Add $total_key (float (replace . "," "")) -}}
+    {{- end -}}
+  {{- end -}}
+
+  <!-- Format final result -->
+  {{- $formatted := (($.scratch.Get $total_key) | lang.NumFmt $.m_dp) -}}
+  {{- $.scratch.Set $total_key $formatted -}}
+{{- else -}}
+  {{/* 
+    <!-- Calculate average and store result in scratch -->
+    {{- $numerator := $.scratch.Get $total_key -}}
+    {{- $denominator := $.scratch.Get $count_key -}}
+    {{- with $denominator -}}{{- $.scratch.Set $avg_key ((div (float $numerator) (float .)) | lang.NumFmt $.m_dp) -}}{{- end -}}
+  */}}
+{{- end -}}

@@ -4,6 +4,8 @@
 
   Parameters
     $.scratch         Scratchpad ref
+    $.avg_cols        The averages columns to render in the rows, or nil if not applicable
+    $.m_maps          Array of measure maps with keys (e.g., {Key:"Box"...}, {Key:"Tank"...}, etc.)
     $.weeks           The Weeks for which to render the rows
 -->
 {{- $subheading_indent := "&nbsp;&nbsp;&nbsp;&nbsp;" -}}
@@ -31,6 +33,15 @@
   {{- with $subheading.isSum -}}{{- $.scratch.SetInMap $row_map_key "isSum" true -}}{{- end -}}
   {{- $.scratch.SetInMap $row_map_key "rowLabel" (printf "%s%s" $subheading_indent $subheading.rowLabel) -}}
   {{- $.scratch.SetInMap $row_map_key "key" $subheading.key -}}
+
+  <!-- Iterate over averages (if not nil), adding calculated measure data to the Map -->
+  {{- range $a_index, $a_map := $.avg_cols -}}
+    {{- $agg_suffix := "_Total" -}}
+    {{- $m_dp := 0 -}}
+    {{- partial "rpt-calc-avg-agg" (dict "ap_key" $a_map.Key "m_prefix" $measure_key_prefix "m_suffix" $subheading.keySuffix "m_maps" $.m_maps "m_dp" $m_dp "scratch" $.scratch) -}}
+    {{- $aa_key := printf "%s%s%s%s" $measure_key_prefix $a_map.Key "_Avg" $agg_suffix -}}
+    {{- $.scratch.SetInMap $row_map_key $a_map.Key ($.scratch.Get $aa_key) -}}
+  {{- end -}}
 
   <!-- Iterate over weeks, adding weekly calculated measure data value to the Map -->
   {{- range $.weeks -}}

@@ -48,4 +48,4 @@
 {{- end -}}
 
 <!-- And render the calculated measures as well -->
-{{- partial "rpt-rows-cars-by-type-calculated" (dict "scratch" $.scratch "avg_cols" $.avg_cols "weeks" $.weeks) -}}
+{{- partial "rpt-rows-cars-by-type-calculated" (dict "scratch" $.scratch "avg_cols" $.avg_cols "m_maps" $cars_by_type_subheadings "weeks" $.weeks) -}}

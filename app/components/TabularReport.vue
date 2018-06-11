@@ -10,29 +10,28 @@
         <tr class="rpt-col-groups-row">
           <th>&nbsp;</th>
           <template v-if="reportType === 'Current'">
-            <th class="rpt-col-groups" :colspan="avgColumns.length">Historical Average</th>
-            <th class="rpt-col-groups" :colspan="cols.headers.length - avgColumns.length - 1">Week Ending</th>
+            <th class="rpt-col-groups rpt-col-group-avg" :colspan="avgColumns.length">
+              <div>Historical Average</div>
+            </th>
+            <th class="rpt-col-groups" :colspan="cols.headers.length - avgColumns.length - 1">
+              <div>Week Ending</div>
+            </th>
           </template>
           <template v-else>
-            <th class="rpt-col-groups" :colspan="cols.headers.length - 1">Week Ending</th>
+            <th class="rpt-col-groups" :colspan="cols.headers.length - 1">
+              <div>Week Ending</div>
+            </th>
           </template>
         </tr>
         <tr class="rpt-col-dimensions-row">
           <th v-for="col in cols.headers" :key="col.value" :class="`column text-xs-${col.align} rpt-col-dimensions`">
+            <!-- We render the "Quick Graph" component in the "rowLabel" header cell -->
             <quick-graph-menu v-if="col.value === 'rowLabel'" class="rpt-quick-graph-menu" :railroad="railroad" :selected-measures="selected" @remove-all="selected = []"
               @show-graph="showQuickGraph" />
             <span>{{ col.text }}</span>
           </th>
         </tr>
       </template>
-
-      <!-- We render the "Quick Graph" component in the "rowLabel" header cell -->
-
-      <!-- <template slot="headerCell" slot-scope="col">
-        <quick-graph-menu v-if="col.header.value === 'rowLabel'" class="rpt-quick-graph-menu" :railroad="railroad" :selected-measures="selected"
-          @remove-all="selected = []" @show-graph="showQuickGraph" />
-        <span>{{ col.header.text }}</span>
-      </template> -->
 
       <template slot="items" slot-scope="row">
         <!-- Allow clicking anywhere on a (non-Heading) row to select it for inclusion in a "Quick Graph" -->
@@ -285,6 +284,11 @@ export default {
   font-size: 14px;
 }
 
+/* Table header row for groups needs tweek */
+.rpt-table table.datatable.table thead tr.rpt-col-groups-row {
+  margin-top: 5px;
+}
+
 /* Table header borders */
 .rpt-table table.datatable.table thead tr.rpt-col-groups-row,
 .rpt-table table.datatable.table thead tr th.rpt-col-dimensions {
@@ -292,9 +296,20 @@ export default {
 }
 
 /* Table header borders */
-.rpt-table table.datatable.table thead tr th.rpt-col-groups,
+.rpt-table table.datatable.table thead tr th.rpt-col-groups div,
 .rpt-table table.datatable.table thead tr.rpt-col-dimensions-row {
   border-bottom: 1px solid #e0e0e0; /* grey lighten-2 */
+}
+
+.rpt-table table.datatable.table thead tr th.rpt-col-groups div {
+  width: 100%;
+  padding-top: 7px;
+  text-align: center;
+}
+
+/* Table header for averages needs alignment tweek */
+.rpt-table table.datatable.table thead tr th.rpt-col-group-avg div {
+  margin-top: 2px;
 }
 
 /* Table rows */

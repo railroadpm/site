@@ -5,11 +5,32 @@
     </div>
 
     <v-data-table class="rpt-table" v-model="selected" :headers="headers" :items="rows" item-key="key" hide-actions>
-      <template slot="headerCell" slot-scope="col">
-        <!-- We render the "Quick Graph" component in the "rowLabel" header cell -->
-        <quick-graph-menu v-if="col.header.value === 'rowLabel'" class="rpt-quick-graph-menu" :railroad="railroad" :selected-measures="selected"
-          @remove-all="selected = []" @show-graph="showQuickGraph" />
-        <span>{{ col.header.text }}</span>
+
+      <template slot="headers" slot-scope="cols">
+        <tr class="rpt-col-groups-row">
+          <th>&nbsp;</th>
+          <template v-if="reportType === 'Current'">
+            <th class="rpt-col-groups rpt-col-group-avg" :colspan="avgColumns.length">
+              <div>Historical Average</div>
+            </th>
+            <th class="rpt-col-groups" :colspan="cols.headers.length - avgColumns.length - 1">
+              <div>Week Ending</div>
+            </th>
+          </template>
+          <template v-else>
+            <th class="rpt-col-groups" :colspan="cols.headers.length - 1">
+              <div>Week Ending</div>
+            </th>
+          </template>
+        </tr>
+        <tr class="rpt-col-dimensions-row">
+          <th v-for="col in cols.headers" :key="col.value" :class="`column text-xs-${col.align} rpt-col-dimensions`">
+            <!-- We render the "Quick Graph" component in the "rowLabel" header cell -->
+            <quick-graph-menu v-if="col.value === 'rowLabel'" class="rpt-quick-graph-menu" :railroad="railroad" :selected-measures="selected" @remove-all="selected = []"
+              @show-graph="showQuickGraph" />
+            <span>{{ col.text }}</span>
+          </th>
+        </tr>
       </template>
 
       <template slot="items" slot-scope="row">
@@ -129,10 +150,10 @@ export default {
     },
 
     getHeadersAndKeysFromRawData(pageNum) {
-      let renderedWeekCols = [];
+      let renderedCols = [];
 
       if (this.reportType === 'Current') {
-        renderedWeekCols = this.columns;
+        renderedCols = this.columns;
         this.avgColumns = [this.$store.getters.periodPreviousQuarter, this.$store.getters.periodPreviousMonth];
       } else {
         // Note that in this case we need to manually add the "rowLabel" col first...
@@ -141,11 +162,11 @@ export default {
         this.headers.push({ text: '', value: 'rowLabel', align: 'left', sortable: false });
 
         // ...and then take the appropriate slice of the raw columns array
-        renderedWeekCols = this.columns.slice((pageNum - 1) * this.historicalPageSize + 1, (pageNum - 1) * this.historicalPageSize + this.historicalPageSize + 1);
+        renderedCols = this.columns.slice((pageNum - 1) * this.historicalPageSize + 1, (pageNum - 1) * this.historicalPageSize + this.historicalPageSize + 1);
       }
 
       if (this.reportType === 'Historical' || this.headers.length === 0) {
-        renderedWeekCols.forEach(elt => {
+        renderedCols.forEach(elt => {
           this.headers.push({ text: elt.text, value: elt.key, align: 'left', sortable: false });
           if (!isNaN(elt.key)) this.measureKeys.push(elt.key);
         });
@@ -261,6 +282,34 @@ export default {
 .rpt-table table.datatable.table thead tr th {
   font-weight: bold;
   font-size: 14px;
+}
+
+/* Table header row for groups needs tweek */
+.rpt-table table.datatable.table thead tr.rpt-col-groups-row {
+  margin-top: 5px;
+}
+
+/* Table header borders */
+.rpt-table table.datatable.table thead tr.rpt-col-groups-row,
+.rpt-table table.datatable.table thead tr th.rpt-col-dimensions {
+  border: none;
+}
+
+/* Table header borders */
+.rpt-table table.datatable.table thead tr th.rpt-col-groups div,
+.rpt-table table.datatable.table thead tr.rpt-col-dimensions-row {
+  border-bottom: 1px solid #e0e0e0; /* grey lighten-2 */
+}
+
+.rpt-table table.datatable.table thead tr th.rpt-col-groups div {
+  width: 100%;
+  padding-top: 7px;
+  text-align: center;
+}
+
+/* Table header for averages needs alignment tweek */
+.rpt-table table.datatable.table thead tr th.rpt-col-group-avg div {
+  margin-top: 2px;
 }
 
 /* Table rows */

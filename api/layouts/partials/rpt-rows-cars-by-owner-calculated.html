@@ -42,8 +42,10 @@
 
   <!-- Iterate over averages (if not nil), adding calculated measure data to the Map -->
   {{- range $a_index, $a_map := $.avg_cols -}}
-    {{- partial "rpt-calc-avg-agg" (dict "ap_key" $a_map.Key "m_prefix" $measure_key_prefix "m_suffix" $subheading.keySuffix "m_maps" $.m_maps "m_dp" 0 "scratch" $.scratch) -}}
-    {{- $aa_key := printf "%s%s%s%s" $measure_key_prefix $a_map.Key "_Avg" $subheading.keySuffix -}}
+    {{- $m_key_n := "Private" -}}
+    {{- $agg_suffix := cond (eq $subheading.keySuffix "_Total") "_Total" "_Percent" -}}
+    {{- partial "rpt-calc-avg-agg" (dict "ap_key" $a_map.Key "m_prefix" $measure_key_prefix "m_suffix" $subheading.keySuffix "m_maps" $.m_maps "m_dp" 0 "scratch" $.scratch "m_key_n" $m_key_n) -}}
+    {{- $aa_key := printf "%s%s%s%s" $measure_key_prefix $a_map.Key "_Avg" $agg_suffix -}}
     {{- $.scratch.SetInMap $row_map_key $a_map.Key ($.scratch.Get $aa_key) -}}
   {{- end -}}
 

@@ -50,14 +50,14 @@
   {{- $formatted := (($.scratch.Get $total_key) | lang.NumFmt $.m_dp) -}}
   {{- $.scratch.Set $total_key $formatted -}}
 {{- else -}}
-    {{- $numerator_key := printf "%s%s%s%s" $.m_prefix $.m_key_n $.ap_key "_Avg" -}}
+    {{- $numerator_key := printf "%s%s%s%s%s" $.m_prefix $.m_key_n "_" $.ap_key "_Avg" -}}
     {{- $percent_key := printf "%s%s%s" $.m_prefix $.ap_key "_Avg_Percent" -}}
 
     <!-- Calculate percent and store result in scratch -->
-    {{- $numerator := $.scratch.Get $numerator_key -}}
-    {{- $denominator := $.scratch.Get $total_key -}}
+    {{- $numerator := float (replace ($.scratch.Get $numerator_key) "," "") -}}
+    {{- $denominator := float (replace ($.scratch.Get $total_key) "," "") -}}
     
-    {{- if $numerator -}}
-      {{- with $denominator -}}{{- $.scratch.Set $percent_key ((div (float $numerator) (float .)) | lang.NumFmt $.m_dp) -}}{{- end -}}
+    {{- with $denominator -}}
+      {{- $.scratch.Set $percent_key ((mul (div (float $numerator) (float .)) (float 100)) | lang.NumFmt $.m_dp) -}}
     {{- end -}}
 {{- end -}}

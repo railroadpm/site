@@ -21,9 +21,10 @@
 {{- $weeks_publishable := sort (where $weeks_all "DoNotPublish" "ne" true) "Key" "asc" -}}
 {{- $weeks_to_avg := where $weeks_all $week_key_for_avg "eq" $.ap_key -}}
 
-<!-- Initialize total and count to zero -->
+<!-- Initialize total, count, and avg -->
 {{- $.scratch.Set $total_key 0 -}}
 {{- $.scratch.Set $count_key 0 -}}
+{{- $.scratch.Set $avg_key nil -}}
 
 <!-- Iterate over weeks, accumulating total and count -->
 {{- range $week := $weeks_to_avg -}}
@@ -34,10 +35,4 @@
 <!-- Calculate average and store result in scratch -->
 {{- $numerator := $.scratch.Get $total_key -}}
 {{- $denominator := $.scratch.Get $count_key -}}
-{{- $.scratch.Set $avg_key ((mul (div (float $numerator) (float $denominator)) (float 100)) | lang.NumFmt $.m_dp) -}}
-
-{{/* 
-{{- $.scratch.Set $avg_key (mul (div (float $numerator) (float $denominator)) (float 100)) -}}
-
-{{- $.scratch.Set $avg_key ((mul (div (float $numerator) (float $denominator)) (float 100)) | lang.NumFmt $.m_dp) -}}
-*/}}
+{{- with $denominator -}}{{- $.scratch.Set $avg_key ((div (float $numerator) (float .)) | lang.NumFmt $.m_dp) -}}{{- end -}}

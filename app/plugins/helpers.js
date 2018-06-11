@@ -11,7 +11,7 @@ const helpers = {
    * @param {number} value
    */
   formatNumber(value) {
-    return value === null ? '' : value === '' ? '' : numeral(value).format('0,0[.]0');
+    return value === null ? '-' : value === '' ? '' : numeral(value).format('0,0[.]0');
   },
 
   /**

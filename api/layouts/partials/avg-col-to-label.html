@@ -1,0 +1,8 @@
+<!--
+  Given an average column Map with a single "Key" value, render it as a JSON
+  "data point label" of the form: { "key": Key, "text": Key }
+
+  Parameters
+    .         Individual avg col Map
+-->
+{{- (dict "key" .Key "text" .Key) | jsonify -}}

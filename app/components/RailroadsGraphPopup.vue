@@ -86,7 +86,7 @@ export default {
     datasets() {
       return _(this.rows)
         .map((val, index) => ({
-          label: val.RowLabel.replace(/&nbsp;/g, ''),
+          label: val.rowLabel.replace(/&nbsp;/g, ''),
           fill: false,
           data: this.rowData(index),
           borderColor: this.$helpers.colorFromIndex(index),
@@ -99,7 +99,7 @@ export default {
       // Capture ("close over") things we'll need in callbacks below
       let helpers = this.$helpers;
       let datasetLabels = _(this.rows)
-        .map(val => val.RowLabel.replace(/&nbsp;/g, ''))
+        .map(val => val.rowLabel.replace(/&nbsp;/g, ''))
         .value();
 
       return {

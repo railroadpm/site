@@ -6,25 +6,31 @@
 
     <v-data-table class="rpt-table" v-model="selected" :headers="headers" :items="rows" item-key="key" hide-actions>
       <template slot="headerCell" slot-scope="col">
-        <!-- We render the "Quick Graph" component in the "RowLabel" header cell -->
-        <quick-graph-menu v-if="col.header.value === 'RowLabel'" class="rpt-quick-graph-menu" :railroad="railroad" :selected-measures="selected"
+        <!-- We render the "Quick Graph" component in the "rowLabel" header cell -->
+        <quick-graph-menu v-if="col.header.value === 'rowLabel'" class="rpt-quick-graph-menu" :railroad="railroad" :selected-measures="selected"
           @remove-all="selected = []" @show-graph="showQuickGraph" />
         <span>{{ col.header.text }}</span>
       </template>
 
       <template slot="items" slot-scope="row">
         <!-- Allow clicking anywhere on a (non-Heading) row to select it for inclusion in a "Quick Graph" -->
-        <tr :active="row.selected" @click="rowClick(row)">
+        <tr :class="rowCssClasses(row)" :active="row.selected" @click="rowClick(row)">
           <!-- First render the row label cell -->
           <td class="rpt-data-label">
-            <span :class="{ 'rpt-data-heading-row': row.item.isHeadingRow }">
+            <span :class="{ 'rpt-data-heading-row-label': row.item.isHeadingRow, 'rpt-data-calculated-row-label': row.item.isCalculated }">
               <v-icon class="rpt-selected-row-icon" v-show="row.selected" color="orange lighten-1">insert_chart_outlined</v-icon>
-              <vue-markdown class="rpt-data-label-md" :source="row.item['RowLabel']" />
+              <vue-markdown class="rpt-data-label-md" :source="row.item.rowLabel" />
             </span>
           </td>
-          <!-- Then render a cell for each week + measure (week is all numeric: YYYYMMDD) in ascending order by week -->
-          <td v-for="(col, i) in measureKeys" :key="i">
-            {{ $helpers.formatNumber(row.item[col]) }}
+
+          <!-- Then render a cell for each average column -->
+          <td v-if="reportType === 'Current'" v-for="(col, i) in avgColumns" :key="`avg${i}`">
+            <span>{{ $helpers.formatNumber(row.item[col]) }}</span>
+          </td>
+
+          <!-- Finally render a cell for each week + measure (week is all numeric: YYYYMMDD) in ascending order by week -->
+          <td v-for="(col, i) in measureKeys" :key="`wk${i}`">
+            <span>{{ $helpers.formatNumber(row.item[col]) }}</span>
           </td>
         </tr>
       </template>
@@ -62,6 +68,7 @@ export default {
     rows: [],
     columns: [],
     headers: [],
+    avgColumns: [], // Array of keys for lookup of averages data in rows
     measureKeys: [], // Array of keys for lookup of measure data in rows, by week
     selected: [],
 
@@ -76,7 +83,7 @@ export default {
   watch: {
     historicalPage: function(newPage, oldPage) {
       if (newPage != oldPage) {
-        this.getHeadersAndMeasureKeysFromRawData(newPage);
+        this.getHeadersAndKeysFromRawData(newPage);
       }
     }
   },
@@ -112,7 +119,7 @@ export default {
         this.headers = [];
         this.rows = [];
         this.measureKeys = [];
-        this.getHeadersAndMeasureKeysFromRawData(this.historicalPage);
+        this.getHeadersAndKeysFromRawData(this.historicalPage);
         this.rows = this.$store.state.railroadReportData[this.railroad][this.reportType].rows;
       } catch (e) {
         this.headers = [];
@@ -121,36 +128,55 @@ export default {
       }
     },
 
-    getHeadersAndMeasureKeysFromRawData(pageNum) {
-      let renderedCols = [];
+    getHeadersAndKeysFromRawData(pageNum) {
+      let renderedWeekCols = [];
 
       if (this.reportType === 'Current') {
-        renderedCols = this.columns;
+        renderedWeekCols = this.columns;
+        this.avgColumns = [this.$store.getters.periodPreviousQuarter, this.$store.getters.periodPreviousMonth];
       } else {
-        // Note that in this case we need to manually add the "RowLabel" col first...
+        // Note that in this case we need to manually add the "rowLabel" col first...
         this.headers = [];
         this.measureKeys = [];
-        this.headers.push({ text: '', value: 'RowLabel', align: 'left', sortable: false });
+        this.headers.push({ text: '', value: 'rowLabel', align: 'left', sortable: false });
 
         // ...and then take the appropriate slice of the raw columns array
-        renderedCols = this.columns.slice((pageNum - 1) * this.historicalPageSize + 1, (pageNum - 1) * this.historicalPageSize + this.historicalPageSize + 1);
+        renderedWeekCols = this.columns.slice((pageNum - 1) * this.historicalPageSize + 1, (pageNum - 1) * this.historicalPageSize + this.historicalPageSize + 1);
       }
 
       if (this.reportType === 'Historical' || this.headers.length === 0) {
-        renderedCols.forEach(elt => {
+        renderedWeekCols.forEach(elt => {
           this.headers.push({ text: elt.text, value: elt.key, align: 'left', sortable: false });
           if (!isNaN(elt.key)) this.measureKeys.push(elt.key);
         });
       }
     },
 
+    rowCssClasses(row) {
+      return {
+        'rpt-data-heading-row': row.item.isHeadingRow,
+        'rpt-data-subheading-row': row.item.isSubheading,
+        'rpt-data-calculated-row': row.item.isCalculated,
+        'rpt-data-sum-row': row.item.isSum,
+        'rpt-data-pct-row': row.item.isPct,
+        'rpt-data-agg-row': row.item.isReportedAggregate
+      };
+    },
+
     rowClick(row) {
       let isHeadingRow = !!row.item.isHeadingRow;
+      let isPct = !!row.item.isPct;
       let rowKey = row.item.key;
 
-      // Non-heading (measure) rows simply have their selection state toggled
-      if (!isHeadingRow) {
+      // Non-heading (measure) rows (except for percentages) simply have their selection state toggled
+      if (!isHeadingRow && !isPct) {
         row.selected = !row.selected;
+        return;
+      }
+
+      // Percentages can't be selected/graphed and require no further action
+      if (isPct) {
+        row.selected = false;
         return;
       }
 
@@ -163,7 +189,7 @@ export default {
       }
 
       // The 3 main Headings can't be "selected" either, but clicking on them
-      // is a way to toggle the selection state of *all* of their measures
+      // is a way to toggle the selection state of *all* of their measures (except percentages)
       let prevSelected = _.clone(this.selected); // We need to compare the previous selection below
       let keysInSegment = this.keysInSegment(rowKey);
       let rowsInSegment = _.intersectionWith(this.rows, keysInSegment, (arrVal, othVal) => arrVal.key === othVal);
@@ -202,9 +228,28 @@ export default {
   margin-bottom: 0;
 }
 
-/* Data "heading rows" may have their data label styled differently */
-.rpt-data-heading-row {
+/* Calculated rows, all sums, all reported aggregates, and data "heading row labels" may have their data label styled differently */
+.rpt-data-calculated-row td span,
+.rpt-data-sum-row td span,
+.rpt-data-agg-row td span,
+.rpt-data-heading-row-label {
   font-weight: bold;
+}
+
+/* Rows that can't be selected have no hover highlight color */
+.rpt-data-pct-row:hover,
+.rpt-data-subheading-row:hover {
+  background-color: white !important;
+}
+
+/* Calculated *percentage* rows and data may be styled differently too */
+.rpt-data-pct-row td span {
+  color: black;
+}
+
+/* In the report table, things can be selectively hidden */
+.rpt-table .rpt-hidden {
+  display: none;
 }
 
 /* Table header */

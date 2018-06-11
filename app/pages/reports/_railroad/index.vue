@@ -51,9 +51,9 @@ export default {
     selectedTab: '0'
   }),
 
-  created() {
+  async created() {
     console.log(`PAGE: Created reports page for ${this.selectedRailroadKey}`);
-    this.loadRailroadProfileData();
+    await this.loadRailroadProfileData();
   },
 
   mounted() {
@@ -72,7 +72,12 @@ export default {
       }
     },
     dataLoaded() {
-      return this.$store.state.railroadReportData[this.selectedRailroadKey][this.selectedReportType].rows.length > 0;
+      // Data is considered "loaded" when, via API, we have loaded the railroad profiles and the
+      // TabularReport component has loaded the railroad report data
+      return (
+        this.$store.state.railroadProfileData.railroads.length > 0 &&
+        this.$store.state.railroadReportData[this.selectedRailroadKey][this.selectedReportType].rows.length > 0
+      );
     },
     selectedRailroadKey() {
       return this.$route.params.railroad.toUpperCase();

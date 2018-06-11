@@ -6,6 +6,7 @@
     $.prpt            Participant Key
     $.data            Site Data  
     $.scratch         Scratchpad ref
+    $.avg_cols        The averages columns to render in the rows, or nil if not applicable
     $.weeks           The Weeks for which to render the rows
 -->
 {{- $cars := $.data.Dimensions.CarsOnLine -}}
@@ -16,8 +17,12 @@
 {{/* Heading */}}
 {{- $.scratch.Delete $row_map_key -}}
 {{- $.scratch.SetInMap $row_map_key "isHeadingRow" true -}}
-{{- $.scratch.SetInMap $row_map_key "RowLabel" (printf "%s%s" $subheading_indent $cars_by_type.MeasureHeading) -}}
+{{- $.scratch.SetInMap $row_map_key "isSubheading" true -}}
+{{- $.scratch.SetInMap $row_map_key "rowLabel" (printf "%s%s" $subheading_indent $cars_by_type.MeasureHeading) -}}
 {{- $.scratch.SetInMap $row_map_key "key" $cars_by_type.Key -}}
+{{- range $.avg_cols -}}
+  {{- $.scratch.SetInMap $row_map_key .Key "" -}}
+{{- end -}}
 {{- range $.weeks -}}
   {{- $.scratch.SetInMap $row_map_key .Key "" -}}
 {{- end -}}

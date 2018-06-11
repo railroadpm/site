@@ -1,0 +1,17 @@
+<!--
+  For the given week, calculated (total) measure, and individual measure value, add to the running total
+
+  Parameters
+    $.week_key      Week key (e.g., 20180608)
+    $.m_key_pre     Calculated Measure key prefix (e.g., "CarsOnLine_ByCarOwner_")
+    $.m_index       Zero-based index of the measure
+    $.m_val         Measure value
+    $.scratch       Scratchpad ref
+-->
+{{- $m_key_suffix := "_Total" -}}
+{{- $dim_week_total_key := printf "%s%s%s" $.m_key_pre $.week_key $m_key_suffix -}}
+{{- if eq $.m_index 0 -}}
+  <!-- Must initialize total to a number (zero) so we can add as we go -->
+  {{- $.scratch.Set $dim_week_total_key 0 -}}
+{{- end -}}
+{{- $.scratch.Add $dim_week_total_key $.m_val -}}

@@ -72,6 +72,12 @@ export const state = () => ({
   },
   dimension: {
     keys: {
+      Period: {
+        Previous: {
+          Quarter: '',
+          Month: ''
+        }
+      },
       CarsOnLine: [],
       TrainSpeed: [],
       TerminalDwell: {
@@ -101,7 +107,12 @@ export const getters = {
 
   // region Report Data Getters
   railroadReportDataUrlByKeyAndType: () => (key, type) => `${app.API_HOST}/reports/${key.toLowerCase()}/${type === 'Current' ? 'current' : 'all'}${app.API_GET_SUFFIX}`,
-  railroadReportRowCountByKeyAndType: state => (key, type) => state.railroadReportData[key][type].rows.length
+  railroadReportRowCountByKeyAndType: state => (key, type) => state.railroadReportData[key][type].rows.length,
+  // endregion
+
+  // region Dimension Data Getters
+  periodPreviousQuarter: state => state.dimension.keys.Period.Previous.Quarter,
+  periodPreviousMonth: state => state.dimension.keys.Period.Previous.Month
   // endregion
 };
 
@@ -117,10 +128,10 @@ export const mutations = {
   storeRailroadReportData(state, payload) {
     console.log(`STORE: In Mutation "storeRailroadReportData" for ${payload.key}`);
 
+    storeDimensionKeysFromReportRows(state, payload);
+
     state.railroadReportData[payload.key][payload.type].rows = payload.data.rows;
     state.railroadReportData[payload.key][payload.type].columns = payload.data.columns;
-
-    storeDimensionKeysFromReportRows(state, payload);
   }
 };
 
@@ -131,8 +142,15 @@ export const mutations = {
  * @param {string} railroadKey
  */
 function dimensionKeysLoaded(state, railroadKey) {
-  if (railroadKey != 'AOR') return state.dimension.keys.TerminalDwell[railroadKey].length > 0;
-  else return state.dimension.keys.TrainSpeed.length > 0;
+  let rptKeysLoaded = false;
+  let periodKeysLoaded = false;
+
+  if (railroadKey != 'AOR') rptKeysLoaded = state.dimension.keys.TerminalDwell[railroadKey].length > 0;
+  else rptKeysLoaded = state.dimension.keys.TrainSpeed.length > 0;
+
+  periodKeysLoaded = !!state.dimension.keys.Period.Previous.Month;
+
+  return rptKeysLoaded && periodKeysLoaded;
 }
 
 /**
@@ -147,7 +165,7 @@ function storeDimensionKeysFromReportRows(state, payload) {
   if (payload.type != 'Current') return;
   if (dimensionKeysLoaded(state, payload.key)) return;
 
-  // The rows fall into 3 main "segments" for which we want the dimension keys,
+  // The report rows fall into 3 main "segments" for which we want the dimension keys (except percentages),
   // but "CarsOnLine" has two sub-segments, so really 4 in all
   let segmentKeys = ['CarsOnLine', 'CarsOnLine', 'TrainSpeed', 'TerminalDwell'];
   let segmentIndex = -1;
@@ -155,13 +173,19 @@ function storeDimensionKeysFromReportRows(state, payload) {
   try {
     payload.data.rows.forEach(row => {
       let isHeadingRow = !!row.isHeadingRow;
-      if (prevRowWasHeading && !isHeadingRow) segmentIndex++;
-      if (!isHeadingRow) {
+      let isPct = !!row.isPct;
+      if (prevRowWasHeading && !isHeadingRow) segmentIndex++; // After header(s), we know we're in a new segment
+      if (!isHeadingRow && !isPct) {
         if (segmentKeys[segmentIndex] === 'TerminalDwell') state.dimension.keys.TerminalDwell[payload.key].push(row.key);
         else state.dimension.keys[segmentKeys[segmentIndex]].push(row.key);
       }
       prevRowWasHeading = isHeadingRow;
     });
+
+    // We also want to store some of the Period keys
+    state.dimension.keys.Period.Previous.Quarter = payload.data.avgColumns[0].key;
+    state.dimension.keys.Period.Previous.Month = payload.data.avgColumns[1].key;
+
     console.log(`STORE: Stored dimension keys for ${payload.key}`);
   } catch (e) {
     console.log(`STORE: Error storing dimension keys for ${payload.key}.`, e);

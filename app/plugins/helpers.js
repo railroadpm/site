@@ -7,10 +7,11 @@ import numeral from 'numeral';
 const helpers = {
   /**
    * Assuming "value" is not null or an empty string, return it formatted with thousands separators
+   * and, if applicable, a single digit after the decimal point
    * @param {number} value
    */
   formatNumber(value) {
-    return value === null ? '' : value === '' ? '' : numeral(value).format('0,0[.]0');
+    return value === null ? '-' : value === '' ? '' : numeral(value).format('0,0[.]0');
   },
 
   /**
@@ -77,10 +78,14 @@ const helpers = {
       materialColor: 'red lighten-2',
       textColor: 'red--text'
     }
-  ]
+  ],
+
+  regex: {
+    htmlTagsAndSpaces: /&nbsp;|<\/?[\w\s="/.':;#-\/\?]+>/gi
+  }
 };
 
-// Install helpers as a Vue plugin
+// Install "helpers" as a Vue plugin
 const helpersPlugin = {
   install() {
     Vue.helpers = helpers;

@@ -6,14 +6,20 @@
       <transition name="fade" appear>
         <div v-show="dataLoaded">
           <h2 v-html="heading" />
-          <br>
-          <h4 class="grey--text text--darken-1">
-            Click (tap) to select the railroad(s) to be included in the graph, and then click "Show Graph". Click the heading to toggle all railroads
-          </h4>
-          <br>
+          <v-container class="rr-graph-help">
+            <v-layout>
+              <v-flex xs1>
+                <v-icon color="orange lighten-1">help_outline</v-icon>
+              </v-flex>
+              <v-flex xs11>
+                <h4 class="grey--text text--darken-1">
+                  Click (tap) to select the railroad(s) to be included in the graph, and then click "Show Graph". Click the heading to toggle all railroads.
+                </h4>
+              </v-flex>
+            </v-layout>
+          </v-container>
+
           <railroads-table :dimension-key="dimensionKey" />
-          <br>
-          <v-btn class="rr-show-graph-btn" outline color="orange lighten-1" dark @click="showMsg('Railroad Graphs Coming Soon!')">Show Graph</v-btn>
         </div>
       </transition>
     </v-flex>
@@ -32,9 +38,9 @@ export default {
 
   data: () => ({}),
 
-  created() {
+  async created() {
     console.log(`PAGE: Created graphs page for ${this.dimensionKey}`);
-    this.loadRailroadProfileData();
+    await this.loadRailroadProfileData();
   },
 
   mounted() {
@@ -75,7 +81,11 @@ export default {
   top: 35vh;
 }
 
-.rr-show-graph-btn {
-  margin-left: 0;
+.rr-graph-help {
+  margin-left: -15px;
+}
+
+.rr-graph-help .xs1 {
+  max-width: 30px;
 }
 </style>

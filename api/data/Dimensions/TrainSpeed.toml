@@ -53,3 +53,4 @@ Key = 'ByTrainType'
   ShortName = 'All Trains'
   LongName = 'All trains'
   Description = ''
+  isReportedAggregate = true

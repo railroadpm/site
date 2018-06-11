@@ -24,12 +24,12 @@
           </td>
 
           <!-- Then render a cell for each average column -->
-          <td v-if="reportType === 'Current'" v-for="(col, i) in avgKeys" :key="`avg${i}`">
+          <td v-if="reportType === 'Current'" v-for="(col, i) in avgColumns" :key="`avg${i}`">
             <span>{{ $helpers.formatNumber(row.item[col]) }}</span>
           </td>
 
           <!-- Finally render a cell for each week + measure (week is all numeric: YYYYMMDD) in ascending order by week -->
-          <td v-for="(col, i) in measureKeys" :key="`week${i}`">
+          <td v-for="(col, i) in measureKeys" :key="`wk${i}`">
             <span>{{ $helpers.formatNumber(row.item[col]) }}</span>
           </td>
         </tr>
@@ -68,7 +68,7 @@ export default {
     rows: [],
     columns: [],
     headers: [],
-    avgKeys: ['1Q18', 'Apr 2018'], // Array of keys for lookup of averages column data in rows
+    avgColumns: [], // Array of keys for lookup of averages data in rows
     measureKeys: [], // Array of keys for lookup of measure data in rows, by week
     selected: [],
 
@@ -83,7 +83,7 @@ export default {
   watch: {
     historicalPage: function(newPage, oldPage) {
       if (newPage != oldPage) {
-        this.getHeadersAndMeasureKeysFromRawData(newPage);
+        this.getHeadersAndKeysFromRawData(newPage);
       }
     }
   },
@@ -119,7 +119,7 @@ export default {
         this.headers = [];
         this.rows = [];
         this.measureKeys = [];
-        this.getHeadersAndMeasureKeysFromRawData(this.historicalPage);
+        this.getHeadersAndKeysFromRawData(this.historicalPage);
         this.rows = this.$store.state.railroadReportData[this.railroad][this.reportType].rows;
       } catch (e) {
         this.headers = [];
@@ -128,11 +128,12 @@ export default {
       }
     },
 
-    getHeadersAndMeasureKeysFromRawData(pageNum) {
-      let renderedCols = [];
+    getHeadersAndKeysFromRawData(pageNum) {
+      let renderedWeekCols = [];
 
       if (this.reportType === 'Current') {
-        renderedCols = this.columns;
+        renderedWeekCols = this.columns;
+        this.avgColumns = [this.$store.getters.periodPreviousQuarter, this.$store.getters.periodPreviousMonth];
       } else {
         // Note that in this case we need to manually add the "rowLabel" col first...
         this.headers = [];
@@ -140,11 +141,11 @@ export default {
         this.headers.push({ text: '', value: 'rowLabel', align: 'left', sortable: false });
 
         // ...and then take the appropriate slice of the raw columns array
-        renderedCols = this.columns.slice((pageNum - 1) * this.historicalPageSize + 1, (pageNum - 1) * this.historicalPageSize + this.historicalPageSize + 1);
+        renderedWeekCols = this.columns.slice((pageNum - 1) * this.historicalPageSize + 1, (pageNum - 1) * this.historicalPageSize + this.historicalPageSize + 1);
       }
 
       if (this.reportType === 'Historical' || this.headers.length === 0) {
-        renderedCols.forEach(elt => {
+        renderedWeekCols.forEach(elt => {
           this.headers.push({ text: elt.text, value: elt.key, align: 'left', sortable: false });
           if (!isNaN(elt.key)) this.measureKeys.push(elt.key);
         });

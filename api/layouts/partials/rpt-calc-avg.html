@@ -1,0 +1,43 @@
+<!--
+  For the given average key, measure key, and array of participant reports, calculate the average
+  and store it in the provided Scratch area under the appropriate key
+
+  Parameters
+    $.ap_key        Average period key (e.g., "1Q18" or "Apr 2018")
+    $.ap_index      Zero-based index of the average period ([0] = Quarter, [1] = Month)
+    $.data          Site Data
+    $.m_key         Measure key (e.g., "CarsOnLine_ByCarOwner_System")
+    $.m_dp          Measure decimal places (0, 1, etc.) used for formatting final average
+    $.rpts          Array of participant reports for which to calculate averages
+    $.scratch       Scratchpad ref
+-->
+{{- $calculated_base_key := printf "%s%s%s" $.m_key "_" $.ap_key -}}
+{{- $total_key := printf "%s%s" $calculated_base_key "_Total" -}}
+{{- $count_key := printf "%s%s" $calculated_base_key "_Count" -}}
+{{- $avg_key := printf "%s%s" $calculated_base_key "_Avg" -}}
+
+{{- $week_key_for_avg := cond (eq $.ap_index 0) "Qtr" "Month" -}}
+{{- $weeks_all := $.data.Dimensions.Period.Week -}}
+{{- $weeks_publishable := sort (where $weeks_all "DoNotPublish" "ne" true) "Key" "asc" -}}
+{{- $weeks_to_avg := where $weeks_all $week_key_for_avg "eq" $.ap_key -}}
+
+<!-- Initialize total and count to zero -->
+{{- $.scratch.Set $total_key 0 -}}
+{{- $.scratch.Set $count_key 0 -}}
+
+<!-- Iterate over weeks, accumulating total and count -->
+{{- range $week := $weeks_to_avg -}}
+  {{- $.scratch.Add $total_key (index (index $.rpts $week.Key) $.m_key) -}}
+  {{- $.scratch.Add $count_key 1 -}}
+{{- end -}}
+
+<!-- Calculate average and store result in scratch -->
+{{- $numerator := $.scratch.Get $total_key -}}
+{{- $denominator := $.scratch.Get $count_key -}}
+{{- $.scratch.Set $avg_key ((mul (div (float $numerator) (float $denominator)) (float 100)) | lang.NumFmt $.m_dp) -}}
+
+{{/* 
+{{- $.scratch.Set $avg_key (mul (div (float $numerator) (float $denominator)) (float 100)) -}}
+
+{{- $.scratch.Set $avg_key ((mul (div (float $numerator) (float $denominator)) (float 100)) | lang.NumFmt $.m_dp) -}}
+*/}}

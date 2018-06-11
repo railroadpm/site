@@ -9,14 +9,10 @@
 {{- $data := $.Site.Data -}}
 {{- $prpt_key := .Get "railroad" -}}
 {{- $rpt_type := .Get "type" -}}
-
 {{- $weekly_rpt_config := $data.Config.WeeklyReport -}}
 {{- $weeks_count_current := $weekly_rpt_config.Displayed.CountOfWeeks.Current -}}
 {{- $weeks_count_historical := $weekly_rpt_config.Displayed.CountOfWeeks.Historical -}}
-
-{{- $params := (dict "Prpt" $prpt_key "WeeksCountCurrent" $weeks_count_current "WeeksCountHistorical" $weeks_count_historical) -}}
 {{- $prpt := index (where $data.Dimensions.Participant.Railroad "Key" $prpt_key) 0 -}}
-
 {{- $period := $data.Dimensions.Period -}}
 {{- $weeks_all := $period.Week -}}
 {{- $weeks_publishable := sort (where $weeks_all "DoNotPublish" "ne" true) "Key" "asc" -}}

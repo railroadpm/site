@@ -4,7 +4,7 @@
 
   Parameters
     $.prpt            Participant Key
-    $.data            Site Data  
+    $.data            Site Data
     $.scratch         Scratchpad ref
     $.avg_cols        The averages columns to render in the rows, or nil if not applicable
     $.weeks           The Weeks for which to render the rows
@@ -25,13 +25,14 @@
   {{- $.scratch.SetInMap $row_map_key "key" $subheading.Key -}}
   {{- with $subheading.isReportedAggregate -}}{{- $.scratch.SetInMap $row_map_key "isReportedAggregate" . -}}{{- end -}}
 
-  <!-- Iterate over averages (if not nil), adding calculated measure data to the Map -->
-  {{- range $.avg_cols -}}
-    {{- $.scratch.SetInMap $row_map_key .Key "" -}}
-  {{- end -}}
-
   <!-- Construct the full measure data key -->
   {{- $measure_key := printf "%s%s" $measure_key_prefix $subheading.Key -}}
+
+  <!-- Iterate over averages (if not nil), adding calculated measure data to the Map -->
+  {{- range $a_index, $a_map := $.avg_cols -}}
+    {{- partial "rpt-calc-avg" (dict "ap_key" $a_map.Key "ap_index" $a_index "data" $.data "m_key" $measure_key "m_dp" 0 "rpts" $prpt_rpts "scratch" $.scratch) -}}
+    {{- $.scratch.SetInMap $row_map_key .Key "" -}}
+  {{- end -}}
 
   <!-- Iterate over weeks, adding weekly measure data value to the Map -->
   {{- range $.weeks -}}

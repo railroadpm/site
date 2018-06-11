@@ -6,7 +6,7 @@
           <v-btn slot="activator" icon dark color="orange lighten-1" @click.native="$emit('close')">
             <v-icon>close</v-icon>
           </v-btn>
-          <span>Close and Return to Report</span>
+          <span>Close and Return to Report (Esc)</span>
         </v-tooltip>
         <v-toolbar-title>Quick Graph</v-toolbar-title>
       </v-toolbar>

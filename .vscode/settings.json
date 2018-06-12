@@ -13,6 +13,5 @@
   "files.associations": {
     "**/layouts/**/*.html": "gohtml",
     "**/layouts/**/*.json": "gotemplate"
-  },
-  "autorun.build": false
+  }
 }

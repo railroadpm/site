@@ -65,10 +65,6 @@ export default {
   },
 
   methods: {
-    showMsg(msg) {
-      alert(msg);
-    },
-
     ...mapActions(['loadRailroadProfileData'])
   }
 };

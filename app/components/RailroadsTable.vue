@@ -16,10 +16,10 @@
     </v-data-table>
 
     <br>
-    <railroads-graph-actions :selected-railroads="selected" @show-graph="showMsg('Railroad Graphs Coming Soon!')" />
+    <railroads-graph-actions :selected-railroads="selected" @show-graph="railroadsGraphShowPopup = true" />
 
-    <!-- <railroads-graph-popup v-if="railroadsGraphShowPopup" :show="railroadsGraphShowPopup" :rows="selectedRailroads(railroadsGraphDimensionKey)"
-      @close="railroadsGraphShowPopup = false" /> -->
+    <railroads-graph-popup v-if="railroadsGraphShowPopup" :show="railroadsGraphShowPopup" :railroads="selected" :dimension-key="dimensionKey"
+      @close="railroadsGraphShowPopup = false" />
   </div>
 </template>
 
@@ -27,7 +27,7 @@
 import { mapActions } from 'vuex';
 import _ from 'lodash';
 import RailroadsGraphActions from '~/components/RailroadsGraphActions.vue';
-// import RailroadsGraphPopup from '~/components/RailroadsGraphPopup.vue';
+import RailroadsGraphPopup from '~/components/RailroadsGraphPopup.vue';
 
 export default {
   props: {
@@ -38,8 +38,8 @@ export default {
   },
 
   components: {
-    RailroadsGraphActions
-    // RailroadsGraphPopup
+    RailroadsGraphActions,
+    RailroadsGraphPopup
   },
 
   data: () => ({
@@ -89,8 +89,7 @@ export default {
       if (!isHeadingRow) {
         row.selected = !row.selected;
       } else {
-        // The heading row can't be "selected", but clicking on it is a way to toggle
-        // the selection state of *all* railroads
+        // The heading row can't be "selected", but clicking it is a way to toggle the selection state of *all* railroads
         let prevSelected = _.clone(this.selected); // We need to compare the previous selection below
         this.selected = this.rows.filter(rr => !rr.isHeadingRow); // Toggle *on* selection of all railroads
 
@@ -101,20 +100,11 @@ export default {
         }
       }
 
-      // Finally, take this opportunity to proactively fire off an *async* data load action for each
+      // Finally, take this opportunity to proactively fire off an *async* (non-blocking) data load action for each
       // selected railroad, as we'll need that data (if not cached already) to produce the graph
       this.selected.forEach(rr => {
         this.loadRailroadReportDataByKeyAndType({ key: rr.key, type: 'Historical' });
       });
-    },
-
-    showRailroadsGraph(dimensionKey) {
-      this.railroadsGraphDimensionKey = dimensionKey;
-      this.railroadsGraphShowPopup = true;
-    },
-
-    showMsg(msg) {
-      alert(msg);
     },
 
     ...mapActions(['loadRailroadReportDataByKeyAndType'])

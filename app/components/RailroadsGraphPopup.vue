@@ -6,16 +6,16 @@
           <v-btn slot="activator" icon dark color="orange lighten-1" @click.native="$emit('close')">
             <v-icon>close</v-icon>
           </v-btn>
-          <span>Close and Return to Report</span>
+          <span>Close and Return to Railroad Selection Page (Esc)</span>
         </v-tooltip>
         <v-toolbar-title>Railroads Graph</v-toolbar-title>
       </v-toolbar>
-      <div class="graph-popup-body">
-        <div class="graph-popup-headings">
-          <h2>{{ mainHeading }}</h2>
-          <h3 v-html="subHeading"></h3>
+
+      <div class="rr-graph-popup-body">
+        <div class="rr-graph-popup-headings">
+          <h2 v-html="mainHeading"></h2>
         </div>
-        <line-graph v-if="show" css-classes="quick-line-graph" :data="lineGraphData" :options="lineGraphOptions" />
+        <line-graph v-if="show" css-classes="rr-line-graph" :data="lineGraphData" :options="lineGraphOptions" />
       </div>
     </v-card>
   </v-dialog>
@@ -31,21 +31,33 @@ export default {
       type: Boolean,
       required: true
     },
-    railroad: {
-      type: String,
+    railroads: {
+      type: Array,
       required: true
     },
+    // AKA the "Segment" key here
     dimensionKey: {
       type: String,
-      required: true
-    },
-    rows: {
-      type: Array,
       required: true
     }
   },
 
-  data: () => ({}),
+  data: () => ({
+    segmentMetadata: {
+      CarsOnLine: {
+        heading: '<span class="blue--text text--darken-1">Cars On Line<span>',
+        graphMeasureKey: 'ByCarOwnerTotal'
+      },
+      TrainSpeed: {
+        heading: '<span class="green--text text--darken-1">Train Speed (Miles per Hour)<span>',
+        graphMeasureKey: 'AllTrains'
+      },
+      TerminalDwell: {
+        heading: '<span class="red--text text--darken-1">Terminal Dwell (Hours)<span>',
+        graphMeasureKey: 'EntireRailroad'
+      }
+    }
+  }),
 
   mounted() {
     // ESC to tell outer page/component to close the popup
@@ -57,23 +69,27 @@ export default {
   },
 
   computed: {
-    railroadProfile() {
-      return this.$store.getters.railroadProfileByKey(this.railroad);
-    },
     mainHeading() {
-      return this.railroadProfile.ShortName;
+      return this.segmentMetadata[this.dimensionKey].heading;
     },
-    subHeading() {
-      switch (this.dimensionKey) {
-        case 'CarsOnLine':
-          return '<span class="blue--text text--darken-1">Cars On Line<span>';
-        case 'TrainSpeed':
-          return '<span class="green--text text--darken-1">Train Speed (Miles per Hour)<span>';
-        case 'TerminalDwell':
-          return '<span class="red--text text--darken-1">Terminal Dwell (Hours)<span>';
-        default:
-          return '';
-      }
+    graphMeasureKey() {
+      return this.segmentMetadata[this.dimensionKey].graphMeasureKey;
+    },
+    // True when the railroad report data has been loaded via API for all railroads passed in props, false otherwise
+    dataLoaded() {
+      return !_(this.railroads)
+        .map(rr => this.$store.getters.railroadReportRowCountByKeyAndType(rr.key, 'Historical'))
+        .some(count => count < 1);
+    },
+    rows() {
+      if (!this.dataLoaded) return [];
+
+      return _(this.railroads)
+        .map(rr => ({
+          ...this.$store.getters.railroadHistoricalReportRowByKeys(rr.key, this.graphMeasureKey),
+          ...{ rowLabel: rr.rowLabel } // Label the data by the Railroad instead of the measure
+        }))
+        .value();
     },
     xAxisLabels() {
       // All of the rows have the same "xAxisLabels", so just grab from rows[0]
@@ -131,6 +147,9 @@ export default {
   },
 
   methods: {
+    railroadProfileByKey(key) {
+      return this.$store.getters.railroadProfileByKey(key);
+    },
     rowData(index) {
       return _(this.rows[index])
         .pickBy((val, key) => !isNaN(key))
@@ -146,15 +165,15 @@ export default {
   overflow-y: hidden !important;
 } */
 
-.graph-popup-body {
+.rr-graph-popup-body {
   margin: 10px;
 }
 
-.graph-popup-headings {
+.rr-graph-popup-headings {
   margin: 15px 0 -5px 20px;
 }
 
-.quick-line-graph {
+.rr-line-graph {
   margin: 30px 5px 0 50px;
   height: 80vh !important;
   width: 95% !important;

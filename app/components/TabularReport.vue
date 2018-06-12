@@ -1,12 +1,15 @@
 <template>
   <div v-show="dataLoaded">
-    <div v-show="reportType === 'Historical'" class="text-xs-center rpt-pagination-ctl">
-      <v-pagination :circle="true" :length="numPages" :total-visible="numPages" v-model="historicalPage" color="blue darken-4"></v-pagination>
-    </div>
-
     <v-data-table class="rpt-table" v-model="selected" :headers="headers" :items="rows" item-key="key" hide-actions>
-
       <template slot="headers" slot-scope="cols">
+        <tr v-if="reportType === 'Historical'" class="rpt-col-pagination-row">
+          <th>&nbsp;</th>
+          <th class="rpt-col-pagination" :colspan="cols.headers.length - 1">
+            <div class="text-xs-center rpt-pagination-ctl">
+              <v-pagination :circle="true" :length="numPages" :total-visible="numPages" v-model="historicalPage" color="blue darken-4"></v-pagination>
+            </div>
+          </th>
+        </tr>
         <tr class="rpt-col-groups-row">
           <th>&nbsp;</th>
           <template v-if="reportType === 'Current'">
@@ -290,6 +293,7 @@ export default {
 }
 
 /* Table header borders */
+.rpt-table table.datatable.table thead tr.rpt-col-pagination-row,
 .rpt-table table.datatable.table thead tr.rpt-col-groups-row,
 .rpt-table table.datatable.table thead tr th.rpt-col-dimensions {
   border: none;
@@ -299,6 +303,10 @@ export default {
 .rpt-table table.datatable.table thead tr th.rpt-col-groups div,
 .rpt-table table.datatable.table thead tr.rpt-col-dimensions-row {
   border-bottom: 1px solid #e0e0e0; /* grey lighten-2 */
+}
+
+.rpt-table table.datatable.table thead tr th.rpt-col-pagination div {
+  margin: -5px 0 -13px 0;
 }
 
 .rpt-table table.datatable.table thead tr th.rpt-col-groups div {

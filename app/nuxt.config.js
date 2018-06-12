@@ -79,15 +79,15 @@ module.exports = {
   // Call out dynamic routes for rendering during "nuxt generate"
   generate: {
     routes: [
-      '/reports/BNSF',
-      '/reports/CN',
-      '/reports/KCS',
-      '/reports/NS',
-      '/reports/UP',
-      '/reports/AOR',
-      '/graphs/CarsOnLine',
-      '/graphs/TerminalDwell',
-      '/graphs/TrainSpeed'
+      '/reports/BNSF/',
+      '/reports/CN/',
+      '/reports/KCS/',
+      '/reports/NS/',
+      '/reports/UP/',
+      '/reports/AOR/',
+      '/graphs/CarsOnLine/',
+      '/graphs/TerminalDwell/',
+      '/graphs/TrainSpeed/'
     ]
   },
 

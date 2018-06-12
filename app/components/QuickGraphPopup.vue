@@ -10,8 +10,9 @@
         </v-tooltip>
         <v-toolbar-title>Quick Graph</v-toolbar-title>
       </v-toolbar>
-      <div class="graph-popup-body">
-        <div class="graph-popup-headings">
+
+      <div class="quick-graph-popup-body">
+        <div class="quick-graph-popup-headings">
           <h2>{{ mainHeading }}</h2>
           <h3 v-html="subHeading"></h3>
         </div>
@@ -140,11 +141,11 @@ export default {
   overflow-y: hidden !important;
 } */
 
-.graph-popup-body {
+.quick-graph-popup-body {
   margin: 10px;
 }
 
-.graph-popup-headings {
+.quick-graph-popup-headings {
   margin: 15px 0 -5px 20px;
 }
 

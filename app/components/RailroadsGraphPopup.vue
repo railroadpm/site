@@ -6,7 +6,7 @@
           <v-btn slot="activator" icon dark color="orange lighten-1" @click.native="$emit('close')">
             <v-icon>close</v-icon>
           </v-btn>
-          <span>Close and Return to Railroad Selection Page (Esc)</span>
+          <span>Close and Return to Railroads List (Esc)</span>
         </v-tooltip>
         <v-toolbar-title>Railroads Graph</v-toolbar-title>
       </v-toolbar>
@@ -147,9 +147,6 @@ export default {
   },
 
   methods: {
-    railroadProfileByKey(key) {
-      return this.$store.getters.railroadProfileByKey(key);
-    },
     rowData(index) {
       return _(this.rows[index])
         .pickBy((val, key) => !isNaN(key))

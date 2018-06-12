@@ -2,10 +2,12 @@
   <v-app light>
     <v-navigation-drawer fixed app dark clipped v-model="drawer" mobile-break-point="740" width="230" class="blue darken-1">
       <v-list>
-        <!-- Items *without* sub items use v-list-tile -->
         <template v-for="item in drawerItems">
+          <!-- Items *without* sub items use v-list-tile -->
           <template v-if="!item.subItems">
-            <v-list-tile router :to="item.to" :key="item.title" exact>
+            <!-- Note that items with a "target" are treated as traditional hrefs to outside content -->
+            <v-list-tile :nuxt="!item.target" :to="item.target ? undefined : item.to" :href="item.target ? item.to : undefined" :key="item.title"
+              :target="item.target" exact>
               <v-list-tile-action>
                 <v-icon v-html="item.icon"></v-icon>
               </v-list-tile-action>
@@ -14,6 +16,7 @@
               </v-list-tile-content>
             </v-list-tile>
           </template>
+
           <!-- Items *with* sub items use v-list-group -->
           <template v-else>
             <v-list-group :prepend-icon="item.icon" :key="item.title" value="true" no-action>
@@ -22,7 +25,7 @@
                   <v-list-tile-title>{{ item.title }}</v-list-tile-title>
                 </v-list-tile-content>
               </v-list-tile>
-              <v-list-tile router :to="subItem.to" :key="subItem.title" v-for="subItem in item.subItems" exact>
+              <v-list-tile nuxt :to="subItem.to" :key="subItem.title" v-for="subItem in item.subItems" exact>
                 <v-list-tile-content>
                   <v-list-tile-title>&nbsp;&nbsp;{{ subItem.title }}</v-list-tile-title>
                 </v-list-tile-content>
@@ -35,7 +38,7 @@
 
     <v-toolbar fixed app dark clipped-left class="blue darken-3">
       <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title v-text="title"></v-toolbar-title>
+      <v-toolbar-title v-text="title" />
     </v-toolbar>
 
     <v-content>
@@ -56,9 +59,26 @@ export default {
   data() {
     return {
       title: 'RAILROADPM.ORG',
-      drawer: null, // null = Vuetify automatically "do the right thing" based on mobile, etc.
-      fixedFooter: true,
-      drawerItems: [
+      drawer: null, // null = Vuetify automatically "do the right thing" to show/hide drawer based on mobile, etc.
+      fixedFooter: true
+    };
+  },
+
+  created() {
+    console.log('LAYOUT: Created "default" layout');
+  },
+
+  mounted() {
+    console.log('LAYOUT: Mounted "default" layout');
+  },
+
+  computed: {
+    selectedRailroadKey() {
+      return this.$route.params.railroad ? this.$route.params.railroad.toUpperCase() : null;
+    },
+
+    drawerItems() {
+      let items = [
         {
           icon: 'home',
           title: 'Welcome',
@@ -117,8 +137,19 @@ export default {
             }
           ]
         }
-      ]
-    };
+      ];
+
+      if (this.selectedRailroadKey && this.selectedRailroadKey != 'AOR') {
+        items.push({
+          icon: 'train',
+          title: 'For More Info',
+          to: this.$store.getters.railroadProfileByKey(this.selectedRailroadKey).Website,
+          target: '_blank'
+        });
+      }
+
+      return items;
+    }
   }
 };
 </script>

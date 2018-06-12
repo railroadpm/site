@@ -4,13 +4,13 @@
       <v-card>
         <v-card-title class="headline">General Definitions For Measurements</v-card-title>
         <v-card-text>
-
           <p>
             <b>Cars On Line</b>
           </p>
           <p>
-            Cars On Line is the average of the daily on-line inventory of freight cars. Articulated cars are counted as a single unit. Cars on private tracks (e.g.,
-            at a customer's facility) are counted on the last railroad on which they were located. Maintenance of way cars are excluded.
+            Cars On Line is the average of the daily on-line inventory of freight cars. Articulated cars are counted as a single unit. Cars on
+            private tracks (e.g., at a customer's facility) are counted on the last railroad on which they were located. Maintenance
+            of way cars are excluded.
           </p>
           <p>Cars on Line figures are reported by car type for the following car types: </p>
 
@@ -223,9 +223,9 @@
             <b>Train Speed</b><br>
           </p>
           <p>
-            Train Speed measures the line-haul movement between terminals. The average speed is calculated by dividing train-miles by total hours operated, excluding
-            yard and local trains, passenger trains, maintenance of way trains, and terminal time. System-wide average train speeds are given for the following
-            train types:
+            Train Speed measures the line-haul movement between terminals. The average speed is calculated by dividing train-miles by total hours
+            operated, excluding yard and local trains, passenger trains, maintenance of way trains, and terminal time. System-wide
+            average train speeds are given for the following train types:
           </p>
 
           <ul style="margin-left: 30px">
@@ -247,10 +247,10 @@
             <b>Terminal Dwell (Hours)</b><br>
           </p>
           <p>
-            Terminal Dwell is the average time a car resides at the specified terminal location expressed in hours. The measurement begins with a customer release,
-            received interchange, or train arrival event and ends with a customer placement (actual or constructive), delivered or offered in interchange,
-            or train departure event. Cars that move through a terminal on a run-through train are excluded, as are stored, bad ordered, and maintenance
-            of way cars.
+            Terminal Dwell is the average time a car resides at the specified terminal location expressed in hours. The measurement begins with
+            a customer release, received interchange, or train arrival event and ends with a customer placement (actual or constructive),
+            delivered or offered in interchange, or train departure event. Cars that move through a terminal on a run-through train
+            are excluded, as are stored, bad ordered, and maintenance of way cars.
           </p>
 
         </v-card-text>

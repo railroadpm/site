@@ -1,0 +1,11 @@
+# Rewrite paths from lowercase to correct uppercase where significant for keys
+
+/reports/bnsf               /reports/BNSF             200
+/reports/cn                 /reports/CN               200
+/reports/kcs                /reports/KCS              200
+/reports/ns                 /reports/NS               200
+/reports/up                 /reports/UP               200
+/reports/aor                /reports/AOR              200
+/graphs/carsonline          /graphs/CarsOnLine        200
+/graphs/terminaldwell       /graphs/TerminalDwell     200
+/graphs/trainspeed          /graphs/TrainSpeed        200

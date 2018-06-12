@@ -70,27 +70,27 @@ export default {
           subItems: [
             {
               title: 'BNSF',
-              to: '/reports/BNSF'
+              to: '/reports/BNSF/'
             },
             {
               title: 'CN',
-              to: '/reports/CN'
+              to: '/reports/CN/'
             },
             {
               title: 'KCS',
-              to: '/reports/KCS'
+              to: '/reports/KCS/'
             },
             {
               title: 'NS',
-              to: '/reports/NS'
+              to: '/reports/NS/'
             },
             {
               title: 'UP',
-              to: '/reports/UP'
+              to: '/reports/UP/'
             },
             {
               title: 'All Other Railroads',
-              to: '/reports/AOR'
+              to: '/reports/AOR/'
             }
           ]
         },
@@ -105,15 +105,15 @@ export default {
           subItems: [
             {
               title: 'Cars on Line',
-              to: '/graphs/CarsOnLine'
+              to: '/graphs/CarsOnLine/'
             },
             {
               title: 'Terminal Dwell',
-              to: '/graphs/TerminalDwell'
+              to: '/graphs/TerminalDwell/'
             },
             {
               title: 'Train Speed',
-              to: '/graphs/TrainSpeed'
+              to: '/graphs/TrainSpeed/'
             }
           ]
         }

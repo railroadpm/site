@@ -4,11 +4,20 @@ _Please refer to the [LICENSE](LICENSE) file for important Copyright information
 
 <hr>
 
-This README has sections that are specific to each of the potential roles of the person reading it. So depending on your interests in this site, simply locate the appropriate section(s) below for a targeted introduction along with links to further information.
+This README has sections for each of the potential roles of the person reading it. So depending on your interests in this site, simply locate the appropriate section(s) below for a targeted introduction along with links to further information.
 
-## Everyone
+## For Everyone
 
-This repo contains and source code and data for a [Data Collection System](https://en.wikipedia.org/wiki/Data_collection_system), specifically a [Performance Measurement System](https://en.wikipedia.org/wiki/Data_collection_system#Types).
+What's here? This repo contains the source code and data for a [Data Collection System](https://en.wikipedia.org/wiki/Data_collection_system), specifically a [Performance Measurement (PM) System](https://en.wikipedia.org/wiki/Data_collection_system#Types).
+
+It's very common for nonprofits and industry groups to [develop and deploy PM systems](https://en.wikipedia.org/wiki/Performance_measurement#In_the_nonprofit_and_voluntary_sector) to track and publish the success of their mission and activities, and to promote goodwill, accountability, process improvements, and better outcomes.
+
+This project is about the U.S. freight rail industry. But even if that industry doesn't interest you, here are some of the key "selling points" and characteristics of this solution from a technical standpoint that should help you to decide if this codebase might work well for your use-case:
+
+- Open, MIT-licensed source code
+- Developed using a modern technology stack with plenty of software industry activity and interest as of 2018
+- Designed for **zero** operational cost in terms of infrastructure (deploy and operate on free cloud services)
+- Focused on collection and publication of purely **quantitative** measures (numbers). In other words, the complete opposite of something like SurveyMoney, which focuses largely on surveys with _qualitative_ measures.
 
 ## Web Developer
 
@@ -38,4 +47,4 @@ The app should now be running on your local machine here: [http://localhost:3000
 
 ### Architecture
 
-TODO
+Coming Soon!

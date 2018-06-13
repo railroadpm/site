@@ -5,20 +5,21 @@
         <v-card-title class="headline">Welcome to the Railroad Performance Measures Website</v-card-title>
         <v-card-text>
           <blockquote class="blockquote mb-4">
-            Here, five major North American freight railroads have voluntarily reported three weekly performance measures — Cars On Line, Train Speed, and Terminal
-            Dwell — since 1999, in a commitment to improve communications with their customers.
+            Here, five major North American freight railroads have voluntarily reported three weekly performance measures — Cars On Line, Train
+            Speed, and Terminal Dwell — since 1999, in a commitment to improve communications with their customers.
           </blockquote>
 
           <p>
-            All five railroads use the same definitions to calculate their performance data, ensuring a high degree of consistency of the measurements. However, these
-            measures are most useful for examining trends and relative changes, and least useful as absolutes.
+            All five railroads use the same definitions to calculate their performance data, ensuring a high degree of consistency of the measurements.
+            However, these measures are most useful for examining trends and relative changes, and least useful as absolutes.
           </p>
 
           <p>
-            The level of one railroad’s performance relative to another’s may differ sharply because each railroad is unique. Differences between railroads include
-            terrain, physical routes and network design, traffic mix and volume, the extent of passenger operations, and operational practices. External
-            factors such as weather and port operations can also cause variations between railroads and over time. In addition, individual differences
-            in the collection and reporting of operational data may affect the absolute level of the measures on each road to some degree.
+            The level of one railroad’s performance relative to another’s may differ sharply because each railroad is unique. Differences between
+            railroads include terrain, physical routes and network design, traffic mix and volume, the extent of passenger operations,
+            and operational practices. External factors such as weather and port operations can also cause variations between railroads
+            and over time. In addition, individual differences in the collection and reporting of operational data may affect the absolute
+            level of the measures on each road to some degree.
           </p>
 
           <p>
@@ -27,8 +28,8 @@
           </p>
 
           <p>
-            Effective August 23, 2017, CSX is no longer reporting its metrics to AAR. Going forward, CSX will report performance metrics on its website using its own
-            methodology.
+            Effective August 23, 2017, CSX is no longer reporting its metrics to AAR. Going forward, CSX will report performance metrics on its
+            website using its own methodology.
           </p>
 
           <hr class="my-3">

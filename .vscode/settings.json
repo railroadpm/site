@@ -14,5 +14,6 @@
     "**/layouts/**/*.html": "gohtml",
     "**/layouts/**/*.json": "gotemplate"
   },
-  "autorun.build": false
+  "autorun.build": false,
+  "typescript.experimental.syntaxFolding": false
 }

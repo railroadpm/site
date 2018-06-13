@@ -13,7 +13,9 @@
   "author": "Copyright (C) 2018, Association of American Railroads",
   "license": "UNLICENSED",
   "dependencies": {
-    "json2csv": "^4.1.3"
+    "json2csv": "^4.1.3",
+    "lodash": "^4.17.10",
+    "luxon": "^1.2.1"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.3",

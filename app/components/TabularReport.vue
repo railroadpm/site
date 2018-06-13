@@ -11,7 +11,9 @@
           </th>
         </tr>
         <tr class="rpt-col-groups-row">
-          <th>&nbsp;</th>
+          <th>
+            <v-btn class="rpt-csv-btn" small outline color="grey lighten-1" dark :href="csvUrl">CSV Download</v-btn>
+          </th>
           <template v-if="reportType === 'Current'">
             <th class="rpt-col-groups rpt-col-group-avg" :colspan="avgColumns.length">
               <div>Historical Average</div>
@@ -28,10 +30,14 @@
         </tr>
         <tr class="rpt-col-dimensions-row">
           <th v-for="col in cols.headers" :key="col.value" :class="`column text-xs-${col.align} rpt-col-dimensions`">
-            <!-- We render the "Quick Graph" component in the "rowLabel" header cell -->
-            <quick-graph-menu v-if="col.value === 'rowLabel'" class="rpt-quick-graph-menu" :railroad="railroad" :selected-measures="selected" @remove-all="selected = []"
-              @show-graph="showQuickGraph" />
-            <span>{{ col.text }}</span>
+            <!-- We render the "Quick Graph" component and CSV Download btn in the "rowLabel" header cell -->
+            <template v-if="col.value === 'rowLabel'">
+              <quick-graph-menu class="rpt-quick-graph-menu" :railroad="railroad" :selected-measures="selected" @remove-all="selected = []" @show-graph="showQuickGraph"
+              />
+            </template>
+            <template v-else>
+              <span>{{ col.text }}</span>
+            </template>
           </th>
         </tr>
       </template>
@@ -129,6 +135,10 @@ export default {
     // True when the railroad report data has been loaded via API, false otherwise
     dataLoaded() {
       return this.$store.state.railroadReportData[this.railroad][this.reportType].rows.length > 0;
+    },
+
+    csvUrl() {
+      return this.$store.getters.railroadCsvDataUrlByKeyAndType(this.railroad, this.reportType);
     }
   },
 
@@ -342,5 +352,15 @@ export default {
 
 .rpt-quick-graph-menu {
   margin-left: -10px;
+}
+
+.rpt-quick-graph-menu button {
+  width: 130px;
+}
+
+.rpt-csv-btn {
+  float: left;
+  margin: 5px 0 0 -2px;
+  width: 130px;
 }
 </style>

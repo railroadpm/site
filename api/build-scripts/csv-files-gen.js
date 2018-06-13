@@ -1,4 +1,5 @@
-// csv-files.js: Generate CSV files from JSON data rows that are built by Hugo
+// csv-files-gen.js: Generate CSV files from JSON data rows that are built by Hugo
+
 const path = require('path');
 const fs = require('fs');
 const scriptName = path.basename(__filename);
@@ -9,10 +10,10 @@ const _ = require('lodash');
 const { DateTime } = require('luxon');
 
 console.log(`\n\nRunning build script: ${scriptName}`);
-console.log(`Railroads count = ${railroads.length}`);
+// console.log(`Railroads count = ${railroads.length}`);
 
-// Iterate over both report periods and over all railroads, deleting any existing CSV files
-// and generating the new ones
+// Iterate over both of the report period segments and over all railroads,
+// deleting any existing CSV files and generating the new ones
 ['current', 'all'].forEach(period => {
   railroads.forEach(rr => {
     const requireBasePath = `../dist/reports/${rr.Key.toLowerCase()}/${period}/get`;
@@ -34,7 +35,7 @@ console.log(`Railroads count = ${railroads.length}`);
       // console.log(`Found ${reportRows.length} report rows to convert for ${rr.Key} ${period} report`);
 
       // Transform raw rows into final form for consumption
-      let finalReportRows = humanizeReport(rawReportRows);
+      let finalReportRows = humanizeReport(rawReportRows, period);
 
       // Convert to CSV
       let csv = json2csv(finalReportRows);
@@ -57,8 +58,10 @@ console.log(`Railroads count = ${railroads.length}`);
   });
 });
 
+// Main flow of execution for script ends here
 process.exit(0);
 
+// region Helper Functions
 function csvSubtitleFromPeriod(period) {
   switch (period) {
     case 'current':
@@ -70,14 +73,15 @@ function csvSubtitleFromPeriod(period) {
   }
 }
 
-function humanizeReport(rows) {
+function humanizeReport(rows, period) {
+  // TODO: Use "period" param to conditionally keep "Historic Averages" columns in final result for "Current" period
   return _(rows)
     .map(row => _.pickBy(row, (val, key) => !isNaN(key) || key === 'rowLabel')) // Only rowLabel and week columns needed
     .map(row => _.mapKeys(row, (val, key) => (isNaN(key) ? '10000001' : key))) // rowLabel column temporary rename for sorting 1st
     .map(row =>
       _(row)
         .toPairs()
-        .sortBy(0)
+        .sortBy(0) // Now we can simply sort by each array element 0, which was the object key
         .fromPairs()
         .value()
     )
@@ -89,3 +93,4 @@ function humanizeReport(rows) {
     )
     .value();
 }
+// endregion

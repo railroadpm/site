@@ -22,10 +22,10 @@
     "lodash": "^4.17.10",
     "luxon": "^1.2.1",
     "numeral": "^2.0.6",
-    "nuxt": "^1.4.0",
+    "nuxt": "^1.4.1",
     "vue-chartjs": "^3.3.1",
     "vue-markdown": "^2.2.4",
-    "vuetify": "^1.0.18"
+    "vuetify": "^1.0.19"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.3",
@@ -34,8 +34,8 @@
     "eslint-loader": "^2.0.0",
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-vue": "^4.5.0",
-    "prettier": "^1.13.5",
     "js-beautify": "^1.7.5",
+    "prettier": "^1.13.5",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
     "uglifyjs-webpack-plugin": "^1.2.5",

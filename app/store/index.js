@@ -110,6 +110,7 @@ export const getters = {
   railroadReportRowCountByKeyAndType: state => (key, type) => state.railroadReportData[key][type].rows.length,
   railroadHistoricalReportRowByKeys: state => (railroadKey, measureKey) =>
     state.railroadReportData[railroadKey]['Historical'].rows.filter(row => row.key === measureKey)[0] || {},
+  railroadCsvDataUrlByKeyAndType: () => (key, type) => `${app.API_HOST}/reports/${key.toLowerCase()}/${type === 'Current' ? 'current' : 'all'}${app.CSV_GET_SUFFIX}`,
   // endregion
 
   // region Dimension Data Getters

@@ -12,6 +12,7 @@
         </tr>
         <tr class="rpt-col-groups-row">
           <th>
+            <!-- We render the CSV Download btn in the upper "rowLabel" header cell -->
             <v-btn class="rpt-csv-btn" small outline color="grey lighten-1" dark :href="csvUrl">CSV Download</v-btn>
           </th>
           <template v-if="reportType === 'Current'">
@@ -30,7 +31,7 @@
         </tr>
         <tr class="rpt-col-dimensions-row">
           <th v-for="col in cols.headers" :key="col.value" :class="`column text-xs-${col.align} rpt-col-dimensions`">
-            <!-- We render the "Quick Graph" component and CSV Download btn in the "rowLabel" header cell -->
+            <!-- We render the "Quick Graph" component in the lower "rowLabel" header cell -->
             <template v-if="col.value === 'rowLabel'">
               <quick-graph-menu class="rpt-quick-graph-menu" :railroad="railroad" :selected-measures="selected" @remove-all="selected = []" @show-graph="showQuickGraph"
               />

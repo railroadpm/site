@@ -17,7 +17,7 @@ This project is about the U.S. freight rail industry. But even if that industry 
 - Open, MIT-licensed source code
 - Developed using a modern technology stack with plenty of software industry activity and support as of 2018
 - Designed for **zero** operational cost in terms of infrastructure (deploy and operate on free cloud services)
-- Focused on collection and publication of purely **quantitative** measures (numbers). In other words, the complete opposite of something like SurveyMoney, which focuses largely on surveys with _qualitative_ measures.
+- Focused exclusively on the collection and publication of **quantitative** measures (numbers). In other words, this is the complete opposite of something like SurveyMoney, which focuses largely on surveys with _qualitative_ measures.
 
 ## Web Developer
 
@@ -54,7 +54,7 @@ code .
 
 And finally in VSCode, from the `Tasks` menu select `Run Task...` and launch the `all:dev` task. This will start the local Nuxt server for the front-end and the Hugo server for the API back-end.
 
-The app should now be running on your local machine here: [http://localhost:3000](http://localhost:3000). and the API will be running locally on port 1313.
+The app should now be running on your local machine here: [http://localhost:3000](http://localhost:3000). And the API will be running locally on port 1313.
 
 ### Browser Setup
 

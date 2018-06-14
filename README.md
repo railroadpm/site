@@ -8,7 +8,7 @@ This README has sections for each of the potential roles of the person reading i
 
 ## For Everyone
 
-What's here? This repo contains the source code and data for a [Data Collection System](https://en.wikipedia.org/wiki/Data_collection_system), specifically a [Performance Measurement (PM) System](https://en.wikipedia.org/wiki/Data_collection_system#Types).
+What's here? This repo contains the source code and data for a [Data Collection System](https://en.wikipedia.org/wiki/Data_collection_system), specifically a [Performance Measurement (PM) System](https://en.wikipedia.org/wiki/Data_collection_system#Types). What distinguishes this PM implementation is the fact that [it is Git-based](https://headlesscms.org/about/).
 
 It's very common for nonprofits and industry groups to [develop and deploy PM systems](https://en.wikipedia.org/wiki/Performance_measurement#In_the_nonprofit_and_voluntary_sector) to track and publish the success of their mission and activities, and to promote goodwill, accountability, process improvements, and better outcomes.
 
@@ -21,7 +21,7 @@ This project is about the U.S. freight rail industry. But even if that industry 
 
 ## Web Developer
 
-Thanks for taking a detailed look at this Web App developed with Vue.js, Nuxt, and Vuetify!
+Thanks for taking a detailed look at this Web App developed with [Vue.js](https://vuejs.org/), [Nuxt](https://nuxtjs.org/), and [Vuetify](https://vuetifyjs.com/en/)!
 
 Please note that this Web App is developed using Visual Studio Code (VSCode) on Windows. The NPM scripts have only been tested in the Windows environment.
 

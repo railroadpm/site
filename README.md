@@ -23,7 +23,7 @@ This project is about the U.S. freight rail industry. But even if that industry 
 
 Thanks for taking a detailed look at this Web App developed with [Vue.js](https://vuejs.org/), [Nuxt](https://nuxtjs.org/), and [Vuetify](https://vuetifyjs.com/en/)!
 
-Please note that this Web App is developed using Visual Studio Code (VSCode) on Windows. The NPM scripts have only been tested in the Windows environment.
+Please note that this Web App is developed using Visual Studio Code (VSCode) and Chrome on Windows. The NPM scripts have only been tested in the Windows environment.
 
 ### Quick Start
 
@@ -54,7 +54,16 @@ code .
 
 And finally in VSCode, from the `Tasks` menu select `Run Task...` and launch the `all:dev` task. This will start the local Nuxt server for the front-end and the Hugo server for the API back-end.
 
-The app should now be running on your local machine here: [http://localhost:3000](http://localhost:3000).
+The app should now be running on your local machine here: [http://localhost:3000](http://localhost:3000). and the API will be running locally on port 1313.
+
+### Browser Setup
+
+Chrome is highly recommended during development. In Chrome, install:
+
+1.  [Vue.js devtools extension](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd?hl=en), and
+1.  [Allow-Control-Allow-Origin: \* extension](https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=en).
+
+    - Without this extension, when running the sites locally you may have problems accessing the API from the front-end due to [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing). The local in-memory API server (Hugo) doesn't support custom HTTP response headers. But for deployment to Netlify, we [specify the necessary header configuration](https://github.com/railroadpm/site/blob/master/api/static/_headers).
 
 ### Architecture
 

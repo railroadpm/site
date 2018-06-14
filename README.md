@@ -56,6 +56,10 @@ And finally in VSCode, from the `Tasks` menu select `Run Task...` and launch the
 
 The app should now be running on your local machine here: [http://localhost:3000](http://localhost:3000). And the API will be running locally on port 1313.
 
+#### app.config.js
+
+Note that in order to configure the app to use your local API server, you may need to change the `API_HOST` setting in `app/app.config.js`.
+
 ### Browser Setup
 
 Chrome is highly recommended during development. In Chrome, install:

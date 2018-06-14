@@ -1,0 +1,24 @@
+<!--
+  Render the "Revisions" row of the performance report as JSON
+
+  Parameters
+    $.prpt            Participant Key
+    $.data            Site Data  
+    $.scratch         Scratchpad ref
+    $.avg_cols        The averages columns to render in the rows, or nil if not applicable
+    $.weeks           The Weeks for which to render the rows
+-->
+{{- $row_map_key := "report_row" -}}
+
+{{- $.scratch.Delete $row_map_key -}}
+{{- $.scratch.SetInMap $row_map_key "isSubheading" true -}} <!-- Well, not exactly, but the best way to handle this one-off use-case -->
+{{- $.scratch.SetInMap $row_map_key "rowLabel" "Revisions" -}}
+{{- $.scratch.SetInMap $row_map_key "key" "Revisions" -}}
+{{- range $.avg_cols -}}
+  {{- $.scratch.SetInMap $row_map_key .Key "" -}}
+{{- end -}}
+{{- range $.weeks -}}
+  {{- $.scratch.SetInMap $row_map_key .Key "" -}}
+{{- end -}}
+
+{{- "\n\t " -}}{{- $.scratch.Get $row_map_key | jsonify -}}

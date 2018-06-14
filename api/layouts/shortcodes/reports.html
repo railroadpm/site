@@ -41,6 +41,10 @@
     "rows": [
       {{- $rpt_rows_params := dict "prpt" $prpt_key "data" $.Site.Data "scratch" $.Scratch "avg_cols" $avg_cols "weeks" $weeks_report -}}
 
+      {{/*
+      {{- partial "rpt-rows-revisions" $rpt_rows_params -}}
+      */}}
+
       {{- partial "rpt-rows-cars-by-owner-headings" $rpt_rows_params -}}
       {{- partial "rpt-rows-cars-by-owner-measures" $rpt_rows_params -}}
 

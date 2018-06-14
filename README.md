@@ -15,7 +15,7 @@ It's very common for nonprofits and industry groups to [develop and deploy PM sy
 This project is about the U.S. freight rail industry. But even if that industry doesn't interest you, here are some of the key "selling points" and characteristics of this solution from a technical standpoint that should help you to decide if this codebase might work well for your use-case:
 
 - Open, MIT-licensed source code
-- Developed using a modern technology stack with plenty of software industry activity and interest as of 2018
+- Developed using a modern technology stack with plenty of software industry activity and support as of 2018
 - Designed for **zero** operational cost in terms of infrastructure (deploy and operate on free cloud services)
 - Focused on collection and publication of purely **quantitative** measures (numbers). In other words, the complete opposite of something like SurveyMoney, which focuses largely on surveys with _qualitative_ measures.
 
@@ -27,7 +27,18 @@ Please note that this Web App is developed using Visual Studio Code (VSCode) on 
 
 ### Quick Start
 
-This repo is organized as a "mono repo" containing multiple private sub-packages. So to get started, just clone this repo and then run:
+There are two prerequisites for running and working with this codebase:
+
+1.  [Node.js](https://nodejs.org/en/download/) v8.x (LTS version as of June 2018)
+1.  [Hugo](https://gohugo.io/getting-started/installing/) v0.41 or greater
+
+And of course, [VSCode](https://code.visualstudio.com/download) is highly recommended. So before proceeding be sure to install those pieces if you don't already have them.
+
+This repo is organized as a "mono repo" containing multiple private sub-packages. So to get started, just:
+
+- [Clone](https://github.com/slathrop/git-scripts-win/blob/master/README.md) [this repo](https://github.com/railroadpm/site)
+- Open a command prompt, and
+- Change directory (cd) into your local clone folder and run:
 
 ```bash
 npm run install-all

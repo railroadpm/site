@@ -1,5 +1,6 @@
 Railroad = 'NS'
 Week = '20180427'
+Revisions = false
 CarsOnLine_ByCarOwner_System = 48280
 CarsOnLine_ByCarOwner_ForeignRR = 30582
 CarsOnLine_ByCarOwner_Private = 116513

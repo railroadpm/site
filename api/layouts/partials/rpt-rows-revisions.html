@@ -20,13 +20,9 @@
   {{- $.scratch.SetInMap $row_map_key .Key "" -}}
 {{- end -}}
 {{- range $week := $.weeks -}}
-    {{- $prpt_rpt := index $prpt_rpts $week.Key -}}
-    {{- $revisions := index $prpt_rpt "Revisions" -}}
-    {{ if $revisions }}
-      {{- $.scratch.SetInMap $row_map_key $week.Key "R" -}}
-    {{- else -}}
-      {{- $.scratch.SetInMap $row_map_key $week.Key "" -}}
-    {{- end -}}
+  {{- $prpt_rpt := index $prpt_rpts $week.Key -}}
+  {{- $revisions := index $prpt_rpt "Revisions" -}}
+  {{- $.scratch.SetInMap $row_map_key $week.Key (cond (eq $revisions true) "R" "") -}}
 {{- end -}}
 
 {{- "\n\t " -}}{{- $.scratch.Get $row_map_key | jsonify -}}

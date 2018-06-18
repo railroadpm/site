@@ -21,7 +21,7 @@ This project is about the U.S. freight rail industry. But even if that industry 
 
 ## Web Developer
 
-Thanks for taking a detailed look at this Web App developed with [Vue.js](https://vuejs.org/), [Nuxt](https://nuxtjs.org/), and [Vuetify](https://vuetifyjs.com/en/)!
+Thanks for taking a detailed look at this Web App developed with [Vue.js](https://vuejs.org/), [Nuxt](https://nuxtjs.org/), [Vuetify](https://vuetifyjs.com/en/), and [Chart.js](http://www.chartjs.org/)!
 
 Please note that this Web App is developed using Visual Studio Code (VSCode) and Chrome on Windows. The NPM scripts have only been tested in the Windows environment.
 

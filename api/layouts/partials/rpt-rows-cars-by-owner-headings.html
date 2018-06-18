@@ -26,7 +26,8 @@
   {{- $.scratch.SetInMap $row_map_key .Key "" -}}
 {{- end -}}
 
-{{- "\n\t " -}}{{- $.scratch.Get $row_map_key | jsonify -}}
+<!-- AOR has no "Revisions" row, making this the *first* row and thus requiring no comma delimiter -->
+{{- "\n\t" -}}{{- cond (eq $.prpt "AOR") " " "," -}}{{- $.scratch.Get $row_map_key | jsonify -}}
 
 {{/* Sub heading */}}
 {{- $.scratch.Delete $row_map_key -}}

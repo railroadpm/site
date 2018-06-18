@@ -13,7 +13,7 @@
         <tr class="rpt-col-groups-row">
           <th>
             <!-- We render the CSV Download btn in the upper "rowLabel" header cell -->
-            <v-btn class="rpt-csv-btn" small outline color="grey lighten-1" dark :href="csvUrl">CSV Download</v-btn>
+            <v-btn class="rpt-csv-btn" small outline color="orange lighten-1" dark :href="csvUrl">CSV Download</v-btn>
           </th>
           <template v-if="reportType === 'Current'">
             <th class="rpt-col-groups rpt-col-group-avg" :colspan="avgColumns.length">
@@ -54,14 +54,15 @@
             </span>
           </td>
 
-          <!-- Then render a cell for each average column -->
+          <!-- Then render a cell for each average column ("Current" tab only) -->
           <td v-if="reportType === 'Current'" v-for="(col, i) in avgColumns" :key="`avg${i}`">
             <span>{{ $helpers.formatNumber(row.item[col]) }}</span>
           </td>
 
           <!-- Finally render a cell for each week + measure (week is all numeric: YYYYMMDD) in ascending order by week -->
           <td v-for="(col, i) in measureKeys" :key="`wk${i}`">
-            <span>{{ $helpers.formatNumber(row.item[col]) }}</span>
+            <span v-if="row.item.key === 'Revisions'">{{ row.item[col] }}</span>
+            <span v-else>{{ $helpers.formatNumber(row.item[col]) }}</span>
           </td>
         </tr>
       </template>

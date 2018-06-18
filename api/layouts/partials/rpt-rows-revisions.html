@@ -9,16 +9,24 @@
     $.weeks           The Weeks for which to render the rows
 -->
 {{- $row_map_key := "report_row" -}}
+{{- $prpt_rpts := index $.data.Measures $.prpt -}}
 
 {{- $.scratch.Delete $row_map_key -}}
-{{- $.scratch.SetInMap $row_map_key "isSubheading" true -}} <!-- Well, not exactly, but the best way to handle this one-off use-case -->
+{{- $.scratch.SetInMap $row_map_key "isHeadingRow" true -}} <!-- Well, not exactly a "heading", but the easiest way to handle this one-off "Revisions" use-case -->
+{{- $.scratch.SetInMap $row_map_key "isSubheading" true -}} <!-- ...and we have to mark this is a "sub-heading" to prevent row selection for quick graphs -->
 {{- $.scratch.SetInMap $row_map_key "rowLabel" "Revisions" -}}
 {{- $.scratch.SetInMap $row_map_key "key" "Revisions" -}}
 {{- range $.avg_cols -}}
   {{- $.scratch.SetInMap $row_map_key .Key "" -}}
 {{- end -}}
-{{- range $.weeks -}}
-  {{- $.scratch.SetInMap $row_map_key .Key "" -}}
+{{- range $week := $.weeks -}}
+    {{- $prpt_rpt := index $prpt_rpts $week.Key -}}
+    {{- $revisions := index $prpt_rpt "Revisions" -}}
+    {{ if $revisions }}
+      {{- $.scratch.SetInMap $row_map_key $week.Key "R" -}}
+    {{- else -}}
+      {{- $.scratch.SetInMap $row_map_key $week.Key "" -}}
+    {{- end -}}
 {{- end -}}
 
 {{- "\n\t " -}}{{- $.scratch.Get $row_map_key | jsonify -}}

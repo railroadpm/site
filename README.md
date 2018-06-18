@@ -16,7 +16,7 @@ This project is about the U.S. freight rail industry. But even if that industry 
 
 - Open, MIT-licensed source code
 - Developed using a modern technology stack with plenty of software industry activity and support as of 2018
-- Designed for **zero** operational cost in terms of infrastructure (deploy and operate on free cloud services)
+- Designed for **zero** operational cost in terms of infrastructure (deploy and operate on free cloud services... including a Read/Write [REST API](https://en.wikipedia.org/wiki/Representational_state_transfer#Applied_to_Web_services))
 - Focused exclusively on the collection and publication of **quantitative** measures (numbers). In other words, this is the complete opposite of something like SurveyMonkey, which focuses largely on surveys with _qualitative_ measures.
 
 ## Web Developer

@@ -2,3 +2,6 @@ backend:
   name: git-gateway
 
 media_folder: "media"
+
+collections:
+  

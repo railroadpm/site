@@ -20,7 +20,7 @@ collections:
       preview: false
     fields:
       - {name: "Railroad", widget: "hidden", default: "BNSF"}
-      - {name: "title", label: "Report Week Ending Date - Must be a Friday", widget: "string", pattern:["/^(20)\d\d(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$/g", "Must be a date in YYYYMMDD format, and must be a Friday"]}      
+      - {name: "title", label: "Report Week Ending Date - Must be a Friday", widget: "string", pattern:["/^(20)\\d\\d(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$/g", "Must be a date in YYYYMMDD format, and must be a Friday"]}      
       - {name: "Revisions", label: "Revisions Made Since Initial Publication Date?", widget: "boolean", default: false, required: true}
       - {name: "CarsOnLine_ByCarOwner_System", label: "Cars On Line, By Car Owner: System", widget: "number", valueType: "int", min: 0, max: 2147483647}
       - {name: "CarsOnLine_ByCarOwner_ForeignRR", label: "Cars On Line, By Car Owner: Foreign RR", widget: "number", valueType: "int", min: 0, max: 2147483647}

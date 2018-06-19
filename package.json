@@ -6,7 +6,8 @@
   "scripts": {
     "install-api": "cd api && npm install",
     "install-app": "cd app && npm install",
-    "install-all": "npm run install-api & npm run install-app",
+    "install-admin": "cd admin && npm install",
+    "install-all": "npm run install-api & npm run install-app & npm run install-admin",
     "api-dev": "hugo serve -s ./api --disableFastRender",
     "api-build": "hugo -s ./api -d ./dist",
     "api-build-full": "hugo -s ./api -d ./dist --cleanDestinationDir",

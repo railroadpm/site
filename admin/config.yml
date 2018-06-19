@@ -19,35 +19,35 @@ collections:
     editor:
       preview: false
     fields:
-      - {name: "title", label: "Report Week Ending Date - Must be a Friday", widget: "date", default: "", format: "YYYYMMDD" }      
-      - {name: "Railroad", widget: "hidden", default: "BNSF" }
-      - {name: "Revisions", label: "Revisions Made Since Initial Publication Date?", widget: "boolean", required: false }
-      - {name: "CarsOnLine_ByCarOwner_System", label: "Cars On Line, By Car Owner: System", widget: "number", valueType: "int", min: 0, max: 2147483647 }
-      - {name: "CarsOnLine_ByCarOwner_ForeignRR", label: "Cars On Line, By Car Owner: Foreign RR", widget: "number", valueType: "int", min: 0, max: 2147483647 }
-      - {name: "CarsOnLine_ByCarOwner_Private", label: "Cars On Line, By Car Owner: Private", widget: "number", valueType: "int", min: 0, max: 2147483647 }
-      - {name: "CarsOnLine_ByCarType_Box", label: "Cars On Line, By Car Type: Box", widget: "number", valueType: "int", min: 0, max: 2147483647 }
-      - {name: "CarsOnLine_ByCarType_CoveredHopper", label: "Cars On Line, By Car Type: Covered Hopper", widget: "number", valueType: "int", min: 0, max: 2147483647 }
-      - {name: "CarsOnLine_ByCarType_Gondola", label: "Cars On Line, By Car Type: Gondola", widget: "number", valueType: "int", min: 0, max: 2147483647 }
-      - {name: "CarsOnLine_ByCarType_IntermodalCar", label: "Cars On Line, By Car Type: Intermodal Car", widget: "number", valueType: "int", min: 0, max: 2147483647 }
-      - {name: "CarsOnLine_ByCarType_MultilevelCar", label: "Cars On Line, By Car Type: Multilevel Car", widget: "number", valueType: "int", min: 0, max: 2147483647 }
-      - {name: "CarsOnLine_ByCarType_OpenHopper", label: "Cars On Line, By Car Type: Open Hopper", widget: "number", valueType: "int", min: 0, max: 2147483647 }
-      - {name: "CarsOnLine_ByCarType_Tank", label: "Cars On Line, By Car Type: Tank", widget: "number", valueType: "int", min: 0, max: 2147483647 }
-      - {name: "CarsOnLine_ByCarType_Other", label: "Cars On Line, By Car Type: Other", widget: "number", valueType: "int", min: 0, max: 2147483647 }
-      - {name: "TrainSpeed_ByTrainType_IntermodalTrain", label: "Train Speed: Intermodal", widget: "number", valueType: "float", min: 0.0 }
-      - {name: "TrainSpeed_ByTrainType_Manifest", label: "Train Speed: Manifest", widget: "number", valueType: "float", min: 0.0 }
-      - {name: "TrainSpeed_ByTrainType_MultilevelTrain", label: "Train Speed: Multilevel", widget: "number", valueType: "float", min: 0.0 }
-      - {name: "TrainSpeed_ByTrainType_CoalUnit", label: "Train Speed: Coal Unit", widget: "number", valueType: "float", min: 0.0 }
-      - {name: "TrainSpeed_ByTrainType_GrainUnit", label: "Train Speed: Grain Unit", widget: "number", valueType: "float", min: 0.0 }
-      - {name: "TrainSpeed_ByTrainType_AllTrains", label: "Train Speed: All Trains", widget: "number", valueType: "float", min: 0.0 }
-      - {name: "TerminalDwell_Barstow", label: "Terminal Dwell: Barstow", widget: "number", valueType: "float", min: 0.0 }
-      - {name: "TerminalDwell_Denver", label: "Terminal Dwell: Denver", widget: "number", valueType: "float", min: 0.0 }
-      - {name: "TerminalDwell_FortWorth", label: "Terminal Dwell: Fort Worth", widget: "number", valueType: "float", min: 0.0 }
-      - {name: "TerminalDwell_Galesburg", label: "Terminal Dwell: Galesburg", widget: "number", valueType: "float", min: 0.0 }
-      - {name: "TerminalDwell_Houston", label: "Terminal Dwell: Houston", widget: "number", valueType: "float", min: 0.0 }
-      - {name: "TerminalDwell_KansasCity", label: "Terminal Dwell: Kansas City", widget: "number", valueType: "float", min: 0.0 }
-      - {name: "TerminalDwell_Lincoln", label: "Terminal Dwell: Lincoln", widget: "number", valueType: "float", min: 0.0 }
-      - {name: "TerminalDwell_Memphis", label: "Terminal Dwell: Memphis", widget: "number", valueType: "float", min: 0.0 }
-      - {name: "TerminalDwell_Northtown", label: "Terminal Dwell: Northtown", widget: "number", valueType: "float", min: 0.0 }
-      - {name: "TerminalDwell_Pasco", label: "Terminal Dwell: Pasco", widget: "number", valueType: "float", min: 0.0 }
-      - {name: "TerminalDwell_Tulsa", label: "Terminal Dwell: Tulsa", widget: "number", valueType: "float", min: 0.0 }
-      - {name: "TerminalDwell_EntireRailroad", label: "Terminal Dwell: Entire Railroad", widget: "number", valueType: "float", min: 0.0 }
+      - {name: "Railroad", widget: "hidden", default: "BNSF"}
+      - {name: "title", label: "Report Week Ending Date - Must be a Friday", widget: "string", pattern:["^(20)\d\d(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$", "Must be a date in YYYYMMDD format, and must be a Friday"]}      
+      - {name: "Revisions", label: "Revisions Made Since Initial Publication Date?", widget: "boolean", default: false, required: true}
+      - {name: "CarsOnLine_ByCarOwner_System", label: "Cars On Line, By Car Owner: System", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarOwner_ForeignRR", label: "Cars On Line, By Car Owner: Foreign RR", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarOwner_Private", label: "Cars On Line, By Car Owner: Private", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_Box", label: "Cars On Line, By Car Type: Box", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_CoveredHopper", label: "Cars On Line, By Car Type: Covered Hopper", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_Gondola", label: "Cars On Line, By Car Type: Gondola", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_IntermodalCar", label: "Cars On Line, By Car Type: Intermodal Car", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_MultilevelCar", label: "Cars On Line, By Car Type: Multilevel Car", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_OpenHopper", label: "Cars On Line, By Car Type: Open Hopper", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_Tank", label: "Cars On Line, By Car Type: Tank", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_Other", label: "Cars On Line, By Car Type: Other", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "TrainSpeed_ByTrainType_IntermodalTrain", label: "Train Speed: Intermodal", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TrainSpeed_ByTrainType_Manifest", label: "Train Speed: Manifest", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TrainSpeed_ByTrainType_MultilevelTrain", label: "Train Speed: Multilevel", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TrainSpeed_ByTrainType_CoalUnit", label: "Train Speed: Coal Unit", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TrainSpeed_ByTrainType_GrainUnit", label: "Train Speed: Grain Unit", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TrainSpeed_ByTrainType_AllTrains", label: "Train Speed: All Trains", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_Barstow", label: "Terminal Dwell: Barstow", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_Denver", label: "Terminal Dwell: Denver", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_FortWorth", label: "Terminal Dwell: Fort Worth", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_Galesburg", label: "Terminal Dwell: Galesburg", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_Houston", label: "Terminal Dwell: Houston", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_KansasCity", label: "Terminal Dwell: Kansas City", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_Lincoln", label: "Terminal Dwell: Lincoln", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_Memphis", label: "Terminal Dwell: Memphis", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_Northtown", label: "Terminal Dwell: Northtown", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_Pasco", label: "Terminal Dwell: Pasco", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_Tulsa", label: "Terminal Dwell: Tulsa", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_EntireRailroad", label: "Terminal Dwell: Entire Railroad", widget: "number", valueType: "float", min: 0.0}

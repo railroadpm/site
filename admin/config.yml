@@ -1,6 +1,7 @@
 backend:
   name: git-gateway
 
+display_url: https://app.rrpm.run
 media_folder: "media"
 
 collections:
@@ -16,6 +17,7 @@ collections:
     fields:
       - {name: "Railroad", widget: "hidden", default: "BNSF"}
       - {name: "title", label:"Report Week Ending Date (Always a Friday in YYYYMMDD format)", widget: "date", default: "", format: "YYYYMMDD"}
+      - {name: "Revisions", label: "Revisions Made Since Initial Publication Date?", widget: "boolean"}
       - {name: "CarsOnLine_ByCarOwner_System", label: "Cars On Line, By Car Owner: System", widget: "number", valueType: "int", min: 0 }
       - {name: "CarsOnLine_ByCarOwner_ForeignRR", label: "", widget: "number", valueType: "int", min: 0 }
       - {name: "CarsOnLine_ByCarOwner_Private", label: "", widget: "number", valueType: "int", min: 0 }

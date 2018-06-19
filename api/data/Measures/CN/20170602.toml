@@ -1,5 +1,5 @@
 Railroad = 'CN'
-Week = '20170602'
+title = '20170602'
 CarsOnLine_ByCarOwner_System = 39234
 CarsOnLine_ByCarOwner_ForeignRR = 15847
 CarsOnLine_ByCarOwner_Private = 90004

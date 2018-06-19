@@ -9,5 +9,3 @@
 /graphs/carsonline/         /graphs/CarsOnLine/                         200
 /graphs/terminaldwell/      /graphs/TerminalDwell/                      200
 /graphs/trainspeed/         /graphs/TrainSpeed/                         200
-
-/extranet/*                 https://admin.rrpm.run/:splat               200

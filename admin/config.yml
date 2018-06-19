@@ -1,5 +1,8 @@
 backend:
   name: git-gateway
+  accept_roles:
+    - Administrator
+    - Participant
 
 display_url: https://app.rrpm.run
 media_folder: "media"

@@ -5,7 +5,7 @@ backend:
     - Participant
 
 display_url: https://app.rrpm.run
-media_folder: "media"
+media_folder: "admin/media"
 
 collections:
   - name: "reports_bnsf"

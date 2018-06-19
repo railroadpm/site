@@ -1,0 +1,7 @@
+/* admin.css */
+
+/* Hide the Netlify CMS Main Header */
+
+.nc-appHeader-main {
+  display: none;
+}

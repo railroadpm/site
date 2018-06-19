@@ -2,6 +2,12 @@
 
 /* Hide the Netlify CMS Main Header */
 
-.nc-appHeader-main {
+/* .nc-appHeader-main {
+  display: none;
+} */
+
+/* Hide the Netlify CMS Main Header Buttons for Content/Media */
+
+.nc-appHeader-button {
   display: none;
 }

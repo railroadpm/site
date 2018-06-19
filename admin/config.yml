@@ -7,7 +7,7 @@ backend:
 display_url: https://app.rrpm.run
 media_folder: "admin/media"
 
-publish_mode: editorial_workflow
+# publish_mode: editorial_workflow
 
 collections:
   - name: "reports_bnsf"
@@ -53,3 +53,204 @@ collections:
       - {name: "TerminalDwell_Pasco", label: "Terminal Dwell: Pasco", widget: "number", valueType: "float", min: 0.0}
       - {name: "TerminalDwell_Tulsa", label: "Terminal Dwell: Tulsa", widget: "number", valueType: "float", min: 0.0}
       - {name: "TerminalDwell_EntireRailroad", label: "Terminal Dwell: Entire Railroad", widget: "number", valueType: "float", min: 0.0}
+
+  - name: "reports_cn"
+    label: "CN Weekly Reports"
+    label_singular: "CN Weekly Report"
+    folder: "api/data/Measures/CN"
+    create: true
+    extension: "toml"
+    format: "toml"
+    slug: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - {name: "Railroad", widget: "hidden", default: "CN"}
+      - {name: "title", label: "Week Ending Friday YYYYMMDD", widget: "string", pattern:["^(20)\\d\\d(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$", "YYYYMMDD"]}
+      - {name: "Revisions", label: "Revisions Made Since Initial Publication Date?", widget: "boolean", default: false, required: true}
+      - {name: "CarsOnLine_ByCarOwner_System", label: "Cars On Line, By Car Owner: System", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarOwner_ForeignRR", label: "Cars On Line, By Car Owner: Foreign RR", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarOwner_Private", label: "Cars On Line, By Car Owner: Private", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_Box", label: "Cars On Line, By Car Type: Box", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_CoveredHopper", label: "Cars On Line, By Car Type: Covered Hopper", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_Gondola", label: "Cars On Line, By Car Type: Gondola", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_IntermodalCar", label: "Cars On Line, By Car Type: Intermodal Car", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_MultilevelCar", label: "Cars On Line, By Car Type: Multilevel Car", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_OpenHopper", label: "Cars On Line, By Car Type: Open Hopper", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_Tank", label: "Cars On Line, By Car Type: Tank", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_Other", label: "Cars On Line, By Car Type: Other", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "TrainSpeed_ByTrainType_IntermodalTrain", label: "Train Speed: Intermodal", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TrainSpeed_ByTrainType_Manifest", label: "Train Speed: Manifest", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TrainSpeed_ByTrainType_MultilevelTrain", label: "Train Speed: Multilevel", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TrainSpeed_ByTrainType_CoalUnit", label: "Train Speed: Coal Unit", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TrainSpeed_ByTrainType_GrainUnit", label: "Train Speed: Grain Unit", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TrainSpeed_ByTrainType_AllTrains", label: "Train Speed: All Trains", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_HarrisonYard", label: "Terminal Dwell: Harrison Yard", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_FDLYard", label: "Terminal Dwell: FDL Yard", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_JacksonYard", label: "Terminal Dwell: Jackson Yard", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_MacMillanYard", label: "Terminal Dwell: MacMillan Yard", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_MarkhamYard", label: "Terminal Dwell: Markham Yard", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_SymingtonYard", label: "Terminal Dwell: Symington Yard", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_TascherauYard", label: "Terminal Dwell: Tascherau Yard", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_ThorntonYard", label: "Terminal Dwell: Thornton Yard", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_WalkerYard", label: "Terminal Dwell: Walker Yard", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_EntireRailroad", label: "Terminal Dwell: Entire Railroad", widget: "number", valueType: "float", min: 0.0}
+
+  - name: "reports_kcs"
+    label: "KCS Weekly Reports"
+    label_singular: "KCS Weekly Report"
+    folder: "api/data/Measures/KCS"
+    create: true
+    extension: "toml"
+    format: "toml"
+    slug: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - {name: "Railroad", widget: "hidden", default: "KCS"}
+      - {name: "title", label: "Week Ending Friday YYYYMMDD", widget: "string", pattern:["^(20)\\d\\d(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$", "YYYYMMDD"]}
+      - {name: "Revisions", label: "Revisions Made Since Initial Publication Date?", widget: "boolean", default: false, required: true}
+      - {name: "CarsOnLine_ByCarOwner_System", label: "Cars On Line, By Car Owner: System", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarOwner_ForeignRR", label: "Cars On Line, By Car Owner: Foreign RR", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarOwner_Private", label: "Cars On Line, By Car Owner: Private", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_Box", label: "Cars On Line, By Car Type: Box", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_CoveredHopper", label: "Cars On Line, By Car Type: Covered Hopper", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_Gondola", label: "Cars On Line, By Car Type: Gondola", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_IntermodalCar", label: "Cars On Line, By Car Type: Intermodal Car", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_MultilevelCar", label: "Cars On Line, By Car Type: Multilevel Car", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_OpenHopper", label: "Cars On Line, By Car Type: Open Hopper", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_Tank", label: "Cars On Line, By Car Type: Tank", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_Other", label: "Cars On Line, By Car Type: Other", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "TrainSpeed_ByTrainType_IntermodalTrain", label: "Train Speed: Intermodal", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TrainSpeed_ByTrainType_Manifest", label: "Train Speed: Manifest", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TrainSpeed_ByTrainType_MultilevelTrain", label: "Train Speed: Multilevel", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TrainSpeed_ByTrainType_CoalUnit", label: "Train Speed: Coal Unit", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TrainSpeed_ByTrainType_GrainUnit", label: "Train Speed: Grain Unit", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TrainSpeed_ByTrainType_AllTrains", label: "Train Speed: All Trains", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_Jackson", label: "Terminal Dwell: Jackson", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_KansasCity", label: "Terminal Dwell: Kansas City", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_Laredo", label: "Terminal Dwell: Laredo", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_Shreveport", label: "Terminal Dwell: Shreveport", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_Monterrey", label: "Terminal Dwell: Monterrey", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_NuevoLaredo", label: "Terminal Dwell: Nuevo Laredo", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_SanLuisPotosi", label: "Terminal Dwell: San Luis Potosi", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_Sanchez", label: "Terminal Dwell: Sanchez", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_EntireRailroad", label: "Terminal Dwell: Entire Railroad", widget: "number", valueType: "float", min: 0.0}
+
+  - name: "reports_ns"
+    label: "NS Weekly Reports"
+    label_singular: "NS Weekly Report"
+    folder: "api/data/Measures/NS"
+    create: true
+    extension: "toml"
+    format: "toml"
+    slug: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - {name: "Railroad", widget: "hidden", default: "NS"}
+      - {name: "title", label: "Week Ending Friday YYYYMMDD", widget: "string", pattern:["^(20)\\d\\d(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$", "YYYYMMDD"]}
+      - {name: "Revisions", label: "Revisions Made Since Initial Publication Date?", widget: "boolean", default: false, required: true}
+      - {name: "CarsOnLine_ByCarOwner_System", label: "Cars On Line, By Car Owner: System", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarOwner_ForeignRR", label: "Cars On Line, By Car Owner: Foreign RR", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarOwner_Private", label: "Cars On Line, By Car Owner: Private", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_Box", label: "Cars On Line, By Car Type: Box", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_CoveredHopper", label: "Cars On Line, By Car Type: Covered Hopper", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_Gondola", label: "Cars On Line, By Car Type: Gondola", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_IntermodalCar", label: "Cars On Line, By Car Type: Intermodal Car", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_MultilevelCar", label: "Cars On Line, By Car Type: Multilevel Car", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_OpenHopper", label: "Cars On Line, By Car Type: Open Hopper", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_Tank", label: "Cars On Line, By Car Type: Tank", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_Other", label: "Cars On Line, By Car Type: Other", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "TrainSpeed_ByTrainType_IntermodalTrain", label: "Train Speed: Intermodal", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TrainSpeed_ByTrainType_Manifest", label: "Train Speed: Manifest", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TrainSpeed_ByTrainType_MultilevelTrain", label: "Train Speed: Multilevel", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TrainSpeed_ByTrainType_CoalUnit", label: "Train Speed: Coal Unit", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TrainSpeed_ByTrainType_GrainUnit", label: "Train Speed: Grain Unit", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TrainSpeed_ByTrainType_AllTrains", label: "Train Speed: All Trains", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_Allentown", label: "Terminal Dwell: Allentown", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_Bellevue", label: "Terminal Dwell: Bellevue", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_Birmingham", label: "Terminal Dwell: Birmingham", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_Chattanooga", label: "Terminal Dwell: Chattanooga", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_Columbus", label: "Terminal Dwell: Columbus", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_Conway", label: "Terminal Dwell: Conway", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_Decatur", label: "Terminal Dwell: Decatur", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_Elkhart", label: "Terminal Dwell: Elkhart", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_Atlanta", label: "Terminal Dwell: Atlanta", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_Linwood", label: "Terminal Dwell: Linwood", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_Macon", label: "Terminal Dwell: Macon", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_NewOrleans", label: "Terminal Dwell: New Orleans", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_Roanoke", label: "Terminal Dwell: Roanoke", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_Sheffield", label: "Terminal Dwell: Sheffield", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_EntireRailroad", label: "Terminal Dwell: Entire Railroad", widget: "number", valueType: "float", min: 0.0}
+
+  - name: "reports_up"
+    label: "UP Weekly Reports"
+    label_singular: "UP Weekly Report"
+    folder: "api/data/Measures/UP"
+    create: true
+    extension: "toml"
+    format: "toml"
+    slug: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - {name: "Railroad", widget: "hidden", default: "UP"}
+      - {name: "title", label: "Week Ending Friday YYYYMMDD", widget: "string", pattern:["^(20)\\d\\d(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$", "YYYYMMDD"]}
+      - {name: "Revisions", label: "Revisions Made Since Initial Publication Date?", widget: "boolean", default: false, required: true}
+      - {name: "CarsOnLine_ByCarOwner_System", label: "Cars On Line, By Car Owner: System", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarOwner_ForeignRR", label: "Cars On Line, By Car Owner: Foreign RR", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarOwner_Private", label: "Cars On Line, By Car Owner: Private", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_Box", label: "Cars On Line, By Car Type: Box", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_CoveredHopper", label: "Cars On Line, By Car Type: Covered Hopper", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_Gondola", label: "Cars On Line, By Car Type: Gondola", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_IntermodalCar", label: "Cars On Line, By Car Type: Intermodal Car", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_MultilevelCar", label: "Cars On Line, By Car Type: Multilevel Car", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_OpenHopper", label: "Cars On Line, By Car Type: Open Hopper", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_Tank", label: "Cars On Line, By Car Type: Tank", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_Other", label: "Cars On Line, By Car Type: Other", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "TrainSpeed_ByTrainType_IntermodalTrain", label: "Train Speed: Intermodal", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TrainSpeed_ByTrainType_Manifest", label: "Train Speed: Manifest", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TrainSpeed_ByTrainType_MultilevelTrain", label: "Train Speed: Multilevel", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TrainSpeed_ByTrainType_CoalUnit", label: "Train Speed: Coal Unit", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TrainSpeed_ByTrainType_GrainUnit", label: "Train Speed: Grain Unit", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TrainSpeed_ByTrainType_AllTrains", label: "Train Speed: All Trains", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_Chicago", label: "Terminal Dwell: Chicago", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_FortWorth", label: "Terminal Dwell: Fort Worth", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_Hinkle", label: "Terminal Dwell: Hinkle", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_HoustonEnglewood", label: "Terminal Dwell: Houston Englewood", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_HoustonSettegast", label: "Terminal Dwell: Houston Settegast", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_KansasCity", label: "Terminal Dwell: Kansas City", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_Livonia", label: "Terminal Dwell: Livonia", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_NorthLittleRock", label: "Terminal Dwell: North Little Rock", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_NorthPlatteEast", label: "Terminal Dwell: North Platte East", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_NorthPlatteWest", label: "Terminal Dwell: North Platte West", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_PineBluff", label: "Terminal Dwell: Pine Bluff", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_Roseville", label: "Terminal Dwell: Roseville", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_WestColton", label: "Terminal Dwell: West Colton", widget: "number", valueType: "float", min: 0.0}
+      - {name: "TerminalDwell_EntireRailroad", label: "Terminal Dwell: Entire Railroad", widget: "number", valueType: "float", min: 0.0}
+
+  - name: "reports_aor"
+    label: "All Other Railroads Weekly Reports"
+    label_singular: "All Other Railroads Weekly Report"
+    folder: "api/data/Measures/AOR"
+    create: true
+    extension: "toml"
+    format: "toml"
+    slug: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - {name: "Railroad", widget: "hidden", default: "AOR"}
+      - {name: "title", label: "Week Ending Friday YYYYMMDD", widget: "string", pattern:["^(20)\\d\\d(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$", "YYYYMMDD"]}
+      - {name: "CarsOnLine_ByCarOwner_System", label: "Cars On Line, By Car Owner: System", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarOwner_ForeignRR", label: "Cars On Line, By Car Owner: Foreign RR", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarOwner_Private", label: "Cars On Line, By Car Owner: Private", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_Box", label: "Cars On Line, By Car Type: Box", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_CoveredHopper", label: "Cars On Line, By Car Type: Covered Hopper", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_Gondola", label: "Cars On Line, By Car Type: Gondola", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_IntermodalCar", label: "Cars On Line, By Car Type: Intermodal Car", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_MultilevelCar", label: "Cars On Line, By Car Type: Multilevel Car", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_OpenHopper", label: "Cars On Line, By Car Type: Open Hopper", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_Tank", label: "Cars On Line, By Car Type: Tank", widget: "number", valueType: "int", min: 0, max: 2147483647}
+      - {name: "CarsOnLine_ByCarType_Other", label: "Cars On Line, By Car Type: Other", widget: "number", valueType: "int", min: 0, max: 2147483647}

@@ -4,11 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="icon" type="image/jpg" href="/favicon-rpm-32x32.jpg" sizes="32x32">
   <title>RPM Admin</title>
-
   <!-- Include the styles for Netlify CMS UI -->
   <link rel="stylesheet" href="https://unpkg.com/netlify-cms@^1.9.2/dist/cms.css" />
-
   <script src="https://identity-js.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 
@@ -19,10 +19,14 @@
   <script>
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("init", function(user) {
+        console.log("Netlify Identity: In Init Event Handler");
         if (!user) {
           window.netlifyIdentity.on("login", function() {
+            console.log("Netlify Identity: In Login Event Handler");
             document.location.href = "/";
           });
+        } else {
+          console.log("Netlify Identity: User Is Logged In", JSON.stringify(user));
         }
       });
     }

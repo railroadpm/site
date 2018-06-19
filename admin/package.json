@@ -17,5 +17,12 @@
     "url": "https://github.com/railroadpm/site/issues"
   },
   "homepage": "https://github.com/railroadpm/site#readme",
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "babel-eslint": "^8.2.3",
+    "eslint": "^4.19.1",
+    "eslint-plugin-prettier": "^2.6.0",
+    "eslint-plugin-vue": "^4.5.0",
+    "prettier": "^1.13.5"
+  }
 }

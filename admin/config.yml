@@ -4,4 +4,44 @@ backend:
 media_folder: "media"
 
 collections:
-  
+  - name: "reports_bnsf"
+    label: "BNSF Weekly Reports"
+    label_singular: "BNSF Weekly Report"
+    folder: "api/data/Measures/BNSF"
+    create: true
+    extension: "toml"
+    format: "toml"
+    editor:
+      preview: false
+    fields:
+      - {name: "Railroad", widget: "hidden", default: "BNSF"}
+      - {name: "title", label:"Report Week Ending Date (Always a Friday in YYYYMMDD format)", widget: "date", default: "", format: "YYYYMMDD"}
+      - {name: "CarsOnLine_ByCarOwner_System", label: "Cars On Line, By Car Owner: System", widget: "number", valueType: "int", min: 0 }
+      - {name: "CarsOnLine_ByCarOwner_ForeignRR", label: "", widget: "number", valueType: "int", min: 0 }
+      - {name: "CarsOnLine_ByCarOwner_Private", label: "", widget: "number", valueType: "int", min: 0 }
+      - {name: "CarsOnLine_ByCarType_Box", label: "", widget: "number", valueType: "int", min: 0 }
+      - {name: "CarsOnLine_ByCarType_CoveredHopper", label: "", widget: "number", valueType: "int", min: 0 }
+      - {name: "CarsOnLine_ByCarType_Gondola", label: "", widget: "number", valueType: "int", min: 0 }
+      - {name: "CarsOnLine_ByCarType_IntermodalCar", label: "", widget: "number", valueType: "int", min: 0 }
+      - {name: "CarsOnLine_ByCarType_MultilevelCar", label: "", widget: "number", valueType: "int", min: 0 }
+      - {name: "CarsOnLine_ByCarType_OpenHopper", label: "", widget: "number", valueType: "int", min: 0 }
+      - {name: "CarsOnLine_ByCarType_Tank", label: "", widget: "number", valueType: "int", min: 0 }
+      - {name: "CarsOnLine_ByCarType_Other", label: "", widget: "number", valueType: "int", min: 0 }
+      - {name: "TrainSpeed_ByTrainType_IntermodalTrain", label: "Train Speed: Intermodal", widget: "number", valueType: "float", min: 0.0 }
+      - {name: "TrainSpeed_ByTrainType_Manifest", label: "Train Speed: Manifest", widget: "number", valueType: "float", min: 0.0 }
+      - {name: "TrainSpeed_ByTrainType_MultilevelTrain", label: "Train Speed: Multilevel", widget: "number", valueType: "float", min: 0.0 }
+      - {name: "TrainSpeed_ByTrainType_CoalUnit", label: "Train Speed: Coal Unit", widget: "number", valueType: "float", min: 0.0 }
+      - {name: "TrainSpeed_ByTrainType_GrainUnit", label: "Train Speed: Grain Unit", widget: "number", valueType: "float", min: 0.0 }
+      - {name: "TrainSpeed_ByTrainType_AllTrains", label: "Train Speed: All Trains", widget: "number", valueType: "float", min: 0.0 }
+      - {name: "TerminalDwell_Barstow", label: "Terminal Dwell: Barstow", widget: "number", valueType: "float", min: 0.0 }
+      - {name: "TerminalDwell_Denver", label: "Terminal Dwell: Denver", widget: "number", valueType: "float", min: 0.0 }
+      - {name: "TerminalDwell_FortWorth", label: "Terminal Dwell: Fort Worth", widget: "number", valueType: "float", min: 0.0 }
+      - {name: "TerminalDwell_Galesburg", label: "Terminal Dwell: Galesburg", widget: "number", valueType: "float", min: 0.0 }
+      - {name: "TerminalDwell_Houston", label: "Terminal Dwell: Houston", widget: "number", valueType: "float", min: 0.0 }
+      - {name: "TerminalDwell_KansasCity", label: "Terminal Dwell: Kansas City", widget: "number", valueType: "float", min: 0.0 }
+      - {name: "TerminalDwell_Lincoln", label: "Terminal Dwell: Lincoln", widget: "number", valueType: "float", min: 0.0 }
+      - {name: "TerminalDwell_Memphis", label: "Terminal Dwell: Memphis", widget: "number", valueType: "float", min: 0.0 }
+      - {name: "TerminalDwell_Northtown", label: "Terminal Dwell: Northtown", widget: "number", valueType: "float", min: 0.0 }
+      - {name: "TerminalDwell_Pasco", label: "Terminal Dwell: Pasco", widget: "number", valueType: "float", min: 0.0 }
+      - {name: "TerminalDwell_Tulsa", label: "Terminal Dwell: Tulsa", widget: "number", valueType: "float", min: 0.0 }
+      - {name: "TerminalDwell_EntireRailroad", label: "Terminal Dwell: Entire Railroad", widget: "number", valueType: "float", min: 0.0 }

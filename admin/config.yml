@@ -7,6 +7,8 @@ backend:
 display_url: https://app.rrpm.run
 media_folder: "admin/media"
 
+publish_mode: editorial_workflow
+
 collections:
   - name: "reports_bnsf"
     label: "BNSF Weekly Reports"

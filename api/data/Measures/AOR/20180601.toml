@@ -1,0 +1,13 @@
+Railroad = "AOR"
+Title = "20180601"
+CarsOnLine_ByCarOwner_System = 1.0
+CarsOnLine_ByCarOwner_ForeignRR = 2.0
+CarsOnLine_ByCarOwner_Private = 3.0
+CarsOnLine_ByCarType_Box = 4.0
+CarsOnLine_ByCarType_CoveredHopper = 5.0
+CarsOnLine_ByCarType_Gondola = 6.0
+CarsOnLine_ByCarType_IntermodalCar = 7.0
+CarsOnLine_ByCarType_MultilevelCar = 8.0
+CarsOnLine_ByCarType_OpenHopper = 9.0
+CarsOnLine_ByCarType_Tank = 8.0
+CarsOnLine_ByCarType_Other = 7.0

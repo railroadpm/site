@@ -53,7 +53,6 @@ collections:
       - {name: "TerminalDwell_Pasco", label: "Terminal Dwell: Pasco", widget: "number", valueType: "float", min: 0.0}
       - {name: "TerminalDwell_Tulsa", label: "Terminal Dwell: Tulsa", widget: "number", valueType: "float", min: 0.0}
       - {name: "TerminalDwell_EntireRailroad", label: "Terminal Dwell: Entire Railroad", widget: "number", valueType: "float", min: 0.0}
-
   - name: "reports_cn"
     label: "CN Weekly Reports"
     label_singular: "CN Weekly Report"
@@ -95,7 +94,6 @@ collections:
       - {name: "TerminalDwell_ThorntonYard", label: "Terminal Dwell: Thornton Yard", widget: "number", valueType: "float", min: 0.0}
       - {name: "TerminalDwell_WalkerYard", label: "Terminal Dwell: Walker Yard", widget: "number", valueType: "float", min: 0.0}
       - {name: "TerminalDwell_EntireRailroad", label: "Terminal Dwell: Entire Railroad", widget: "number", valueType: "float", min: 0.0}
-
   - name: "reports_kcs"
     label: "KCS Weekly Reports"
     label_singular: "KCS Weekly Report"
@@ -136,7 +134,6 @@ collections:
       - {name: "TerminalDwell_SanLuisPotosi", label: "Terminal Dwell: San Luis Potosi", widget: "number", valueType: "float", min: 0.0}
       - {name: "TerminalDwell_Sanchez", label: "Terminal Dwell: Sanchez", widget: "number", valueType: "float", min: 0.0}
       - {name: "TerminalDwell_EntireRailroad", label: "Terminal Dwell: Entire Railroad", widget: "number", valueType: "float", min: 0.0}
-
   - name: "reports_ns"
     label: "NS Weekly Reports"
     label_singular: "NS Weekly Report"
@@ -183,7 +180,6 @@ collections:
       - {name: "TerminalDwell_Roanoke", label: "Terminal Dwell: Roanoke", widget: "number", valueType: "float", min: 0.0}
       - {name: "TerminalDwell_Sheffield", label: "Terminal Dwell: Sheffield", widget: "number", valueType: "float", min: 0.0}
       - {name: "TerminalDwell_EntireRailroad", label: "Terminal Dwell: Entire Railroad", widget: "number", valueType: "float", min: 0.0}
-
   - name: "reports_up"
     label: "UP Weekly Reports"
     label_singular: "UP Weekly Report"
@@ -229,7 +225,6 @@ collections:
       - {name: "TerminalDwell_Roseville", label: "Terminal Dwell: Roseville", widget: "number", valueType: "float", min: 0.0}
       - {name: "TerminalDwell_WestColton", label: "Terminal Dwell: West Colton", widget: "number", valueType: "float", min: 0.0}
       - {name: "TerminalDwell_EntireRailroad", label: "Terminal Dwell: Entire Railroad", widget: "number", valueType: "float", min: 0.0}
-
   - name: "reports_aor"
     label: "All Other Railroads Weekly Reports"
     label_singular: "All Other Railroads Weekly Report"

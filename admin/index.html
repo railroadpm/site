@@ -20,14 +20,14 @@
   <script>
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("init", function(user) {
-        console.log("Netlify Identity: In Init Event Handler");
+        // console.log("Netlify Identity: In Init Event Handler");
         if (!user) {
           window.netlifyIdentity.on("login", function() {
-            console.log("Netlify Identity: In Login Event Handler");
+            // console.log("Netlify Identity: In Login Event Handler");
             document.location.href = "/";
           });
         } else {
-          console.log("Netlify Identity: User Is Logged In", JSON.stringify(user));
+          // console.log("Netlify Identity: User Is Logged In", JSON.stringify(user));
         }
       });
     }

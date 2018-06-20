@@ -15,8 +15,8 @@ collections:
     label_singular: "BNSF Weekly Report"
     folder: "api/data/Measures/BNSF"
     create: true
-    extension: "toml"
-    format: "toml"
+    extension: "json"
+    format: "json"
     slug: "{{slug}}"
     editor:
       preview: false

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "hugo serve --disableFastRender",
-    "build": "hugo -d ./dist && node ./build-scripts/csv-files-gen",
+    "build": "node ./build-scripts/rpt-periods-gen && hugo -d ./dist && node ./build-scripts/csv-files-gen",
     "build-full": "hugo -d ./dist --cleanDestinationDir",
     "build-preview": "hugo -d ./dist --buildDrafts --buildFuture"
   },

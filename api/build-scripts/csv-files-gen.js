@@ -9,7 +9,7 @@ const railroads = require('../dist/railroads/all/get.json').data.railroads;
 const _ = require('lodash');
 const { DateTime } = require('luxon');
 
-console.log(`\n\nRunning build script: ${scriptName}`);
+console.log(`\n\nRunning post-Hugo build script: ${scriptName}`);
 // console.log(`Railroads count = ${railroads.length}`);
 
 // Iterate over both of the report period segments and over all railroads,

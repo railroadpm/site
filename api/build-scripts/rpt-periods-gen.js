@@ -4,7 +4,7 @@ const fs = require('fs');
 const scriptName = path.basename(__filename);
 const { DateTime, Duration } = require('luxon');
 
-console.log(`\n\nRunning build script: ${scriptName}`);
+console.log(`\n\nRunning pre-Hugo build script: ${scriptName}`);
 
 let buildDT = DateTime.local();
 console.log(`Build machine is in ${buildDT.zoneName} where the current DateTime is: ${buildDT.toString()}`);
@@ -14,7 +14,9 @@ console.log(`Build machine is in ${buildDT.zoneName} where the current DateTime 
 // FOR NOW, WE FAKE the build process into thinking it is either:
 //    Wednesday, May 2nd 2018 at 1:50pm, or
 //    Wednesday, May 2nd 2018 at 1:56pm
-// TODO: Un-comment *above* line deriving easternDT from buildDT and comment-out or remove 2 below lines
+// TODO: Un-comment *above* line deriving easternDT from buildDT and comment-out or remove *both* of the 2 lines below
+//       that explicitly set a fake easternDT
+
 // let easternDT = DateTime.fromISO('2018-05-02T17:50:00.000-00:00');
 let easternDT = DateTime.fromISO('2018-05-02T17:56:00.000-00:00');
 
@@ -95,7 +97,7 @@ try {
 
   // Write JSON file to Hugo data folder
   fs.writeFileSync(jsonDataFilePath, json, { flag: 'w+' });
-  console.log(`JSON report periods data written to ${jsonDataFilePath}`);
+  console.log(`\nJSON report periods data written to ${jsonDataFilePath}`);
 
   // Write JSON file to static folder for publishing to dist
   fs.writeFileSync(jsonStaticFilePath, json, { flag: 'w+' });

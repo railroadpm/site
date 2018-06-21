@@ -15,7 +15,10 @@
 
 <body>
   <!-- Include the script that builds the page and powers Netlify CMS -->
-  <script src="https://unpkg.com/netlify-cms@^1.9.2/dist/cms.js"></script>
+  <!-- <script src="https://unpkg.com/netlify-cms@^1.9.2/dist/cms.js"></script> -->
+
+  <!-- Use custom-built cms js with fix for integers in TOML until PR accepted upstream -->
+  <script src="cms.custom.js"></script>
 
   <script>
     if (window.netlifyIdentity) {

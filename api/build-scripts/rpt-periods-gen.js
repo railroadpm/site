@@ -1,5 +1,4 @@
 // rpt-periods-gen.js: Generate the key "Time Dimension" lookup data file (/api/data/Dimensions/Period.json) that drives *everything* else about the RPM site
-
 const path = require('path');
 const fs = require('fs');
 const scriptName = path.basename(__filename);
@@ -10,7 +9,15 @@ console.log(`\n\nRunning build script: ${scriptName}`);
 let buildDT = DateTime.local();
 console.log(`Build machine is in ${buildDT.zoneName} where the current DateTime is: ${buildDT.toString()}`);
 
-let easternDT = buildDT.setZone('America/New_York');
+// let easternDT = buildDT.setZone('America/New_York');
+
+// FOR NOW, WE FAKE the build process into thinking it is either:
+//    Wednesday, May 2nd 2018 at 1:50pm, or
+//    Wednesday, May 2nd 2018 at 1:56pm
+// TODO: Un-comment *above* line deriving easternDT from buildDT and comment-out or remove 2 below lines
+// let easternDT = DateTime.fromISO('2018-05-02T17:50:00.000-00:00');
+let easternDT = DateTime.fromISO('2018-05-02T17:56:00.000-00:00');
+
 console.log(`Eastern Time (in ${easternDT.zoneName}) is: ${easternDT.toString()}`);
 
 console.log('In Eastern Time...');
@@ -18,7 +25,7 @@ let dayNum = easternDT.weekday;
 let dayAbbr = easternDT.toFormat('ccc');
 let hourNum = easternDT.hour;
 let minuteNum = easternDT.minute;
-console.log(`\t...the current day is ${dayAbbr}, day number ${dayNum} (${typeof dayNum}) (Mon = 1)`);
+console.log(`\t...the current day is ${dayAbbr}`);
 console.log(`\t...the current hour is ${hourNum} and minute is ${minuteNum}`);
 
 let latestRptPeriod = null;
@@ -35,11 +42,10 @@ if (dayNum > 3 || (dayNum === 3 && (hourNum > 13 || (hourNum === 13 && minuteNum
   latestRptPeriod = easternDT.minus(spanToTwoFridays);
 }
 
-console.log(`\t...the latest published RPM reporting period date should be ${latestRptPeriod.toFormat('MM/dd/yy')}`);
-
-let spanOneWeek = Duration.fromObject({ weeks: 1 });
+console.log(`\t...the latest published RPM reporting period date should now be ${latestRptPeriod.toFormat('MM/dd/yy')}`);
 
 // All 53 weeks...
+let spanOneWeek = Duration.fromObject({ weeks: 1 });
 let rptPeriod = latestRptPeriod;
 let rptPeriods = { Quarter: { Current: '', Previous: '' }, Month: { Current: '', Previous: '' }, Week: [] };
 for (weekNum = 1; weekNum <= 53; weekNum++) {
@@ -57,10 +63,46 @@ for (weekNum = 1; weekNum <= 53; weekNum++) {
 rptPeriods.Quarter.Current = `${easternDT.quarter}Q${easternDT.toFormat('yy')}`;
 rptPeriods.Month.Current = `${easternDT.toFormat('MMM')} ${easternDT.year}`;
 
-console.log(JSON.stringify(rptPeriods));
+// Previous Quarter and Month
+rptPeriods.Quarter.Previous = `${easternDT.minus({ quarters: 1 }).quarter}Q${easternDT.minus({ quarters: 1 }).toFormat('yy')}`;
+rptPeriods.Month.Previous = `${easternDT.minus({ months: 1 }).toFormat('MMM')} ${easternDT.minus({ months: 1 }).year}`;
+
+// console.log(JSON.stringify(rptPeriods));
+
+const fsBaseDataPath = 'data/Dimensions/';
+const fsBaseStaticPath = 'static/dimensions/periods/';
+const jsonDataFilePath = `${fsBaseDataPath}Period.json`;
+const jsonStaticFilePath = `${fsBaseStaticPath}get.json`;
+
+try {
+  // Delete any existing JSON data file
+  fs.unlinkSync(jsonDataFilePath);
+  // console.log(`successfully deleted ${jsonDataFilePath}`);
+} catch (e1) {
+  // console.log(`Existing file not found: ${jsonDataFilePath}`);
+}
+
+try {
+  // Delete any existing JSON static file
+  fs.unlinkSync(jsonStaticFilePath);
+  // console.log(`successfully deleted ${jsonStaticFilePath}`);
+} catch (e2) {
+  // console.log(`Existing file not found: ${jsonStaticFilePath}`);
+}
+
+try {
+  json = JSON.stringify(rptPeriods);
+
+  // Write JSON file to Hugo data folder
+  fs.writeFileSync(jsonDataFilePath, json, { flag: 'w+' });
+  console.log(`JSON report periods data written to ${jsonDataFilePath}`);
+
+  // Write JSON file to static folder for publishing to dist
+  fs.writeFileSync(jsonStaticFilePath, json, { flag: 'w+' });
+  console.log(`\t...and to ${jsonStaticFilePath}`);
+} catch (e3) {
+  console.log(e3);
+}
 
 // Main flow of execution for script ends here
 process.exit(0);
-
-// region Helper Functions
-// endregion

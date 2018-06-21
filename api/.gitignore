@@ -6,3 +6,7 @@ node_modules
 
 # Hugo destination dir
 dist
+
+# Specific always-built files
+data/Dimensions/Period.json
+static/dimensions/periods/get.json

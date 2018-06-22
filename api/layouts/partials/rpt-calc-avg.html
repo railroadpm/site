@@ -28,9 +28,11 @@
 
 <!-- Iterate over weeks, accumulating total and count -->
 {{- range $week := $weeks_to_avg -}}
-  {{- with (index (index $.rpts $week.Key) $.m_key) -}}
-    {{- $.scratch.Add $total_key . -}}
-    {{- $.scratch.Add $count_key 1 -}}
+  {{- with (index $.rpts $week.Key) -}}
+    {{- with (index . $.m_key) -}}
+      {{- $.scratch.Add $total_key . -}}
+      {{- $.scratch.Add $count_key 1 -}}
+    {{- end -}}
   {{- end -}}
 {{- end -}}
 

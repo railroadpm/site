@@ -36,15 +36,19 @@
   {{- end -}}
 
   <!-- Iterate over weeks, adding weekly measure data value to the Map -->
-  {{- range $.weeks -}}
+  {{- range $week := $.weeks -}}
     {{- $prpt_rpt := index $prpt_rpts .Key -}}
-    {{- $measure_val := index $prpt_rpt $measure_key -}}
-    {{- $.scratch.SetInMap $row_map_key .Key $measure_val -}}
-    <!-- Keep a running total of all measures for the week -->
-    {{- partial "rpt-track-total" (dict "week_key" .Key "m_key_pre" $measure_key_prefix "m_index" $subheading_index "m_val" $measure_val "scratch" $.scratch) -}}
-    <!-- And for "Private", keep track of the value as a numerator to be used for averages below -->
-    {{- if eq $subheading.Key "Private" -}}
-      {{- partial "rpt-track-numerator" (dict "week_key" .Key "m_key_pre" $measure_key_prefix "m_val" $measure_val "scratch" $.scratch) -}}
+    {{- $.scratch.SetInMap $row_map_key $week.Key nil -}}
+    
+    {{- with $prpt_rpt -}}
+      {{- $measure_val := index . $measure_key -}}
+      {{- $.scratch.SetInMap $row_map_key $week.Key $measure_val -}}
+      <!-- Keep a running total of all measures for the week -->
+      {{- partial "rpt-track-total" (dict "week_key" $week.Key "m_key_pre" $measure_key_prefix "m_index" $subheading_index "m_val" $measure_val "scratch" $.scratch) -}}
+      <!-- And for "Private", keep track of the value as a numerator to be used for averages below -->
+      {{- if eq $subheading.Key "Private" -}}
+        {{- partial "rpt-track-numerator" (dict "week_key" $week.Key "m_key_pre" $measure_key_prefix "m_val" $measure_val "scratch" $.scratch) -}}
+      {{- end -}}
     {{- end -}}
   {{- end -}}
   <!-- Finally, render the Map of measure data as JSON -->

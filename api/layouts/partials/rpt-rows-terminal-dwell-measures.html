@@ -50,10 +50,14 @@
 
   <!-- Iterate over weeks, adding weekly measure data value to the Map -->
   <!-- And then render the Map as JSON -->
-  {{- range $.weeks -}}
+  {{- range $week := $.weeks -}}
     {{- $prpt_rpt := index $prpt_rpts .Key -}}
-    {{- $measure_val := index $prpt_rpt $measure_key -}}
-    {{- $.scratch.SetInMap $row_map_key .Key $measure_val -}}
+    {{- $.scratch.SetInMap $row_map_key $week.Key nil -}}
+    
+    {{- with $prpt_rpt -}}
+      {{- $measure_val := index . $measure_key -}}
+      {{- $.scratch.SetInMap $row_map_key $week.Key $measure_val -}}
+    {{- end -}}
   {{- end -}}
   {{- "\t," -}}{{- $.scratch.Get $row_map_key | jsonify -}}
 {{- end -}}

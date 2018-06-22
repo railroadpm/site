@@ -51,19 +51,22 @@
   {{- end -}}
 
   <!-- Iterate over weeks, adding weekly calculated measure data value to the Map -->
-  {{- range $.weeks -}}
-    {{- $measure_key := printf "%s%s%s" $measure_key_prefix .Key $subheading.keySuffix -}}
+  {{- range $week := $.weeks -}}
+    {{- $measure_key := printf "%s%s%s" $measure_key_prefix $week.Key $subheading.keySuffix -}}
+    {{- $.scratch.Set $measure_val_key nil -}}
 
     {{- if eq $subheading.keySuffix "_Numerator" -}}
       {{- $numerator := $.scratch.Get $measure_key -}}
-      {{- $total_measure_key := printf "%s%s%s" $measure_key_prefix .Key "_Total" -}}
-      {{- $total := $.scratch.Get $total_measure_key -}}
-      {{- $.scratch.Set $measure_val_key ((mul (div (float $numerator) (float $total)) (float 100)) | lang.NumFmt 1) -}}
+      {{- with $numerator -}}
+        {{- $total_measure_key := printf "%s%s%s" $measure_key_prefix $week.Key "_Total" -}}
+        {{- $total := $.scratch.Get $total_measure_key -}}
+        {{- $.scratch.Set $measure_val_key ((mul (div (float .) (float $total)) (float 100)) | lang.NumFmt 1) -}}
+      {{- end -}}
     {{- else -}}
       {{- $.scratch.Set $measure_val_key ($.scratch.Get $measure_key) -}}
     {{- end -}}
 
-    {{- $.scratch.SetInMap $row_map_key .Key ($.scratch.Get $measure_val_key) -}}
+    {{- $.scratch.SetInMap $row_map_key $week.Key ($.scratch.Get $measure_val_key) -}}
   {{- end -}}
   <!-- Finally, render the Map of measure data as JSON -->
   {{- "\n\t," -}}{{- $.scratch.Get $row_map_key | jsonify -}}

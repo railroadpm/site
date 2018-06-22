@@ -1,6 +1,7 @@
 // rpt-periods-gen.js: Generate the key "Time Dimension" lookup data file (/api/data/Dimensions/Period.json) that drives *everything* else about the RPM site
 const path = require('path');
 const fs = require('fs');
+const buildConfig = require('./config.json');
 const scriptName = path.basename(__filename);
 const { DateTime, Duration } = require('luxon');
 
@@ -9,18 +10,15 @@ console.log(`\n\nRunning pre-Hugo build script: ${scriptName}`);
 let buildDT = DateTime.local();
 console.log(`Build machine is in ${buildDT.zoneName} where the current DateTime is: ${buildDT.toString()}`);
 
-// let easternDT = buildDT.setZone('America/New_York');
+let easternDT = null;
+// We support pinning the DateTime of the build to a specific, fake DateTime for testing or delaying publication
+if (buildConfig.pinnedBuildDateTime) {
+  easternDT = DateTime.fromISO(buildConfig.pinnedBuildDateTime).setZone('America/New_York');
+} else {
+  easternDT = buildDT.setZone('America/New_York');
+}
 
-// FOR NOW, WE FAKE the build process into thinking it is either:
-//    Wednesday, May 2nd 2018 at 1:50pm, or
-//    Wednesday, May 2nd 2018 at 1:56pm
-// TODO: Un-comment *above* line deriving easternDT from buildDT and comment-out or remove *both* of the 2 lines below
-//       that explicitly set a fake easternDT
-
-// let easternDT = DateTime.fromISO('2018-05-02T17:50:00.000-00:00');
-let easternDT = DateTime.fromISO('2018-05-02T17:56:00.000-00:00');
-
-console.log(`Eastern Time (in ${easternDT.zoneName}) is: ${easternDT.toString()}`);
+console.log(`Eastern Time (in ${easternDT.zoneName}) is: ${easternDT.toString()}${buildConfig.pinnedBuildDateTime ? ' (pinned)' : ''}`);
 
 console.log('In Eastern Time...');
 let dayNum = easternDT.weekday;

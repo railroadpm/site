@@ -11,7 +11,7 @@ let buildDT = DateTime.local();
 console.log(`Build machine is in ${buildDT.zoneName} where the current DateTime is: ${buildDT.toString()}`);
 
 let easternDT = null;
-// We support pinning the DateTime of the build to a specific date for testing or delaying publishing
+// We support pinning the DateTime of the build to a specific, fake DateTime for testing or delaying publication
 if (buildConfig.pinnedBuildDateTime) {
   easternDT = DateTime.fromISO(buildConfig.pinnedBuildDateTime).setZone('America/New_York');
 } else {

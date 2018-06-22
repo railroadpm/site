@@ -15,6 +15,7 @@
 {{- $subheading_indent := "&nbsp;&nbsp;" -}}
 {{- $row_map_key := "report_row" -}}
 {{- $terminal_key := "terminal_subheading" -}}
+{{- $city_key := "terminal_subheading_city" -}}
 {{- $measure_key_prefix := "TerminalDwell_" -}}
 {{- $prpt_rpts := index $.data.Measures $.prpt -}}
 
@@ -24,10 +25,12 @@
   {{- $.scratch.Delete $row_map_key -}}
 
   <!-- Construct the terminal subheading... it varies depending on existence of a State, etc. -->
+  {{- $.scratch.Set $city_key $subheading.CityOrYard -}}
   {{- if isset $subheading "State" -}}
-    {{- $.scratch.Set $terminal_key (printf "%s%s, %s" $subheading_indent $subheading.CityOrYard $subheading.State) -}}
+    {{- with $subheading.Town -}}{{- $.scratch.Set $city_key (printf "%s (%s)" $subheading.CityOrYard .) -}}{{- end -}}
+    {{- $.scratch.Set $terminal_key (printf "%s%s, %s" $subheading_indent ($.scratch.Get $city_key) $subheading.State) -}}
   {{- else -}}
-    {{- $.scratch.Set $terminal_key (printf "%s%s" $subheading_indent $subheading.CityOrYard) -}}
+    {{- $.scratch.Set $terminal_key (printf "%s%s" $subheading_indent ($.scratch.Get $city_key)) -}}
   {{- end -}}
 
   <!-- Add the terminal subheading and key to the Map first -->

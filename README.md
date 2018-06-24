@@ -8,7 +8,7 @@ This README has sections for each of the potential roles of the person reading i
 
 ## For Everyone
 
-What's here? This repo contains the source code and data for a [Data Collection System](https://en.wikipedia.org/wiki/Data_collection_system), specifically a [Performance Measurement (PM) System](https://en.wikipedia.org/wiki/Data_collection_system#Types). What distinguishes this PM implementation is the fact that [it is Git-based](https://headlesscms.org/about/).
+What's here? This repo contains the source code and data for a [Data Collection System](https://en.wikipedia.org/wiki/Data_collection_system), specifically a [Performance Measurement (PM) System](https://en.wikipedia.org/wiki/Data_collection_system#Types). What distinguishes this PM implementation is the fact that [its data is Git-based](https://headlesscms.org/about/).
 
 It's very common for nonprofits and industry groups to [develop and deploy PM systems](https://en.wikipedia.org/wiki/Performance_measurement#In_the_nonprofit_and_voluntary_sector) to track and publish the success of their mission and activities, and to promote goodwill, accountability, process improvements, and better outcomes.
 

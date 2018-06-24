@@ -2,8 +2,62 @@
 # ("get.json" configured in root "config.toml" setting "baseName")
 # TODO: Consider using Hugo's .Site.Pages and templates to render this automatically!
 
+/reports/bnsf/all               /reports/BNSF/all/get.json              200
+/reports/bnsf/all/              /reports/BNSF/all/get.json              200
+/reports/bnsf/current           /reports/BNSF/current/get.json          200
+/reports/bnsf/current/          /reports/BNSF/current/get.json          200
+
 /reports/BNSF/all               /reports/BNSF/all/get.json              200
 /reports/BNSF/all/              /reports/BNSF/all/get.json              200
-
 /reports/BNSF/current           /reports/BNSF/current/get.json          200
 /reports/BNSF/current/          /reports/BNSF/current/get.json          200
+
+/reports/cn/all                 /reports/CN/all/get.json                200
+/reports/cn/all/                /reports/CN/all/get.json                200
+/reports/cn/current             /reports/CN/current/get.json            200
+/reports/cn/current/            /reports/CN/current/get.json            200
+
+/reports/CN/all                 /reports/CN/all/get.json                200
+/reports/CN/all/                /reports/CN/all/get.json                200
+/reports/CN/current             /reports/CN/current/get.json            200
+/reports/CN/current/            /reports/CN/current/get.json            200
+
+/reports/kcs/all                /reports/KCS/all/get.json               200
+/reports/kcs/all/               /reports/KCS/all/get.json               200
+/reports/kcs/current            /reports/KCS/current/get.json           200
+/reports/kcs/current/           /reports/KCS/current/get.json           200
+
+/reports/KCS/all                /reports/KCS/all/get.json               200
+/reports/KCS/all/               /reports/KCS/all/get.json               200
+/reports/KCS/current            /reports/KCS/current/get.json           200
+/reports/KCS/current/           /reports/KCS/current/get.json           200
+
+/reports/ns/all                 /reports/NS/all/get.json                200
+/reports/ns/all/                /reports/NS/all/get.json                200
+/reports/ns/current             /reports/NS/current/get.json            200
+/reports/ns/current/            /reports/NS/current/get.json            200
+
+/reports/NS/all                 /reports/NS/all/get.json                200
+/reports/NS/all/                /reports/NS/all/get.json                200
+/reports/NS/current             /reports/NS/current/get.json            200
+/reports/NS/current/            /reports/NS/current/get.json            200
+
+/reports/up/all                 /reports/UP/all/get.json                200
+/reports/up/all/                /reports/UP/all/get.json                200
+/reports/up/current             /reports/UP/current/get.json            200
+/reports/up/current/            /reports/UP/current/get.json            200
+
+/reports/UP/all                 /reports/UP/all/get.json                200
+/reports/UP/all/                /reports/UP/all/get.json                200
+/reports/UP/current             /reports/UP/current/get.json            200
+/reports/UP/current/            /reports/UP/current/get.json            200
+
+/reports/aor/all                /reports/AOR/all/get.json               200
+/reports/aor/all/               /reports/AOR/all/get.json               200
+/reports/aor/current            /reports/AOR/current/get.json           200
+/reports/aor/current/           /reports/AOR/current/get.json           200
+    
+/reports/AOR/all                /reports/AOR/all/get.json               200
+/reports/AOR/all/               /reports/AOR/all/get.json               200
+/reports/AOR/current            /reports/AOR/current/get.json           200
+/reports/AOR/current/           /reports/AOR/current/get.json           200

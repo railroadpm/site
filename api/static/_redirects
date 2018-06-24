@@ -4,3 +4,9 @@
 
 /reports/:railroad/:scope       /reports/:railroad/:scope/get.json      200
 /reports/:railroad/:scope/      /reports/:railroad/:scope/get.json      200
+
+/railroads/all                  /railroads/all/get.json                 200
+/railroads/all/                 /railroads/all/get.json                 200
+
+/dimensions/periods             /dimensions/periods/get.json            200
+/dimensions/periods/            /dimensions/periods/get.json            200

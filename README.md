@@ -69,6 +69,72 @@ Chrome is highly recommended during development. In Chrome, install:
 
     - Without this extension, when running the sites locally you may have problems accessing the API from the front-end due to [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing). The local in-memory API server (Hugo) doesn't support custom HTTP response headers. But for deployment to Netlify, we [specify the necessary header configuration](https://github.com/railroadpm/site/blob/master/api/static/_headers).
 
+### Starting From Scratch
+
+As a web developer I always find it helpful to know how a project got started. So if you're interested in following the steps that were originally taken to create this solution from scratch, here are some of the details.
+
+#### API
+
+For the API piece it's about getting Hugo setup for serving primarily JSON instead of HTML.
+
+<details><summary>Details</summary>
+
+- From the root folder, I ran `hugo new site api`, which created the `api` subfolder
+- In the `api` folder
+  - Cleaned a bit, removing Hugo stuff we won't need: `archetypes`, `themes`, etc.
+  - Tweaked Hugo's `config.toml` to eliminate RSS and sitemap stuff
+  - Ran `npm init -y` to create an initial `package.json` so we can use NPM Scripts to control how Hugo does things
+  - NPM Scripts configured to support commands:
+    - `npm run dev` or `yarn dev` to run a local Hugo development server with live reload
+    - `npm run build` or `yarn build` to do a quick, incremental build to `./dist`
+    - `npm run build-full` or `yarn build-full` to do a full build, cleaning the `./dist` folder
+- Logged-in to [app.netlify.com](https://app.netlify.com) with my GitHub credentials and clicked "New site from Git"
+  - Under "Continuous Deployment" selected GitHub and then clicked "Authorize netlify"
+  - Under "Create a new site" selected this repo
+  - Configured `master` branch to deploy, set "Build command" to `cd api && npm install && npm run build` and "Publish directory" to `api/dist`
+  - Clicked "Deploy site"
+  - Configured subdomain so that the site is hosted under Netlify at: https://api.rrpm.run/
+  - Please see NOTE in [`netlify.toml`](https://github.com/railroadpm/site/blob/2785ba895fb1abd5afa4276b00eba55146bf8752/netlify.toml#L1) config file RE: setup as it is unique to this monorepo approach
+
+</details>
+
+#### App
+
+For the frontend App I used [**create-nuxt-app**](https://github.com/nuxt-community/create-nuxt-app).
+
+<details><summary>Details</summary>
+
+- From this project's root folder, I ran `yarn create nuxt-app app` and entered/selected the following options
+  - Project name: `aar-rpm-app`
+  - Project description: RPM App
+  - Use a custom server framework: none
+  - Use a custom UI framework: vuetify
+  - Choose rendering mode: Single Page App
+  - Use axios module: yes
+  - Use eslint: yes
+  - Choose a package manager: npm
+- `create-nuxt-app` initializes git in the `app` folder created. We don't need separate git tracking for this subfolder, so
+  - Changed directory into *app*: `cd app`
+  - Removed `.git` folder: `rd /s /q .git` (on Windows)
+- `create-nuxt-app` had some outdated dependencies listed in the generated `package.json`, so updated to
+  - `"nuxt": "^1.4.1"`
+  - `"vuetify": "^1.0.19"`
+  - `"@nuxtjs/axios": "^5.3.1"`
+- Ran `npm install`
+- Changed the default app component style from `dark` to `light` in `app\layouts\default.vue` and the default progress bar color in `app\nuxt.config.js`
+- Logged-in to [app.netlify.com](https://app.netlify.com) with my GitHub credentials and clicked "New site from Git"
+  - Under "Continuous Deployment" selected GitHub and then clicked "Authorize netlify"
+  - Under "Create a new site" selected this repo
+  - Configured `master` branch to deploy, set "Build command" to `cd app && npm install && npm run generate` and "Publish directory" to `app/dist`
+  - Clicked "Deploy site"
+  - Configured subdomain so that site is hosted under Netlify at: https://app.rrpm.run/
+
+</details>
+
+#### Admin
+
+The Admin piece is really just Netlify CMS and its configuration file. You can get started with Netlify CMS in several ways, and they are all [nicely documented by Netlify](https://www.netlifycms.org/docs/start-with-a-template/).
+
 ### Architecture
 
 Coming Soon!

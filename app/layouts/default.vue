@@ -7,7 +7,7 @@
           <template v-if="!item.subItems">
             <!-- Note that items with a "target" are treated as traditional hrefs to outside content -->
             <v-list-tile :nuxt="!item.target" :to="item.target ? undefined : item.to" :href="item.target ? item.to : undefined" :key="item.title"
-              :target="item.target" exact>
+              :target="item.target" :rel="item.rel" exact>
               <v-list-tile-action>
                 <v-icon v-html="item.icon"></v-icon>
               </v-list-tile-action>
@@ -144,7 +144,8 @@ export default {
           icon: 'train',
           title: 'For More Info',
           to: this.$store.getters.railroadProfileByKey(this.selectedRailroadKey).Website,
-          target: '_blank'
+          target: '_blank',
+          rel: 'noopener'
         });
       }
 

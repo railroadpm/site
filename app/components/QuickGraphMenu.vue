@@ -65,6 +65,18 @@ export default {
         }))
         .filter(val => !(this.railroad === 'AOR' && val.key === 'TerminalDwell'))
         .value();
+    },
+    selectedReportTab() {
+      // "Subscribe" to the state of the report tabs and keep a watch below
+      return this.$store.state.ui.reports.selectedTab;
+    }
+  },
+
+  watch: {
+    selectedReportTab(newValue, oldValue) {
+      // This menu must be closed when we note a switch to a different report tab to avoid the confusion
+      // of potentially multiple menus open and acting on different reports
+      if (newValue != oldValue) this.showMenu = false;
     }
   },
 

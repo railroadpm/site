@@ -112,14 +112,6 @@ export default {
     quickGraphDimensionKey: ''
   }),
 
-  watch: {
-    historicalPage: function(newPage, oldPage) {
-      if (newPage != oldPage) {
-        this.getHeadersAndKeysFromRawData(newPage);
-      }
-    }
-  },
-
   created() {
     console.log(`COMPONENT: Created <TabularReport> component for ${this.railroad}, report type "${this.reportType}"`);
     this.getTabularData();
@@ -141,6 +133,14 @@ export default {
 
     csvUrl() {
       return this.$store.getters.railroadCsvDataUrlByKeyAndType(this.railroad, this.reportType);
+    }
+  },
+
+  watch: {
+    historicalPage: function(newPage, oldPage) {
+      if (newPage != oldPage) {
+        this.getHeadersAndKeysFromRawData(newPage);
+      }
     }
   },
 

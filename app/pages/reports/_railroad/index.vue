@@ -14,12 +14,12 @@
           <vue-markdown class="prpt-verbiage" :source="railroadVerbiage" :breaks="false" />
 
           <v-tabs v-model="selectedTab" dark color="blue lighten-2" slider-color="blue darken-4" grow>
-            <v-tab>Current Trends</v-tab>
-            <v-tab>53 Week History</v-tab>
-            <v-tab-item>
+            <v-tab href="#tab-current">Current Trends</v-tab>
+            <v-tab href="#tab-historical">53 Week History</v-tab>
+            <v-tab-item id="tab-current">
               <tabular-report :railroad="selectedRailroadKey" report-type="Current" />
             </v-tab-item>
-            <v-tab-item>
+            <v-tab-item id="tab-historical">
               <tabular-report :railroad="selectedRailroadKey" report-type="Historical" />
             </v-tab-item>
           </v-tabs>
@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapMutations } from 'vuex';
 import TabularReport from '~/components/TabularReport.vue';
 
 export default {
@@ -53,11 +53,12 @@ export default {
   },
 
   data: () => ({
-    selectedTab: '0'
+    selectedTab: ''
   }),
 
   async created() {
     console.log(`PAGE: Created reports page for ${this.selectedRailroadKey}`);
+    this.selectedTab = 'tab-current';
     await this.loadRailroadProfileData();
   },
 
@@ -68,9 +69,9 @@ export default {
   computed: {
     selectedReportType() {
       switch (this.selectedTab) {
-        case '0':
+        case 'tab-current':
           return 'Current';
-        case '1':
+        case 'tab-historical':
           return 'Historical';
         default:
           return '';
@@ -107,7 +108,16 @@ export default {
     }
   },
 
+  watch: {
+    selectedTab(newValue, oldValue) {
+      // We make the selected tab info available in the store so other components (e.g., QuickGraphMenu)
+      // have the ability to react to changes
+      this.publishSelectedTab(newValue);
+    }
+  },
+
   methods: {
+    ...mapMutations(['publishSelectedTab']),
     ...mapActions(['loadRailroadProfileData'])
   }
 };

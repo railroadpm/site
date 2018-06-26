@@ -88,6 +88,11 @@ export const state = () => ({
         UP: []
       }
     }
+  },
+  ui: {
+    reports: {
+      selectedTab: ''
+    }
   }
 });
 
@@ -135,6 +140,10 @@ export const mutations = {
 
     state.railroadReportData[payload.key][payload.type].rows = payload.data.rows;
     state.railroadReportData[payload.key][payload.type].columns = payload.data.columns;
+  },
+
+  publishSelectedTab(state, selectedTab) {
+    state.ui.reports.selectedTab = selectedTab;
   }
 };
 

@@ -35,24 +35,24 @@ collections:
       - {name: "CarsOnLine_ByCarType_OpenHopper", label: "Cars On Line, By Car Type: Open Hopper", widget: "number", valueType: "int", min: 0, max: 2147483647}
       - {name: "CarsOnLine_ByCarType_Tank", label: "Cars On Line, By Car Type: Tank", widget: "number", valueType: "int", min: 0, max: 2147483647}
       - {name: "CarsOnLine_ByCarType_Other", label: "Cars On Line, By Car Type: Other", widget: "number", valueType: "int", min: 0, max: 2147483647}
-      - {name: "TrainSpeed_ByTrainType_IntermodalTrain", label: "Train Speed: Intermodal", widget: "number", valueType: "float"}
-      - {name: "TrainSpeed_ByTrainType_Manifest", label: "Train Speed: Manifest", widget: "number", valueType: "float"}
-      - {name: "TrainSpeed_ByTrainType_MultilevelTrain", label: "Train Speed: Multilevel", widget: "number", valueType: "float"}
-      - {name: "TrainSpeed_ByTrainType_CoalUnit", label: "Train Speed: Coal Unit", widget: "number", valueType: "float"}
-      - {name: "TrainSpeed_ByTrainType_GrainUnit", label: "Train Speed: Grain Unit", widget: "number", valueType: "float"}
-      - {name: "TrainSpeed_ByTrainType_AllTrains", label: "Train Speed: All Trains", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_Barstow", label: "Terminal Dwell: Barstow", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_Denver", label: "Terminal Dwell: Denver", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_FortWorth", label: "Terminal Dwell: Fort Worth", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_Galesburg", label: "Terminal Dwell: Galesburg", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_Houston", label: "Terminal Dwell: Houston", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_KansasCity", label: "Terminal Dwell: Kansas City", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_Lincoln", label: "Terminal Dwell: Lincoln", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_Memphis", label: "Terminal Dwell: Memphis", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_Northtown", label: "Terminal Dwell: Northtown", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_Pasco", label: "Terminal Dwell: Pasco", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_Tulsa", label: "Terminal Dwell: Tulsa", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_EntireRailroad", label: "Terminal Dwell: Entire Railroad", widget: "number", valueType: "float"}
+      - {name: "TrainSpeed_ByTrainType_IntermodalTrain", label: "Train Speed: Intermodal", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TrainSpeed_ByTrainType_Manifest", label: "Train Speed: Manifest", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TrainSpeed_ByTrainType_MultilevelTrain", label: "Train Speed: Multilevel", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TrainSpeed_ByTrainType_CoalUnit", label: "Train Speed: Coal Unit", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TrainSpeed_ByTrainType_GrainUnit", label: "Train Speed: Grain Unit", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TrainSpeed_ByTrainType_AllTrains", label: "Train Speed: All Trains", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_Barstow", label: "Terminal Dwell: Barstow", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_Denver", label: "Terminal Dwell: Denver", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_FortWorth", label: "Terminal Dwell: Fort Worth", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_Galesburg", label: "Terminal Dwell: Galesburg", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_Houston", label: "Terminal Dwell: Houston", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_KansasCity", label: "Terminal Dwell: Kansas City", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_Lincoln", label: "Terminal Dwell: Lincoln", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_Memphis", label: "Terminal Dwell: Memphis", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_Northtown", label: "Terminal Dwell: Northtown", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_Pasco", label: "Terminal Dwell: Pasco", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_Tulsa", label: "Terminal Dwell: Tulsa", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_EntireRailroad", label: "Terminal Dwell: Entire Railroad", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
   - name: "reports_cn"
     label: "CN Weekly Reports"
     label_singular: "CN Weekly Report"
@@ -78,22 +78,22 @@ collections:
       - {name: "CarsOnLine_ByCarType_OpenHopper", label: "Cars On Line, By Car Type: Open Hopper", widget: "number", valueType: "int", min: 0, max: 2147483647}
       - {name: "CarsOnLine_ByCarType_Tank", label: "Cars On Line, By Car Type: Tank", widget: "number", valueType: "int", min: 0, max: 2147483647}
       - {name: "CarsOnLine_ByCarType_Other", label: "Cars On Line, By Car Type: Other", widget: "number", valueType: "int", min: 0, max: 2147483647}
-      - {name: "TrainSpeed_ByTrainType_IntermodalTrain", label: "Train Speed: Intermodal", widget: "number", valueType: "float"}
-      - {name: "TrainSpeed_ByTrainType_Manifest", label: "Train Speed: Manifest", widget: "number", valueType: "float"}
-      - {name: "TrainSpeed_ByTrainType_MultilevelTrain", label: "Train Speed: Multilevel", widget: "number", valueType: "float"}
-      - {name: "TrainSpeed_ByTrainType_CoalUnit", label: "Train Speed: Coal Unit", widget: "number", valueType: "float"}
-      - {name: "TrainSpeed_ByTrainType_GrainUnit", label: "Train Speed: Grain Unit", widget: "number", valueType: "float"}
-      - {name: "TrainSpeed_ByTrainType_AllTrains", label: "Train Speed: All Trains", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_HarrisonYard", label: "Terminal Dwell: Harrison Yard", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_FDLYard", label: "Terminal Dwell: FDL Yard", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_JacksonYard", label: "Terminal Dwell: Jackson Yard", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_MacMillanYard", label: "Terminal Dwell: MacMillan Yard", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_MarkhamYard", label: "Terminal Dwell: Markham Yard", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_SymingtonYard", label: "Terminal Dwell: Symington Yard", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_TascherauYard", label: "Terminal Dwell: Tascherau Yard", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_ThorntonYard", label: "Terminal Dwell: Thornton Yard", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_WalkerYard", label: "Terminal Dwell: Walker Yard", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_EntireRailroad", label: "Terminal Dwell: Entire Railroad", widget: "number", valueType: "float"}
+      - {name: "TrainSpeed_ByTrainType_IntermodalTrain", label: "Train Speed: Intermodal", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TrainSpeed_ByTrainType_Manifest", label: "Train Speed: Manifest", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TrainSpeed_ByTrainType_MultilevelTrain", label: "Train Speed: Multilevel", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TrainSpeed_ByTrainType_CoalUnit", label: "Train Speed: Coal Unit", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TrainSpeed_ByTrainType_GrainUnit", label: "Train Speed: Grain Unit", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TrainSpeed_ByTrainType_AllTrains", label: "Train Speed: All Trains", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_HarrisonYard", label: "Terminal Dwell: Harrison Yard", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_FDLYard", label: "Terminal Dwell: FDL Yard", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_JacksonYard", label: "Terminal Dwell: Jackson Yard", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_MacMillanYard", label: "Terminal Dwell: MacMillan Yard", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_MarkhamYard", label: "Terminal Dwell: Markham Yard", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_SymingtonYard", label: "Terminal Dwell: Symington Yard", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_TascherauYard", label: "Terminal Dwell: Tascherau Yard", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_ThorntonYard", label: "Terminal Dwell: Thornton Yard", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_WalkerYard", label: "Terminal Dwell: Walker Yard", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_EntireRailroad", label: "Terminal Dwell: Entire Railroad", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
   - name: "reports_kcs"
     label: "KCS Weekly Reports"
     label_singular: "KCS Weekly Report"
@@ -119,21 +119,21 @@ collections:
       - {name: "CarsOnLine_ByCarType_OpenHopper", label: "Cars On Line, By Car Type: Open Hopper", widget: "number", valueType: "int", min: 0, max: 2147483647}
       - {name: "CarsOnLine_ByCarType_Tank", label: "Cars On Line, By Car Type: Tank", widget: "number", valueType: "int", min: 0, max: 2147483647}
       - {name: "CarsOnLine_ByCarType_Other", label: "Cars On Line, By Car Type: Other", widget: "number", valueType: "int", min: 0, max: 2147483647}
-      - {name: "TrainSpeed_ByTrainType_IntermodalTrain", label: "Train Speed: Intermodal", widget: "number", valueType: "float"}
-      - {name: "TrainSpeed_ByTrainType_Manifest", label: "Train Speed: Manifest", widget: "number", valueType: "float"}
-      - {name: "TrainSpeed_ByTrainType_MultilevelTrain", label: "Train Speed: Multilevel", widget: "number", valueType: "float"}
-      - {name: "TrainSpeed_ByTrainType_CoalUnit", label: "Train Speed: Coal Unit", widget: "number", valueType: "float"}
-      - {name: "TrainSpeed_ByTrainType_GrainUnit", label: "Train Speed: Grain Unit", widget: "number", valueType: "float"}
-      - {name: "TrainSpeed_ByTrainType_AllTrains", label: "Train Speed: All Trains", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_Jackson", label: "Terminal Dwell: Jackson", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_KansasCity", label: "Terminal Dwell: Kansas City", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_Laredo", label: "Terminal Dwell: Laredo", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_Shreveport", label: "Terminal Dwell: Shreveport", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_Monterrey", label: "Terminal Dwell: Monterrey", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_NuevoLaredo", label: "Terminal Dwell: Nuevo Laredo", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_SanLuisPotosi", label: "Terminal Dwell: San Luis Potosi", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_Sanchez", label: "Terminal Dwell: Sanchez", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_EntireRailroad", label: "Terminal Dwell: Entire Railroad", widget: "number", valueType: "float"}
+      - {name: "TrainSpeed_ByTrainType_IntermodalTrain", label: "Train Speed: Intermodal", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TrainSpeed_ByTrainType_Manifest", label: "Train Speed: Manifest", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TrainSpeed_ByTrainType_MultilevelTrain", label: "Train Speed: Multilevel", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TrainSpeed_ByTrainType_CoalUnit", label: "Train Speed: Coal Unit", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TrainSpeed_ByTrainType_GrainUnit", label: "Train Speed: Grain Unit", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TrainSpeed_ByTrainType_AllTrains", label: "Train Speed: All Trains", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_Jackson", label: "Terminal Dwell: Jackson", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_KansasCity", label: "Terminal Dwell: Kansas City", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_Laredo", label: "Terminal Dwell: Laredo", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_Shreveport", label: "Terminal Dwell: Shreveport", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_Monterrey", label: "Terminal Dwell: Monterrey", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_NuevoLaredo", label: "Terminal Dwell: Nuevo Laredo", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_SanLuisPotosi", label: "Terminal Dwell: San Luis Potosi", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_Sanchez", label: "Terminal Dwell: Sanchez", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_EntireRailroad", label: "Terminal Dwell: Entire Railroad", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
   - name: "reports_ns"
     label: "NS Weekly Reports"
     label_singular: "NS Weekly Report"
@@ -159,27 +159,27 @@ collections:
       - {name: "CarsOnLine_ByCarType_OpenHopper", label: "Cars On Line, By Car Type: Open Hopper", widget: "number", valueType: "int", min: 0, max: 2147483647}
       - {name: "CarsOnLine_ByCarType_Tank", label: "Cars On Line, By Car Type: Tank", widget: "number", valueType: "int", min: 0, max: 2147483647}
       - {name: "CarsOnLine_ByCarType_Other", label: "Cars On Line, By Car Type: Other", widget: "number", valueType: "int", min: 0, max: 2147483647}
-      - {name: "TrainSpeed_ByTrainType_IntermodalTrain", label: "Train Speed: Intermodal", widget: "number", valueType: "float"}
-      - {name: "TrainSpeed_ByTrainType_Manifest", label: "Train Speed: Manifest", widget: "number", valueType: "float"}
-      - {name: "TrainSpeed_ByTrainType_MultilevelTrain", label: "Train Speed: Multilevel", widget: "number", valueType: "float"}
-      - {name: "TrainSpeed_ByTrainType_CoalUnit", label: "Train Speed: Coal Unit", widget: "number", valueType: "float"}
-      - {name: "TrainSpeed_ByTrainType_GrainUnit", label: "Train Speed: Grain Unit", widget: "number", valueType: "float"}
-      - {name: "TrainSpeed_ByTrainType_AllTrains", label: "Train Speed: All Trains", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_Allentown", label: "Terminal Dwell: Allentown", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_Bellevue", label: "Terminal Dwell: Bellevue", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_Birmingham", label: "Terminal Dwell: Birmingham", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_Chattanooga", label: "Terminal Dwell: Chattanooga", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_Columbus", label: "Terminal Dwell: Columbus", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_Conway", label: "Terminal Dwell: Conway", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_Decatur", label: "Terminal Dwell: Decatur", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_Elkhart", label: "Terminal Dwell: Elkhart", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_Atlanta", label: "Terminal Dwell: Atlanta", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_Linwood", label: "Terminal Dwell: Linwood", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_Macon", label: "Terminal Dwell: Macon", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_NewOrleans", label: "Terminal Dwell: New Orleans", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_Roanoke", label: "Terminal Dwell: Roanoke", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_Sheffield", label: "Terminal Dwell: Sheffield", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_EntireRailroad", label: "Terminal Dwell: Entire Railroad", widget: "number", valueType: "float"}
+      - {name: "TrainSpeed_ByTrainType_IntermodalTrain", label: "Train Speed: Intermodal", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TrainSpeed_ByTrainType_Manifest", label: "Train Speed: Manifest", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TrainSpeed_ByTrainType_MultilevelTrain", label: "Train Speed: Multilevel", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TrainSpeed_ByTrainType_CoalUnit", label: "Train Speed: Coal Unit", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TrainSpeed_ByTrainType_GrainUnit", label: "Train Speed: Grain Unit", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TrainSpeed_ByTrainType_AllTrains", label: "Train Speed: All Trains", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_Allentown", label: "Terminal Dwell: Allentown", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_Bellevue", label: "Terminal Dwell: Bellevue", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_Birmingham", label: "Terminal Dwell: Birmingham", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_Chattanooga", label: "Terminal Dwell: Chattanooga", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_Columbus", label: "Terminal Dwell: Columbus", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_Conway", label: "Terminal Dwell: Conway", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_Decatur", label: "Terminal Dwell: Decatur", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_Elkhart", label: "Terminal Dwell: Elkhart", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_Atlanta", label: "Terminal Dwell: Atlanta", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_Linwood", label: "Terminal Dwell: Linwood", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_Macon", label: "Terminal Dwell: Macon", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_NewOrleans", label: "Terminal Dwell: New Orleans", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_Roanoke", label: "Terminal Dwell: Roanoke", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_Sheffield", label: "Terminal Dwell: Sheffield", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_EntireRailroad", label: "Terminal Dwell: Entire Railroad", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
   - name: "reports_up"
     label: "UP Weekly Reports"
     label_singular: "UP Weekly Report"
@@ -205,26 +205,26 @@ collections:
       - {name: "CarsOnLine_ByCarType_OpenHopper", label: "Cars On Line, By Car Type: Open Hopper", widget: "number", valueType: "int", min: 0, max: 2147483647}
       - {name: "CarsOnLine_ByCarType_Tank", label: "Cars On Line, By Car Type: Tank", widget: "number", valueType: "int", min: 0, max: 2147483647}
       - {name: "CarsOnLine_ByCarType_Other", label: "Cars On Line, By Car Type: Other", widget: "number", valueType: "int", min: 0, max: 2147483647}
-      - {name: "TrainSpeed_ByTrainType_IntermodalTrain", label: "Train Speed: Intermodal", widget: "number", valueType: "float"}
-      - {name: "TrainSpeed_ByTrainType_Manifest", label: "Train Speed: Manifest", widget: "number", valueType: "float"}
-      - {name: "TrainSpeed_ByTrainType_MultilevelTrain", label: "Train Speed: Multilevel", widget: "number", valueType: "float"}
-      - {name: "TrainSpeed_ByTrainType_CoalUnit", label: "Train Speed: Coal Unit", widget: "number", valueType: "float"}
-      - {name: "TrainSpeed_ByTrainType_GrainUnit", label: "Train Speed: Grain Unit", widget: "number", valueType: "float"}
-      - {name: "TrainSpeed_ByTrainType_AllTrains", label: "Train Speed: All Trains", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_Chicago", label: "Terminal Dwell: Chicago", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_FortWorth", label: "Terminal Dwell: Fort Worth", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_Hinkle", label: "Terminal Dwell: Hinkle", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_HoustonEnglewood", label: "Terminal Dwell: Houston Englewood", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_HoustonSettegast", label: "Terminal Dwell: Houston Settegast", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_KansasCity", label: "Terminal Dwell: Kansas City", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_Livonia", label: "Terminal Dwell: Livonia", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_NorthLittleRock", label: "Terminal Dwell: North Little Rock", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_NorthPlatteEast", label: "Terminal Dwell: North Platte East", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_NorthPlatteWest", label: "Terminal Dwell: North Platte West", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_PineBluff", label: "Terminal Dwell: Pine Bluff", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_Roseville", label: "Terminal Dwell: Roseville", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_WestColton", label: "Terminal Dwell: West Colton", widget: "number", valueType: "float"}
-      - {name: "TerminalDwell_EntireRailroad", label: "Terminal Dwell: Entire Railroad", widget: "number", valueType: "float"}
+      - {name: "TrainSpeed_ByTrainType_IntermodalTrain", label: "Train Speed: Intermodal", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TrainSpeed_ByTrainType_Manifest", label: "Train Speed: Manifest", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TrainSpeed_ByTrainType_MultilevelTrain", label: "Train Speed: Multilevel", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TrainSpeed_ByTrainType_CoalUnit", label: "Train Speed: Coal Unit", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TrainSpeed_ByTrainType_GrainUnit", label: "Train Speed: Grain Unit", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TrainSpeed_ByTrainType_AllTrains", label: "Train Speed: All Trains", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_Chicago", label: "Terminal Dwell: Chicago", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_FortWorth", label: "Terminal Dwell: Fort Worth", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_Hinkle", label: "Terminal Dwell: Hinkle", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_HoustonEnglewood", label: "Terminal Dwell: Houston Englewood", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_HoustonSettegast", label: "Terminal Dwell: Houston Settegast", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_KansasCity", label: "Terminal Dwell: Kansas City", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_Livonia", label: "Terminal Dwell: Livonia", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_NorthLittleRock", label: "Terminal Dwell: North Little Rock", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_NorthPlatteEast", label: "Terminal Dwell: North Platte East", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_NorthPlatteWest", label: "Terminal Dwell: North Platte West", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_PineBluff", label: "Terminal Dwell: Pine Bluff", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_Roseville", label: "Terminal Dwell: Roseville", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_WestColton", label: "Terminal Dwell: West Colton", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
+      - {name: "TerminalDwell_EntireRailroad", label: "Terminal Dwell: Entire Railroad", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9}
   - name: "reports_aor"
     label: "All Other Railroads Weekly Reports"
     label_singular: "All Other Railroads Weekly Report"

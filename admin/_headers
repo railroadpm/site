@@ -1,0 +1,10 @@
+# Admin site serves UTF-8 content
+
+/index.html
+  content-type:text/html; charset=UTF-8
+
+/config.yml
+  content-type: application/x-yaml; charset=UTF-8
+
+/cms.custom.js
+  content-type: application/javascript; charset=UTF-8

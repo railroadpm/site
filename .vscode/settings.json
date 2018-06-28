@@ -15,5 +15,83 @@
     "**/layouts/**/*.json": "gotemplate"
   },
   "autorun.build": false,
-  "typescript.experimental.syntaxFolding": false
+  "typescript.experimental.syntaxFolding": false,
+  "eslint.validate": [{
+      "language": "vue",
+      "autoFix": true
+    },
+    {
+      "language": "html",
+      "autoFix": true
+    },
+    {
+      "language": "javascript",
+      "autoFix": true
+    }
+  ],
+  "eslint.options": {
+    "root": true,
+    "env": {
+      "browser": true,
+      "node": true
+    },
+    "plugins": [
+      "vue",
+      "prettier"
+    ],
+    "parser": "vue-eslint-parser",
+    "parserOptions": {
+      "parser": "babel-eslint",
+      "ecmaVersion": 2017,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true,
+        "modules": true
+      }
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "prettier"
+    ],
+    "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+          "singleQuote": true,
+          "printWidth": 170
+        }
+      ],
+      "max-len": [
+        "warn",
+        {
+          "code": 170
+        }
+      ],
+      "object-curly-spacing": "off",
+      "object-property-newline": [
+        "error",
+        {
+          "allowMultiplePropertiesPerLine": true
+        }
+      ],
+      "object-curly-newline": [
+        "error",
+        {
+          "ObjectExpression": {
+            "multiline": false,
+            "consistent": true
+          },
+          "ObjectPattern": {
+            "multiline": false,
+            "consistent": true
+          }
+        }
+      ],
+      "comma-dangle": "off",
+      "quotes": [
+        2,
+        "single"
+      ]
+    }
+  }
 }

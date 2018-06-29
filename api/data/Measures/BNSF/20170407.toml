@@ -1,6 +1,6 @@
 Railroad = "BNSF"
 Title = "20170407"
-Revisions = true
+Revisions = false
 CarsOnLine_ByCarOwner_System = 1
 CarsOnLine_ByCarOwner_ForeignRR = 2
 CarsOnLine_ByCarOwner_Private = 3

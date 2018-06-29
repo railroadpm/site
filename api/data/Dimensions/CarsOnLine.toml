@@ -1,7 +1,7 @@
 # CarsOnLine.toml: Lookup data for categorical dimensions
 #   For Types, ShortName is used when displaying Measures, LongName when displaying definitions
 Key = 'CarsOnLine'
-MeasureHeading = 'Cars on Line'
+MeasureHeading = '*Cars on Line*'
 DefinitionHeading = 'Cars On Line'
 DefinitionVerbiage = '''
   Cars On Line is the average of the daily on-line inventory of freight cars. Articulated cars are counted as a single unit.

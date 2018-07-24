@@ -1,6 +1,6 @@
 <template>
   <v-app light>
-    <v-navigation-drawer fixed app dark clipped v-model="drawer" mobile-break-point="740" width="230" class="primary">
+    <v-navigation-drawer fixed app dark clipped v-model="drawer" mobile-break-point="740" width="230" class="primary rpm-left-nav">
       <v-list>
         <template v-for="item in drawerItems">
           <!-- Items *without* sub items use v-list-tile -->
@@ -38,7 +38,7 @@
 
     <v-toolbar fixed app light clipped-left class="white elevation-0 rpm-main-toolbar">
       <v-toolbar-side-icon @click="drawer = !drawer" class="primary--text"></v-toolbar-side-icon>
-      <img src="/banner_lg.jpg" class="rpm-main-banner" />
+      <nuxt-link to="/" class="rpm-main-banner-link"><img src="/banner_lg.jpg" class="rpm-main-banner" /></nuxt-link>
     </v-toolbar>
 
     <v-content class="rpm-main-content">
@@ -176,6 +176,18 @@ div.list__group__header__prepend-icon i {
   color: white !important;
 }
 
+.rpm-left-nav div.list {
+  padding-top: 4px;
+}
+
+.rpm-left-nav .list__tile {
+  height: 44px;
+}
+
+.rpm-left-nav .list__group__items .list__tile {
+  height: 40px;
+}
+
 .toolbar__content,
 .rpm-main-toolbar,
 .rpm-main-banner {
@@ -186,9 +198,10 @@ div.list__group__header__prepend-icon i {
   min-width: 36px;
 }
 
-/* Fix for strange text clipping in IE 11 */
-.toolbar__title {
-  min-width: 200px;
+.rpm-main-banner-link {
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 0 !important;
 }
 
 .rpm-footer {

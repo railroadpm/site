@@ -1,9 +1,9 @@
 <template>
   <v-dialog v-model="show" fullscreen hide-overlay transition="dialog-bottom-transition">
     <v-card>
-      <v-toolbar dark color="blue lighten-2">
+      <v-toolbar dark color="secondary">
         <v-tooltip bottom>
-          <v-btn slot="activator" icon dark color="orange lighten-1" @click.native="$emit('close')">
+          <v-btn slot="activator" icon dark color="accent" @click.native="$emit('close')">
             <v-icon>close</v-icon>
           </v-btn>
           <span>Close and Return to Railroads List (Esc)</span>

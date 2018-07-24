@@ -6,14 +6,14 @@
           <th>&nbsp;</th>
           <th class="rpt-col-pagination" :colspan="cols.headers.length - 1">
             <div class="text-xs-center rpt-pagination-ctl">
-              <v-pagination :circle="true" :length="numPages" :total-visible="numPages" v-model="historicalPage" color="blue darken-4"></v-pagination>
+              <v-pagination :circle="true" :length="numPages" :total-visible="numPages" v-model="historicalPage" color="accent-dark"></v-pagination>
             </div>
           </th>
         </tr>
         <tr class="rpt-col-groups-row">
           <th>
             <!-- We render the CSV Download btn in the upper "rowLabel" header cell -->
-            <v-btn class="rpt-csv-btn" small outline color="orange lighten-1" dark :href="csvUrl">CSV Download</v-btn>
+            <v-btn class="rpt-csv-btn" small outline color="accent" dark :href="csvUrl">CSV Download</v-btn>
           </th>
           <template v-if="reportType === 'Current'">
             <th class="rpt-col-groups rpt-col-group-avg" :colspan="avgColumns.length">
@@ -49,7 +49,7 @@
           <!-- First render the row label cell -->
           <td class="rpt-data-label">
             <span :class="{ 'rpt-data-heading-row-label': row.item.isHeadingRow, 'rpt-data-calculated-row-label': row.item.isCalculated }">
-              <v-icon class="rpt-selected-row-icon" v-show="row.selected" color="orange lighten-1">insert_chart_outlined</v-icon>
+              <v-icon class="rpt-selected-row-icon" v-show="row.selected" color="accent">insert_chart_outlined</v-icon>
               <vue-markdown class="rpt-data-label-md" :source="row.item.rowLabel" />
             </span>
           </td>

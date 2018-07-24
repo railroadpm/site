@@ -13,7 +13,7 @@
           <h2>{{ railroadShortName }} - Weekly Performance Report</h2>
           <vue-markdown class="prpt-verbiage" :source="railroadVerbiage" :breaks="false" />
 
-          <v-tabs v-model="selectedTab" dark color="blue lighten-2" slider-color="blue darken-4" grow>
+          <v-tabs v-model="selectedTab" dark color="secondary" slider-color="accent-dark" grow>
             <v-tab href="#tab-current">Current Trends</v-tab>
             <v-tab href="#tab-historical">53 Week History</v-tab>
             <v-tab-item id="tab-current">

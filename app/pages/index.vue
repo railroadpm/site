@@ -1,7 +1,7 @@
 <template>
   <v-layout column justify-center align-center>
-    <v-flex xs12 sm8 md6>
-      <v-card>
+    <v-flex xs12 sm8 md6 class="py-3">
+      <v-card class="elevation-2">
         <v-card-title class="headline">Welcome to the Railroad Performance Measures Website</v-card-title>
         <v-card-text>
           <blockquote class="blockquote mb-4">

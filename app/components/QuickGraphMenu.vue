@@ -1,11 +1,11 @@
 <template>
   <v-menu :close-on-click="false" :close-on-content-click="false" v-model="showMenu" top right offset-y offset-x>
-    <v-btn small outline slot="activator" color="orange lighten-1" dark @click="showMenu = !showMenu">Quick Graph</v-btn>
+    <v-btn small outline slot="activator" color="accent" dark @click="showMenu = !showMenu">Quick Graph</v-btn>
     <v-card v-if="showMenu" width="450">
       <v-container class="graph-menu-help">
         <v-layout>
           <v-flex xs1>
-            <v-icon color="orange lighten-1">help_outline</v-icon>
+            <v-icon color="accent">help_outline</v-icon>
           </v-flex>
           <v-flex xs11>
             Click (tap) on data rows in the report (except percentages) to select them for inclusion in a graph, and then click a "Graph" button

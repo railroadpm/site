@@ -55,7 +55,7 @@ module.exports = {
   /*
    ** Global CSS
    */
-  css: ['vuetify/src/stylus/main.styl'],
+  css: ['assets/main.styl'],
 
   /*
    ** Plugins to load before mounting the App

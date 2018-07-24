@@ -1,6 +1,6 @@
 <template>
   <v-app light>
-    <v-navigation-drawer fixed app dark clipped v-model="drawer" mobile-break-point="740" width="230" class="blue darken-1">
+    <v-navigation-drawer fixed app dark clipped v-model="drawer" mobile-break-point="740" width="230" class="primary">
       <v-list>
         <template v-for="item in drawerItems">
           <!-- Items *without* sub items use v-list-tile -->
@@ -36,20 +36,20 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-toolbar fixed app dark clipped-left class="blue darken-3">
+    <v-toolbar fixed app light clipped-left class="white elevation-0 rpm-main-toolbar">
       <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title v-text="title" />
+      <img src="/banner_lg.jpg" class="rpm-main-banner" />
     </v-toolbar>
 
-    <v-content>
+    <v-content class="rpm-main-content">
       <v-container>
         <nuxt />
       </v-container>
     </v-content>
 
-    <v-footer :fixed="fixedFooter" app inset class="pa-3 grey lighten-2">
+    <v-footer :fixed="fixedFooter" app inset class="pa-3 rpm-footer">
       <v-spacer></v-spacer>
-      <div class="app-footer-text">Railroad Performance Measures are published every Wednesday at 2:00 p.m. Eastern Time.</div>
+      <div class="rpm-footer-text">Railroad Performance Measures are published every Wednesday at 2:00 p.m. Eastern Time.</div>
     </v-footer>
   </v-app>
 </template>
@@ -161,6 +161,10 @@ html {
   overflow-y: auto !important;
 }
 
+.rpm-main-content {
+  background: linear-gradient(white 15%, #eeeef3);
+}
+
 /* Left drawer active item  */
 .list__tile--active .list__tile__content,
 .list__tile--active .list__tile__action {
@@ -172,12 +176,26 @@ div.list__group__header__prepend-icon i {
   color: white !important;
 }
 
+.toolbar__content,
+.rpm-main-toolbar,
+.rpm-main-banner {
+  height: 64px !important;
+}
+
+.toolbar__side-icon {
+  min-width: 36px;
+}
+
 /* Fix for strange text clipping in IE 11 */
 .toolbar__title {
   min-width: 200px;
 }
 
-.app-footer-text {
+.rpm-footer {
+  background-color: #e0e0e5 !important;
+}
+
+.rpm-footer-text {
   font-size: 12px;
 }
 </style>

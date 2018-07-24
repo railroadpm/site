@@ -15,7 +15,6 @@
     "**/layouts/**/*.json": "gotemplate"
   },
   "autorun.build": false,
-  "typescript.experimental.syntaxFolding": false,
   "eslint.validate": [{
       "language": "vue",
       "autoFix": true

@@ -9,7 +9,7 @@
           <v-container class="rr-graph-help">
             <v-layout>
               <v-flex xs1>
-                <v-icon color="orange lighten-1">help_outline</v-icon>
+                <v-icon color="accent">help_outline</v-icon>
               </v-flex>
               <v-flex xs11>
                 <h4 class="grey--text text--darken-1">

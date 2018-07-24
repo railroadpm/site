@@ -37,7 +37,7 @@
     </v-navigation-drawer>
 
     <v-toolbar fixed app light clipped-left class="white elevation-0 rpm-main-toolbar">
-      <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
+      <v-toolbar-side-icon @click="drawer = !drawer" class="primary--text"></v-toolbar-side-icon>
       <img src="/banner_lg.jpg" class="rpm-main-banner" />
     </v-toolbar>
 

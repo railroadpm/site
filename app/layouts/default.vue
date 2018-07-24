@@ -1,6 +1,6 @@
 <template>
   <v-app light>
-    <v-navigation-drawer fixed app dark clipped v-model="drawer" mobile-break-point="740" width="230" style="background-color: rgb(0, 114, 169)">
+    <v-navigation-drawer fixed app dark clipped v-model="drawer" mobile-break-point="740" width="230" class="primary">
       <v-list>
         <template v-for="item in drawerItems">
           <!-- Items *without* sub items use v-list-tile -->
@@ -162,7 +162,6 @@ html {
 }
 
 .rpm-main-content {
-  /* background-color: white; */
   background: linear-gradient(white 15%, #eeeef3);
 }
 

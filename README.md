@@ -34,7 +34,7 @@ There are two prerequisites for running and working with this codebase:
 
 And of course, [VSCode](https://code.visualstudio.com/download) is highly recommended. So before proceeding be sure to install those pieces if you don't already have them.
 
-This repo is organized as a "mono repo" containing multiple private sub-packages. So to get started, just:
+This repo is organized as a ["monorepo"](https://github.com/babel/babel/blob/master/doc/design/monorepo.md) containing multiple private sub-packages. But the complexity here doesn't rise to the point where something like [Lerna](https://github.com/lerna/lerna) is needed to help manage things. So to get started, just:
 
 - [Clone](https://github.com/slathrop/git-scripts-win/blob/master/README.md) [this repo](https://github.com/railroadpm/site)
 - Open a command prompt, and
@@ -44,7 +44,7 @@ This repo is organized as a "mono repo" containing multiple private sub-packages
 npm run install-all
 ```
 
-> Note that this is **not** the typical `npm install` command to get started. Instead, we wrap multiple invocations of `npm install` in an `install-all` script.
+> Note that this is **not** the typical `npm install` command to get started. Instead, we wrap multiple invocations of `npm install` in an `install-all` script (in lieu of doing something like [`lerna bootstrap`](https://github.com/lerna/lerna/tree/master/commands/bootstrap#readme)).
 
 Then, launch VSCode:
 

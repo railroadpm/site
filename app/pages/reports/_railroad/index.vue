@@ -16,10 +16,10 @@
           <v-tabs v-model="selectedTab" dark color="secondary" slider-color="accent-dark" grow>
             <v-tab href="#tab-current">Current Trends</v-tab>
             <v-tab href="#tab-historical">53 Week History</v-tab>
-            <v-tab-item id="tab-current">
+            <v-tab-item value="tab-current">
               <tabular-report :railroad="selectedRailroadKey" report-type="Current" />
             </v-tab-item>
-            <v-tab-item id="tab-historical">
+            <v-tab-item value="tab-historical">
               <tabular-report :railroad="selectedRailroadKey" report-type="Historical" />
             </v-tab-item>
           </v-tabs>

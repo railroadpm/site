@@ -6,8 +6,8 @@
           <!-- Items *without* sub items use v-list-tile -->
           <template v-if="!item.subItems">
             <!-- Note that items with a "target" are treated as traditional hrefs to outside content -->
-            <v-list-tile :nuxt="!item.target" :to="item.target ? undefined : item.to" :href="item.target ? item.to : undefined" :key="item.title"
-              :target="item.target" :rel="item.rel" exact>
+            <v-list-tile :nuxt="!item.target" :to="item.target ? undefined : item.to" :href="item.target ? item.to : undefined"
+              :key="item.title" :target="item.target" :rel="item.rel" exact>
               <v-list-tile-action>
                 <v-icon v-html="item.icon"></v-icon>
               </v-list-tile-action>
@@ -47,10 +47,10 @@
       </v-container>
     </v-content>
 
-    <v-footer :fixed="fixedFooter" app inset class="pa-3 rpm-footer">
+    <!-- <v-footer :fixed="fixedFooter" app inset class="pa-3 rpm-footer">
       <v-spacer></v-spacer>
       <div class="rpm-footer-text">Railroad Performance Measures are published every Wednesday at 2:00 p.m. Eastern Time.</div>
-    </v-footer>
+    </v-footer> -->
   </v-app>
 </template>
 
@@ -166,35 +166,35 @@ html {
 }
 
 /* Left drawer active item  */
-.list__tile--active .list__tile__content,
-.list__tile--active .list__tile__action {
+.v-list__tile--active .v-list__tile__content,
+.v-list__tile--active .v-list__tile__action {
   color: #ffcc80 !important; /* orange lighten-3 */
 }
 
 /* Nav drawer group item icon (e.g., "Reports") fix */
-div.list__group__header__prepend-icon i {
+div.v-list__group__header__prepend-icon i {
   color: white !important;
 }
 
-.rpm-left-nav div.list {
+.rpm-left-nav div.v-list {
   padding-top: 4px;
 }
 
-.rpm-left-nav .list__tile {
+.rpm-left-nav .v-list__tile {
   height: 44px;
 }
 
-.rpm-left-nav .list__group__items .list__tile {
+.rpm-left-nav .v-list__group__items .v-list__tile {
   height: 40px;
 }
 
-.toolbar__content,
+.v-toolbar__content,
 .rpm-main-toolbar,
 .rpm-main-banner {
   height: 64px !important;
 }
 
-.toolbar__side-icon {
+.v-toolbar__side-icon {
   min-width: 36px;
 }
 

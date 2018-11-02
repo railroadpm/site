@@ -33,8 +33,8 @@
           <th v-for="col in cols.headers" :key="col.value" :class="`column text-xs-${col.align} rpt-col-dimensions`">
             <!-- We render the "Quick Graph" component in the lower "rowLabel" header cell -->
             <template v-if="col.value === 'rowLabel'">
-              <quick-graph-menu class="rpt-quick-graph-menu" :railroad="railroad" :selected-measures="selected" @remove-all="selected = []" @show-graph="showQuickGraph"
-              />
+              <quick-graph-menu class="rpt-quick-graph-menu" :railroad="railroad" :selected-measures="selected" @remove-all="selected = []"
+                @show-graph="showQuickGraph" />
             </template>
             <template v-else>
               <span>{{ col.text }}</span>
@@ -51,7 +51,7 @@
             <span :class="{ 'rpt-data-heading-row-label': row.item.isHeadingRow, 'rpt-data-calculated-row-label': row.item.isCalculated }">
               <v-icon class="rpt-selected-row-icon" v-show="row.selected" color="accent">insert_chart_outlined</v-icon>
               <vue-markdown class="rpt-data-label-md" :source="row.item.rowLabel" />
-            </span>
+              </span>
           </td>
 
           <!-- Then render a cell for each average column ("Current" tab only) -->
@@ -128,7 +128,7 @@ export default {
 
     // True when the railroad report data has been loaded via API, false otherwise
     dataLoaded() {
-      return this.$store.state.railroadReportData[this.railroad][this.reportType].rows.length > 0;
+      return this.$store.state.railroadReportData[this.railroad]['Historical'].rows.length > 0;
     },
 
     csvUrl() {
@@ -148,7 +148,8 @@ export default {
     async getTabularData() {
       try {
         console.log(`COMPONENT: Getting ${this.reportType} tabular data for ${this.railroad}...`);
-        await this.loadRailroadReportDataByKeyAndType({ key: this.railroad, type: this.reportType });
+        await this.loadRailroadReportDataByKeyAndType({ key: this.railroad, type: 'Current' });
+        await this.loadRailroadReportDataByKeyAndType({ key: this.railroad, type: 'Historical' });
         console.log('COMPONENT: Got tabular data');
 
         this.columns = this.$store.state.railroadReportData[this.railroad][this.reportType].columns;
@@ -156,7 +157,7 @@ export default {
         this.rows = [];
         this.measureKeys = [];
         this.getHeadersAndKeysFromRawData(this.historicalPage);
-        this.rows = this.$store.state.railroadReportData[this.railroad][this.reportType].rows;
+        this.rows = this.$store.state.railroadReportData[this.railroad]['Historical'].rows;
       } catch (e) {
         this.headers = [];
         this.rows = [];
@@ -289,52 +290,52 @@ export default {
 }
 
 /* Table header */
-.rpt-table table.datatable.table thead tr {
+.rpt-table table.v-datatable.v-table thead tr {
   height: 38px;
 }
 
 /* Table header column */
-.rpt-table table.datatable.table thead tr th {
+.rpt-table table.v-datatable.v-table thead tr th {
   font-weight: bold;
   font-size: 14px;
 }
 
 /* Table header row for groups needs tweek */
-.rpt-table table.datatable.table thead tr.rpt-col-groups-row {
+.rpt-table table.v-datatable.v-table thead tr.rpt-col-groups-row {
   margin-top: 5px;
 }
 
 /* Table header borders */
-.rpt-table table.datatable.table thead tr.rpt-col-pagination-row,
-.rpt-table table.datatable.table thead tr.rpt-col-groups-row,
-.rpt-table table.datatable.table thead tr th.rpt-col-dimensions {
+.rpt-table table.v-datatable.v-table thead tr.rpt-col-pagination-row,
+.rpt-table table.v-datatable.v-table thead tr.rpt-col-groups-row,
+.rpt-table table.v-datatable.v-table thead tr th.rpt-col-dimensions {
   border: none;
 }
 
 /* Table header borders */
-.rpt-table table.datatable.table thead tr th.rpt-col-groups div,
-.rpt-table table.datatable.table thead tr.rpt-col-dimensions-row {
+.rpt-table table.v-datatable.v-table thead tr th.rpt-col-groups div,
+.rpt-table table.v-datatable.v-table thead tr.rpt-col-dimensions-row {
   border-bottom: 1px solid #e0e0e0; /* grey lighten-2 */
 }
 
-.rpt-table table.datatable.table thead tr th.rpt-col-pagination div {
+.rpt-table table.v-datatable.v-table thead tr th.rpt-col-pagination div {
   margin: -5px 0 -13px 0;
 }
 
-.rpt-table table.datatable.table thead tr th.rpt-col-groups div {
+.rpt-table table.v-datatable.v-table thead tr th.rpt-col-groups div {
   width: 100%;
   padding-top: 7px;
   text-align: center;
 }
 
 /* Table header for averages needs alignment tweek */
-.rpt-table table.datatable.table thead tr th.rpt-col-group-avg div {
+.rpt-table table.v-datatable.v-table thead tr th.rpt-col-group-avg div {
   margin-top: 2px;
 }
 
 /* Table rows */
-.rpt-table table.datatable.table tbody td,
-.rpt-table table.datatable.table tbody th {
+.rpt-table table.v-datatable.v-table tbody td,
+.rpt-table table.v-datatable.v-table tbody th {
   height: 23px;
 }
 

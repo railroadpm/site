@@ -92,5 +92,36 @@
         "single"
       ]
     }
-  }
+  },
+  "stylusSupremacy.insertColons": true,
+  "stylusSupremacy.insertNewLineBetweenSelectors": true,
+  "stylusSupremacy.insertSemicolons": false,
+  "stylusSupremacy.insertBraces": false,
+  "stylusSupremacy.insertSpaceAfterComment": true,
+  "stylusSupremacy.insertSpaceBeforeComment": true,
+  "stylusSupremacy.sortProperties": "grouped",
+  "stylusSupremacy.insertParenthesisAroundIfCondition": true,
+  "todo-tree.flat": true,
+  "todo-tree.grouped": true,
+  "todo-tree.expanded": true,
+  "cSpell.enabledLanguageIds": [
+    "c",
+    "cpp",
+    "csharp",
+    "go",
+    "handlebars",
+    "javascript",
+    "javascriptreact",
+    "json",
+    "latex",
+    "markdown",
+    "php",
+    "plaintext",
+    "python",
+    "restructuredtext",
+    "text",
+    "typescript",
+    "typescriptreact",
+    "yml"
+  ]
 }

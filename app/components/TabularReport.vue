@@ -104,6 +104,7 @@ export default {
     measureKeys: [], // Array of keys for lookup of measure data in rows, by week
     selected: [],
 
+    avgColumnsCount: 2,
     historicalPage: 1,
     historicalPageSize: 6,
     historicalPageCount: 9, // We'll group the 53 weeks into 8 "pages" of 6, with a 9th page having the 5 remaining weeks
@@ -114,7 +115,10 @@ export default {
 
   created() {
     console.log(`COMPONENT: Created <TabularReport> component for ${this.railroad}, report type "${this.reportType}"`);
-    this.getTabularData();
+    // NOTE: Often, a component might call a method here to load data from an API. But in this case we instead trigger the data load by watching
+    // the value of the selected tab and matching it to this component's report type. This allows us to mount all components and have them ready
+    // while preferentially loading the data for the selected tab. This approach avoids flooding the API endpoint with data requests from multiple
+    // tabs, and gives us some time to cache data that may be common to multiple tabs
   },
 
   mounted() {
@@ -122,6 +126,10 @@ export default {
   },
 
   computed: {
+    selectedTab() {
+      return this.$store.state.ui.reports.selectedTab;
+    },
+
     numPages() {
       return this.reportType === 'Current' ? 1 : this.historicalPageCount;
     },
@@ -140,6 +148,26 @@ export default {
     historicalPage: function(newPage, oldPage) {
       if (newPage != oldPage) {
         this.getHeadersAndKeysFromRawData(newPage);
+      }
+    },
+
+    selectedTab: {
+      immediate: true,
+      handler: async function(newTab, oldTab) {
+        if (!newTab) return;
+
+        if (newTab != oldTab) {
+          console.log(`COMPONENT: Selected tab is now ${newTab}`);
+          if (newTab.includes(this.reportType.toLowerCase())) await this.getTabularData();
+          else {
+            // For a tab that isn't selected we still load rows and columns, but only after a delay to
+            // give the selected tab a chance to do its thing first... and possibly even cache the data
+            // needed by the non-selected tab
+            setTimeout(async () => {
+              await this.getTabularData();
+            }, 700);
+          }
+        }
       }
     }
   },
@@ -178,7 +206,10 @@ export default {
         this.headers.push({ text: '', value: 'rowLabel', align: 'left', sortable: false });
 
         // ...and then take the appropriate slice of the raw columns array
-        renderedCols = this.columns.slice((pageNum - 1) * this.historicalPageSize + 1, (pageNum - 1) * this.historicalPageSize + this.historicalPageSize + 1);
+        renderedCols = this.columns.slice(
+          this.avgColumnsCount + (pageNum - 1) * this.historicalPageSize + 1,
+          this.avgColumnsCount + (pageNum - 1) * this.historicalPageSize + this.historicalPageSize + 1
+        );
       }
 
       if (this.reportType === 'Historical' || this.headers.length === 0) {

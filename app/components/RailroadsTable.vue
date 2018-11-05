@@ -9,7 +9,7 @@
             <span :class="{ 'rr-heading-row': row.item.isHeadingRow }">
               <v-icon class="rr-selected-row-icon" v-show="row.selected" color="accent">insert_chart_outlined</v-icon>
               <vue-markdown class="rr-label-md" :source="row.item.rowLabel" />
-            </span>
+              </span>
           </td>
         </tr>
       </template>
@@ -124,24 +124,24 @@ export default {
 }
 
 /* Table overall */
-.rr-table table.datatable.table {
+.rr-table table.v-datatable.v-table {
   width: 300px;
   border: 1px solid #bdbdbd; /* grey lighten-1 */
 }
 
 /* Table header */
-.rr-table table.datatable.table tr:nth-child(1) {
+.rr-table table.v-datatable.v-table tr:nth-child(1) {
   background-color: #f5f5f5;
 }
 
 /* Table header - hover */
-.rr-table table.datatable.table tr:nth-child(1):hover {
+.rr-table table.v-datatable.v-table tr:nth-child(1):hover {
   background-color: #eeeeee;
 }
 
 /* Table rows */
-.rr-table table.datatable.table tbody td,
-.rr-table table.datatable.table tbody th {
+.rr-table table.v-datatable.v-table tbody td,
+.rr-table table.v-datatable.v-table tbody th {
   height: 23px;
 }
 

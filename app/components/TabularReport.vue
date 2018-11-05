@@ -110,7 +110,9 @@ export default {
     historicalPageCount: 9, // We'll group the 53 weeks into 8 "pages" of 6, with a 9th page having the 5 remaining weeks
 
     quickGraphShowPopup: false,
-    quickGraphDimensionKey: ''
+    quickGraphDimensionKey: '',
+
+    backgroundTabLoadDelay: 800
   }),
 
   created() {
@@ -153,19 +155,17 @@ export default {
 
     selectedTab: {
       immediate: true,
-      handler: async function(newTab, oldTab) {
+      handler: function(newTab, oldTab) {
         if (!newTab) return;
 
         if (newTab != oldTab) {
-          console.log(`COMPONENT: Selected tab is now ${newTab}`);
-          if (newTab.includes(this.reportType.toLowerCase())) await this.getTabularData();
+          console.log(`COMPONENT: Watcher for report type "${this.reportType}"... selected tab is now "${newTab}"`);
+          if (newTab.includes(this.reportType.toLowerCase())) this.getTabularData();
           else {
-            // For a tab that isn't selected we still load rows and columns, but only after a delay to
-            // give the selected tab a chance to do its thing first... and possibly even cache the data
+            // For a tab that is *not* selected we still load rows and columns, but only after a delay to
+            // give the *selected* tab a chance to do its thing first... and possibly even cache the data
             // needed by the non-selected tab
-            setTimeout(async () => {
-              await this.getTabularData();
-            }, 700);
+            setTimeout(() => this.getTabularData(), this.backgroundTabLoadDelay);
           }
         }
       }
@@ -176,7 +176,7 @@ export default {
     async getTabularData() {
       try {
         console.log(`COMPONENT: Getting ${this.reportType} tabular data for ${this.railroad}...`);
-        await this.loadRailroadReportDataByKeyAndType({ key: this.railroad, type: 'Current' });
+        this.loadRailroadReportDataByKeyAndType({ key: this.railroad, type: 'Current' });
         await this.loadRailroadReportDataByKeyAndType({ key: this.railroad, type: 'Historical' });
         console.log('COMPONENT: Got tabular data');
 

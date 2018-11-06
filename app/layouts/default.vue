@@ -1,7 +1,6 @@
 <template>
   <v-app :class="`rpm-mobile-bp-${mobileBreakpointName}`" light>
-    <v-navigation-drawer fixed app dark clipped v-model="drawer" class="rpm-left-nav" :mobile-break-point="mobileBreakpointLg"
-      width="230">
+    <v-navigation-drawer fixed app dark clipped v-model="drawer" width="230" class="rpm-left-nav" :mobile-break-point="mobileBreakpointLg">
       <v-list>
         <template v-for="item in drawerItems">
           <!-- Items *without* sub items use v-list-tile -->
@@ -43,7 +42,7 @@
     </v-toolbar>
 
     <v-content class="rpm-main-content">
-      <v-container>
+      <v-container fluid>
         <nuxt />
       </v-container>
     </v-content>
@@ -57,9 +56,9 @@ export default {
       title: 'RailroadPM.org',
       drawer: null, // null = Vuetify automatically "do the right thing" to show/hide drawer based on mobile, etc.
 
-      mobileBreakpointXl: 1100,
+      mobileBreakpointXl: 1200,
       mobileBreakpointLg: 1025,
-      mobileBreakpointMd: 740,
+      mobileBreakpointMd: 800,
       mobileBreakpointSm: 670
     };
   },
@@ -137,12 +136,12 @@ export default {
               to: '/graphs/CarsOnLine/'
             },
             {
-              title: 'Terminal Dwell',
-              to: '/graphs/TerminalDwell/'
-            },
-            {
               title: 'Train Speed',
               to: '/graphs/TrainSpeed/'
+            },
+            {
+              title: 'Terminal Dwell',
+              to: '/graphs/TerminalDwell/'
             }
           ]
         }
@@ -213,6 +212,7 @@ div.v-list__group__header__prepend-icon i
   padding: 0 !important
   line-height: 0 !important
 
+/* Adjust padding around table cells "responsively" based on current screen breakpoint */
 .rpm-mobile-bp-xl,
 .rpm-mobile-bp-lg
   & table.v-table thead td:not(:nth-child(1)),
@@ -227,5 +227,20 @@ div.v-list__group__header__prepend-icon i
   & table.v-table tbody td:not(:nth-child(1)),
   & table.v-table thead th:not(:nth-child(1)),
   & table.v-table tbody th:not(:nth-child(1))
-    padding: 0 6px
+    padding: 0 3px
+
+.rpm-tabs
+  & .v-tabs__slider
+    margin: 0 4px !important
+    height: 4px
+
+  & .v-tabs__div
+    border-right: 4px solid white
+    border-left: 4px solid white
+
+  /* Inactive tab is lighter in color to distinguish and de-emphasize */
+  & .v-tabs__item:not(.v-tabs__item--active)
+    background-color: #80d4ff
+    color: #616161
+    opacity: 0.5
 </style>

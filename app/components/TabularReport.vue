@@ -106,8 +106,8 @@ export default {
 
     avgColumnsCount: 2,
     historicalPage: 1,
-    historicalPageSize: 6,
-    historicalPageCount: 9, // We'll group the 53 weeks into 8 "pages" of 6, with a 9th page having the 5 remaining weeks
+    historicalPageSize: 7,
+    historicalPageCount: 8, // We'll group the 53 weeks into 7 "pages" of 7, with an 8th page having the 4 remaining weeks
 
     quickGraphShowPopup: false,
     quickGraphDimensionKey: '',
@@ -176,7 +176,7 @@ export default {
     async getTabularData() {
       try {
         console.log(`COMPONENT: Getting ${this.reportType} tabular data for ${this.railroad}...`);
-        this.loadRailroadReportDataByKeyAndType({ key: this.railroad, type: 'Current' });
+        await this.loadRailroadReportDataByKeyAndType({ key: this.railroad, type: 'Current' });
         await this.loadRailroadReportDataByKeyAndType({ key: this.railroad, type: 'Historical' });
         console.log('COMPONENT: Got tabular data');
 
@@ -186,6 +186,7 @@ export default {
         this.measureKeys = [];
         this.getHeadersAndKeysFromRawData(this.historicalPage);
         this.rows = this.$store.state.railroadReportData[this.railroad]['Historical'].rows;
+        this.$nextTick(() => this.$emit('rendered'));
       } catch (e) {
         this.headers = [];
         this.rows = [];

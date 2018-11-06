@@ -1,9 +1,9 @@
 <template>
-  <v-layout>
-    <v-flex>
+  <v-layout row>
+    <v-flex xs12>
       <v-progress-circular v-if="!dataLoaded" :size="50" :width="7" indeterminate color="blue lighten-4" class="page-progress" />
 
-      <div v-show="dataLoaded">
+      <div v-show="dataLoaded && selectedRailroadKey != 'AOR'">
         <img class="prpt-logo" :src="railroadLogoURL" alt="">
         <br>
       </div>
@@ -13,14 +13,14 @@
           <h2>{{ railroadShortName }} - Weekly Performance Report</h2>
           <vue-markdown class="prpt-verbiage" :source="railroadVerbiage" :breaks="false" />
 
-          <v-tabs v-model="selectedTab" dark color="secondary" slider-color="accent-dark" grow>
+          <v-tabs v-model="selectedTab" dark color="secondary" slider-color="accent-dark" grow class="rpm-tabs" ref="rptTabs">
             <v-tab href="#tab-current">Current Trends</v-tab>
-            <v-tab href="#tab-historical">53 Week History</v-tab>
+            <v-tab href="#tab-historical">53-Week History</v-tab>
             <v-tab-item value="tab-current">
-              <tabular-report :railroad="selectedRailroadKey" report-type="Current" />
+              <tabular-report :railroad="selectedRailroadKey" report-type="Current" @rendered="onReportRendered" />
             </v-tab-item>
             <v-tab-item value="tab-historical">
-              <tabular-report :railroad="selectedRailroadKey" report-type="Historical" />
+              <tabular-report :railroad="selectedRailroadKey" report-type="Historical" @rendered="onReportRendered" />
             </v-tab-item>
           </v-tabs>
 
@@ -53,7 +53,8 @@ export default {
   },
 
   data: () => ({
-    selectedTab: ''
+    selectedTab: '',
+    reportRenderedTabAnimationDelay: 600
   }),
 
   async created() {
@@ -117,6 +118,12 @@ export default {
   },
 
   methods: {
+    onReportRendered() {
+      // Downloading the report data and rendering it can interfere with the timing of the tabs slider animation, so we
+      // wait on the report to be rendered and then respond by forcing the animation
+      setTimeout(() => this.$refs.rptTabs.updateTabsView(), this.reportRenderedTabAnimationDelay);
+    },
+
     ...mapMutations(['publishSelectedTab']),
     ...mapActions(['loadRailroadProfileData'])
   }

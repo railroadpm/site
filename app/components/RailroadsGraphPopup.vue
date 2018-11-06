@@ -49,11 +49,11 @@ export default {
         graphMeasureKey: 'ByCarOwnerTotal'
       },
       TrainSpeed: {
-        heading: '<span class="green--text text--darken-1">Train Speed (Miles per Hour)<span>',
+        heading: '<span class="green--text text--darken-1">Train Speed - All Trains (Miles per Hour)<span>',
         graphMeasureKey: 'AllTrains'
       },
       TerminalDwell: {
-        heading: '<span class="red--text text--darken-1">Terminal Dwell (Hours)<span>',
+        heading: '<span class="red--text text--darken-1">Terminal Dwell - Entire Railroad (Hours)<span>',
         graphMeasureKey: 'EntireRailroad'
       }
     }

@@ -143,6 +143,7 @@ export const mutations = {
   },
 
   publishSelectedTab(state, selectedTab) {
+    console.log(`STORE: In Mutation "publishSelectedTab" for ${selectedTab}`);
     state.ui.reports.selectedTab = selectedTab;
   }
 };

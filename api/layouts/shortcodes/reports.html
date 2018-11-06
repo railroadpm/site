@@ -19,8 +19,7 @@
 {{- $weeks_historical := last $weeks_count_historical $weeks_publishable -}}
 {{- $weeks_current := last $weeks_count_current $weeks_publishable -}}
 {{- $weeks_report := cond (eq $rpt_type "Historical") $weeks_historical $weeks_current -}}
-<!-- Average columns are only rendered for the "Current" report -->
-{{- $avg_cols := cond (eq $rpt_type "Current") (slice (dict "Key" $period.Quarter.Previous) (dict "Key" $period.Month.Previous)) nil -}}
+{{- $avg_cols := slice (dict "Key" $period.Quarter.Previous) (dict "Key" $period.Month.Previous) -}}
 
   {
     {{- with $avg_cols -}}

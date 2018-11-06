@@ -1,13 +1,13 @@
 <template>
-  <v-app light>
-    <v-navigation-drawer fixed app dark clipped v-model="drawer" mobile-break-point="740" width="230" class="primary rpm-left-nav">
+  <v-app :class="`rpm-mobile-bp-${mobileBreakpointName}`" light>
+    <v-navigation-drawer fixed app dark clipped v-model="drawer" width="230" class="rpm-left-nav" :mobile-break-point="mobileBreakpointLg">
       <v-list>
         <template v-for="item in drawerItems">
           <!-- Items *without* sub items use v-list-tile -->
           <template v-if="!item.subItems">
             <!-- Note that items with a "target" are treated as traditional hrefs to outside content -->
-            <v-list-tile :nuxt="!item.target" :to="item.target ? undefined : item.to" :href="item.target ? item.to : undefined" :key="item.title"
-              :target="item.target" :rel="item.rel" exact>
+            <v-list-tile :nuxt="!item.target" :to="item.target ? undefined : item.to" :href="item.target ? item.to : undefined"
+              :key="item.title" :target="item.target" :rel="item.rel" exact>
               <v-list-tile-action>
                 <v-icon v-html="item.icon"></v-icon>
               </v-list-tile-action>
@@ -42,15 +42,10 @@
     </v-toolbar>
 
     <v-content class="rpm-main-content">
-      <v-container>
+      <v-container fluid>
         <nuxt />
       </v-container>
     </v-content>
-
-    <v-footer :fixed="fixedFooter" app inset class="pa-3 rpm-footer">
-      <v-spacer></v-spacer>
-      <div class="rpm-footer-text">Railroad Performance Measures are published every Wednesday at 2:00 p.m. Eastern Time.</div>
-    </v-footer>
   </v-app>
 </template>
 
@@ -58,9 +53,13 @@
 export default {
   data() {
     return {
-      title: 'RAILROADPM.ORG',
+      title: 'RailroadPM.org',
       drawer: null, // null = Vuetify automatically "do the right thing" to show/hide drawer based on mobile, etc.
-      fixedFooter: true
+
+      mobileBreakpointXl: 1200,
+      mobileBreakpointLg: 1025,
+      mobileBreakpointMd: 800,
+      mobileBreakpointSm: 670
     };
   },
 
@@ -73,6 +72,15 @@ export default {
   },
 
   computed: {
+    mobileBreakpointName() {
+      let width = this.$vuetify.breakpoint.width;
+      if (width >= this.mobileBreakpointXl) return 'none';
+      if (width < this.mobileBreakpointXl && width >= this.mobileBreakpointLg) return 'xl';
+      if (width < this.mobileBreakpointLg && width >= this.mobileBreakpointMd) return 'lg';
+      if (width < this.mobileBreakpointMd && width >= this.mobileBreakpointSm) return 'md';
+      return 'sm';
+    },
+
     selectedRailroadKey() {
       return this.$route.params.railroad ? this.$route.params.railroad.toUpperCase() : null;
     },
@@ -128,12 +136,12 @@ export default {
               to: '/graphs/CarsOnLine/'
             },
             {
-              title: 'Terminal Dwell',
-              to: '/graphs/TerminalDwell/'
-            },
-            {
               title: 'Train Speed',
               to: '/graphs/TrainSpeed/'
+            },
+            {
+              title: 'Terminal Dwell',
+              to: '/graphs/TerminalDwell/'
             }
           ]
         }
@@ -155,60 +163,84 @@ export default {
 };
 </script>
 
-<style>
+<style lang="stylus">
+@require '~assets/variables'
+@require '~vuetify/src/stylus/settings/_colors'
+
 /* Avoid vertical scrollbar when possible */
-html {
-  overflow-y: auto !important;
-}
+html
+  overflow-y: auto !important
 
-.rpm-main-content {
-  background: linear-gradient(white 15%, #eeeef3);
-}
+.rpm-main-content
+  background: linear-gradient(white 15%, #eeeef3)
 
-/* Left drawer active item  */
-.list__tile--active .list__tile__content,
-.list__tile--active .list__tile__action {
-  color: #ffcc80 !important; /* orange lighten-3 */
-}
+  & .container
+    padding-top: 20px !important
+
+/* Left drawer active item */
+.v-list__tile--active .v-list__tile__content,
+.v-list__tile--active .v-list__tile__action
+  color: #ffcc80 !important /* orange lighten-3 */
 
 /* Nav drawer group item icon (e.g., "Reports") fix */
-div.list__group__header__prepend-icon i {
-  color: white !important;
-}
+div.v-list__group__header__prepend-icon i
+  color: white !important
 
-.rpm-left-nav div.list {
-  padding-top: 4px;
-}
+.rpm-left-nav
+  background-color: $rpm-color.primary !important
 
-.rpm-left-nav .list__tile {
-  height: 44px;
-}
+  & div.v-list
+    padding-top: 4px
+    background-color: $rpm-color.primary !important
 
-.rpm-left-nav .list__group__items .list__tile {
-  height: 40px;
-}
+  & .v-list__tile
+    height: 44px
 
-.toolbar__content,
+  & .v-list__group__items .v-list__tile
+    height: 40px
+
+.v-toolbar__content,
 .rpm-main-toolbar,
-.rpm-main-banner {
-  height: 64px !important;
-}
+.rpm-main-banner
+  height: $rpm-toolbar-height !important
 
-.toolbar__side-icon {
-  min-width: 36px;
-}
+.v-toolbar__side-icon
+  min-width: 36px
 
-.rpm-main-banner-link {
-  margin: 0 !important;
-  padding: 0 !important;
-  line-height: 0 !important;
-}
+.rpm-main-banner-link
+  margin: 0 !important
+  padding: 0 !important
+  line-height: 0 !important
 
-.rpm-footer {
-  background-color: #e0e0e5 !important;
-}
+/* Adjust padding around table cells "responsively" based on current screen breakpoint */
+.rpm-mobile-bp-xl,
+.rpm-mobile-bp-lg
+  & table.v-table thead td:not(:nth-child(1)),
+  & table.v-table tbody td:not(:nth-child(1)),
+  & table.v-table thead th:not(:nth-child(1)),
+  & table.v-table tbody th:not(:nth-child(1))
+    padding: 0 12px
 
-.rpm-footer-text {
-  font-size: 12px;
-}
+.rpm-mobile-bp-md,
+.rpm-mobile-bp-sm
+  & table.v-table thead td:not(:nth-child(1)),
+  & table.v-table tbody td:not(:nth-child(1)),
+  & table.v-table thead th:not(:nth-child(1)),
+  & table.v-table tbody th:not(:nth-child(1))
+    padding: 0 3px
+
+.rpm-tabs
+  & .v-tabs__slider
+    margin: 0 4px !important
+    height: 4px
+
+  & .v-tabs__div
+    border-right: 4px solid white
+    border-left: 4px solid white
+
+  /* Inactive tab is lighter in color to distinguish and de-emphasize */
+  & .v-tabs__item:not(.v-tabs__item--active)
+    background-color: #80d4ff
+    color: #616161
+    opacity: 0.5
 </style>

@@ -14,5 +14,5 @@
 #   proxying as needed.
 
 [build.environment]
-NODE_VERSION = '8.9.1'
-HUGO_VERSION = '0.40.3'
+NODE_VERSION = '10.10.0'
+HUGO_VERSION = '0.50'

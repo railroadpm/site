@@ -56,13 +56,13 @@
 
           <!-- Then render a cell for each average column ("Current" tab only) -->
           <td v-if="reportType === 'Current'" v-for="(col, i) in avgColumns" :key="`avg${i}`" class="text-xs-right">
-            <span>{{ $helpers.formatNumber(row.item[col]) }}</span>
+            <span>{{ $helpers.formatNumber(row.item[col], isInt(row.item, col) ? '0,0' : '0,0.0') }}</span>
           </td>
 
           <!-- Finally render a cell for each week + measure (week is all numeric: YYYYMMDD) in ascending order by week -->
           <td v-for="(col, i) in measureKeys" :key="`wk${i}`" class="text-xs-right">
             <span v-if="row.item.key === 'Revisions'">{{ row.item[col] }}</span>
-            <span v-else>{{ $helpers.formatNumber(row.item[col]) }}</span>
+            <span v-else>{{ $helpers.formatNumber(row.item[col], isInt(row.item, col) ? '0,0' : '0,0.0') }}</span>
           </td>
         </tr>
       </template>
@@ -283,6 +283,12 @@ export default {
     selectedRowsInSegment(dimensionKey) {
       let keysInSegment = this.keysInSegment(dimensionKey);
       return _.intersectionWith(this.selected, keysInSegment, (arrVal, othVal) => arrVal.key === othVal);
+    },
+
+    isInt(row, col) {
+      if (row.rowLabel && row.rowLabel.includes('Pct.')) return false;
+      if (row.segmentKey && row.segmentKey === 'CarsOnLine') return true;
+      return false;
     },
 
     ...mapActions(['loadRailroadReportDataByKeyAndType'])

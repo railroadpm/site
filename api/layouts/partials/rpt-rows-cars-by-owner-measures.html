@@ -19,10 +19,11 @@
 
 <!-- For each row... -->
 {{- range $subheading_index, $subheading := $cars_by_owner_subheadings -}}
-  <!-- Initialize a Map to hold the row values and add the rowLabel (measure sub-heading) to the Map first -->
+  <!-- Initialize a Map to hold the row values and add the rowLabel (measure sub-heading) and keys to the Map first -->
   {{- $.scratch.Delete $row_map_key -}}
   {{- $.scratch.SetInMap $row_map_key "rowLabel" (printf "%s%s" $subheading_indent $subheading.ShortName) -}}
   {{- $.scratch.SetInMap $row_map_key "key" $subheading.Key -}}
+  {{- $.scratch.SetInMap $row_map_key "segmentKey" "CarsOnLine" -}}
   {{- with $subheading.isReportedAggregate -}}{{- $.scratch.SetInMap $row_map_key "isReportedAggregate" . -}}{{- end -}}
 
   <!-- Construct the full measure data key -->

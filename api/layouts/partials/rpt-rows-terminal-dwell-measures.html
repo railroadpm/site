@@ -33,9 +33,10 @@
     {{- $.scratch.Set $terminal_key (printf "%s%s" $subheading_indent ($.scratch.Get $city_key)) -}}
   {{- end -}}
 
-  <!-- Add the terminal subheading and key to the Map first -->
+  <!-- Add the terminal subheading and keys to the Map first -->
   {{- $.scratch.SetInMap $row_map_key "rowLabel" ($.scratch.Get $terminal_key) -}}
   {{- $.scratch.SetInMap $row_map_key "key" $subheading.Key -}}
+  {{- $.scratch.SetInMap $row_map_key "segmentKey" "TerminalDwell" -}}
   {{- with $subheading.isReportedAggregate -}}{{- $.scratch.SetInMap $row_map_key "isReportedAggregate" . -}}{{- end -}}
 
   <!-- Construct the full measure data key -->

@@ -1,5 +1,5 @@
 <template>
-  <div v-show="dataLoaded">
+  <div v-show="tableRendered">
     <v-data-table class="rpt-table" v-model="selected" :headers="headers" :items="rows" item-key="key" hide-actions>
       <template slot="headers" slot-scope="cols">
         <tr v-if="reportType === 'Historical'" class="rpt-col-pagination-row">
@@ -55,12 +55,12 @@
           </td>
 
           <!-- Then render a cell for each average column ("Current" tab only) -->
-          <td v-if="reportType === 'Current'" v-for="(col, i) in avgColumns" :key="`avg${i}`">
+          <td v-if="reportType === 'Current'" v-for="(col, i) in avgColumns" :key="`avg${i}`" class="text-xs-right">
             <span>{{ $helpers.formatNumber(row.item[col]) }}</span>
           </td>
 
           <!-- Finally render a cell for each week + measure (week is all numeric: YYYYMMDD) in ascending order by week -->
-          <td v-for="(col, i) in measureKeys" :key="`wk${i}`">
+          <td v-for="(col, i) in measureKeys" :key="`wk${i}`" class="text-xs-right">
             <span v-if="row.item.key === 'Revisions'">{{ row.item[col] }}</span>
             <span v-else>{{ $helpers.formatNumber(row.item[col]) }}</span>
           </td>
@@ -103,6 +103,7 @@ export default {
     avgColumns: [], // Array of keys for lookup of averages data in rows
     measureKeys: [], // Array of keys for lookup of measure data in rows, by week
     selected: [],
+    tableRendered: false,
 
     avgColumnsCount: 2,
     historicalPage: 1,
@@ -134,11 +135,6 @@ export default {
 
     numPages() {
       return this.reportType === 'Current' ? 1 : this.historicalPageCount;
-    },
-
-    // True when the railroad report data has been loaded via API, false otherwise
-    dataLoaded() {
-      return this.$store.state.railroadReportData[this.railroad]['Historical'].rows.length > 0;
     },
 
     csvUrl() {
@@ -186,7 +182,10 @@ export default {
         this.measureKeys = [];
         this.getHeadersAndKeysFromRawData(this.historicalPage);
         this.rows = this.$store.state.railroadReportData[this.railroad]['Historical'].rows;
-        this.$nextTick(() => this.$emit('rendered'));
+        this.$nextTick(() => {
+          this.tableRendered = true;
+          this.$emit('rendered');
+        });
       } catch (e) {
         this.headers = [];
         this.rows = [];
@@ -215,7 +214,7 @@ export default {
 
       if (this.reportType === 'Historical' || this.headers.length === 0) {
         renderedCols.forEach(elt => {
-          this.headers.push({ text: elt.text, value: elt.key, align: 'left', sortable: false });
+          this.headers.push({ text: elt.text, value: elt.key, align: elt.key === 'rowLabel' ? 'left' : 'right', sortable: false });
           if (!isNaN(elt.key)) this.measureKeys.push(elt.key);
         });
       }

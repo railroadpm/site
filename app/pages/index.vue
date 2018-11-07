@@ -39,10 +39,13 @@
 
           <hr class="my-3">
 
-          <p class="text-sm-right">
+          <p class="text-xs-right">
             <v-icon>bug_report</v-icon>
             Find a bug? Report it on the GitHub
             <a href="https://github.com/railroadpm/site/issues" target="_blank">issue board</a>.
+          </p>
+          <p class="text-xs-right caption font-weight-thin">
+            RPM App v{{ solutionVersion }}
           </p>
         </v-card-text>
       </v-card>
@@ -51,4 +54,11 @@
 </template>
 
 <script>
+import * as solutionPkg from '~/../package.json';
+
+export default {
+  data: () => ({
+    solutionVersion: solutionPkg.version
+  })
+};
 </script>

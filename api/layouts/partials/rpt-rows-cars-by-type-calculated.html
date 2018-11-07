@@ -27,12 +27,13 @@
 
 <!-- For each calculated row... -->
 {{- range $subheading_index, $subheading := $.scratch.Get $subheadings_array_key -}}
-  <!-- Initialize a Map to hold the row values and add the rowLabel (calculated measure sub-heading) to the Map first -->
+  <!-- Initialize a Map to hold the row values and add the rowLabel (calculated measure sub-heading) and keys to the Map first -->
   {{- $.scratch.Delete $row_map_key -}}
   {{- $.scratch.SetInMap $row_map_key "isCalculated" true -}}
   {{- with $subheading.isSum -}}{{- $.scratch.SetInMap $row_map_key "isSum" true -}}{{- end -}}
   {{- $.scratch.SetInMap $row_map_key "rowLabel" (printf "%s%s" $subheading_indent $subheading.rowLabel) -}}
   {{- $.scratch.SetInMap $row_map_key "key" $subheading.key -}}
+  {{- $.scratch.SetInMap $row_map_key "segmentKey" "CarsOnLine" -}}
 
   <!-- Iterate over averages (if not nil), adding calculated measure data to the Map -->
   {{- range $a_index, $a_map := $.avg_cols -}}

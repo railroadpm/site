@@ -1,6 +1,9 @@
 <template>
   <v-menu :close-on-click="false" :close-on-content-click="false" v-model="showMenu" top right offset-y offset-x>
-    <v-btn small outline slot="activator" color="accent" dark @click="showMenu = !showMenu">Quick Graph</v-btn>
+    <v-btn small outline slot="activator" color="accent" dark @click="showMenu = !showMenu">
+      <v-icon>bar_chart</v-icon>
+      Quick Graph
+    </v-btn>
     <v-card v-if="showMenu" width="450">
       <v-container class="graph-menu-help">
         <v-layout>
@@ -8,7 +11,8 @@
             <v-icon color="accent">help_outline</v-icon>
           </v-flex>
           <v-flex xs11>
-            Click (tap) on data rows in the report (except percentages) to select them for inclusion in a graph, and then click a "Graph" button
+            Click (tap) on data rows in the report (except percentages) to select them for inclusion in a graph, and then click a
+            "Graph" button
             below. Click a main heading to toggle all data rows thereunder. Start over by clicking "Remove All Selections".
           </v-flex>
         </v-layout>
@@ -17,7 +21,7 @@
         <v-divider></v-divider>
         <v-list-tile v-for="btn in graphBtns" :key="btn.label">
           <v-list-tile-content>
-            <v-btn block small outline :color="btn.color" flat @click="graphBtnClick($event, btn.key)" :disabled="btn.disabled">
+            <v-btn block small outline flat :color="btn.color" @click="graphBtnClick($event, btn.key)" :disabled="btn.disabled">
               <v-icon>bar_chart</v-icon>
               {{ btn.label }}
             </v-btn>
@@ -26,7 +30,10 @@
         <v-divider></v-divider>
         <v-list-tile>
           <v-list-tile-content>
-            <v-btn block small outline flat @click="$emit('remove-all')" :disabled="selectedMeasures.length < 1">Remove All Selections</v-btn>
+            <v-btn block small outline flat @click="$emit('remove-all')" :disabled="selectedMeasures.length < 1">
+              <v-icon>clear</v-icon>
+              Remove All Selections
+            </v-btn>
           </v-list-tile-content>
         </v-list-tile>
       </v-list>

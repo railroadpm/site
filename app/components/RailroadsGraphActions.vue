@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-btn class="rr-show-graph-btn" outline color="accent" @click="$emit('show-graph')" :disabled="selectedRailroads.length < 1">
+      <v-icon>bar_chart</v-icon>
       Show Graph
     </v-btn>
   </div>

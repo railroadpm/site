@@ -1,5 +1,5 @@
 <template>
-  <v-app :class="`rpm-mobile-bp-${mobileBreakpointName}`" light>
+  <v-app :class="`rpm-app rpm-mobile-bp-${mobileBreakpointName}`" light>
     <v-navigation-drawer fixed app dark clipped v-model="drawer" width="230" class="rpm-left-nav" :mobile-break-point="mobileBreakpointLg">
       <v-list>
         <template v-for="item in drawerItems">
@@ -229,6 +229,15 @@ div.v-list__group__header__prepend-icon i
   & table.v-table tbody th:not(:nth-child(1))
     padding: 0 3px
 
+/* Squeeze more space out of 1st column's right side on smallest screens */
+.rpm-mobile-bp-md,
+.rpm-mobile-bp-sm
+  & table.v-table thead td:first-child,
+  & table.v-table tbody td:first-child,
+  & table.v-table thead th:first-child,
+  & table.v-table tbody th:first-child
+    padding-right: 1px
+
 /*
 .rpm-mobile-bp-sm
   & .rpm-tbl-cell-num
@@ -248,4 +257,9 @@ div.v-list__group__header__prepend-icon i
     background-color: #80d4ff
     color: #616161
     opacity: 0.5
+
+.rpm-app
+  & .v-btn
+    text-transform: none
+    font-size: 14px
 </style>

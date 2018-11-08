@@ -13,7 +13,10 @@
         <tr class="rpt-col-groups-row">
           <th>
             <!-- We render the CSV Download btn in the upper "rowLabel" header cell -->
-            <v-btn class="rpt-csv-btn" small outline color="accent" dark :href="csvUrl">CSV Download</v-btn>
+            <v-btn class="rpt-csv-btn" small outline color="accent" dark :href="csvUrl">
+              <v-icon>get_app</v-icon>
+              {{ csvDownloadLabel }}
+            </v-btn>
           </th>
           <template v-if="reportType === 'Current'">
             <th class="rpt-col-groups rpt-col-group-avg" :colspan="avgColumns.length">
@@ -139,6 +142,13 @@ export default {
 
     csvUrl() {
       return this.$store.getters.railroadCsvDataUrlByKeyAndType(this.railroad, this.reportType);
+    },
+
+    csvDownloadLabel() {
+      const suffix = 'Data File';
+      if (!this.railroad) return suffix;
+      if (this.railroad === 'AOR') return `All Other - ${suffix}`;
+      return `${this.railroad} - ${suffix}`;
     }
   },
 
@@ -395,12 +405,12 @@ export default {
 }
 
 .rpt-quick-graph-menu button {
-  width: 130px;
+  width: 165px;
 }
 
 .rpt-csv-btn {
   float: left;
   margin: 5px 0 0 -2px;
-  width: 130px;
+  width: 165px;
 }
 </style>

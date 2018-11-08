@@ -4,7 +4,7 @@
       <v-card class="elevation-2">
         <v-card-title class="headline">Welcome to the Railroad Performance Measures Website</v-card-title>
         <v-card-text>
-          <blockquote class="blockquote mb-4">
+          <blockquote class="blockquote mb-4 font-weight-regular">
             Here, five major North American freight railroads have voluntarily reported three weekly performance measures — Cars
             On Line, Train
             Speed, and Terminal Dwell — since 1999, in a commitment to improve communications with their customers.
@@ -33,7 +33,7 @@
             <nuxt-link to="/definitions">Definitions</nuxt-link> page for an explanation of the measures.
           </p>
 
-          <blockquote class="blockquote mb-4">
+          <blockquote class="blockquote mb-4 font-weight-regular">
             Railroad Performance Measures are published every Wednesday at 2:00 p.m. Eastern Time.
           </blockquote>
 

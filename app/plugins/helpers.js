@@ -9,7 +9,7 @@ const helpers = {
    * Assuming "val" is not null or an empty string, return it formatted with thousands separators
    * and, if applicable or specified in a custom format, a single digit after the decimal point
    * @param {number} val Value to format
-   * @param {string} fmt Optional format string. By default we only show a decimal point when the raw val has tenths (i.e., is not a whole number)
+   * @param {string} fmt Optional format string. By default we only show a decimal point when the raw val has tenths (i.e., is not an int)
    */
   formatNumber(val, fmt = '0,0[.]0') {
     if (val === null) return '-';

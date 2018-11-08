@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import { DateTime } from 'luxon';
 import { mapActions, mapMutations } from 'vuex';
 import TabularReport from '~/components/TabularReport.vue';
 
@@ -106,8 +107,11 @@ export default {
     railroadShortName() {
       return this.railroadProfile.ShortName || '';
     },
+    currentYear() {
+      return DateTime.local().setZone('America/New_York').year;
+    },
     railroadCopyright() {
-      return this.railroadProfile.Copyright || '';
+      return (this.railroadProfile.Copyright && `©1999-${this.currentYear} ${this.railroadProfile.Copyright}`) || '';
     }
   },
 

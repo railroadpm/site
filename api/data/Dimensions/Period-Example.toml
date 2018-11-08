@@ -1,5 +1,5 @@
 # Period.toml: Lookup data for date dimensions
-# TODO: Auto-generate [Quarter], [Month], and [[Week]]s as part of the build process
+# Note: This file is just an example. We actually auto-generate "Period.json" with [Quarter], [Month], and [[Week]]s as part of the build process
 [Quarter]
 Current = '2Q18'
 Previous = '1Q18'

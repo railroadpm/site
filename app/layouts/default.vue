@@ -229,6 +229,11 @@ div.v-list__group__header__prepend-icon i
   & table.v-table tbody th:not(:nth-child(1))
     padding: 0 3px
 
+/*
+.rpm-mobile-bp-sm
+  & .rpm-tbl-cell-num
+    font-size: 1.7vmax
+*/
 .rpm-tabs
   & .v-tabs__slider
     margin: 0 4px !important

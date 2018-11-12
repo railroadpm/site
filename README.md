@@ -27,10 +27,11 @@ Please note that this Web App is developed using Visual Studio Code (VSCode) and
 
 ### Quick Start
 
-There are two prerequisites for running and working with this codebase:
+There are three prerequisites for running and working with this codebase:
 
-1.  [Node.js](https://nodejs.org/en/download/) v8.x (LTS version as of June 2018)
-1.  [Hugo](https://gohugo.io/getting-started/installing/) v0.41 or greater
+1. [Node.js](https://nodejs.org/en/download/) v10.13.0 or greater (LTS version as of Nov 2018)
+1. [Yarn](https://yarnpkg.com/en/docs/install) v1.10.x or greater
+1. [Hugo](https://gohugo.io/getting-started/installing/) v0.51 or greater
 
 And of course, [VSCode](https://code.visualstudio.com/download) is highly recommended. So before proceeding be sure to install those pieces if you don't already have them.
 
@@ -41,10 +42,10 @@ This repo is organized as a ["monorepo"](https://github.com/babel/babel/blob/mas
 - Change directory (cd) into your local clone folder and run:
 
 ```bash
-npm run install-all
+yarn install-all
 ```
 
-> Note that this is **not** the typical `npm install` command to get started. Instead, we wrap multiple invocations of `npm install` in an `install-all` script (in lieu of doing something like [`lerna bootstrap`](https://github.com/lerna/lerna/tree/master/commands/bootstrap#readme)).
+> Note that this is **not** the typical `npm install` or `yarn` command to get started. Instead, we wrap multiple invocations of `yarn` (`npm install`) in an `install-all` script (in lieu of doing something like [`lerna bootstrap`](https://github.com/lerna/lerna/tree/master/commands/bootstrap#readme)).
 
 Then, launch VSCode:
 
@@ -114,7 +115,7 @@ For the frontend App I used [**create-nuxt-app**](https://github.com/nuxt-commun
   - Use eslint: yes
   - Choose a package manager: npm
 - `create-nuxt-app` initializes git in the `app` folder created. We don't need separate git tracking for this subfolder, so
-  - Changed directory into *app*: `cd app`
+  - Changed directory into _app_: `cd app`
   - Removed `.git` folder: `rd /s /q .git` (on Windows)
 - `create-nuxt-app` had some outdated dependencies listed in the generated `package.json`, so updated to
   - `"nuxt": "^1.4.1"`

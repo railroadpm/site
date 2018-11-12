@@ -1,5 +1,6 @@
 {
-  "files.insertFinalNewline": false,
+  "files.insertFinalNewline": true,
+  "files.eol": "\n",
   "files.exclude": {
     "**/.git": true,
     "**/.svn": true,
@@ -7,7 +8,7 @@
     "**/CVS": true,
     "**/.DS_Store": true,
     "bin": true,
-    "node_modules": true,
+    "node_modules": false,
     "dist": false
   },
   "files.associations": {
@@ -15,6 +16,27 @@
     "**/layouts/**/*.json": "gotemplate"
   },
   "autorun.build": false,
+  "vetur.validation.template": false,
+  "vetur.format.defaultFormatter.html": "js-beautify-html",
+  "vetur.format.defaultFormatterOptions": {
+    "js-beautify-html": {
+      "wrap_line_length": 120,
+      "wrap_attributes": "auto",
+      "content_unformatted": [
+        "vue-markdown"
+      ]
+    }
+  },
+  "prettier.disableLanguages": [
+    "js",
+    "vue"
+  ],
+  "prettier.eslintIntegration": false,
+  "prettier.singleQuote": true,
+  "prettier.printWidth": 170,
+  "eslint.run": "onSave",
+  "eslint.alwaysShowStatus": true,
+  "eslint.autoFixOnSave": true,
   "eslint.validate": [{
       "language": "vue",
       "autoFix": true

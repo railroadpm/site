@@ -1,5 +1,5 @@
 <template>
-  <div v-show="dataLoaded">
+  <div v-show="tableRendered">
     <v-data-table class="rpt-table" v-model="selected" :headers="headers" :items="rows" item-key="key" hide-actions>
       <template slot="headers" slot-scope="cols">
         <tr v-if="reportType === 'Historical'" class="rpt-col-pagination-row">
@@ -13,7 +13,10 @@
         <tr class="rpt-col-groups-row">
           <th>
             <!-- We render the CSV Download btn in the upper "rowLabel" header cell -->
-            <v-btn class="rpt-csv-btn" small outline color="accent" dark :href="csvUrl">CSV Download</v-btn>
+            <v-btn class="rpt-csv-btn" small outline color="accent" dark :href="csvUrl">
+              <v-icon>get_app</v-icon>
+              {{ csvDownloadLabel }}
+            </v-btn>
           </th>
           <template v-if="reportType === 'Current'">
             <th class="rpt-col-groups rpt-col-group-avg" :colspan="avgColumns.length">
@@ -33,8 +36,8 @@
           <th v-for="col in cols.headers" :key="col.value" :class="`column text-xs-${col.align} rpt-col-dimensions`">
             <!-- We render the "Quick Graph" component in the lower "rowLabel" header cell -->
             <template v-if="col.value === 'rowLabel'">
-              <quick-graph-menu class="rpt-quick-graph-menu" :railroad="railroad" :selected-measures="selected" @remove-all="selected = []"
-                @show-graph="showQuickGraph" />
+              <quick-graph-menu class="rpt-quick-graph-menu" :railroad="railroad" :selected-measures="selected"
+                @remove-all="selected = []" @show-graph="showQuickGraph" />
             </template>
             <template v-else>
               <span>{{ col.text }}</span>
@@ -50,19 +53,20 @@
           <td class="rpt-data-label">
             <span :class="{ 'rpt-data-heading-row-label': row.item.isHeadingRow, 'rpt-data-calculated-row-label': row.item.isCalculated }">
               <v-icon class="rpt-selected-row-icon" v-show="row.selected" color="accent">insert_chart_outlined</v-icon>
-              <vue-markdown class="rpt-data-label-md" :source="row.item.rowLabel" />
-              </span>
+              <!-- Note: though "vue-markdown" is empty, avoid using the self-closing tag syntax as it can cause parsing issues in VSCode  -->
+              <vue-markdown class="rpt-data-label-md" :source="row.item.rowLabel"></vue-markdown>
+            </span>
           </td>
 
-          <!-- Then render a cell for each average column ("Current" tab only) -->
-          <td v-if="reportType === 'Current'" v-for="(col, i) in avgColumns" :key="`avg${i}`">
-            <span>{{ $helpers.formatNumber(row.item[col]) }}</span>
+          <!-- Then render a cell for each *average* column ("Current" tab only) -->
+          <td v-if="reportType === 'Current'" v-for="(col, i) in avgColumns" :key="`avg${i}`" class="text-xs-right rpm-tbl-cell-num">
+            <span>{{ $helpers.formatNumber(row.item[col], isIntCell(row.item, col) ? '0,0' : '0,0.0') }}</span>
           </td>
 
           <!-- Finally render a cell for each week + measure (week is all numeric: YYYYMMDD) in ascending order by week -->
-          <td v-for="(col, i) in measureKeys" :key="`wk${i}`">
+          <td v-for="(col, i) in measureKeys" :key="`wk${i}`" class="text-xs-right rpm-tbl-cell-num">
             <span v-if="row.item.key === 'Revisions'">{{ row.item[col] }}</span>
-            <span v-else>{{ $helpers.formatNumber(row.item[col]) }}</span>
+            <span v-else>{{ $helpers.formatNumber(row.item[col], isIntCell(row.item, col) ? '0,0' : '0,0.0') }}</span>
           </td>
         </tr>
       </template>
@@ -103,6 +107,7 @@ export default {
     avgColumns: [], // Array of keys for lookup of averages data in rows
     measureKeys: [], // Array of keys for lookup of measure data in rows, by week
     selected: [],
+    tableRendered: false,
 
     avgColumnsCount: 2,
     historicalPage: 1,
@@ -136,13 +141,15 @@ export default {
       return this.reportType === 'Current' ? 1 : this.historicalPageCount;
     },
 
-    // True when the railroad report data has been loaded via API, false otherwise
-    dataLoaded() {
-      return this.$store.state.railroadReportData[this.railroad]['Historical'].rows.length > 0;
-    },
-
     csvUrl() {
       return this.$store.getters.railroadCsvDataUrlByKeyAndType(this.railroad, this.reportType);
+    },
+
+    csvDownloadLabel() {
+      const suffix = 'Data File';
+      if (!this.railroad) return suffix;
+      if (this.railroad === 'AOR') return `All Other - ${suffix}`;
+      return `${this.railroad} - ${suffix}`;
     }
   },
 
@@ -186,7 +193,10 @@ export default {
         this.measureKeys = [];
         this.getHeadersAndKeysFromRawData(this.historicalPage);
         this.rows = this.$store.state.railroadReportData[this.railroad]['Historical'].rows;
-        this.$nextTick(() => this.$emit('rendered'));
+        this.$nextTick(() => {
+          this.tableRendered = true;
+          this.$emit('rendered');
+        });
       } catch (e) {
         this.headers = [];
         this.rows = [];
@@ -215,7 +225,7 @@ export default {
 
       if (this.reportType === 'Historical' || this.headers.length === 0) {
         renderedCols.forEach(elt => {
-          this.headers.push({ text: elt.text, value: elt.key, align: 'left', sortable: false });
+          this.headers.push({ text: elt.text, value: elt.key, align: elt.key === 'rowLabel' ? 'left' : 'right', sortable: false });
           if (!isNaN(elt.key)) this.measureKeys.push(elt.key);
         });
       }
@@ -284,6 +294,12 @@ export default {
     selectedRowsInSegment(dimensionKey) {
       let keysInSegment = this.keysInSegment(dimensionKey);
       return _.intersectionWith(this.selected, keysInSegment, (arrVal, othVal) => arrVal.key === othVal);
+    },
+
+    isIntCell(row, col) {
+      if (row.rowLabel && row.rowLabel.includes('Pct.')) return false;
+      if (row.segmentKey && row.segmentKey === 'CarsOnLine') return true;
+      return false;
     },
 
     ...mapActions(['loadRailroadReportDataByKeyAndType'])
@@ -390,12 +406,12 @@ export default {
 }
 
 .rpt-quick-graph-menu button {
-  width: 130px;
+  width: 165px;
 }
 
 .rpt-csv-btn {
   float: left;
   margin: 5px 0 0 -2px;
-  width: 130px;
+  width: 165px;
 }
 </style>

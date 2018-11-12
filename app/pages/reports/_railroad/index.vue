@@ -11,7 +11,8 @@
       <transition name="fade" appear>
         <div v-show="reportRendered">
           <h2>{{ railroadShortName }} - Weekly Performance Report</h2>
-          <vue-markdown class="prpt-verbiage" :source="railroadVerbiage" :breaks="false" />
+          <!-- Note: though "vue-markdown" is empty, avoid using the self-closing tag syntax as it can cause parsing issues in VSCode  -->
+          <vue-markdown class="prpt-verbiage" :source="railroadVerbiage" :breaks="false"></vue-markdown>
 
           <v-tabs v-model="selectedTab" dark color="secondary" slider-color="accent-dark" grow class="rpm-tabs" ref="rptTabs">
             <v-tab href="#tab-current">Current Trends</v-tab>
@@ -28,13 +29,13 @@
           <v-footer height="auto" class="white pt-3 px-3">
             <v-layout row wrap>
               <template v-if="selectedRailroadKey != 'AOR'">
-                <vue-markdown class="prpt-understand-measures" :source="railroadUnderstandingMeasures" :breaks="false" />
+                <vue-markdown class="prpt-understand-measures" :source="railroadUnderstandingMeasures" :breaks="false"></vue-markdown>
                 <div class="rpt-pg-legend">
                   <span>R = Revised Figure(s) reported for this week</span><br>
                   <span>- = Not Available</span>
                 </div>
               </template>
-              <vue-markdown class="prpt-copyright" :source="railroadCopyright" :breaks="false" />
+              <vue-markdown class="prpt-copyright" :source="railroadCopyright" :breaks="false"></vue-markdown>
             </v-layout>
           </v-footer>
         </div>

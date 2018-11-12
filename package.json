@@ -8,6 +8,7 @@
     "install-app": "cd app && yarn",
     "install-admin": "cd admin && yarn",
     "install-all": "yarn install-api & yarn install-app & yarn install-admin",
+    "reset": "rimraf ./*/node_modules && rimraf ./*/yarn.lock && yarn install-all",
     "api-dev": "hugo serve -s ./api --disableFastRender",
     "api-build": "hugo -s ./api -d ./dist",
     "api-build-full": "hugo -s ./api -d ./dist --cleanDestinationDir",
@@ -23,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/railroadpm/site/issues"
   },
-  "homepage": "https://github.com/railroadpm/site#readme"
+  "homepage": "https://github.com/railroadpm/site#readme",
+  "devDependencies": {
+    "rimraf": "^2.6.2"
+  }
 }

@@ -36,8 +36,8 @@
           <th v-for="col in cols.headers" :key="col.value" :class="`column text-xs-${col.align} rpt-col-dimensions`">
             <!-- We render the "Quick Graph" component in the lower "rowLabel" header cell -->
             <template v-if="col.value === 'rowLabel'">
-              <quick-graph-menu class="rpt-quick-graph-menu" :railroad="railroad" :selected-measures="selected" @remove-all="selected = []"
-                @show-graph="showQuickGraph" />
+              <quick-graph-menu class="rpt-quick-graph-menu" :railroad="railroad" :selected-measures="selected"
+                @remove-all="selected = []" @show-graph="showQuickGraph" />
             </template>
             <template v-else>
               <span>{{ col.text }}</span>
@@ -53,8 +53,9 @@
           <td class="rpt-data-label">
             <span :class="{ 'rpt-data-heading-row-label': row.item.isHeadingRow, 'rpt-data-calculated-row-label': row.item.isCalculated }">
               <v-icon class="rpt-selected-row-icon" v-show="row.selected" color="accent">insert_chart_outlined</v-icon>
-              <vue-markdown class="rpt-data-label-md" :source="row.item.rowLabel" />
-              </span>
+              <!-- Note: though "vue-markdown" is empty, avoid using the self-closing tag syntax as it can cause parsing issues in VSCode  -->
+              <vue-markdown class="rpt-data-label-md" :source="row.item.rowLabel"></vue-markdown>
+            </span>
           </td>
 
           <!-- Then render a cell for each *average* column ("Current" tab only) -->

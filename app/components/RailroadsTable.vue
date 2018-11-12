@@ -8,8 +8,9 @@
           <td class="rr-label">
             <span :class="{ 'rr-heading-row': row.item.isHeadingRow }">
               <v-icon class="rr-selected-row-icon" v-show="row.selected" color="accent">insert_chart_outlined</v-icon>
-              <vue-markdown class="rr-label-md" :source="row.item.rowLabel" />
-              </span>
+              <!-- Note: though "vue-markdown" is empty, avoid using the self-closing tag syntax as it can cause parsing issues in VSCode  -->
+              <vue-markdown class="rr-label-md" :source="row.item.rowLabel"></vue-markdown>
+            </span>
           </td>
         </tr>
       </template>
@@ -17,9 +18,8 @@
 
     <br>
     <railroads-graph-actions :selected-railroads="selected" @show-graph="railroadsGraphShowPopup = true" />
-
-    <railroads-graph-popup v-if="railroadsGraphShowPopup" :show="railroadsGraphShowPopup" :railroads="selected" :dimension-key="dimensionKey"
-      @close="railroadsGraphShowPopup = false" />
+    <railroads-graph-popup v-if="railroadsGraphShowPopup" :show="railroadsGraphShowPopup" :railroads="selected"
+      :dimension-key="dimensionKey" @close="railroadsGraphShowPopup = false" />
   </div>
 </template>
 

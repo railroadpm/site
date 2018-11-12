@@ -5,7 +5,8 @@
         <v-card-title class="headline">Welcome to the Railroad Performance Measures Website</v-card-title>
         <v-card-text>
           <blockquote class="blockquote mb-4 font-weight-regular">
-            Here, five major North American freight railroads have voluntarily reported three weekly performance measures — Cars
+            Here, five major North American freight railroads have voluntarily reported three weekly performance
+            measures — Cars
             On Line, Train
             Speed, and Terminal Dwell — since 1999, in a commitment to improve communications with their customers.
           </blockquote>
@@ -13,17 +14,22 @@
           <p>
             All five railroads use the same definitions to calculate their performance data, ensuring a high degree of
             consistency of the measurements.
-            However, these measures are most useful for examining trends and relative changes, and least useful as absolutes.
+            However, these measures are most useful for examining trends and relative changes, and least useful as
+            absolutes.
           </p>
 
           <p>
-            The level of one railroad’s performance relative to another’s may differ sharply because each railroad is unique.
+            The level of one railroad’s performance relative to another’s may differ sharply because each railroad is
+            unique.
             Differences between
-            railroads include terrain, physical routes and network design, traffic mix and volume, the extent of passenger
+            railroads include terrain, physical routes and network design, traffic mix and volume, the extent of
+            passenger
             operations,
-            and operational practices. External factors such as weather and port operations can also cause variations between
+            and operational practices. External factors such as weather and port operations can also cause variations
+            between
             railroads
-            and over time. In addition, individual differences in the collection and reporting of operational data may affect the
+            and over time. In addition, individual differences in the collection and reporting of operational data may
+            affect the
             absolute
             level of the measures on each road to some degree.
           </p>
@@ -33,7 +39,7 @@
             <nuxt-link to="/definitions">Definitions</nuxt-link> page for an explanation of the measures.
           </p>
 
-          <blockquote class="blockquote mb-4 font-weight-regular">
+          <blockquote class="blockquote mb-4 font-weight-regular accent-dark--text">
             Railroad Performance Measures are published every Wednesday at 2:00 p.m. Eastern Time.
           </blockquote>
 

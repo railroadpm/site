@@ -28,13 +28,11 @@
           <hr>
           <v-footer height="auto" class="white pt-3 px-3">
             <v-layout row wrap>
-              <template v-if="selectedRailroadKey != 'AOR'">
-                <vue-markdown class="prpt-understand-measures" :source="railroadUnderstandingMeasures" :breaks="false"></vue-markdown>
-                <div class="rpt-pg-legend">
-                  <span>R = Revised Figure(s) reported for this week</span><br>
-                  <span>- = Not Available</span>
-                </div>
-              </template>
+              <vue-markdown class="prpt-understand-measures" :source="railroadUnderstandingMeasures" :breaks="false"></vue-markdown>
+              <div class="rpt-pg-legend">
+                <span>R = Revised Figure(s) reported for this week</span><br>
+                <span>- = Not Available</span>
+              </div>
               <vue-markdown class="prpt-copyright" :source="railroadCopyright" :breaks="false"></vue-markdown>
             </v-layout>
           </v-footer>

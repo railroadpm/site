@@ -55,7 +55,7 @@ const helpers = {
    */
   pointStyleFromIndex(index) {
     // See: https://www.chartjs.org/docs/latest/configuration/elements.html#point-styles
-    let pointStyles = ['rect', 'circle', 'rectRounded', 'triangle', 'rectRot', 'star'];
+    let pointStyles = ['rect', 'circle', 'triangle', 'crossRot', 'rectRounded', 'star', 'cross', 'rectRot', 'line'];
     return pointStyles[index % pointStyles.length];
   },
 

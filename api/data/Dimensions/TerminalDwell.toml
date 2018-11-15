@@ -132,24 +132,24 @@ Key = 'BNSF'
 Key = 'CN'
 
   [[CN.Terminal]]
-  Key = 'HarrisonYard'
-  Ord = 1
-  CityOrYard = 'Harrison Yard'
-  Town = 'Memphis'
-  State = 'TN'
-  Country = 'USA'
-  Lat = '35.072545'
-  Lon = '-90.073524'
-
-  [[CN.Terminal]]
   Key = 'FDLYard'
-  Ord = 2
+  Ord = 1
   CityOrYard = 'Fond du Lac Yard'
   Town = ''
   State = 'WI'
   Country = 'USA'
   Lat = '43.8097309'
   Lon = '-88.4796321'
+
+  [[CN.Terminal]]
+  Key = 'HarrisonYard'
+  Ord = 2
+  CityOrYard = 'Harrison Yard'
+  Town = 'Memphis'
+  State = 'TN'
+  Country = 'USA'
+  Lat = '35.072545'
+  Lon = '-90.073524'
 
   [[CN.Terminal]]
   Key = 'JacksonYard'
@@ -261,18 +261,8 @@ Key = 'KCS'
   Lon = '-99.422997'
 
   [[KCS.Terminal]]
-  Key = 'Shreveport'
-  Ord = 4
-  CityOrYard = 'Shreveport'
-  Town = ''
-  State = 'LA'
-  Country = 'USA'
-  Lat = '32.540708'
-  Lon = '-93.835685'
-
-  [[KCS.Terminal]]
   Key = 'Monterrey'
-  Ord = 5
+  Ord = 4
   CityOrYard = 'Monterrey'
   Town = ''
   State = 'NL'
@@ -282,7 +272,7 @@ Key = 'KCS'
 
   [[KCS.Terminal]]
   Key = 'NuevoLaredo'
-  Ord = 6
+  Ord = 5
   CityOrYard = 'Nuevo Laredo'
   Town = ''
   State = 'TM'
@@ -292,7 +282,7 @@ Key = 'KCS'
 
   [[KCS.Terminal]]
   Key = 'SanLuisPotosi'
-  Ord = 7
+  Ord = 6
   CityOrYard = 'San Luis Potosi'
   Town = ''
   State = 'SL'
@@ -302,13 +292,23 @@ Key = 'KCS'
 
   [[KCS.Terminal]]
   Key = 'Sanchez'
-  Ord = 8
+  Ord = 7
   CityOrYard = 'Sanchez'
   Town = ''
   State = 'TM'
   Country = 'MEX'
   Lat = '27.475976'
   Lon = '-99.651777'
+
+  [[KCS.Terminal]]
+  Key = 'Shreveport'
+  Ord = 8
+  CityOrYard = 'Shreveport'
+  Town = ''
+  State = 'LA'
+  Country = 'USA'
+  Lat = '32.540708'
+  Lon = '-93.835685'
 
   [[KCS.Terminal]]
   Key = 'EntireRailroad'
@@ -330,8 +330,18 @@ Key = 'NS'
   Lon = '-75.433618'
 
   [[NS.Terminal]]
-  Key = 'Bellevue'
+  Key = 'Atlanta'
   Ord = 2
+  CityOrYard = 'Atlanta'
+  Town = ''
+  State = 'GA'
+  Country = 'USA'
+  Lat = '33.795253'
+  Lon = '-84.441165'
+
+  [[NS.Terminal]]
+  Key = 'Bellevue'
+  Ord = 3
   CityOrYard = 'Bellevue'
   Town = ''
   State = 'OH'
@@ -341,7 +351,7 @@ Key = 'NS'
 
   [[NS.Terminal]]
   Key = 'Birmingham'
-  Ord = 3
+  Ord = 4
   CityOrYard = 'Birmingham'
   Town = ''
   State = 'AL'
@@ -351,7 +361,7 @@ Key = 'NS'
 
   [[NS.Terminal]]
   Key = 'Chattanooga'
-  Ord = 4
+  Ord = 5
   CityOrYard = 'Chattanooga'
   Town = ''
   State = 'TN'
@@ -361,7 +371,7 @@ Key = 'NS'
 
   [[NS.Terminal]]
   Key = 'Columbus'
-  Ord = 5
+  Ord = 6
   CityOrYard = 'Columbus'
   Town = ''
   State = 'OH'
@@ -371,7 +381,7 @@ Key = 'NS'
 
   [[NS.Terminal]]
   Key = 'Conway'
-  Ord = 6
+  Ord = 7
   CityOrYard = 'Conway'
   Town = ''
   State = 'PA'
@@ -381,7 +391,7 @@ Key = 'NS'
 
   [[NS.Terminal]]
   Key = 'Decatur'
-  Ord = 7
+  Ord = 8
   CityOrYard = 'Decatur'
   Town = ''
   State = 'IL'
@@ -391,23 +401,13 @@ Key = 'NS'
 
   [[NS.Terminal]]
   Key = 'Elkhart'
-  Ord = 8
+  Ord = 9
   CityOrYard = 'Elkhart'
   Town = ''
   State = 'IN'
   Country = 'USA'
   Lat = '41.665068'
   Lon = '-86.017498'
-
-  [[NS.Terminal]]
-  Key = 'Atlanta'
-  Ord = 9
-  CityOrYard = 'Atlanta'
-  Town = ''
-  State = 'GA'
-  Country = 'USA'
-  Lat = '33.795253'
-  Lon = '-84.441165'
 
   [[NS.Terminal]]
   Key = 'Linwood'

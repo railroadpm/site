@@ -17,6 +17,12 @@
           <h3 v-html="subHeading"></h3>
         </div>
         <line-graph v-if="show" css-classes="quick-line-graph" :data="lineGraphData" :options="lineGraphOptions" />
+        <!--
+        <span style="position: absolute; right: 35px; font-size: 12px">
+          <v-icon color="accent">help_outline</v-icon>
+          Click (tap) on the legend to toggle the display of each dataset
+        </span>
+        -->
       </div>
     </v-card>
   </v-dialog>
@@ -98,6 +104,13 @@ export default {
         .value();
 
       return {
+        legend: {
+          labels: {
+            fontSize: 13,
+            padding: 10,
+            usePointStyle: true
+          }
+        },
         scales: {
           yAxes: [
             {

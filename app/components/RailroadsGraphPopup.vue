@@ -119,6 +119,13 @@ export default {
         .value();
 
       return {
+        legend: {
+          labels: {
+            fontSize: 13,
+            padding: 10,
+            usePointStyle: true
+          }
+        },
         scales: {
           yAxes: [
             {

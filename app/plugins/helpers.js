@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import numeral from 'numeral';
+import { DateTime, Duration } from 'luxon';
 
 /**
  * General helper methods and data for the Railroad Performance Measures (RPM) site
@@ -54,7 +55,7 @@ const helpers = {
    */
   pointStyleFromIndex(index) {
     // See: https://www.chartjs.org/docs/latest/configuration/elements.html#point-styles
-    let pointStyles = ['rect', 'circle', 'rectRounded', 'triangle', 'rectRot', 'star'];
+    let pointStyles = ['rect', 'circle', 'triangle', 'crossRot', 'rectRounded', 'star', 'cross', 'rectRot', 'line'];
     return pointStyles[index % pointStyles.length];
   },
 
@@ -82,6 +83,17 @@ const helpers = {
       textColor: 'red--text'
     }
   ],
+
+  /**
+   * Given an ISO Date string for a reporting period end date, return true if the *current* datetime (in eastern US) is *more* than a week after the
+   * publication date and time for that reporting period, false otherwise
+   * @param {string} isoDate Date string of the form "YYYYMMDD"
+   */
+  isPeriodEndDateOlderThanOneWeek(isoDate) {
+    let then = DateTime.fromISO(isoDate).plus({ days: 5, hours: 14 }); // Translate period end isoDate to publication date and time
+    let now = DateTime.local().setZone('America/New_York');
+    return now.diff(then, 'days').days > 7;
+  },
 
   regex: {
     htmlTagsAndSpaces: /&nbsp;|<\/?[\w\s="/.':;#-\/\?]+>/gi

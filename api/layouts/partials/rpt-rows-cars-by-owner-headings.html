@@ -4,7 +4,7 @@
 
   Parameters
     $.prpt            Participant Key
-    $.data            Site Data  
+    $.data            Site Data
     $.scratch         Scratchpad ref
     $.avg_cols        The averages columns to render in the rows, or nil if not applicable
     $.weeks           The Weeks for which to render the rows
@@ -26,8 +26,7 @@
   {{- $.scratch.SetInMap $row_map_key .Key "" -}}
 {{- end -}}
 
-<!-- AOR has no "Revisions" row, making this the *first* row and thus requiring no comma delimiter -->
-{{- "\n\t" -}}{{- cond (eq $.prpt "AOR") " " "," -}}{{- $.scratch.Get $row_map_key | jsonify -}}
+{{- "\n\t," -}}{{- $.scratch.Get $row_map_key | jsonify -}}
 
 {{/* Sub heading */}}
 {{- $.scratch.Delete $row_map_key -}}

@@ -1,6 +1,6 @@
 {
   "name": "aar-rpm",
-  "version": "2.1.0-beta.2",
+  "version": "2.1.0-beta.3",
   "description": "Railroad Performance Measures",
   "main": "index.js",
   "scripts": {

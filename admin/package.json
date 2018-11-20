@@ -4,7 +4,7 @@
   "description": "RPM Admin Site",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "live-server"
   },
   "repository": {
     "type": "git",
@@ -17,12 +17,15 @@
     "url": "https://github.com/railroadpm/site/issues"
   },
   "homepage": "https://github.com/railroadpm/site#readme",
-  "dependencies": {},
+  "dependencies": {
+    "@rrpm/netlify-cms": "^2.2.4"
+  },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
     "eslint": "^5.8.0",
     "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-vue": "^4.7.1",
+    "live-server": "^1.2.0",
     "prettier": "^1.15.2"
   }
 }

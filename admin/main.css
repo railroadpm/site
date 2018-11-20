@@ -1,0 +1,33 @@
+#nc-root header > div {
+  background-color: #0072a9;
+}
+
+#nc-root header > div a,
+#nc-root header > div button,
+#nc-root header > div svg {
+  color: #dedede;
+}
+
+#nc-root header > div a:hover,
+#nc-root header > div a.header-link-active,
+#nc-root header > div button:hover {
+  color: white;
+}
+
+#nc-root header > div a:hover svg,
+#nc-root header > div a.header-link-active svg,
+#nc-root header > div button:hover svg {
+  color: white;
+}
+
+#nc-root header nav ~ div svg {
+  color: #0072a9;
+}
+
+#nc-root header nav ~ div svg:hover {
+  color: white;
+}
+
+.nc-app-header-btn-media {
+  display: none;
+}

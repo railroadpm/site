@@ -1,6 +1,6 @@
 Railroad = "BNSF"
 WeekEnding = "20180504"
-Revisions = true
+Revisions = false
 CarsOnLine_ByCarOwner_System = 62622
 CarsOnLine_ByCarOwner_ForeignRR = 23272
 CarsOnLine_ByCarOwner_Private = 156167

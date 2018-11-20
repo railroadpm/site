@@ -22,10 +22,10 @@ collections:
     slug: "{{slug}}"
     editor:
       preview: false
-    identifier_field: "Title"
+    # identifier_field: title
     fields:
       - {name: "Railroad", widget: "hidden", default: "BNSF"}
-      - {name: "Title", label: "Week Ending Friday YYYYMMDD", widget: "string", pattern:["^(20)\\d\\d(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$", "YYYYMMDD"]}
+      - {name: "title", label: "Week Ending Friday YYYYMMDD", widget: "string", pattern:["^(20)\\d\\d(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$", "YYYYMMDD"]}
       - {name: "Revisions", label: "Revisions Made Since Initial Publication Date?", widget: "boolean", default: false, required: true}
       - {name: "CarsOnLine_ByCarOwner_System", label: "Cars On Line, By Car Owner: System", widget: "number", valueType: "int", min: 0, max: 2147483647}
       - {name: "CarsOnLine_ByCarOwner_ForeignRR", label: "Cars On Line, By Car Owner: Foreign RR", widget: "number", valueType: "int", min: 0, max: 2147483647}
@@ -66,10 +66,9 @@ collections:
     slug: "{{slug}}"
     editor:
       preview: false
-    identifier_field: "Title"
     fields:
       - {name: "Railroad", widget: "hidden", default: "CN"}
-      - {name: "Title", label: "Week Ending Friday YYYYMMDD", widget: "string", pattern:["^(20)\\d\\d(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$", "YYYYMMDD"]}
+      - {name: "title", label: "Week Ending Friday YYYYMMDD", widget: "string", pattern:["^(20)\\d\\d(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$", "YYYYMMDD"]}
       - {name: "Revisions", label: "Revisions Made Since Initial Publication Date?", widget: "boolean", default: false, required: true}
       - {name: "CarsOnLine_ByCarOwner_System", label: "Cars On Line, By Car Owner: System", widget: "number", valueType: "int", min: 0, max: 2147483647}
       - {name: "CarsOnLine_ByCarOwner_ForeignRR", label: "Cars On Line, By Car Owner: Foreign RR", widget: "number", valueType: "int", min: 0, max: 2147483647}
@@ -108,10 +107,9 @@ collections:
     slug: "{{slug}}"
     editor:
       preview: false
-    identifier_field: "Title"
     fields:
       - {name: "Railroad", widget: "hidden", default: "KCS"}
-      - {name: "Title", label: "Week Ending Friday YYYYMMDD", widget: "string", pattern:["^(20)\\d\\d(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$", "YYYYMMDD"]}
+      - {name: "title", label: "Week Ending Friday YYYYMMDD", widget: "string", pattern:["^(20)\\d\\d(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$", "YYYYMMDD"]}
       - {name: "Revisions", label: "Revisions Made Since Initial Publication Date?", widget: "boolean", default: false, required: true}
       - {name: "CarsOnLine_ByCarOwner_System", label: "Cars On Line, By Car Owner: System", widget: "number", valueType: "int", min: 0, max: 2147483647}
       - {name: "CarsOnLine_ByCarOwner_ForeignRR", label: "Cars On Line, By Car Owner: Foreign RR", widget: "number", valueType: "int", min: 0, max: 2147483647}
@@ -149,10 +147,9 @@ collections:
     slug: "{{slug}}"
     editor:
       preview: false
-    identifier_field: "Title"
     fields:
       - {name: "Railroad", widget: "hidden", default: "NS"}
-      - {name: "Title", label: "Week Ending Friday YYYYMMDD", widget: "string", pattern:["^(20)\\d\\d(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$", "YYYYMMDD"]}
+      - {name: "title", label: "Week Ending Friday YYYYMMDD", widget: "string", pattern:["^(20)\\d\\d(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$", "YYYYMMDD"]}
       - {name: "Revisions", label: "Revisions Made Since Initial Publication Date?", widget: "boolean", default: false, required: true}
       - {name: "CarsOnLine_ByCarOwner_System", label: "Cars On Line, By Car Owner: System", widget: "number", valueType: "int", min: 0, max: 2147483647}
       - {name: "CarsOnLine_ByCarOwner_ForeignRR", label: "Cars On Line, By Car Owner: Foreign RR", widget: "number", valueType: "int", min: 0, max: 2147483647}
@@ -196,10 +193,9 @@ collections:
     slug: "{{slug}}"
     editor:
       preview: false
-    identifier_field: "Title"
     fields:
       - {name: "Railroad", widget: "hidden", default: "UP"}
-      - {name: "Title", label: "Week Ending Friday YYYYMMDD", widget: "string", pattern:["^(20)\\d\\d(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$", "YYYYMMDD"]}
+      - {name: "title", label: "Week Ending Friday YYYYMMDD", widget: "string", pattern:["^(20)\\d\\d(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$", "YYYYMMDD"]}
       - {name: "Revisions", label: "Revisions Made Since Initial Publication Date?", widget: "boolean", default: false, required: true}
       - {name: "CarsOnLine_ByCarOwner_System", label: "Cars On Line, By Car Owner: System", widget: "number", valueType: "int", min: 0, max: 2147483647}
       - {name: "CarsOnLine_ByCarOwner_ForeignRR", label: "Cars On Line, By Car Owner: Foreign RR", widget: "number", valueType: "int", min: 0, max: 2147483647}
@@ -242,10 +238,9 @@ collections:
     slug: "{{slug}}"
     editor:
       preview: false
-    identifier_field: "Title"
     fields:
       - {name: "Railroad", widget: "hidden", default: "AOR"}
-      - {name: "Title", label: "Week Ending Friday YYYYMMDD", widget: "string", pattern:["^(20)\\d\\d(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$", "YYYYMMDD"]}
+      - {name: "title", label: "Week Ending Friday YYYYMMDD", widget: "string", pattern:["^(20)\\d\\d(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$", "YYYYMMDD"]}
       - {name: "Revisions", label: "Revisions Made Since Initial Publication Date?", widget: "boolean", default: false, required: true}
       - {name: "CarsOnLine_ByCarOwner_System", label: "Cars On Line, By Car Owner: System", widget: "number", valueType: "int", min: 0, max: 2147483647}
       - {name: "CarsOnLine_ByCarOwner_ForeignRR", label: "Cars On Line, By Car Owner: Foreign RR", widget: "number", valueType: "int", min: 0, max: 2147483647}

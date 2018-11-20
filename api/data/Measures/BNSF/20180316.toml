@@ -1,5 +1,5 @@
 Railroad = 'BNSF'
-title = '20180316'
+WeekEnding = '20180316'
 CarsOnLine_ByCarOwner_System = 64262
 CarsOnLine_ByCarOwner_ForeignRR = 23536
 CarsOnLine_ByCarOwner_Private = 153736

@@ -29,5 +29,5 @@
 }
 
 .nc-app-header-btn-media {
-  display: none;
+  display: none !important;
 }

@@ -1,10 +1,11 @@
 backend:
-  # name: git-gateway
-  name: test-repo
+  name: git-gateway
+  # name: test-repo
   accept_roles:
     - Administrator
     - Participant
 
+logo_url: aar_rpm_logo_lg.jpg
 display_url: https://app.rrpm.run
 media_folder: "admin/media"
 

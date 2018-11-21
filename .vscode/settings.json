@@ -12,25 +12,22 @@
     "dist": false
   },
   "files.associations": {
-    "**/layouts/**/*.html": "gohtml",
-    "**/layouts/**/*.json": "gotemplate"
+    "api/layouts/**/*.html": "gohtml",
+    "api/layouts/**/*.json": "gotemplate",
+    "admin/*.html": "html"
   },
   "autorun.build": false,
+  "html.format.indentInnerHtml": false,
   "vetur.validation.template": false,
   "vetur.format.defaultFormatter.html": "js-beautify-html",
   "vetur.format.defaultFormatterOptions": {
     "js-beautify-html": {
       "wrap_line_length": 120,
       "wrap_attributes": "auto",
-      "content_unformatted": [
-        "vue-markdown"
-      ]
+      "content_unformatted": ["vue-markdown"]
     }
   },
-  "prettier.disableLanguages": [
-    "js",
-    "vue"
-  ],
+  "prettier.disableLanguages": ["js", "vue"],
   "prettier.eslintIntegration": false,
   "prettier.singleQuote": true,
   "prettier.printWidth": 170,
@@ -56,10 +53,7 @@
       "browser": true,
       "node": true
     },
-    "plugins": [
-      "vue",
-      "prettier"
-    ],
+    "plugins": ["vue", "prettier"],
     "parser": "vue-eslint-parser",
     "parserOptions": {
       "parser": "babel-eslint",
@@ -70,10 +64,7 @@
         "modules": true
       }
     },
-    "extends": [
-      "plugin:vue/essential",
-      "prettier"
-    ],
+    "extends": ["plugin:vue/essential", "prettier"],
     "rules": {
       "prettier/prettier": [
         "error",
@@ -109,10 +100,7 @@
         }
       ],
       "comma-dangle": "off",
-      "quotes": [
-        2,
-        "single"
-      ]
+      "quotes": [2, "single"]
     }
   },
   "stylusSupremacy.insertColons": true,

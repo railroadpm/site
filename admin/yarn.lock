@@ -198,10 +198,10 @@
   dependencies:
     uuid "^3.3.2"
 
-"@rrpm/netlify-cms-core@^2.2.5":
-  version "2.2.5"
-  resolved "https://registry.yarnpkg.com/@rrpm/netlify-cms-core/-/netlify-cms-core-2.2.5.tgz#1e488125524ebc66140a6b742fd78c095c22fe3c"
-  integrity sha512-96pzs3otbU/S4e1/rADk01FQhDBUKPuK+ydefDh2rsACVR/3k5TSoUvSJQdXWv3UpQKarFPN+8MWRJvqAnJgDw==
+"@rrpm/netlify-cms-core@^2.2.6":
+  version "2.2.6"
+  resolved "https://registry.yarnpkg.com/@rrpm/netlify-cms-core/-/netlify-cms-core-2.2.6.tgz#a8a89b866a0f2ee2bb861687548215b62da185e1"
+  integrity sha512-qYytmFiqhO7eTATRRCnErIBqtGlJFlVQHu8SJbjPhxs5Fg6AMXCeNYt8fZzDau5aWhAndDquX8AVS7DmKMS/9w==
   dependencies:
     "@rrpm/netlify-cms-editor-component-image" "^2.0.6"
     "@rrpm/netlify-cms-lib-auth" "^2.0.7"
@@ -387,16 +387,16 @@
     react-textarea-autosize "^5.2.0"
 
 "@rrpm/netlify-cms@^2.2.5":
-  version "2.2.5"
-  resolved "https://registry.yarnpkg.com/@rrpm/netlify-cms/-/netlify-cms-2.2.5.tgz#5c917faed81bd3ac8ebe111a1b2b9c64c0865e1f"
-  integrity sha512-f1fW/8iPZRvdOqzZzKiHH4fj5tbOd4Y0osFKwWTwX5UozT8d9d/J3pD0HfZvH3hB8HMMhv4ySe0GHmTCUgQ6wQ==
+  version "2.2.6"
+  resolved "https://registry.yarnpkg.com/@rrpm/netlify-cms/-/netlify-cms-2.2.6.tgz#414f7d6cd71c42a91bee828d5f85545e3d5453bb"
+  integrity sha512-Pqc8B07tqXTiF2SMNic9G1GRrP7ZmXx+ubhAwm+QoBaJ5pOtZEJh3a9mqQyQrTOnMGt+bITA6cyg49O0CoYbGQ==
   dependencies:
     "@rrpm/netlify-cms-backend-bitbucket" "^2.1.2"
     "@rrpm/netlify-cms-backend-git-gateway" "^2.1.2"
     "@rrpm/netlify-cms-backend-github" "^2.1.2"
     "@rrpm/netlify-cms-backend-gitlab" "^2.1.2"
     "@rrpm/netlify-cms-backend-test" "^2.0.8"
-    "@rrpm/netlify-cms-core" "^2.2.5"
+    "@rrpm/netlify-cms-core" "^2.2.6"
     "@rrpm/netlify-cms-editor-component-image" "^2.0.6"
     "@rrpm/netlify-cms-media-library-uploadcare" "^0.2.3"
     "@rrpm/netlify-cms-widget-boolean" "^2.0.7"

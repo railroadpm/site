@@ -1,3 +1,9 @@
+// Note: In this "/admin" project there is *no build tool* setup to automatically compile this
+// file to CSS, so VSCode with the "Live Sass" extension is recommended.
+// With that tooling in place you can press F1 and manually compile using the command:
+//
+//    "Live Sass: Compile Sass - Without Watch Mode"
+//
 #nc-root header {
   >div {
     background-color: #0072a9;

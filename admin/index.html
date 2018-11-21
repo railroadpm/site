@@ -14,20 +14,29 @@
 </head>
 
 <body>
-  <!-- Include the script that builds the page and powers Netlify CMS -->
+  <!--
+    Include the script that builds the page and powers Netlify CMS...
+
+    Note:
+      We use a custom build of the CMS. To pull the latest version/build of our
+      custom code you want to execute the following from the command-line while
+      your *current working directory* is set to this "/admin" folder...
+
+        > yarn build
+  -->
   <script src="rrpm-netlify-cms.js"></script>
 
   <script>
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("init", function(user) {
-        // console.log("Netlify Identity: In Init Event Handler");
+        console.log(">>> Netlify Identity: In Init Event Handler", user);
         if (!user) {
           window.netlifyIdentity.on("login", function() {
-            // console.log("Netlify Identity: In Login Event Handler");
+            console.log(">>> Netlify Identity: In Login Event Handler");
             document.location.href = "/";
           });
         } else {
-          // console.log("Netlify Identity: User Is Logged In", JSON.stringify(user));
+          console.log(">>> Netlify Identity: User Is Logged In", JSON.stringify(user));
         }
       });
     }

@@ -29,14 +29,27 @@
   <script>
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("init", function(user) {
-        console.log(">>> Netlify Identity: In Init Event Handler", user);
+        // console.log(">>> Netlify Identity: In Init Event Handler", user);
         if (!user) {
           window.netlifyIdentity.on("login", function() {
-            console.log(">>> Netlify Identity: In Login Event Handler");
+            // console.log(">>> Netlify Identity: In Login Event Handler");
             document.location.href = "/";
           });
         } else {
-          console.log(">>> Netlify Identity: User Is Logged In", JSON.stringify(user));
+          // console.log(">>> Netlify Identity: User Is Logged In", JSON.stringify(user));
+          let ncRoot = document.getElementById("nc-root");
+          if (user.app_metadata && user.app_metadata.roles && ncRoot) {
+            const roles = user.app_metadata.roles;
+
+            if (roles.includes('Administrator')) ncRoot.classList.add("nc-user-role-is-admin");
+            else ncRoot.classList.add("nc-user-role-is-participant");
+
+            if (roles.includes('BNSF')) ncRoot.classList.add("nc-user-role-is-bnsf");
+            if (roles.includes('CN')) ncRoot.classList.add("nc-user-role-is-cn");
+            if (roles.includes('KCS')) ncRoot.classList.add("nc-user-role-is-kcs");
+            if (roles.includes('NS')) ncRoot.classList.add("nc-user-role-is-ns");
+            if (roles.includes('UP')) ncRoot.classList.add("nc-user-role-is-up");
+          }
         }
       });
     }

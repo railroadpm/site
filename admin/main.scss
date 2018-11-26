@@ -41,14 +41,48 @@
 }
 
 // RBAC at the UI level - informal since hiding DOM elements can be easily defeated
-// #nc-root .nc-app-ui-rbac {
-//   display: none;
-// }
+#nc-root {
+  // Start by hiding everything RBAC-related...
+  .nc-app-ui-rbac {
+    display: none;
+  }
 
-// #nc-root .nc-app-sidebar-search {
-//   display: none;
+  .nc-app-sidebar-search {
+    display: none;
+  }
 
-//   ::after {
-//     content: "You don't have access to any Reports. Please contact AAR to request access."
-//   }
-// }
+  // And then show things that should be visible to different roles...
+  &.nc-user-role-is-admin {
+    .nc-app-header-btn-wf {
+      display: inline-flex;
+    }
+  }
+
+  &.nc-user-role-is-admin,
+  &.nc-user-role-is-bnsf,
+  &.nc-user-role-is-cn {
+    .nc-app-collection-container {
+      display: block;
+    }
+
+    .nc-app-header-quick-add {
+      display: block;
+    }
+  }
+
+  &.nc-user-role-is-admin,
+  &.nc-user-role-is-bnsf {
+    .nc-app-sidebar-nav-link-reports_bnsf,
+    .nc-app-header-quick-add-link-reports_bnsf {
+      display: flex;
+    }
+  }
+
+  &.nc-user-role-is-admin,
+  &.nc-user-role-is-cn {
+    .nc-app-sidebar-nav-link-reports_cn,
+    .nc-app-header-quick-add-link-reports_cn {
+      display: flex;
+    }
+  }
+}

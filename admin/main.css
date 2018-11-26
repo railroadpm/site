@@ -31,3 +31,41 @@
 .nc-app-header-btn-media {
   display: none !important;
 }
+
+#nc-root .nc-app-ui-rbac {
+  display: none;
+}
+
+#nc-root .nc-app-sidebar-search {
+  display: none;
+}
+
+#nc-root.nc-user-role-is-admin .nc-app-header-btn-wf {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+#nc-root.nc-user-role-is-admin .nc-app-collection-container, #nc-root.nc-user-role-is-bnsf .nc-app-collection-container, #nc-root.nc-user-role-is-cn .nc-app-collection-container {
+  display: block;
+}
+
+#nc-root.nc-user-role-is-admin .nc-app-header-quick-add, #nc-root.nc-user-role-is-bnsf .nc-app-header-quick-add, #nc-root.nc-user-role-is-cn .nc-app-header-quick-add {
+  display: block;
+}
+
+#nc-root.nc-user-role-is-admin .nc-app-sidebar-nav-link-reports_bnsf,
+#nc-root.nc-user-role-is-admin .nc-app-header-quick-add-link-reports_bnsf, #nc-root.nc-user-role-is-bnsf .nc-app-sidebar-nav-link-reports_bnsf,
+#nc-root.nc-user-role-is-bnsf .nc-app-header-quick-add-link-reports_bnsf {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#nc-root.nc-user-role-is-admin .nc-app-sidebar-nav-link-reports_cn,
+#nc-root.nc-user-role-is-admin .nc-app-header-quick-add-link-reports_cn, #nc-root.nc-user-role-is-cn .nc-app-sidebar-nav-link-reports_cn,
+#nc-root.nc-user-role-is-cn .nc-app-header-quick-add-link-reports_cn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}

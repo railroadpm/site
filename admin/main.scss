@@ -39,3 +39,16 @@
 .nc-app-header-btn-media {
   display: none !important;
 }
+
+// RBAC at the UI level - informal since hiding DOM elements can be easily defeated
+// #nc-root .nc-app-ui-rbac {
+//   display: none;
+// }
+
+// #nc-root .nc-app-sidebar-search {
+//   display: none;
+
+//   ::after {
+//     content: "You don't have access to any Reports. Please contact AAR to request access."
+//   }
+// }

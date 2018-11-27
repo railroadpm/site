@@ -4,6 +4,7 @@
     "bungcip.better-toml",
     "octref.vetur",
     "sdras.vue-vscode-snippets",
-    "ritwickdey.live-sass"
+    "spook.easysass",
+    "shinnn.stylelint"
   ]
 }

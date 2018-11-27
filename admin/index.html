@@ -15,7 +15,7 @@
 
 <body>
   <!--
-    Include the script that builds the page and powers Netlify CMS...
+    Include the scripts that build the page, power Netlify CMS, and customize it for this project
 
     Note:
       We use a custom build of the CMS. To pull the latest version/build of our
@@ -25,74 +25,7 @@
         > yarn build
   -->
   <script src="rrpm-netlify-cms.js"></script>
-
-  <script>
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on('init', function(user) {
-        // let testUser = { app_metadata: { roles: ['Participant'] } };
-        // let testUser = { app_metadata: { roles: ['Administrator'] } };
-        // let testUser = { app_metadata: { roles: ['CN'] } };
-        // console.log('>>> Netlify Identity: In Init Event Handler', user);
-
-        if (!user && typeof testUser === 'undefined') {
-          window.netlifyIdentity.on('login', function() {
-            // console.log('>>> Netlify Identity: In Login Event Handler');
-            document.location.href = '/';
-          });
-        } else {
-          if (typeof testUser != 'undefined') user = testUser;
-          // console.log('>>> Netlify Identity: User Is Logged In', JSON.stringify(user));
-          let ncRoot = document.getElementById('nc-root');
-
-          if (user.app_metadata && user.app_metadata.roles && ncRoot) {
-            const roles = user.app_metadata.roles;
-
-            if (roles.includes('Administrator')) {
-              ncRoot.classList.add('nc-user-role-is-admin');
-              document.location.href = '/#/collections/reports_bnsf';
-            }
-            else {
-              ncRoot.classList.add('nc-user-role-is-participant');
-
-              if (roles.includes('BNSF')) {
-                ncRoot.classList.add('nc-user-role-is-bnsf');
-                document.location.href = '/#/collections/reports_bnsf';
-              }
-              else if (roles.includes('CN')) {
-                ncRoot.classList.add('nc-user-role-is-cn');
-                document.location.href = '/#/collections/reports_cn';
-              }
-              else if (roles.includes('KCS')) {
-                ncRoot.classList.add('nc-user-role-is-kcs');
-                document.location.href = '/#/collections/reports_kcs';
-              }
-              else if (roles.includes('NS')) {
-                ncRoot.classList.add('nc-user-role-is-ns');
-                document.location.href = '/#/collections/reports_ns';
-              }
-              else if (roles.includes('UP')) {
-                ncRoot.classList.add('nc-user-role-is-up');
-                document.location.href = '/#/collections/reports_up';
-              }
-              else {
-                document.location.href = '/#/collections/reports_bnsf';
-
-                setTimeout(() => {
-                  let ncSidebarHeading = document.getElementsByClassName('nc-app-sidebar-heading')[0];
-
-                  if (ncSidebarHeading) {
-                    ncSidebarHeading.innerText = `You don't have access to any Reports. Please contact AAR to request access.`
-                    ncSidebarHeading.setAttribute('style', 'font-size: 15px; color: red;');
-                    ncSidebarHeading.parentElement.setAttribute('style', 'width: 320px;');
-                  }
-                }, 400);
-              }
-            }
-          }
-        }
-      });
-    }
-  </script>
+  <script src="rrpm-netlify-rbac.js"></script>
 </body>
 
 </html>

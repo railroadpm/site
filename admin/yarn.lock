@@ -166,10 +166,10 @@
     js-base64 "^2.4.8"
     semaphore "^1.1.0"
 
-"@rrpm/netlify-cms-backend-git-gateway@^2.1.2":
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/@rrpm/netlify-cms-backend-git-gateway/-/netlify-cms-backend-git-gateway-2.1.2.tgz#8dcfd9ff8dc54ef04688b771d4667a49968d21a6"
-  integrity sha512-+dttEaAAEiV5kUoI66MeLVKm/uD2ENvcnyyuvp+5wTo/wlo+RHXBERMOqnbnpu7HeLN+CWw6FxmeiXpI0P4Bag==
+"@rrpm/netlify-cms-backend-git-gateway@^2.1.3":
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/@rrpm/netlify-cms-backend-git-gateway/-/netlify-cms-backend-git-gateway-2.1.3.tgz#9a6d96e941eb0a7cca73fadc139b9b2d862b5597"
+  integrity sha512-Sh4ym7nVl0okYtVUUHVQxUBxOWWhCPq6juUO8kbggR4Gahb/s5qRyN+RhrwYZnYG29R1hnJK+EyiDpEgjRmOWQ==
   dependencies:
     gotrue-js "^0.9.22"
     jwt-decode "^2.2.0"
@@ -198,10 +198,10 @@
   dependencies:
     uuid "^3.3.2"
 
-"@rrpm/netlify-cms-core@^2.2.11":
-  version "2.2.11"
-  resolved "https://registry.yarnpkg.com/@rrpm/netlify-cms-core/-/netlify-cms-core-2.2.11.tgz#5e545b1d4a5f1d5cea2aef6429362914b8cb85af"
-  integrity sha512-BQQI//9HBoeL2EKpThUFY3bNTT6Gx2vuBi3/vzh4xOH8iV3XHFAm2qLIPJufckcyWFW3PK6646Av+pIafISdZQ==
+"@rrpm/netlify-cms-core@^2.2.14":
+  version "2.2.14"
+  resolved "https://registry.yarnpkg.com/@rrpm/netlify-cms-core/-/netlify-cms-core-2.2.14.tgz#256c65025462def9350d93fd8bf5deb26361d763"
+  integrity sha512-yms4oBJGf5kL+0pVqJ/v2eL/Aror826pI9VrcLCxqWpQetjcpI49opPQiOXeUkNkdS796fLiEYDD6t9tWT9dmQ==
   dependencies:
     "@rrpm/netlify-cms-editor-component-image" "^2.0.6"
     "@rrpm/netlify-cms-lib-auth" "^2.0.7"
@@ -386,17 +386,17 @@
   dependencies:
     react-textarea-autosize "^5.2.0"
 
-"@rrpm/netlify-cms@^2.2.5":
-  version "2.2.11"
-  resolved "https://registry.yarnpkg.com/@rrpm/netlify-cms/-/netlify-cms-2.2.11.tgz#ce05e4a7e7d644f51308b03025b5603ec23d5fd1"
-  integrity sha512-+y9IwQelY3rewRxGcOsCHrI/PT4K6M59xUuVFzeyhw2+4IISbEZa6NpxB+ZkmwOCrOILXTppeTEVVOZy4Noo5w==
+"@rrpm/netlify-cms@^2.2.15":
+  version "2.2.15"
+  resolved "https://registry.yarnpkg.com/@rrpm/netlify-cms/-/netlify-cms-2.2.15.tgz#636449657603b94c90aef6e8f08be8dec3c987c7"
+  integrity sha512-64KOmMIxwEd6h/TrlTrgfoTvfcUdK28nTjlUOK7VRMPNTu4W3xSn+TEJ4BL10MaIWUSF8r0zKl8siAWLcvEtfQ==
   dependencies:
     "@rrpm/netlify-cms-backend-bitbucket" "^2.1.2"
-    "@rrpm/netlify-cms-backend-git-gateway" "^2.1.2"
+    "@rrpm/netlify-cms-backend-git-gateway" "^2.1.3"
     "@rrpm/netlify-cms-backend-github" "^2.1.2"
     "@rrpm/netlify-cms-backend-gitlab" "^2.1.2"
     "@rrpm/netlify-cms-backend-test" "^2.0.8"
-    "@rrpm/netlify-cms-core" "^2.2.11"
+    "@rrpm/netlify-cms-core" "^2.2.14"
     "@rrpm/netlify-cms-editor-component-image" "^2.0.6"
     "@rrpm/netlify-cms-media-library-uploadcare" "^0.2.3"
     "@rrpm/netlify-cms-widget-boolean" "^2.0.7"

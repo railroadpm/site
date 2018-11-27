@@ -9,7 +9,8 @@
     "**/.DS_Store": true,
     "bin": true,
     "node_modules": false,
-    "dist": false
+    "dist": false,
+    "**/*.min.css": true
   },
   "files.associations": {
     "api/layouts/**/*.html": "gohtml",

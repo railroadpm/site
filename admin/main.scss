@@ -1,9 +1,4 @@
-// Note: In this "/admin" project there is *no build tool* setup to automatically compile this
-// file to CSS, so VSCode with the "Live Sass" extension is recommended.
-// With that tooling in place you can press F1 and manually compile using the command:
-//
-//    "Live Sass: Compile Sass - Without Watch Mode"
-//
+// Note: We depend on the "Easy Sass" VSCode extension as our *build tool* to automatically compile this file to CSS on save
 #nc-root header {
   >div {
     background-color: #0072a9;
@@ -40,8 +35,11 @@
   display: none !important;
 }
 
-// RBAC at the UI level - informal since hiding DOM elements can be easily defeated
+// RBAC at the UI level - "informal" RBAC since hiding DOM elements can be easily defeated
+$role-list: admin bnsf cn kcs ns up aor;
+
 #nc-root {
+
   // Start by hiding everything RBAC-related...
   .nc-app-ui-rbac {
     display: none;
@@ -56,33 +54,37 @@
     .nc-app-header-btn-wf {
       display: inline-flex;
     }
-  }
 
-  &.nc-user-role-is-admin,
-  &.nc-user-role-is-bnsf,
-  &.nc-user-role-is-cn {
-    .nc-app-collection-container {
+    .nc-app-editor-publishing {
       display: block;
     }
 
-    .nc-app-header-quick-add {
-      display: block;
+    .nc-app-editor-btn-delete {
+      display: inline-flex;
     }
   }
 
-  &.nc-user-role-is-admin,
-  &.nc-user-role-is-bnsf {
-    .nc-app-sidebar-nav-link-reports_bnsf,
-    .nc-app-header-quick-add-link-reports_bnsf {
-      display: flex;
-    }
-  }
+  @each $role in $role-list {
+    &.nc-user-role-is-#{$role} {
+      .nc-app-collection-container {
+        display: block;
+      }
 
-  &.nc-user-role-is-admin,
-  &.nc-user-role-is-cn {
-    .nc-app-sidebar-nav-link-reports_cn,
-    .nc-app-header-quick-add-link-reports_cn {
-      display: flex;
+      .nc-app-header-quick-add {
+        display: block;
+      }
+    }
+
+    @if $role !=admin {
+
+      &.nc-user-role-is-admin,
+      &.nc-user-role-is-#{$role} {
+
+        .nc-app-sidebar-nav-link-reports_#{$role},
+        .nc-app-header-quick-add-link-reports_#{$role} {
+          display: flex;
+        }
+      }
     }
   }
 }

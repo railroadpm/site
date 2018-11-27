@@ -66,7 +66,9 @@ $role-list: admin bnsf cn kcs ns up aor;
 
   @each $role in $role-list {
     &.nc-user-role-is-#{$role} {
-      .nc-app-collection-container {
+
+      .nc-app-collection-container,
+      .nc-app-collection-entries {
         display: block;
       }
 

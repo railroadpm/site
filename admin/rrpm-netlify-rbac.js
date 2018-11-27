@@ -5,7 +5,7 @@
     implementation at the UI level only, which could be easily defeated by anyone with basic knowledge of
     HTML and CSS.
 
-    We simply hook into Netlify init and login events to tweak the UI based on the user's role.
+    We simply hook into Netlify init and login events to tweak the UI based on the user's role(s).
 */
 if (window.netlifyIdentity) {
   window.netlifyIdentity.on('init', function(user) {
@@ -55,7 +55,7 @@ if (window.netlifyIdentity) {
                 ncSidebarHeading.setAttribute('style', 'font-size: 15px; color: red;');
                 ncSidebarHeading.parentElement.setAttribute('style', 'width: 320px;');
               }
-            }, 400);
+            }, 2000);
           }
         }
       }

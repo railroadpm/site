@@ -281,24 +281,24 @@ Key = 'KCS'
   Lon = '-99.524315'
 
   [[KCS.Terminal]]
-  Key = 'SanLuisPotosi'
-  Ord = 6
-  CityOrYard = 'San Luis Potosi'
-  Town = ''
-  State = 'SL'
-  Country = 'MEX'
-  Lat = '22.152409'
-  Lon = '-100.968910'
-
-  [[KCS.Terminal]]
   Key = 'Sanchez'
-  Ord = 7
+  Ord = 6
   CityOrYard = 'Sanchez'
   Town = ''
   State = 'TM'
   Country = 'MEX'
   Lat = '27.475976'
   Lon = '-99.651777'
+
+  [[KCS.Terminal]]
+  Key = 'SanLuisPotosi'
+  Ord = 7
+  CityOrYard = 'San Luis Potosi'
+  Town = ''
+  State = 'SL'
+  Country = 'MEX'
+  Lat = '22.152409'
+  Lon = '-100.968910'
 
   [[KCS.Terminal]]
   Key = 'Shreveport'

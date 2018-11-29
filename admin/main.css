@@ -28,8 +28,30 @@
   color: white;
 }
 
-.nc-app-header-btn-media {
+#nc-root .nc-app-header-btn-media {
   display: none !important;
+}
+
+#nc-root .nc-app-editor-control-container .nc-app-editor-section-heading {
+  background-color: #0072a9;
+  padding: 12px;
+  margin: 25px 0 15px -30px;
+}
+
+#nc-root .nc-app-editor-control-container .nc-app-editor-section-heading span {
+  color: white;
+  font-size: 16px;
+}
+
+#nc-root .nc-app-editor-control-container:first-of-type .nc-app-editor-section-heading {
+  padding: 17px;
+  margin-top: -5px;
+  margin-left: -60px;
+  margin-bottom: 25px;
+}
+
+#nc-root .nc-app-editor-control-container:first-of-type .nc-app-editor-section-heading span {
+  font-size: 18px;
 }
 
 #nc-root .nc-app-ui-rbac {
@@ -38,6 +60,13 @@
 
 #nc-root .nc-app-sidebar-search {
   display: none;
+}
+
+#nc-root input[id*="CarsOnLine"]:disabled {
+  pointer-events: none;
+  opacity: 0.4 !important;
+  cursor: not-allowed;
+  background-color: #eeeeee;
 }
 
 #nc-root.nc-user-role-is-admin .nc-app-header-btn-wf {

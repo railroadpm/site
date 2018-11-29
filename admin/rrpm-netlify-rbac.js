@@ -6,6 +6,16 @@
     HTML and CSS.
 
     We simply hook into Netlify init and login events to tweak the UI based on the user's role(s).
+
+    Global Variables
+    ----------------
+    window.ncDefaultCollectionName:
+      The default collection depends on user role. We set this variable to the name of the collection
+      that the CMS (React) code should consider the default.
+
+    window.ncDisableInputsByName:
+      If this variable is set, the CMS will render the "disabled" attribute on inputs corresponding to
+      collection fields whose "name" (in config.yml) contains the string value of this variable (case sensitive)
 */
 if (window.netlifyIdentity) {
   window.netlifyIdentity.on('init', function(user) {
@@ -36,6 +46,7 @@ if (window.netlifyIdentity) {
           document.location.href = '/#/collections/reports_bnsf';
         } else {
           ncRoot.classList.add('nc-user-role-is-participant');
+          window.ncDisableInputsByName = 'CarsOnLine';
 
           if (roles.includes('BNSF')) initCmsForRole(ncRoot, 'BNSF');
           else if (roles.includes('CN')) initCmsForRole(ncRoot, 'CN');

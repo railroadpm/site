@@ -31,8 +31,35 @@
   }
 }
 
-.nc-app-header-btn-media {
-  display: none !important;
+#nc-root {
+
+  // Media button is N/A for this project
+  .nc-app-header-btn-media {
+    display: none !important;
+  }
+
+  // Editor section heading styles
+  .nc-app-editor-control-container .nc-app-editor-section-heading {
+    background-color: #0072a9;
+    padding: 12px;
+    margin: 25px 0 15px -30px;
+
+    span {
+      color: white;
+      font-size: 16px;
+    }
+  }
+
+  .nc-app-editor-control-container:first-of-type .nc-app-editor-section-heading {
+    padding: 17px;
+    margin-top: -5px;
+    margin-left: -60px;
+    margin-bottom: 25px;
+
+    span {
+      font-size: 18px;
+    }
+  }
 }
 
 // RBAC at the UI level - "informal" RBAC since hiding DOM elements can be easily defeated
@@ -40,13 +67,20 @@ $role-list: admin bnsf cn kcs ns up aor;
 
 #nc-root {
 
-  // Start by hiding everything RBAC-related...
+  // Start by hiding/disabling everything RBAC-related...
   .nc-app-ui-rbac {
     display: none;
   }
 
   .nc-app-sidebar-search {
     display: none;
+  }
+
+  input[id*="CarsOnLine"]:disabled {
+    pointer-events: none;
+    opacity: 0.4 !important;
+    cursor: not-allowed;
+    background-color: #eeeeee;
   }
 
   // And then show things that should be visible to different roles...
@@ -62,6 +96,10 @@ $role-list: admin bnsf cn kcs ns up aor;
     .nc-app-editor-btn-delete {
       display: inline-flex;
     }
+
+    // input[id*="CarsOnLine"] {
+    //   pointer-events: auto;
+    // }
   }
 
   @each $role in $role-list {

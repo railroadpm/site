@@ -1,6 +1,6 @@
 backend:
-  # name: git-gateway
-  name: test-repo
+  name: git-gateway
+  # name: test-repo
   accept_roles:
     - Administrator
     - Participant
@@ -69,12 +69,12 @@ collections:
     identifier_field: "WeekEnding"
     fields:
       - {name: "Railroad", widget: "hidden", default: "CN"}
-      - {name: "WeekEnding", label: "Week Ending Friday YYYYMMDD", widget: "string", pattern:["^(20)\\d\\d(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$", "YYYYMMDD"]}
+      - {name: "WeekEnding", label: "Week Ending Friday YYYYMMDD", sectionStart: "CN Weekly Report", widget: "string", pattern:["^(20)\\d\\d(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$", "YYYYMMDD"]}
       - {name: "Revisions", label: "Revisions Made Since Initial Publication Date?", widget: "boolean", default: false, required: true}
-      - {name: "CarsOnLine_ByCarOwner_System", label: "Cars On Line, By Car Owner: System", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
+      - {name: "CarsOnLine_ByCarOwner_System", label: "Cars On Line, By Car Owner: System", sectionStart: "Cars on Line - By Car Owner (AAR Only)", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
       - {name: "CarsOnLine_ByCarOwner_ForeignRR", label: "Cars On Line, By Car Owner: Foreign RR", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
       - {name: "CarsOnLine_ByCarOwner_Private", label: "Cars On Line, By Car Owner: Private", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
-      - {name: "CarsOnLine_ByCarType_Box", label: "Box", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
+      - {name: "CarsOnLine_ByCarType_Box", label: "Box", sectionStart: "Cars on Line - By Car Type (AAR Only)", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
       - {name: "CarsOnLine_ByCarType_CoveredHopper", label: "Covered Hopper", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
       - {name: "CarsOnLine_ByCarType_Gondola", label: "Gondola", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
       - {name: "CarsOnLine_ByCarType_IntermodalCar", label: "Intermodal Car", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
@@ -82,13 +82,13 @@ collections:
       - {name: "CarsOnLine_ByCarType_OpenHopper", label: "Open Hopper", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
       - {name: "CarsOnLine_ByCarType_Tank", label: "Tank", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
       - {name: "CarsOnLine_ByCarType_Other", label: "Other", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
-      - {name: "TrainSpeed_ByTrainType_IntermodalTrain", label: "Intermodal", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
+      - {name: "TrainSpeed_ByTrainType_IntermodalTrain", label: "Intermodal", sectionStart: "Train Speed (Miles per Hour) - By Train Type", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
       - {name: "TrainSpeed_ByTrainType_Manifest", label: "Manifest", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
       - {name: "TrainSpeed_ByTrainType_MultilevelTrain", label: "Multilevel", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
       - {name: "TrainSpeed_ByTrainType_CoalUnit", label: "Coal Unit", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
       - {name: "TrainSpeed_ByTrainType_GrainUnit", label: "Grain Unit", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
       - {name: "TrainSpeed_ByTrainType_AllTrains", label: "All Trains", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
-      - {name: "TerminalDwell_FDLYard", label: "FDL Yard", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
+      - {name: "TerminalDwell_FDLYard", label: "FDL Yard", sectionStart: "Terminal Dwell (Hours)", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
       - {name: "TerminalDwell_HarrisonYard", label: "Harrison Yard", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
       - {name: "TerminalDwell_JacksonYard", label: "Jackson Yard", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
       - {name: "TerminalDwell_MacMillanYard", label: "MacMillan Yard", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
@@ -111,12 +111,12 @@ collections:
     identifier_field: "WeekEnding"
     fields:
       - {name: "Railroad", widget: "hidden", default: "KCS"}
-      - {name: "WeekEnding", label: "Week Ending Friday YYYYMMDD", widget: "string", pattern:["^(20)\\d\\d(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$", "YYYYMMDD"]}
+      - {name: "WeekEnding", label: "Week Ending Friday YYYYMMDD", sectionStart: "KCS Weekly Report", widget: "string", pattern:["^(20)\\d\\d(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$", "YYYYMMDD"]}
       - {name: "Revisions", label: "Revisions Made Since Initial Publication Date?", widget: "boolean", default: false, required: true}
-      - {name: "CarsOnLine_ByCarOwner_System", label: "Cars On Line, By Car Owner: System", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
+      - {name: "CarsOnLine_ByCarOwner_System", label: "Cars On Line, By Car Owner: System", sectionStart: "Cars on Line - By Car Owner (AAR Only)", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
       - {name: "CarsOnLine_ByCarOwner_ForeignRR", label: "Cars On Line, By Car Owner: Foreign RR", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
       - {name: "CarsOnLine_ByCarOwner_Private", label: "Cars On Line, By Car Owner: Private", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
-      - {name: "CarsOnLine_ByCarType_Box", label: "Box", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
+      - {name: "CarsOnLine_ByCarType_Box", label: "Box", sectionStart: "Cars on Line - By Car Type (AAR Only)", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
       - {name: "CarsOnLine_ByCarType_CoveredHopper", label: "Covered Hopper", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
       - {name: "CarsOnLine_ByCarType_Gondola", label: "Gondola", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
       - {name: "CarsOnLine_ByCarType_IntermodalCar", label: "Intermodal Car", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
@@ -124,13 +124,13 @@ collections:
       - {name: "CarsOnLine_ByCarType_OpenHopper", label: "Open Hopper", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
       - {name: "CarsOnLine_ByCarType_Tank", label: "Tank", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
       - {name: "CarsOnLine_ByCarType_Other", label: "Other", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
-      - {name: "TrainSpeed_ByTrainType_IntermodalTrain", label: "Intermodal", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
+      - {name: "TrainSpeed_ByTrainType_IntermodalTrain", label: "Intermodal", sectionStart: "Train Speed (Miles per Hour) - By Train Type", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
       - {name: "TrainSpeed_ByTrainType_Manifest", label: "Manifest", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
       - {name: "TrainSpeed_ByTrainType_MultilevelTrain", label: "Multilevel", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
       - {name: "TrainSpeed_ByTrainType_CoalUnit", label: "Coal Unit", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
       - {name: "TrainSpeed_ByTrainType_GrainUnit", label: "Grain Unit", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
       - {name: "TrainSpeed_ByTrainType_AllTrains", label: "All Trains", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
-      - {name: "TerminalDwell_Jackson", label: "Jackson", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
+      - {name: "TerminalDwell_Jackson", label: "Jackson", sectionStart: "Terminal Dwell (Hours)", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
       - {name: "TerminalDwell_KansasCity", label: "Kansas City", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
       - {name: "TerminalDwell_Laredo", label: "Laredo", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
       - {name: "TerminalDwell_Monterrey", label: "Monterrey", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
@@ -152,12 +152,12 @@ collections:
     identifier_field: "WeekEnding"
     fields:
       - {name: "Railroad", widget: "hidden", default: "NS"}
-      - {name: "WeekEnding", label: "Week Ending Friday YYYYMMDD", widget: "string", pattern:["^(20)\\d\\d(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$", "YYYYMMDD"]}
+      - {name: "WeekEnding", label: "Week Ending Friday YYYYMMDD", sectionStart: "NS Weekly Report", widget: "string", pattern:["^(20)\\d\\d(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$", "YYYYMMDD"]}
       - {name: "Revisions", label: "Revisions Made Since Initial Publication Date?", widget: "boolean", default: false, required: true}
-      - {name: "CarsOnLine_ByCarOwner_System", label: "Cars On Line, By Car Owner: System", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
+      - {name: "CarsOnLine_ByCarOwner_System", label: "Cars On Line, By Car Owner: System", sectionStart: "Cars on Line - By Car Owner (AAR Only)", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
       - {name: "CarsOnLine_ByCarOwner_ForeignRR", label: "Cars On Line, By Car Owner: Foreign RR", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
       - {name: "CarsOnLine_ByCarOwner_Private", label: "Cars On Line, By Car Owner: Private", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
-      - {name: "CarsOnLine_ByCarType_Box", label: "Box", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
+      - {name: "CarsOnLine_ByCarType_Box", label: "Box", sectionStart: "Cars on Line - By Car Type (AAR Only)", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
       - {name: "CarsOnLine_ByCarType_CoveredHopper", label: "Covered Hopper", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
       - {name: "CarsOnLine_ByCarType_Gondola", label: "Gondola", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
       - {name: "CarsOnLine_ByCarType_IntermodalCar", label: "Intermodal Car", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
@@ -165,13 +165,13 @@ collections:
       - {name: "CarsOnLine_ByCarType_OpenHopper", label: "Open Hopper", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
       - {name: "CarsOnLine_ByCarType_Tank", label: "Tank", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
       - {name: "CarsOnLine_ByCarType_Other", label: "Other", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
-      - {name: "TrainSpeed_ByTrainType_IntermodalTrain", label: "Intermodal", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
+      - {name: "TrainSpeed_ByTrainType_IntermodalTrain", label: "Intermodal", sectionStart: "Train Speed (Miles per Hour) - By Train Type", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
       - {name: "TrainSpeed_ByTrainType_Manifest", label: "Manifest", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
       - {name: "TrainSpeed_ByTrainType_MultilevelTrain", label: "Multilevel", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
       - {name: "TrainSpeed_ByTrainType_CoalUnit", label: "Coal Unit", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
       - {name: "TrainSpeed_ByTrainType_GrainUnit", label: "Grain Unit", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
       - {name: "TrainSpeed_ByTrainType_AllTrains", label: "All Trains", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
-      - {name: "TerminalDwell_Allentown", label: "Allentown", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
+      - {name: "TerminalDwell_Allentown", label: "Allentown", sectionStart: "Terminal Dwell (Hours)", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
       - {name: "TerminalDwell_Atlanta", label: "Atlanta", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
       - {name: "TerminalDwell_Bellevue", label: "Bellevue", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
       - {name: "TerminalDwell_Birmingham", label: "Birmingham", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
@@ -199,12 +199,12 @@ collections:
     identifier_field: "WeekEnding"
     fields:
       - {name: "Railroad", widget: "hidden", default: "UP"}
-      - {name: "WeekEnding", label: "Week Ending Friday YYYYMMDD", widget: "string", pattern:["^(20)\\d\\d(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$", "YYYYMMDD"]}
+      - {name: "WeekEnding", label: "Week Ending Friday YYYYMMDD", sectionStart: "UP Weekly Report", widget: "string", pattern:["^(20)\\d\\d(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$", "YYYYMMDD"]}
       - {name: "Revisions", label: "Revisions Made Since Initial Publication Date?", widget: "boolean", default: false, required: true}
-      - {name: "CarsOnLine_ByCarOwner_System", label: "Cars On Line, By Car Owner: System", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
+      - {name: "CarsOnLine_ByCarOwner_System", label: "Cars On Line, By Car Owner: System", sectionStart: "Cars on Line - By Car Owner (AAR Only)", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
       - {name: "CarsOnLine_ByCarOwner_ForeignRR", label: "Cars On Line, By Car Owner: Foreign RR", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
       - {name: "CarsOnLine_ByCarOwner_Private", label: "Cars On Line, By Car Owner: Private", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
-      - {name: "CarsOnLine_ByCarType_Box", label: "Box", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
+      - {name: "CarsOnLine_ByCarType_Box", label: "Box", sectionStart: "Cars on Line - By Car Type (AAR Only)", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
       - {name: "CarsOnLine_ByCarType_CoveredHopper", label: "Covered Hopper", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
       - {name: "CarsOnLine_ByCarType_Gondola", label: "Gondola", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
       - {name: "CarsOnLine_ByCarType_IntermodalCar", label: "Intermodal Car", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
@@ -212,13 +212,13 @@ collections:
       - {name: "CarsOnLine_ByCarType_OpenHopper", label: "Open Hopper", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
       - {name: "CarsOnLine_ByCarType_Tank", label: "Tank", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
       - {name: "CarsOnLine_ByCarType_Other", label: "Other", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
-      - {name: "TrainSpeed_ByTrainType_IntermodalTrain", label: "Intermodal", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
+      - {name: "TrainSpeed_ByTrainType_IntermodalTrain", label: "Intermodal", sectionStart: "Train Speed (Miles per Hour) - By Train Type", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
       - {name: "TrainSpeed_ByTrainType_Manifest", label: "Manifest", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
       - {name: "TrainSpeed_ByTrainType_MultilevelTrain", label: "Multilevel", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
       - {name: "TrainSpeed_ByTrainType_CoalUnit", label: "Coal Unit", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
       - {name: "TrainSpeed_ByTrainType_GrainUnit", label: "Grain Unit", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
       - {name: "TrainSpeed_ByTrainType_AllTrains", label: "All Trains", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
-      - {name: "TerminalDwell_Chicago", label: "Chicago", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
+      - {name: "TerminalDwell_Chicago", label: "Chicago", sectionStart: "Terminal Dwell (Hours)", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
       - {name: "TerminalDwell_FortWorth", label: "Fort Worth", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
       - {name: "TerminalDwell_Hinkle", label: "Hinkle", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
       - {name: "TerminalDwell_HoustonEnglewood", label: "Houston Englewood", widget: "number", valueType: "float", min: 0.0, max: 2147483646.9, required: false}
@@ -245,12 +245,12 @@ collections:
     identifier_field: "WeekEnding"
     fields:
       - {name: "Railroad", widget: "hidden", default: "AOR"}
-      - {name: "WeekEnding", label: "Week Ending Friday YYYYMMDD", widget: "string", pattern:["^(20)\\d\\d(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$", "YYYYMMDD"]}
+      - {name: "WeekEnding", label: "Week Ending Friday YYYYMMDD", sectionStart: "AOR Weekly Report", widget: "string", pattern:["^(20)\\d\\d(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$", "YYYYMMDD"]}
       - {name: "Revisions", label: "Revisions Made Since Initial Publication Date?", widget: "boolean", default: false, required: true}
-      - {name: "CarsOnLine_ByCarOwner_System", label: "Cars On Line, By Car Owner: System", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
+      - {name: "CarsOnLine_ByCarOwner_System", label: "Cars On Line, By Car Owner: System", sectionStart: "Cars on Line - By Car Owner", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
       - {name: "CarsOnLine_ByCarOwner_ForeignRR", label: "Cars On Line, By Car Owner: Foreign RR", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
       - {name: "CarsOnLine_ByCarOwner_Private", label: "Cars On Line, By Car Owner: Private", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
-      - {name: "CarsOnLine_ByCarType_Box", label: "Box", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
+      - {name: "CarsOnLine_ByCarType_Box", label: "Box", sectionStart: "Cars on Line - By Car Type", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
       - {name: "CarsOnLine_ByCarType_CoveredHopper", label: "Covered Hopper", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
       - {name: "CarsOnLine_ByCarType_Gondola", label: "Gondola", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
       - {name: "CarsOnLine_ByCarType_IntermodalCar", label: "Intermodal Car", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}

@@ -62,6 +62,10 @@
   display: none;
 }
 
+#nc-root div.nc-app-editor-control-container[data-field="Revisions"] {
+  display: none;
+}
+
 #nc-root input[id*="CarsOnLine"]:disabled {
   pointer-events: none;
   opacity: 0.4 !important;
@@ -79,6 +83,10 @@
 
 #nc-root.nc-user-role-is-admin .nc-app-editor-btn-delete {
   display: inline-flex;
+}
+
+#nc-root.nc-user-role-is-admin div.nc-app-editor-control-container[data-field="Revisions"] {
+  display: block;
 }
 
 #nc-root.nc-user-role-is-admin .nc-app-collection-container,

@@ -76,6 +76,11 @@ $role-list: admin bnsf cn kcs ns up aor;
     display: none;
   }
 
+  div.nc-app-editor-control-container[data-field="Revisions"] {
+    // One-off input field RBAC... we hide the Revisions Toggle from non-admins
+    display: none;
+  }
+
   input[id*="CarsOnLine"]:disabled {
     pointer-events: none;
     opacity: 0.4 !important;
@@ -97,9 +102,9 @@ $role-list: admin bnsf cn kcs ns up aor;
       display: inline-flex;
     }
 
-    // input[id*="CarsOnLine"] {
-    //   pointer-events: auto;
-    // }
+    div.nc-app-editor-control-container[data-field="Revisions"] {
+      display: block;
+    }
   }
 
   @each $role in $role-list {

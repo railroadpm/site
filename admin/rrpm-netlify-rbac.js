@@ -20,7 +20,7 @@
 if (window.netlifyIdentity) {
   window.netlifyIdentity.on('init', function(user) {
     // let testUser = { app_metadata: { roles: ['Participant'] } };
-    let testUser = { app_metadata: { roles: ['Administrator'] } };
+    // let testUser = { app_metadata: { roles: ['Administrator'] } };
     // let testUser = { app_metadata: { roles: ['BNSF'] } };
     // let testUser = { app_metadata: { roles: ['CN'] } };
 

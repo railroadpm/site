@@ -1,6 +1,6 @@
 backend:
-  # name: git-gateway
-  name: test-repo
+  name: git-gateway
+  # name: test-repo
   accept_roles:
     - Administrator
     - Participant

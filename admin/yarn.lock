@@ -395,7 +395,7 @@
   dependencies:
     react-textarea-autosize "^5.2.0"
 
-"@rrpm/netlify-cms@^2.2.24":
+"@rrpm/netlify-cms@^2.2.28":
   version "2.2.28"
   resolved "https://registry.yarnpkg.com/@rrpm/netlify-cms/-/netlify-cms-2.2.28.tgz#c01808c4ee880d1d7b40e010aaa9c558837a0fb9"
   integrity sha512-hjnOorRzhJodD6oG9LvIGxiWY8LYjETZlstAoOU6wrRomYskPV+57roW4fd4qC6iYlIk+29tUXUNPM/qKRl58A==

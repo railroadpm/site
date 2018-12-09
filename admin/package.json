@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/railroadpm/site#readme",
   "dependencies": {
-    "@rrpm/netlify-cms": "^2.2.24"
+    "@rrpm/netlify-cms": "^2.2.28"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",

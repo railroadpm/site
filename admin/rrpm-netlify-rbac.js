@@ -24,16 +24,16 @@ if (window.netlifyIdentity) {
     // let testUser = { app_metadata: { roles: ['BNSF'] } };
     // let testUser = { app_metadata: { roles: ['CN'] } };
 
-    // console.log('>>> Netlify Identity: In Init Event Handler', user);
+    console.log('>>> Netlify Identity: In Init Event Handler', user);
 
     if (!user && typeof testUser === 'undefined') {
       window.netlifyIdentity.on('login', function() {
-        // console.log('>>> Netlify Identity: In Login Event Handler');
+        console.log('>>> Netlify Identity: In Login Event Handler');
         document.location.href = '/';
       });
     } else {
       if (typeof testUser != 'undefined') user = testUser;
-      // console.log('>>> Netlify Identity: User Is Logged In', JSON.stringify(user));
+      console.log('>>> Netlify Identity: User Is Logged In', JSON.stringify(user));
       let ncRoot = document.getElementById('nc-root');
 
       if (user.app_metadata && user.app_metadata.roles && ncRoot) {

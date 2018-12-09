@@ -175,10 +175,10 @@
     js-base64 "^2.4.8"
     semaphore "^1.1.0"
 
-"@rrpm/netlify-cms-backend-git-gateway@^2.1.3":
-  version "2.1.3"
-  resolved "https://registry.yarnpkg.com/@rrpm/netlify-cms-backend-git-gateway/-/netlify-cms-backend-git-gateway-2.1.3.tgz#9a6d96e941eb0a7cca73fadc139b9b2d862b5597"
-  integrity sha512-Sh4ym7nVl0okYtVUUHVQxUBxOWWhCPq6juUO8kbggR4Gahb/s5qRyN+RhrwYZnYG29R1hnJK+EyiDpEgjRmOWQ==
+"@rrpm/netlify-cms-backend-git-gateway@^2.1.4":
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/@rrpm/netlify-cms-backend-git-gateway/-/netlify-cms-backend-git-gateway-2.1.4.tgz#e66d3ab72f4ec65def58d6d058dac52cc33a6b9a"
+  integrity sha512-dlE5UKScBbfc3w20UlGMsx6s1VynAhnjXCXNgirUVY9YH5gvIWX1IEs2VVx/D+r3orsn3iC8D29OSaOJqdjO1g==
   dependencies:
     gotrue-js "^0.9.22"
     jwt-decode "^2.2.0"
@@ -396,12 +396,12 @@
     react-textarea-autosize "^5.2.0"
 
 "@rrpm/netlify-cms@^2.2.24":
-  version "2.2.24"
-  resolved "https://registry.yarnpkg.com/@rrpm/netlify-cms/-/netlify-cms-2.2.24.tgz#e29a188126412826c4f486f20856a709afb21271"
-  integrity sha512-SOy0EGMoEBL9OTnyd2EvLGeUds5Pt3/pT0H8GKhyVZfx+89UvdNeo961K+lOlNgKSiJ/O7CaW51vSxoqWFzOtw==
+  version "2.2.25"
+  resolved "https://registry.yarnpkg.com/@rrpm/netlify-cms/-/netlify-cms-2.2.25.tgz#ab54ec6c0801484741ba69ed93de284703c10ea0"
+  integrity sha512-c8Mlc4NdVOlaucGoixIVNgjnv8mjRG7EAFjIH5Wx1RAGC+npxBEbhMxQvAR8f8S39zm7SO5RAwh6X6HyDlfRnQ==
   dependencies:
     "@rrpm/netlify-cms-backend-bitbucket" "^2.1.2"
-    "@rrpm/netlify-cms-backend-git-gateway" "^2.1.3"
+    "@rrpm/netlify-cms-backend-git-gateway" "^2.1.4"
     "@rrpm/netlify-cms-backend-github" "^2.1.2"
     "@rrpm/netlify-cms-backend-gitlab" "^2.1.2"
     "@rrpm/netlify-cms-backend-test" "^2.0.8"

@@ -64,7 +64,7 @@ rptPeriods.Quarter.Current = `${easternDT.quarter}Q${easternDT.toFormat('yy')}`;
 rptPeriods.Month.Current = `${easternDT.toFormat('MMM')} ${easternDT.year}`;
 
 // Previous Quarter and Month
-rptPeriods.Quarter.Previous = `${easternDT.minus({ quarters: 1 }).quarter}Q${easternDT.minus({ quarters: 1 }).toFormat('yy')}`;
+rptPeriods.Quarter.Previous = `${easternDT.quarter}Q${easternDT.minus({ years: 1 }).toFormat('yy')}`;
 rptPeriods.Month.Previous = `${easternDT.minus({ months: 1 }).toFormat('MMM')} ${easternDT.minus({ months: 1 }).year}`;
 
 // console.log(JSON.stringify(rptPeriods));

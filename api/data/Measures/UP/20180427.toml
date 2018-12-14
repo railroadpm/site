@@ -1,6 +1,5 @@
 Railroad = 'UP'
 WeekEnding = '20180427'
-Revisions = false
 CarsOnLine_ByCarOwner_System = 53833
 CarsOnLine_ByCarOwner_ForeignRR = 38298
 CarsOnLine_ByCarOwner_Private = 212623

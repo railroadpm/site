@@ -1,0 +1,13 @@
+Railroad = 'AOR'
+WeekEnding = '20180608'
+CarsOnLine_ByCarOwner_System = 96932
+CarsOnLine_ByCarOwner_ForeignRR = 114229
+CarsOnLine_ByCarOwner_Private = 458912
+CarsOnLine_ByCarType_Box = 50503
+CarsOnLine_ByCarType_CoveredHopper = 233445
+CarsOnLine_ByCarType_Gondola = 42795
+CarsOnLine_ByCarType_IntermodalCar = 15678
+CarsOnLine_ByCarType_MultilevelCar = 22956
+CarsOnLine_ByCarType_OpenHopper = 94851
+CarsOnLine_ByCarType_Tank = 183748
+CarsOnLine_ByCarType_Other = 26097

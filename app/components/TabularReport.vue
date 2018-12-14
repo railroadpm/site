@@ -68,7 +68,7 @@
           <!-- Finally render a cell for each week + measure (week is all numeric: YYYYMMDD) in ascending order by week -->
           <td v-for="(col, i) in measureKeys" :key="`wk${i}`" class="text-xs-right rpm-tbl-cell-num">
             <span v-if="row.item.key === 'Revisions'">
-              {{ $helpers.isPeriodEndDateOlderThanOneWeek(col) ? '' : row.item[col] }}
+              {{ /*$helpers.isPeriodEndDateOlderThanOneWeek(col) ? '' :*/ row.item[col] }}
             </span>
             <span v-else>{{ $helpers.formatNumber(row.item[col], isIntCell(row.item, col) ? '0,0' : '0,0.0') }}</span>
           </td>

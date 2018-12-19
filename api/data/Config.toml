@@ -10,6 +10,3 @@ At = "02:00pm"
 [WeeklyReport.Displayed.CountOfWeeks]
 Current = 4
 Historical = 53
-
-[WeeklyReport.Calculated.CountOfWeeks]
-Historical = 65

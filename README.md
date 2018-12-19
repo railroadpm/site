@@ -1,4 +1,4 @@
-# RailroadPM.org 2.0 Site
+# RailroadPM.org 2.x Site
 
 _Please refer to the [LICENSE](LICENSE) file for important Copyright information_.
 

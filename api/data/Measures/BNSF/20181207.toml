@@ -1,3 +1,4 @@
 Railroad = "BNSF"
 WeekEnding = "20181207"
 Revisions = false
+TrainSpeed_ByTrainType_IntermodalTrain = 123

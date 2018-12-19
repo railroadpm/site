@@ -1,4 +1,5 @@
 Railroad = "BNSF"
 WeekEnding = "20181207"
 Revisions = false
+CarsOnLine_ByCarOwner_System = 1
 TrainSpeed_ByTrainType_IntermodalTrain = 123

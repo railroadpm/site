@@ -17,7 +17,7 @@
 {{- $terminal_key := "terminal_subheading" -}}
 {{- $city_key := "terminal_subheading_city" -}}
 {{- $measure_key_prefix := "TerminalDwell_" -}}
-{{- $prpt_rpts := index $.data.Measures $.prpt -}}
+{{- $prpt_rpts := index $.data.Measures.Weekly $.prpt -}}
 
 <!-- For each row... -->
 {{- range $subheading_index, $subheading := $terminal_dwell_by_prpt_subheadings -}}

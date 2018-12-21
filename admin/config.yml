@@ -15,7 +15,7 @@ collections:
   - name: "reports_bnsf"
     label: "BNSF Weekly Reports"
     label_singular: "BNSF Weekly Report"
-    folder: "api/data/Measures/BNSF"
+    folder: "api/data/Measures/Weekly/BNSF"
     create: true
     extension: "toml"
     format: "toml"
@@ -59,7 +59,7 @@ collections:
   - name: "reports_cn"
     label: "CN Weekly Reports"
     label_singular: "CN Weekly Report"
-    folder: "api/data/Measures/CN"
+    folder: "api/data/Measures/Weekly/CN"
     create: true
     extension: "toml"
     format: "toml"
@@ -101,7 +101,7 @@ collections:
   - name: "reports_kcs"
     label: "KCS Weekly Reports"
     label_singular: "KCS Weekly Report"
-    folder: "api/data/Measures/KCS"
+    folder: "api/data/Measures/Weekly/KCS"
     create: true
     extension: "toml"
     format: "toml"
@@ -142,7 +142,7 @@ collections:
   - name: "reports_ns"
     label: "NS Weekly Reports"
     label_singular: "NS Weekly Report"
-    folder: "api/data/Measures/NS"
+    folder: "api/data/Measures/Weekly/NS"
     create: true
     extension: "toml"
     format: "toml"
@@ -189,7 +189,7 @@ collections:
   - name: "reports_up"
     label: "UP Weekly Reports"
     label_singular: "UP Weekly Report"
-    folder: "api/data/Measures/UP"
+    folder: "api/data/Measures/Weekly/UP"
     create: true
     extension: "toml"
     format: "toml"
@@ -235,7 +235,7 @@ collections:
   - name: "reports_aor"
     label: "All Other Railroads Weekly Reports"
     label_singular: "All Other Railroads Weekly Report"
-    folder: "api/data/Measures/AOR"
+    folder: "api/data/Measures/Weekly/AOR"
     create: true
     extension: "toml"
     format: "toml"

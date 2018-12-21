@@ -9,7 +9,7 @@
     $.weeks           The Weeks for which to render the rows
 -->
 {{- $row_map_key := "report_row" -}}
-{{- $prpt_rpts := index $.data.Measures $.prpt -}}
+{{- $prpt_rpts := index $.data.Measures.Weekly $.prpt -}}
 
 {{- $.scratch.Delete $row_map_key -}}
 {{- $.scratch.SetInMap $row_map_key "isHeadingRow" true -}} <!-- Well, not exactly a "heading", but the easiest way to handle this one-off "Revisions" use-case -->

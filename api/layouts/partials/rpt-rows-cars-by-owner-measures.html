@@ -15,7 +15,7 @@
 {{- $subheading_indent := "&nbsp;&nbsp;&nbsp;&nbsp;" -}}
 {{- $row_map_key := "report_row" -}}
 {{- $measure_key_prefix := "CarsOnLine_ByCarOwner_" -}}
-{{- $prpt_rpts := index $.data.Measures $.prpt -}}
+{{- $prpt_rpts := index $.data.Measures.Weekly $.prpt -}}
 
 <!-- For each row... -->
 {{- range $subheading_index, $subheading := $cars_by_owner_subheadings -}}
@@ -40,7 +40,7 @@
   {{- range $week := $.weeks -}}
     {{- $prpt_rpt := index $prpt_rpts .Key -}}
     {{- $.scratch.SetInMap $row_map_key $week.Key nil -}}
-    
+
     {{- with $prpt_rpt -}}
       {{- $measure_val := index . $measure_key -}}
       {{- $.scratch.SetInMap $row_map_key $week.Key $measure_val -}}

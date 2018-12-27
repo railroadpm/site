@@ -5,6 +5,7 @@
     "octref.vetur",
     "sdras.vue-vscode-snippets",
     "spook.easysass",
-    "shinnn.stylelint"
+    "shinnn.stylelint",
+    "olback.es6-css-minify"
   ]
 }

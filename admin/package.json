@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "live-server",
-    "build": "yarn upgrade @rrpm/netlify-cms && shx cp -f ./node_modules/@rrpm/netlify-cms/dist/netlify-cms.js ./rrpm-netlify-cms.js"
+    "build": "yarn upgrade @rrpm/netlify-cms && shx cp -f ./node_modules/@rrpm/netlify-cms/dist/netlify-cms.js ./rrpm-netlify-cms.min.js"
   },
   "repository": {
     "type": "git",

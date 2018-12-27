@@ -134,5 +134,21 @@
     "typescript",
     "typescriptreact",
     "yml"
-  ]
+  ],
+  "es6-css-minify.minifyOnSave": "exists",
+  "es6-css-minify.js": {
+    "mangle": true,
+    "compress": {
+      "sequences": true,
+      "properties": true,
+      "dead_code": true,
+      "drop_debugger": true,
+      "drop_console": true,
+      "passes": 1
+    },
+    "output": {
+      "quote_style": 0
+    }
+  },
+  "es6-css-minify.hideButton": true
 }

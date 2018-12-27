@@ -136,6 +136,56 @@ For the frontend App I used [**create-nuxt-app**](https://github.com/nuxt-commun
 
 The Admin piece is really just Netlify CMS and its configuration file. You can get started with Netlify CMS in several ways, and they are all [nicely documented by Netlify](https://www.netlifycms.org/docs/start-with-a-template/).
 
-### Architecture
+## Architect
 
-Coming Soon!
+Thanks for your interest in the architecture of this [Performance Measurement (PM) System](https://en.wikipedia.org/wiki/Data_collection_system#Types).
+
+This system uses a [Single-Page Application](https://en.wikipedia.org/wiki/Single-page_application) architecture with:
+
+- A [Vue.js](https://en.wikipedia.org/wiki/Vue.js) [JavaScript Framework](https://en.wikipedia.org/wiki/Single-page_application#JavaScript_frameworks) front-end using
+
+  - The [Nuxt.js](https://nuxtjs.org/guide#single-page-applications-spa-) application framework for its
+
+    - Basic SPA application organization and convention-based directory structure,
+
+    - Routing,
+
+    - Layouts/Pages/Components model for composing views/pages,
+
+    - Integration with the [Vuex state management library](https://vuex.vuejs.org/#what-is-vuex),
+
+    - [Webpack build](https://nuxtjs.org/guide/assets#webpacked) with code splitting, etc.
+
+  - The [Vuetify component framework](https://vuetifyjs.com/en/) for
+
+    - A [Google Material Design](https://material.io/)-based visual system, and
+
+    - A ready-made, mature, and well-documented set of Vue.js components such as [Toolbars, Menus, Buttons, Tables](https://vuetifyjs.com/en/components/data-tables), etc.
+
+  - [Chart.js](https://www.chartjs.org/) for graphs
+
+- Serverless/microservices back-end comprised of:
+
+  - A data-reading REST API based on
+
+    - A [JAMstack](https://youtu.be/uWTMEDEPw8c) approach (see also [here](https://youtu.be/Y8PXMbr0Kqo)) for build-time static generation of JSON responses
+
+    - Using the [Hugo static content generator](https://gohugo.io), and
+
+    - Hosted on the Netlify static CDN
+
+  - A [data-writing microservice](https://www.netlify.com/docs/git-gateway/) with [stateless JWT-based auth](https://en.wikipedia.org/wiki/JSON_Web_Token) using the [Netlify Identity service](https://www.netlify.com/docs/identity/) that
+
+    - Proxies and gateways writes to a GitHub repository of flat files, and
+
+    - Re-builds the data-reading REST API via a Netlify build trigger on the GitHub repo
+
+- And a data collection/administration portal
+
+  - Based on a custom build of the React-based, Git-backed [Netlify CMS](https://www.netlifycms.org) open source content management system
+
+  - Which is another SPA hosted on the Netlify static CDN
+
+  - Also using the [Netlify Identity service](https://www.netlify.com/docs/identity/) for auth
+
+The three main bullets above are referred to in the solution architecture as the **App**, the **API**, and the **Admin** site respectively. And there are top-level folders in this source code repo that correspond to these pieces of the solution.

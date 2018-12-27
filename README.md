@@ -146,13 +146,13 @@ This system uses a [Single-Page Application](https://en.wikipedia.org/wiki/Singl
 
   - The [Nuxt.js](https://nuxtjs.org/guide#single-page-applications-spa-) application framework for its
 
-    - Basic SPA application organization and convention-based directory structure,
+    - Basic SPA application organization and convention-based directory structure
 
-    - Routing,
+    - Routing
 
-    - Layouts/Pages/Components model for composing views/pages,
+    - Layouts/Pages/Components model for composing views/pages
 
-    - Integration with the [Vuex state management library](https://vuex.vuejs.org/#what-is-vuex),
+    - Integration with the [Vuex state management library](https://vuex.vuejs.org/#what-is-vuex)
 
     - [Webpack build](https://nuxtjs.org/guide/assets#webpacked) with code splitting, etc.
 
@@ -164,7 +164,7 @@ This system uses a [Single-Page Application](https://en.wikipedia.org/wiki/Singl
 
   - [Chart.js](https://www.chartjs.org/) for graphs
 
-- Serverless/microservices back-end comprised of:
+- A serverless/microservices back-end comprised of:
 
   - A data-reading REST API based on
 
@@ -180,7 +180,7 @@ This system uses a [Single-Page Application](https://en.wikipedia.org/wiki/Singl
 
     - Re-builds the data-reading REST API via a Netlify build trigger on the GitHub repo
 
-- And a data collection/administration portal
+- A data collection/administration portal
 
   - Based on a custom build of the React-based, Git-backed [Netlify CMS](https://www.netlifycms.org) open source content management system
 

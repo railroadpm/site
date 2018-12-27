@@ -21,6 +21,8 @@ This project is about the U.S. freight rail industry. But even if that industry 
 
 ## Web Developer
 
+<details><summary>Details for Devs</summary>
+
 Thanks for taking a detailed look at this Web App developed with [Vue.js](https://vuejs.org/), [Nuxt](https://nuxtjs.org/), [Vuetify](https://vuetifyjs.com/en/), and [Chart.js](http://www.chartjs.org/)!
 
 Please note that this Web App is developed using Visual Studio Code (VSCode) and Chrome on Windows. The NPM scripts have only been tested in the Windows environment.
@@ -53,13 +55,33 @@ Then, launch VSCode:
 code .
 ```
 
-And finally in VSCode, from the `Tasks` menu select `Run Task...` and launch the `all:dev` task. This will start the local Nuxt server for the front-end and the Hugo server for the API back-end.
+And finally in VSCode:
 
-The app should now be running on your local machine here: [http://localhost:3000](http://localhost:3000). And the API will be running locally on port 1313.
+1. Accept the offer from VSCode to install the solution's recommended extensions
+
+1. From the `Tasks` menu select `Run Task...` and launch the `all:dev` task. This will start:
+
+   - The local Nuxt server for the front-end
+
+   - The Hugo server for the API back-end, and
+
+   - An instance of `live-server` to run the Admin site locally
+
+The app should now be running on your local machine here: [http://localhost:3000](http://localhost:3000). The API will be running locally on port 1313. And the Admin site will be running on port 8080.
 
 #### app.config.js
 
 Note that in order to configure the app to use your local API server, you may need to change the `API_HOST` setting in `app/app.config.js`.
+
+#### Admin config.yml
+
+To run the Admin site locally you may wish to change the backend configuration in `admin/config.yml` from the `git-gateway` microservice to the local `test-repo`. The `test-repo` setting simply tells Netlify CMS to work locally in memory in your browser instead of actually hitting GitHub. See [here](https://www.netlifycms.org/docs/authentication-backends/#test-repo-backend) for more information.
+
+```yaml
+backend:
+  # name: git-gateway
+  name: test-repo
+```
 
 ### Browser Setup
 
@@ -136,7 +158,11 @@ For the frontend App I used [**create-nuxt-app**](https://github.com/nuxt-commun
 
 The Admin piece is really just Netlify CMS and its configuration file. You can get started with Netlify CMS in several ways, and they are all [nicely documented by Netlify](https://www.netlifycms.org/docs/start-with-a-template/).
 
+</details><!-- Web Developer -->
+
 ## Architect
+
+<details><summary>Details for Architects</summary>
 
 Thanks for your interest in the architecture of this [Performance Measurement (PM) System](https://en.wikipedia.org/wiki/Data_collection_system#Types).
 
@@ -189,3 +215,5 @@ This system uses a [Single-Page Application](https://en.wikipedia.org/wiki/Singl
   - Also using the [Netlify Identity service](https://www.netlify.com/docs/identity/) for auth
 
 The three main bullets above are referred to in the solution architecture as the **App**, the **API**, and the **Admin** site respectively. And there are top-level folders in this source code repo that correspond to these pieces of the solution.
+
+</details><!-- Architect -->

@@ -182,7 +182,7 @@ This system uses a [Single-Page Application](https://en.wikipedia.org/wiki/Singl
 
 - A data collection/administration portal
 
-  - Based on a custom build of the React-based, Git-backed [Netlify CMS](https://www.netlifycms.org) open source content management system
+  - Based on a [custom build](https://github.com/railroadpm/rrpm-netlify-cms) (and [published NPM package](https://www.npmjs.com/package/@rrpm/netlify-cms)) of the React-based, Git-backed [Netlify CMS](https://www.netlifycms.org) open source content management system
 
   - Which is another SPA hosted on the Netlify static CDN
 

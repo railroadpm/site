@@ -27,6 +27,7 @@ collections:
       - {name: "Railroad", widget: "hidden", default: "BNSF"}
       - {name: "WeekEnding", label: "Week Ending Friday YYYYMMDD", sectionStart: "BNSF Weekly Report", widget: "string", pattern:["^(20)\\d\\d(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$", "YYYYMMDD"]}
       - {name: "Revisions", label: "Revisions Made Since Initial Publication Date?", widget: "boolean", default: false, required: true}
+      - {name: "RevisionMarkExpiration", label: "Revision Mark Expiration YYYYMMDD", widget: "string", pattern:["^(20)\\d\\d(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$", "YYYYMMDD"]}
       - {name: "CarsOnLine_ByCarOwner_System", label: "System", sectionStart: "Cars on Line - By Car Owner (AAR Only)", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
       - {name: "CarsOnLine_ByCarOwner_ForeignRR", label: "Foreign RR", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
       - {name: "CarsOnLine_ByCarOwner_Private", label: "Private", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
@@ -71,6 +72,7 @@ collections:
       - {name: "Railroad", widget: "hidden", default: "CN"}
       - {name: "WeekEnding", label: "Week Ending Friday YYYYMMDD", sectionStart: "CN Weekly Report", widget: "string", pattern:["^(20)\\d\\d(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$", "YYYYMMDD"]}
       - {name: "Revisions", label: "Revisions Made Since Initial Publication Date?", widget: "boolean", default: false, required: true}
+      - {name: "RevisionMarkExpiration", label: "Revision Mark Expiration YYYYMMDD", widget: "string", pattern:["^(20)\\d\\d(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$", "YYYYMMDD"]}
       - {name: "CarsOnLine_ByCarOwner_System", label: "System", sectionStart: "Cars on Line - By Car Owner (AAR Only)", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
       - {name: "CarsOnLine_ByCarOwner_ForeignRR", label: "Foreign RR", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
       - {name: "CarsOnLine_ByCarOwner_Private", label: "Private", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
@@ -113,6 +115,7 @@ collections:
       - {name: "Railroad", widget: "hidden", default: "KCS"}
       - {name: "WeekEnding", label: "Week Ending Friday YYYYMMDD", sectionStart: "KCS Weekly Report", widget: "string", pattern:["^(20)\\d\\d(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$", "YYYYMMDD"]}
       - {name: "Revisions", label: "Revisions Made Since Initial Publication Date?", widget: "boolean", default: false, required: true}
+      - {name: "RevisionMarkExpiration", label: "Revision Mark Expiration YYYYMMDD", widget: "string", pattern:["^(20)\\d\\d(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$", "YYYYMMDD"]}
       - {name: "CarsOnLine_ByCarOwner_System", label: "System", sectionStart: "Cars on Line - By Car Owner (AAR Only)", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
       - {name: "CarsOnLine_ByCarOwner_ForeignRR", label: "Foreign RR", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
       - {name: "CarsOnLine_ByCarOwner_Private", label: "Private", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
@@ -154,6 +157,7 @@ collections:
       - {name: "Railroad", widget: "hidden", default: "NS"}
       - {name: "WeekEnding", label: "Week Ending Friday YYYYMMDD", sectionStart: "NS Weekly Report", widget: "string", pattern:["^(20)\\d\\d(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$", "YYYYMMDD"]}
       - {name: "Revisions", label: "Revisions Made Since Initial Publication Date?", widget: "boolean", default: false, required: true}
+      - {name: "RevisionMarkExpiration", label: "Revision Mark Expiration YYYYMMDD", widget: "string", pattern:["^(20)\\d\\d(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$", "YYYYMMDD"]}
       - {name: "CarsOnLine_ByCarOwner_System", label: "System", sectionStart: "Cars on Line - By Car Owner (AAR Only)", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
       - {name: "CarsOnLine_ByCarOwner_ForeignRR", label: "Foreign RR", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
       - {name: "CarsOnLine_ByCarOwner_Private", label: "Private", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
@@ -201,6 +205,7 @@ collections:
       - {name: "Railroad", widget: "hidden", default: "UP"}
       - {name: "WeekEnding", label: "Week Ending Friday YYYYMMDD", sectionStart: "UP Weekly Report", widget: "string", pattern:["^(20)\\d\\d(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$", "YYYYMMDD"]}
       - {name: "Revisions", label: "Revisions Made Since Initial Publication Date?", widget: "boolean", default: false, required: true}
+      - {name: "RevisionMarkExpiration", label: "Revision Mark Expiration YYYYMMDD", widget: "string", pattern:["^(20)\\d\\d(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$", "YYYYMMDD"]}
       - {name: "CarsOnLine_ByCarOwner_System", label: "System", sectionStart: "Cars on Line - By Car Owner (AAR Only)", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
       - {name: "CarsOnLine_ByCarOwner_ForeignRR", label: "Foreign RR", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
       - {name: "CarsOnLine_ByCarOwner_Private", label: "Private", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
@@ -247,6 +252,7 @@ collections:
       - {name: "Railroad", widget: "hidden", default: "AOR"}
       - {name: "WeekEnding", label: "Week Ending Friday YYYYMMDD", sectionStart: "AOR Weekly Report", widget: "string", pattern:["^(20)\\d\\d(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$", "YYYYMMDD"]}
       - {name: "Revisions", label: "Revisions Made Since Initial Publication Date?", widget: "boolean", default: false, required: true}
+      - {name: "RevisionMarkExpiration", label: "Revision Mark Expiration YYYYMMDD", widget: "string", pattern:["^(20)\\d\\d(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$", "YYYYMMDD"]}
       - {name: "CarsOnLine_ByCarOwner_System", label: "System", sectionStart: "Cars on Line - By Car Owner", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
       - {name: "CarsOnLine_ByCarOwner_ForeignRR", label: "Foreign RR", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}
       - {name: "CarsOnLine_ByCarOwner_Private", label: "Private", widget: "number", valueType: "int", min: 0, max: 2147483647, required: false}

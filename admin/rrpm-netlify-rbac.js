@@ -18,60 +18,71 @@
       collection fields whose "name" (in config.yml) contains the string value of this variable (case sensitive)
 */
 if (window.netlifyIdentity) {
-  window.netlifyIdentity.on('init', function(user) {
-    // let testUser = { app_metadata: { roles: ['Participant'] } };
-    // let testUser = { app_metadata: { roles: ['Administrator'] } };
-    // let testUser = { app_metadata: { roles: ['BNSF'] } };
-    // let testUser = { app_metadata: { roles: ['CN'] } };
+  console.log('>>> Netlify Identity: Available');
+  try {
+    // localStorage.removeItem('netlifySiteURL');
+    // netlifyIdentity.init();
 
-    // console.log('>>> Netlify Identity: In Init Event Handler', user);
+    netlifyIdentity.on('error', err => console.error('>>> Netlify Identity Error', err));
+    netlifyIdentity.on('init', function(user) {
+      console.log('>>> Netlify Identity: In Init Event Handler');
 
-    if (!user && typeof testUser === 'undefined') {
-      window.netlifyIdentity.on('login', function() {
-        // console.log('>>> Netlify Identity: In Login Event Handler');
-        document.location.href = '/';
-      });
-    } else {
-      if (typeof testUser != 'undefined') user = testUser;
-      // console.log('>>> Netlify Identity: User Is Logged In', JSON.stringify(user));
-      let ncRoot = document.getElementById('nc-root');
+      // let testUser = { app_metadata: { roles: ['Participant'] } };
+      // let testUser = { app_metadata: { roles: ['Administrator'] } };
+      // let testUser = { app_metadata: { roles: ['BNSF'] } };
+      // let testUser = { app_metadata: { roles: ['CN'] } };
 
-      if (user.app_metadata && user.app_metadata.roles && ncRoot) {
-        const roles = user.app_metadata.roles;
+      // console.log('>>> Netlify Identity: User', user);
 
-        if (roles.includes('Administrator')) {
-          ncRoot.classList.add('nc-user-role-is-admin');
-          ncRoot.classList.add('nc-user-role-is-aor');
-          window.ncDefaultCollectionName = 'reports_bnsf';
-          document.location.href = '/#/collections/reports_bnsf';
-        } else {
-          ncRoot.classList.add('nc-user-role-is-participant');
-          window.ncDisableInputsByName = 'CarsOnLine';
+      if (!user && typeof testUser === 'undefined') {
+        netlifyIdentity.on('login', function() {
+          console.log('>>> Netlify Identity: In Login Event Handler');
+          document.location.href = '/';
+        });
+      } else {
+        if (typeof testUser != 'undefined') user = testUser;
+        // console.log('>>> Netlify Identity: User Is Logged In', JSON.stringify(user));
+        let ncRoot = document.getElementById('nc-root');
 
-          if (roles.includes('BNSF')) initCmsForRole(ncRoot, 'BNSF');
-          else if (roles.includes('CN')) initCmsForRole(ncRoot, 'CN');
-          else if (roles.includes('KCS')) initCmsForRole(ncRoot, 'KCS');
-          else if (roles.includes('NS')) initCmsForRole(ncRoot, 'NS');
-          else if (roles.includes('UP')) initCmsForRole(ncRoot, 'UP');
-          else {
+        if (user.app_metadata && user.app_metadata.roles && ncRoot) {
+          const roles = user.app_metadata.roles;
+
+          if (roles.includes('Administrator')) {
+            ncRoot.classList.add('nc-user-role-is-admin');
+            ncRoot.classList.add('nc-user-role-is-aor');
             window.ncDefaultCollectionName = 'reports_bnsf';
             document.location.href = '/#/collections/reports_bnsf';
+          } else {
+            ncRoot.classList.add('nc-user-role-is-participant');
+            window.ncDisableInputsByName = 'CarsOnLine';
 
-            setTimeout(() => {
-              let ncSidebarHeading = document.getElementsByClassName('nc-app-sidebar-heading')[0];
+            if (roles.includes('BNSF')) initCmsForRole(ncRoot, 'BNSF');
+            else if (roles.includes('CN')) initCmsForRole(ncRoot, 'CN');
+            else if (roles.includes('KCS')) initCmsForRole(ncRoot, 'KCS');
+            else if (roles.includes('NS')) initCmsForRole(ncRoot, 'NS');
+            else if (roles.includes('UP')) initCmsForRole(ncRoot, 'UP');
+            else {
+              window.ncDefaultCollectionName = 'reports_bnsf';
+              document.location.href = '/#/collections/reports_bnsf';
 
-              if (ncSidebarHeading) {
-                // eslint-disable-next-line
+              setTimeout(() => {
+                let ncSidebarHeading = document.getElementsByClassName('nc-app-sidebar-heading')[0];
+
+                if (ncSidebarHeading) {
+                  // eslint-disable-next-line
                 ncSidebarHeading.innerText = "You don't have access to any Reports. Please contact AAR to request access.";
-                ncSidebarHeading.setAttribute('style', 'font-size: 15px; color: red;');
-                ncSidebarHeading.parentElement.setAttribute('style', 'width: 320px;');
-              }
-            }, 2000);
+                  ncSidebarHeading.setAttribute('style', 'font-size: 15px; color: red;');
+                  ncSidebarHeading.parentElement.setAttribute('style', 'width: 320px;');
+                }
+              }, 2000);
+            }
           }
         }
       }
-    }
-  });
+    });
+  } catch (e) {
+    console.log('>>> Netlify Identity: Initialization Error', e);
+  }
 }
 
 function initCmsForRole(ncRoot, role) {

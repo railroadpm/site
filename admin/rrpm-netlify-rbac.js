@@ -23,7 +23,7 @@ if (window.netlifyIdentity) {
     // localStorage.removeItem('netlifySiteURL');
     // netlifyIdentity.init();
 
-    netlifyIdentity.on('error', err => console.error('>>> Netlify Identity Error', err));
+    netlifyIdentity.on('error', err => console.error('>>> Netlify Identity', err));
     netlifyIdentity.on('init', function(user) {
       console.log('>>> Netlify Identity: In Init Event Handler');
 

@@ -76,8 +76,9 @@ $role-list: admin bnsf cn kcs ns up aor;
     display: none;
   }
 
-  div.nc-app-editor-control-container[data-field="Revisions"] {
-    // One-off input field RBAC... we hide the Revisions Toggle from non-admins
+  div.nc-app-editor-control-container[data-field="Revisions"],
+  div.nc-app-editor-control-container[data-field="RevisionMarkExpiration"] {
+    // Individual input field RBAC... we hide the Revision-related fields from non-admins
     display: none;
   }
 
@@ -102,7 +103,8 @@ $role-list: admin bnsf cn kcs ns up aor;
       display: inline-flex;
     }
 
-    div.nc-app-editor-control-container[data-field="Revisions"] {
+    div.nc-app-editor-control-container[data-field="Revisions"],
+    div.nc-app-editor-control-container[data-field="RevisionMarkExpiration"] {
       display: block;
     }
   }

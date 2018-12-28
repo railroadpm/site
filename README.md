@@ -73,15 +73,61 @@ The app should now be running on your local machine here: [http://localhost:3000
 
 Note that in order to configure the app to use your local API server, you may need to change the `API_HOST` setting in `app/app.config.js`.
 
-#### Admin config.yml
+#### Admin Dev Ops
 
-To run the Admin site locally you may wish to change the backend configuration in `admin/config.yml` from the `git-gateway` microservice to the local `test-repo`. The `test-repo` setting simply tells Netlify CMS to work locally in memory in your browser instead of actually hitting GitHub. See [here](https://www.netlifycms.org/docs/authentication-backends/#test-repo-backend) for more information.
+##### Local Dev Configuration
+
+To run the Admin site locally you may wish to change the backend configuration in `admin/config.yml` from the `git-gateway` microservice to the local `test-repo`.
+
+The `test-repo` setting simply tells Netlify CMS to work locally in memory in your browser instead of actually hitting GitHub. See [here](https://www.netlifycms.org/docs/authentication-backends/#test-repo-backend) for more information.
+
+Here's a fragment from the `config.yml` file tweaked for local development. Basically, comment-out `git-gateway` and uncomment `test-repo` and `login: false`.
 
 ```yaml
 backend:
   # name: git-gateway
   name: test-repo
+  login: false
 ```
+
+You'll also want to tweak the RBAC JavaScript code to fake a user login. So in `admin/rrpm-netlify-rbac.js`:
+
+- Change the constant `FAKE_LOGIN` to `true`
+
+  ```javascript
+  const FAKE_LOGIN = true; // Must be set to false for production
+  ```
+
+- Change the contents of the `loginFakeUser` function based on the user role that you'd like to test
+
+  ```javascript
+  function loginFakeUser() {
+    // Tweak fake user role here
+  }
+  ```
+
+##### Netlify CMS Updates
+
+The Admin site's `package.json` file lists a custom build of Netlify CMS as a dependency:
+
+```json
+  "dependencies": {
+    "@rrpm/netlify-cms": "^2.2.37"
+  }
+```
+
+To make changes to this custom Netlify CMS NPM package, see the details [here](https://github.com/railroadpm/rrpm-netlify-cms/blob/master/README.md#railroadpm-project-notes).
+
+And then to update the reference to the package and properly install the updated JavaScript file in the Admin site:
+
+1. From a command prompt, change your current working directory to the `/admin` folder of this repo
+
+1. Run these commands:
+
+   ```
+   yarn install
+   yarn build
+   ```
 
 ### Browser Setup
 
@@ -166,7 +212,27 @@ The Admin piece is really just Netlify CMS and its configuration file. You can g
 
 Thanks for your interest in the architecture of this [Performance Measurement (PM) System](https://en.wikipedia.org/wiki/Data_collection_system#Types).
 
-This system uses a [Single-Page Application](https://en.wikipedia.org/wiki/Single-page_application) architecture with:
+### Concept
+
+The _key architectural concept_ for this solution is:
+
+> Perform all server-side logic at **build-time**, not at **run-time**!
+
+In other words, the approach here is to eliminate all run-time server processing found in the heavier, monolithic web solution stacks/frameworks such as Java Spring, ASP.NET, Ruby on Rails, and Laravel.
+
+Those solutions typically build each page from scratch every time it is requested by a browser. And they typically do this by coordinating across multiple layers/servers such as load balancers, web servers, caching layers, data access layers, and databases.
+
+In contrast this solution pre-builds responses using a free build server and then simply serves the resulting static sites from a CDN.
+
+Changes to site content automatically kick-off a fresh build, which typically completes in milliseconds.
+
+Any run-time logic required for things such as authentication is handled by cloud microservices whose uptime is managed by others (i.e., using a serverless approach).
+
+Clearly the requirements of some web apps simply can't be adapted to this approach. For example, when website content is changing more frequently than say, by the minute, this approach likely wouldn't work.
+
+### Details
+
+This system uses a [Single-Page Application](https://en.wikipedia.org/wiki/Single-page_application) (SPA) architecture with:
 
 - A [Vue.js](https://en.wikipedia.org/wiki/Vue.js) [JavaScript Framework](https://en.wikipedia.org/wiki/Single-page_application#JavaScript_frameworks) front-end using
 
@@ -210,7 +276,7 @@ This system uses a [Single-Page Application](https://en.wikipedia.org/wiki/Singl
 
   - Based on a [custom build](https://github.com/railroadpm/rrpm-netlify-cms) (and [published NPM package](https://www.npmjs.com/package/@rrpm/netlify-cms)) of the React-based, Git-backed [Netlify CMS](https://www.netlifycms.org) open source content management system
 
-  - Which is another SPA hosted on the Netlify static CDN
+  - Which is also a SPA hosted on the Netlify static CDN
 
   - Also using the [Netlify Identity service](https://www.netlify.com/docs/identity/) for auth
 

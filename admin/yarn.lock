@@ -166,10 +166,10 @@
     js-base64 "^2.4.8"
     semaphore "^1.1.0"
 
-"@rrpm/netlify-cms-backend-git-gateway@^2.1.11":
-  version "2.1.11"
-  resolved "https://registry.yarnpkg.com/@rrpm/netlify-cms-backend-git-gateway/-/netlify-cms-backend-git-gateway-2.1.11.tgz#a4c3d054924781b66dbda5acf9179494b28a0af7"
-  integrity sha512-DPm6gy6kGbgEVnyK3pMaWbF9zEmNzHmr9PiQlIIa/HfQdVP1vc9i0UXtyar3G9aMFoIo5+n7nBN/BAZYbrVzRw==
+"@rrpm/netlify-cms-backend-git-gateway@^2.1.15":
+  version "2.1.15"
+  resolved "https://registry.yarnpkg.com/@rrpm/netlify-cms-backend-git-gateway/-/netlify-cms-backend-git-gateway-2.1.15.tgz#ca650312f3ab32ba55be6172ad2347013a12daa7"
+  integrity sha512-ATu8pMtHljhzRgPmFGan0oeazGtS5qdBoeoXTJDF6wycLi+fh0t3zRXNyAJkZcXBw+knev33tP/F8T++dgalNA==
   dependencies:
     gotrue-js "^0.9.22"
     jwt-decode "^2.2.0"
@@ -198,10 +198,10 @@
   dependencies:
     uuid "^3.3.2"
 
-"@rrpm/netlify-cms-core@^2.2.26":
-  version "2.2.26"
-  resolved "https://registry.yarnpkg.com/@rrpm/netlify-cms-core/-/netlify-cms-core-2.2.26.tgz#892789b290d518a87905822a1f8e4d9a6d948b0b"
-  integrity sha512-2EPXQ8lYm+2Kfv04e1zDcnZsE6GR8SuLAWerkDHHwiLZoLsu1tqCIxzB7m7Ve1sY9oYVu/0+b5mO5HTdm3fL9Q==
+"@rrpm/netlify-cms-core@^2.2.30":
+  version "2.2.30"
+  resolved "https://registry.yarnpkg.com/@rrpm/netlify-cms-core/-/netlify-cms-core-2.2.30.tgz#855ea2a56a274e1e8e7986131f7dde7b0bb5368e"
+  integrity sha512-v94u9n+7PRK1R7+52XerYUFmIPkUFLpVz2K25tGeJxjUTAkDpxlodpekhxbKZ/jVY0l1e5+usE7tJYt/VT/S7w==
   dependencies:
     "@rrpm/netlify-cms-editor-component-image" "^2.0.6"
     "@rrpm/netlify-cms-lib-auth" "^2.0.7"
@@ -386,17 +386,17 @@
   dependencies:
     react-textarea-autosize "^5.2.0"
 
-"@rrpm/netlify-cms@^2.2.32":
-  version "2.2.32"
-  resolved "https://registry.yarnpkg.com/@rrpm/netlify-cms/-/netlify-cms-2.2.32.tgz#0f6dce739a00b34305527a3b4e9ada48762a22ab"
-  integrity sha512-2s4asivZ0jTZk6XDrj6ty0E9Dx7AadGzfrLEIrWyH9S2vYsk84vWCbmbl95jZ26gZ7mjBTra5tV6UK08p2sQRg==
+"@rrpm/netlify-cms@^2.2.37":
+  version "2.2.37"
+  resolved "https://registry.yarnpkg.com/@rrpm/netlify-cms/-/netlify-cms-2.2.37.tgz#fe80acf1c6b9043cc81556c5cd1dda77961fa76e"
+  integrity sha512-XSMgKMBN1WbljclpP4zPtZfigUbx+RTbVgrxoS92aAUoa0aIQv8dq2dR0XWwsdoSuiDCdAJeYzqsy1QCQnLY6A==
   dependencies:
     "@rrpm/netlify-cms-backend-bitbucket" "^2.1.2"
-    "@rrpm/netlify-cms-backend-git-gateway" "^2.1.11"
+    "@rrpm/netlify-cms-backend-git-gateway" "^2.1.15"
     "@rrpm/netlify-cms-backend-github" "^2.1.2"
     "@rrpm/netlify-cms-backend-gitlab" "^2.1.2"
     "@rrpm/netlify-cms-backend-test" "^2.0.8"
-    "@rrpm/netlify-cms-core" "^2.2.26"
+    "@rrpm/netlify-cms-core" "^2.2.30"
     "@rrpm/netlify-cms-editor-component-image" "^2.0.6"
     "@rrpm/netlify-cms-media-library-uploadcare" "^0.2.3"
     "@rrpm/netlify-cms-widget-boolean" "^2.0.7"
@@ -1239,9 +1239,9 @@ escape-string-regexp@^1.0.5:
   integrity sha1-G2HAViGQqN/2rjuyzwIAyhMLhtQ=
 
 eslint-plugin-prettier@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-prettier/-/eslint-plugin-prettier-3.0.0.tgz#f6b823e065f8c36529918cdb766d7a0e975ec30c"
-  integrity sha512-4g11opzhqq/8+AMmo5Vc2Gn7z9alZ4JqrbZ+D4i8KlSyxeQhZHlmIrY8U9Akf514MoEhogPa87Jgkq87aZ2Ohw==
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-prettier/-/eslint-plugin-prettier-3.0.1.tgz#19d521e3981f69dd6d14f64aec8c6a6ac6eb0b0d"
+  integrity sha512-/PMttrarPAY78PLvV3xfWibMOdMDl57hmlQ2XqFeA37wd+CJ7WSxV7txqjVPHi/AAFKd2lX0ZqfsOc/i5yFCSQ==
   dependencies:
     prettier-linter-helpers "^1.0.0"
 
@@ -1990,9 +1990,9 @@ inquirer@^6.1.0:
     through "^2.3.6"
 
 interpret@^1.0.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/interpret/-/interpret-1.1.0.tgz#7ed1b1410c6a0e0f78cf95d3b8440c63f78b8614"
-  integrity sha1-ftGxQQxqDg94z5XTuEQMY/eLhhQ=
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/interpret/-/interpret-1.2.0.tgz#d5061a6224be58e8083985f5014d844359576296"
+  integrity sha512-mT34yGKMNceBQUoVn7iCDKDntA7SC6gycMAWzGx1z/CMCTV7b2AAtXlo3nRyHZ1FelRkQbQjprHSYGwzLtkVbw==
 
 invariant@^2.0.0, invariant@^2.1.0, invariant@^2.2.1, invariant@^2.2.4:
   version "2.2.4"

@@ -62,7 +62,8 @@
   display: none;
 }
 
-#nc-root div.nc-app-editor-control-container[data-field="Revisions"] {
+#nc-root div.nc-app-editor-control-container[data-field="Revisions"],
+#nc-root div.nc-app-editor-control-container[data-field="RevisionMarkExpiration"] {
   display: none;
 }
 
@@ -85,7 +86,8 @@
   display: inline-flex;
 }
 
-#nc-root.nc-user-role-is-admin div.nc-app-editor-control-container[data-field="Revisions"] {
+#nc-root.nc-user-role-is-admin div.nc-app-editor-control-container[data-field="Revisions"],
+#nc-root.nc-user-role-is-admin div.nc-app-editor-control-container[data-field="RevisionMarkExpiration"] {
   display: block;
 }
 

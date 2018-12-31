@@ -3,7 +3,7 @@
 
   Parameters
     $.prpt            Participant Key
-    $.data            Site Data  
+    $.data            Site Data
     $.scratch         Scratchpad ref
     $.avg_cols        The averages columns to render in the rows, or nil if not applicable
     $.weeks           The Weeks for which to render the rows
@@ -12,8 +12,8 @@
 {{- $prpt_rpts := index $.data.Measures.Weekly $.prpt -}}
 
 {{- $.scratch.Delete $row_map_key -}}
-{{- $.scratch.SetInMap $row_map_key "isHeadingRow" true -}} <!-- Well, not exactly a "heading", but the easiest way to handle this one-off "Revisions" use-case -->
-{{- $.scratch.SetInMap $row_map_key "isSubheading" true -}} <!-- ...and we have to mark this is a "sub-heading" to prevent row selection for quick graphs -->
+{{- $.scratch.SetInMap $row_map_key "isHeadingRow" true -}} <!-- Well, Revision Marks are not exactly a "heading", but this is the easiest way to handle this use-case -->
+{{- $.scratch.SetInMap $row_map_key "isSubheading" true -}} <!-- ...and we have to mark this as a "sub-heading" to prevent row selection for quick graphs -->
 {{- $.scratch.SetInMap $row_map_key "rowLabel" "Revisions" -}}
 {{- $.scratch.SetInMap $row_map_key "key" "Revisions" -}}
 {{- range $.avg_cols -}}
@@ -23,7 +23,10 @@
   {{- $prpt_rpt := index $prpt_rpts $week.Key -}}
   {{- with $prpt_rpt -}}
     {{- $revisions := index . "Revisions" -}}
-    {{- $.scratch.SetInMap $row_map_key $week.Key (cond (eq $revisions true) "R" "") -}}
+    {{- $rev_mark_exp := cond (eq (index . "RevisionMarkExpiration") nil) "20990102" (index . "RevisionMarkExpiration") -}}
+    {{- $today := now.Format "20060102" -}}
+    <!-- When Revisions, and the Mark hasn't expired as of today (or expiration is nil) render an "R" -->
+    {{- $.scratch.SetInMap $row_map_key $week.Key (cond (and (eq $revisions true) (lt $today $rev_mark_exp)) "R" "") -}}
   {{- end -}}
 {{- end -}}
 

@@ -29,7 +29,7 @@ $(() => {
     // console.log(`Revisions Toggle Clicked! New toggle val: ${newToggleVal}, Exp val currently: "${currentExpVal}"`);
 
     if (newToggleVal === false) {
-      $exp.val('');
+      setReactInputValue($exp, '');
     } else {
       if (!currentExpVal) {
         let currentDT = DateTime.local();
@@ -43,8 +43,27 @@ $(() => {
         // Default expiration to the Wednesday at least 6 days from today
         while (wedExpDT.weekday != 3) wedExpDT = wedExpDT.plus(spanOneDay);
 
-        $exp.val(wedExpDT.toFormat('yyyyMMdd'));
+        setReactInputValue($exp, wedExpDT.toFormat('yyyyMMdd'));
       }
     }
   });
 });
+
+// React takes control of input elements and requires us to perform this
+// sort of logic to notify it of changes that occur outside of its purview.
+// This function takes a jQuery wrapper reference to an input and makes React happy
+// with a new value
+function setReactInputValue($element, value) {
+  let elt = $element[0]; // Unwrap elt from jQuery
+  const valueSetter = Object.getOwnPropertyDescriptor(elt, 'value').set;
+  const prototype = Object.getPrototypeOf(elt);
+  const prototypeValueSetter = Object.getOwnPropertyDescriptor(prototype, 'value').set;
+
+  if (valueSetter && valueSetter !== prototypeValueSetter) {
+    prototypeValueSetter.call(elt, value);
+  } else {
+    valueSetter.call(elt, value);
+  }
+
+  elt.dispatchEvent(new Event('input', { bubbles: true }));
+}

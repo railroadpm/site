@@ -8,13 +8,17 @@
   <link rel="icon" type="image/jpg" href="/favicon-rpm-32x32.jpg" sizes="32x32">
   <title>RPM Admin</title>
   <!-- Include the styles for customizing Netlify CMS UI -->
-  <link rel="stylesheet" href="main.css?rev=003">
+  <link rel="stylesheet" href="main.css?rev=004">
   <!-- We need the Netlify Identity Widget -->
   <!-- See: https://github.com/netlify/netlify-identity-widget -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 
 <body>
+  <!-- 3rd party vendor scripts -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
+  <script src="luxon.min.js"></script>
+
   <!--
     Include the scripts that build the page, power Netlify CMS, and customize it for this project
 
@@ -25,8 +29,9 @@
 
         > yarn build
   -->
-  <script src="rrpm-netlify-cms.min.js?rev=003"></script>
-  <script src="rrpm-netlify-rbac.min.js?rev=003"></script>
+  <script src="rrpm-netlify-cms.min.js?rev=004"></script>
+  <script src="rrpm-netlify-rbac.min.js?rev=004"></script>
+  <script src="rrpm-netlify-forms.min.js?rev=004"></script>
 </body>
 
 </html>

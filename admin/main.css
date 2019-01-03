@@ -36,6 +36,7 @@
   background-color: #0072a9;
   padding: 12px;
   margin: 25px 0 15px -30px;
+  border-radius: 5px;
 }
 
 #nc-root .nc-app-editor-control-container .nc-app-editor-section-heading span {

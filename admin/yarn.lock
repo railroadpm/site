@@ -174,10 +174,10 @@
     gotrue-js "^0.9.22"
     jwt-decode "^2.2.0"
 
-"@rrpm/netlify-cms-backend-github@^2.1.4":
-  version "2.1.4"
-  resolved "https://registry.yarnpkg.com/@rrpm/netlify-cms-backend-github/-/netlify-cms-backend-github-2.1.4.tgz#0fac2d5ddbc74d89fff2ac50c43c6bf52b401f33"
-  integrity sha512-8XWoLEIPc8GmZWy5Nk0t5lo3NovMNyO3THCbRgrTcJ0viG5SSGQlsr3MxWzk/SCMNg6ILxaZJR1GM1/cks6mYw==
+"@rrpm/netlify-cms-backend-github@^2.1.5":
+  version "2.1.5"
+  resolved "https://registry.yarnpkg.com/@rrpm/netlify-cms-backend-github/-/netlify-cms-backend-github-2.1.5.tgz#752154d448145f4b308e474feedaa11a2d73260e"
+  integrity sha512-L6CPKPmgTGrp2LA4NYBQmqXM9UiuacUtX/5JNBUEqy/i51xyQYYMvvyi43gYGMIMIXsFNzyTUbhs3Xf58DaQYA==
   dependencies:
     common-tags "^1.8.0"
     js-base64 "^2.4.8"
@@ -198,10 +198,10 @@
   dependencies:
     uuid "^3.3.2"
 
-"@rrpm/netlify-cms-core@^2.2.31":
-  version "2.2.31"
-  resolved "https://registry.yarnpkg.com/@rrpm/netlify-cms-core/-/netlify-cms-core-2.2.31.tgz#0a9091bc71ce31fb2c1db35d8bf379d335dc4d82"
-  integrity sha512-Eq7R+tC7nXMsFCk9g/sBjqQ9NMJeQF22LP3+G6ocwkVaLv23CqlS5yHRasHp7PTjWN0dg17pGk7RFZA5Ab9PnQ==
+"@rrpm/netlify-cms-core@^2.2.32":
+  version "2.2.32"
+  resolved "https://registry.yarnpkg.com/@rrpm/netlify-cms-core/-/netlify-cms-core-2.2.32.tgz#6ef17e9bbd0adba523deb93a78bd600d40ff3310"
+  integrity sha512-dfV+fILp6pe+w8Wk7fnsaf2Q7GCrn+MzA0Lu0sYAjFCq89mS5hSgZeYeSlmvOqw+PeCQN4sDQ8P9B8yQ2OS0mA==
   dependencies:
     "@rrpm/netlify-cms-editor-component-image" "^2.0.6"
     "@rrpm/netlify-cms-lib-auth" "^2.0.7"
@@ -387,16 +387,16 @@
     react-textarea-autosize "^5.2.0"
 
 "@rrpm/netlify-cms@^2.2.39":
-  version "2.2.39"
-  resolved "https://registry.yarnpkg.com/@rrpm/netlify-cms/-/netlify-cms-2.2.39.tgz#9715f2ad3857e0040df4819e484353143e2e787f"
-  integrity sha512-4XMpmiPjNQFmhcAZx28queIbPHz6NhlL4anT97YPeJFCRMfPV3UDYZX9shj0wJRrSeRS2VhaNxFQlbNOcKjwjA==
+  version "2.2.40"
+  resolved "https://registry.yarnpkg.com/@rrpm/netlify-cms/-/netlify-cms-2.2.40.tgz#fed2cd1676e8290ccd85301a7710c1afe58bc179"
+  integrity sha512-j350vJzsazG2UTR07Xb5sMYCn1as1oL2aJM7sfHsZ5L+hJcw19kOyQiIiN7Q9piPrpetcC6d4FB6gp+tfW1hcw==
   dependencies:
     "@rrpm/netlify-cms-backend-bitbucket" "^2.1.2"
     "@rrpm/netlify-cms-backend-git-gateway" "^2.1.15"
-    "@rrpm/netlify-cms-backend-github" "^2.1.4"
+    "@rrpm/netlify-cms-backend-github" "^2.1.5"
     "@rrpm/netlify-cms-backend-gitlab" "^2.1.2"
     "@rrpm/netlify-cms-backend-test" "^2.0.8"
-    "@rrpm/netlify-cms-core" "^2.2.31"
+    "@rrpm/netlify-cms-core" "^2.2.32"
     "@rrpm/netlify-cms-editor-component-image" "^2.0.6"
     "@rrpm/netlify-cms-media-library-uploadcare" "^0.2.3"
     "@rrpm/netlify-cms-widget-boolean" "^2.0.7"

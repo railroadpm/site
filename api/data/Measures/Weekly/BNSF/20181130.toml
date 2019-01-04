@@ -1,5 +1,7 @@
-Railroad = 'BNSF'
-WeekEnding = '20181130'
+Railroad = "BNSF"
+WeekEnding = "20181130"
+Revisions = true
+RevisionMarkExpiration = "20190116"
 CarsOnLine_ByCarOwner_System = 64363
 CarsOnLine_ByCarOwner_ForeignRR = 23718
 CarsOnLine_ByCarOwner_Private = 167001

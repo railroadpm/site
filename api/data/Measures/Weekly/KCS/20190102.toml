@@ -1,0 +1,14 @@
+Railroad = "KCS"
+WeekEnding = "20190102"
+Revisions = false
+CarsOnLine_ByCarOwner_System = 108033
+CarsOnLine_ByCarOwner_ForeignRR = 113333
+CarsOnLine_ByCarOwner_Private = 479657
+CarsOnLine_ByCarType_Box = 33595
+CarsOnLine_ByCarType_CoveredHopper = 234590
+CarsOnLine_ByCarType_Gondola = 45980
+CarsOnLine_ByCarType_IntermodalCar = 15386
+CarsOnLine_ByCarType_MultilevelCar = 33049
+CarsOnLine_ByCarType_OpenHopper = 99621
+CarsOnLine_ByCarType_Tank = 203334
+CarsOnLine_ByCarType_Other = 26679

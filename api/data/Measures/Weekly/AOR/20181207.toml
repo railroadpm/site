@@ -1,5 +1,6 @@
-Railroad = 'AOR'
-WeekEnding = '20181207'
+Railroad = "AOR"
+WeekEnding = "20181207"
+Revisions = true
 CarsOnLine_ByCarOwner_System = 96299
 CarsOnLine_ByCarOwner_ForeignRR = 113759
 CarsOnLine_ByCarOwner_Private = 451307

@@ -282,4 +282,10 @@ This system uses a [Single-Page Application](https://en.wikipedia.org/wiki/Singl
 
 The three main bullets above are referred to in the solution architecture as the **App**, the **API**, and the **Admin** site respectively. And there are top-level folders in this source code repo that correspond to these pieces of the solution.
 
+### Comparison With Traditional/Legacy Stack
+
+This system operated for over a decade on a more traditional/legacy stack before being re-imagined in the modern stack described above.
+
+See [here](https://github.com/railroadpm/admin-kit/blob/master/TechComparison/README.md) for a helpful side-by-side comparison between old and new.
+
 </details><!-- Architect -->

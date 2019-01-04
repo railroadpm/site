@@ -1,0 +1,14 @@
+Railroad = "UP"
+WeekEnding = "20190102"
+Revisions = false
+CarsOnLine_ByCarOwner_System = 108055
+CarsOnLine_ByCarOwner_ForeignRR = 116666
+CarsOnLine_ByCarOwner_Private = 479657
+CarsOnLine_ByCarType_Box = 66595
+CarsOnLine_ByCarType_CoveredHopper = 234590
+CarsOnLine_ByCarType_Gondola = 45980
+CarsOnLine_ByCarType_IntermodalCar = 15386
+CarsOnLine_ByCarType_MultilevelCar = 55049
+CarsOnLine_ByCarType_OpenHopper = 99621
+CarsOnLine_ByCarType_Tank = 203334
+CarsOnLine_ByCarType_Other = 26679
